@@ -1,11 +1,20 @@
 import React from "react";
 import { Container, Typography, Button, Box, Grid, Paper } from "@mui/material";
 import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import CoreServicesOverview from "../components/CoreServicesOverview";
 
 export default function Home() {
   return (
     <Container maxWidth="lg" sx={{ py: 5 }}>
       <HeroSection />
+      {/* About Summary */}
+      <AboutSection />
+
+      {/* Core Services Overview */}
+      <CoreServicesOverview />
+
+      {/* Main Content */}
 
       <Typography variant="h3" align="center" gutterBottom>
         Transform Your Business with World-Class Technology Solutions
