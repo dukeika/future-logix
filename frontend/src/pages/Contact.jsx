@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -8,181 +8,232 @@ import {
   TextField,
   useTheme,
   Paper,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Card,
+  CardContent,
 } from "@mui/material";
-import { Link } from "react-router-dom";
-
-// Icons for contact details
-import PhoneIcon from "@mui/icons-material/Phone";
-import EmailIcon from "@mui/icons-material/Email";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import SendIcon from "@mui/icons-material/Send";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import XIcon from "@mui/icons-material/X"; // Represents Twitter
+import EmailIcon from "@mui/icons-material/Email";
+import PhoneIcon from "@mui/icons-material/Phone";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import BusinessIcon from "@mui/icons-material/Business"; // For Sales/Business Inquiries
+import axios from "axios";
 
-export default function ContactUs() {
+// Define your API URL based on environment
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+
+// Data for Contact Cards
+const contactMethods = [
+  {
+    icon: <EmailIcon sx={{ fontSize: 40, color: "primary.main" }} />,
+    title: "General Inquiries",
+    details: ["info@futurelogix.com", ""], // Email at index 0, Phone at index 1
+    description: "For general questions about our services or company.",
+  },
+  {
+    icon: <SupportAgentIcon sx={{ fontSize: 40, color: "primary.main" }} />,
+    title: "Technical Support",
+    details: ["support@futurelogix.com", "+234 800 123 4567"],
+    description:
+      "Need assistance with your cloud infrastructure? Our team is here to help.",
+  },
+  {
+    icon: <BusinessIcon sx={{ fontSize: 40, color: "primary.main" }} />,
+    title: "Sales & Partnerships",
+    details: ["sales@futurelogix.com", "+234 900 765 4321"],
+    description:
+      "Interested in partnering or learning more about our solutions?",
+  },
+  {
+    icon: <LocationOnIcon sx={{ fontSize: 40, color: "primary.main" }} />,
+    title: "Our Location",
+    details: ["Suite 101, Logix Tower", "Victoria Island, Lagos, Nigeria"],
+    description: "Visit us during business hours or send us mail.",
+  },
+];
+
+export default function Contact() {
+  // Changed from ContactUs to Contact
   const theme = useTheme();
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  const handleSubmit = (event) => {
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Logic to handle form submission (e.g., send data to an API)
-    console.log("Contact form submitted!");
-    alert("Thank you for your message! We'll get back to you shortly.");
-    // Optionally, clear the form fields
-    event.target.reset();
+    setStatusMessage("Sending your message...");
+    setIsSuccess(false);
+
+    try {
+      const response = await axios.post(`${API_URL}/contact`, formData);
+      console.log("Backend response:", response.data);
+      setStatusMessage(response.data.message);
+      setIsSuccess(true);
+      // Clear form after successful submission
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(
+        "Error submitting form:",
+        error.response ? error.response.data : error.message
+      );
+      setStatusMessage(
+        error.response
+          ? error.response.data.error
+          : "An unexpected error occurred. Please try again."
+      );
+      setIsSuccess(false);
+    }
   };
 
   return (
     <Box sx={{ bgcolor: theme.palette.background.default }}>
-      {/* 1. Contact Us Hero Section */}
+      {/* Hero Section */}
       <Box
         sx={{
-          py: { xs: 10, md: 15 },
           bgcolor: theme.palette.primary.main,
-          color: theme.palette.primary.contrastText,
+          color: "white",
+          py: { xs: 8, md: 12 },
           textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
-          background: `linear-gradient(45deg, ${theme.palette.primary.dark} 30%, ${theme.palette.primary.main} 90%)`,
-          "&::before": {
-            content: '""',
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "url(/images/contact-hero-pattern.png) repeat",
-            opacity: 0.1,
-            zIndex: 0,
-          },
+          background: `linear-gradient(to right, ${theme.palette.primary.dark}, ${theme.palette.primary.main})`,
         }}
       >
-        <Container maxWidth="md" sx={{ position: "relative", zIndex: 1 }}>
+        <Container maxWidth="md">
           <Typography
             variant="h2"
             component="h1"
             gutterBottom
             sx={{ fontWeight: 700 }}
           >
-            Get In Touch
+            Get In Touch With FutureLogix
           </Typography>
-          <Typography variant="h5" paragraph sx={{ opacity: 0.9 }}>
-            We're here to answer your questions and help you transform your
-            business.
+          <Typography variant="h5" component="p" sx={{ mb: 4 }}>
+            We're here to help you navigate the complexities of cloud
+            technology.
           </Typography>
         </Container>
       </Box>
 
-      {/* 2. Contact Information Grid (Single Row Concept) */}
-      <Box
-        sx={{ py: { xs: 6, md: 8 }, bgcolor: theme.palette.background.paper }}
-      >
+      {/* Contact Cards Section */}
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.grey[100] }}>
         <Container maxWidth="lg">
           <Typography
             variant="h4"
             component="h2"
             align="center"
             gutterBottom
-            sx={{
-              fontWeight: 600,
-              color: theme.palette.primary.main,
-              mb: { xs: 4, md: 6 },
-            }}
+            sx={{ fontWeight: 600, color: theme.palette.primary.main, mb: 6 }}
           >
-            How to Reach Us
+            Reach Out Through Our Channels
           </Typography>
-          <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
-            {/* Phone */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                elevation={2}
-                sx={{
-                  p: { xs: 2, md: 3 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <PhoneIcon color="primary" sx={{ fontSize: 40, mb: 1.5 }} />
-                <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  Call Us
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  +234 (0) 800 123 4567 <br /> +234 (0) 900 765 4321
-                </Typography>
-              </Paper>
-            </Grid>
-            {/* Email */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                elevation={2}
-                sx={{
-                  p: { xs: 2, md: 3 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <EmailIcon color="primary" sx={{ fontSize: 40, mb: 1.5 }} />
-                <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  Email Us
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  info@futurelogix.com <br /> support@futurelogix.com
-                </Typography>
-              </Paper>
-            </Grid>
-            {/* Location */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                elevation={2}
-                sx={{
-                  p: { xs: 2, md: 3 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <LocationOnIcon
-                  color="primary"
-                  sx={{ fontSize: 40, mb: 1.5 }}
-                />
-                <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  Our Office
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Plot 123, Admiralty Way, Lekki Phase 1, <br /> Lagos, Nigeria
-                </Typography>
-              </Paper>
-            </Grid>
-            {/* Business Hours */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                elevation={2}
-                sx={{
-                  p: { xs: 2, md: 3 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <AccessTimeIcon
-                  color="primary"
-                  sx={{ fontSize: 40, mb: 1.5 }}
-                />
-                <Typography variant="h6" sx={{ fontWeight: 500 }}>
-                  Business Hours
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Monday - Friday: 9:00 AM - 5:00 PM <br /> (WAT)
-                </Typography>
-              </Paper>
-            </Grid>
+          <Grid container spacing={4} justifyContent="center">
+            {contactMethods.map((method, index) => (
+              <Grid item key={index} xs={12} sm={6} md={3}>
+                <Card
+                  sx={{
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    p: 3,
+                    borderRadius: 3,
+                    boxShadow: 6,
+                    transition: "transform 0.3s ease-in-out",
+                    "&:hover": {
+                      transform: "translateY(-5px)",
+                    },
+                  }}
+                >
+                  <Box sx={{ mb: 2 }}>{method.icon}</Box>
+                  <Typography
+                    variant="h6"
+                    component="h3"
+                    align="center"
+                    gutterBottom
+                    sx={{ fontWeight: 600 }}
+                  >
+                    {method.title}
+                  </Typography>
+                  {method.details[0] && (
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      align="center"
+                    >
+                      {method.details[0].includes("@") ? (
+                        <a
+                          href={`mailto:${method.details[0]}`}
+                          style={{
+                            color: theme.palette.primary.dark,
+                            textDecoration: "none",
+                          }}
+                        >
+                          {method.details[0]}
+                        </a>
+                      ) : (
+                        method.details[0]
+                      )}
+                    </Typography>
+                  )}
+                  {method.details[1] && (
+                    <Typography
+                      variant="body1"
+                      color="text.secondary"
+                      align="center"
+                    >
+                      {method.details[1].includes("+") ||
+                      method.details[1].replace(/\s/g, "").match(/^\d+$/) ? (
+                        <a
+                          href={`tel:${method.details[1].replace(/\s/g, "")}`}
+                          style={{
+                            color: theme.palette.primary.dark,
+                            textDecoration: "none",
+                          }}
+                        >
+                          {method.details[1]}
+                        </a>
+                      ) : (
+                        method.details[1]
+                      )}
+                    </Typography>
+                  )}
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    align="center"
+                    sx={{ mt: 1 }}
+                  >
+                    {method.description}
+                  </Typography>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
         </Container>
       </Box>
 
-      {/* 3. Centralized and Wider Contact Form Section */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.grey[100] }}>
+      {/* Contact Form Section */}
+      <Box
+        sx={{
+          py: { xs: 8, md: 12 },
+          bgcolor: theme.palette.background.default,
+        }}
+      >
         <Container maxWidth="sm">
           <Paper
             elevation={4}
@@ -207,6 +258,26 @@ export default function ContactUs() {
               Have a question or need assistance? Fill out the form below, and
               we'll get back to you promptly.
             </Typography>
+
+            {statusMessage && (
+              <Box
+                sx={{
+                  mb: 3,
+                  p: 2,
+                  borderRadius: 2,
+                  bgcolor: isSuccess
+                    ? theme.palette.success.light
+                    : theme.palette.error.light,
+                  color: isSuccess
+                    ? theme.palette.success.contrastText
+                    : theme.palette.error.contrastText,
+                  textAlign: "center",
+                }}
+              >
+                <Typography variant="body1">{statusMessage}</Typography>
+              </Box>
+            )}
+
             <Box
               component="form"
               onSubmit={handleSubmit}
@@ -218,6 +289,8 @@ export default function ContactUs() {
                 label="Your Full Name"
                 variant="outlined"
                 name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
               />
               <TextField
                 required
@@ -226,12 +299,16 @@ export default function ContactUs() {
                 type="email"
                 variant="outlined"
                 name="email"
+                value={formData.email}
+                onChange={handleChange}
               />
               <TextField
                 fullWidth
                 label="Phone Number (Optional)"
                 variant="outlined"
                 name="phone"
+                value={formData.phone}
+                onChange={handleChange}
               />
               <TextField
                 required
@@ -239,6 +316,8 @@ export default function ContactUs() {
                 label="Subject"
                 variant="outlined"
                 name="subject"
+                value={formData.subject}
+                onChange={handleChange}
               />
               <TextField
                 required
@@ -248,6 +327,8 @@ export default function ContactUs() {
                 rows={6}
                 variant="outlined"
                 name="message"
+                value={formData.message}
+                onChange={handleChange}
               />
               <Button
                 type="submit"
@@ -264,145 +345,41 @@ export default function ContactUs() {
         </Container>
       </Box>
 
-      {/* 4. Connect on Social Media (Retained its position) */}
-      <Box
-        sx={{
-          py: { xs: 6, md: 8 },
-          bgcolor: theme.palette.background.paper,
-          textAlign: "center",
-        }}
-      >
-        <Container maxWidth="md">
-          <Typography
-            variant="h4"
-            gutterBottom
-            sx={{ fontWeight: 600, color: theme.palette.primary.main, mb: 3 }}
-          >
-            Stay Connected
-          </Typography>
-          <Typography
-            variant="body1"
-            paragraph
-            color="text.secondary"
-            sx={{ mb: 4 }}
-          >
-            Follow us on our social channels for the latest updates, industry
-            insights, and company news.
-          </Typography>
-          <Box sx={{ display: "flex", gap: 3, justifyContent: "center" }}>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<LinkedInIcon />}
-              component="a"
-              href="https://linkedin.com/company/futurelogix"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ textTransform: "none", px: 3, py: 1 }}
-            >
-              LinkedIn
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<XIcon />}
-              component="a"
-              href="https://x.com/futurelogix"
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{ textTransform: "none", px: 3, py: 1 }}
-            >
-              X (Twitter)
-            </Button>
-            {/* Add more social media buttons here if needed */}
-          </Box>
-        </Container>
-      </Box>
-
-      {/* 5. Final Call to Action / Invitation */}
-      <Box
-        sx={{
-          py: { xs: 8, md: 12 },
-          bgcolor: theme.palette.primary.dark,
-          color: theme.palette.primary.contrastText,
-          textAlign: "center",
-        }}
-      >
-        <Container maxWidth="md">
+      {/* Optional: Map/Location Section */}
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.grey[50] }}>
+        <Container maxWidth="lg">
           <Typography
             variant="h4"
             component="h2"
+            align="center"
             gutterBottom
-            sx={{ fontWeight: 600 }}
+            sx={{ fontWeight: 600, color: theme.palette.primary.main, mb: 6 }}
           >
-            Ready to Transform Your Business?
+            Find Us on the Map
           </Typography>
-          <Typography
-            variant="h6"
-            paragraph
-            sx={{ mb: { xs: 4, md: 6 }, opacity: 0.9 }}
-          >
-            Schedule a free consultation with our experts to discuss your unique
-            challenges and opportunities.
-          </Typography>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="large"
-            component={Link}
-            to="/services"
-            sx={{
-              px: 5,
-              py: 1.8,
-              borderRadius: 3,
-              fontWeight: 700,
-              fontSize: "1.1rem",
-            }}
-          >
-            Explore Our Services
-          </Button>
+          <Paper elevation={4} sx={{ borderRadius: 3, overflow: "hidden" }}>
+            <Box
+              sx={{
+                width: "100%",
+                height: { xs: 300, sm: 400, md: 500 },
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                bgcolor: theme.palette.grey[200],
+                color: theme.palette.text.secondary,
+              }}
+            >
+              {/* Replace with an actual embedded Google Map iframe or a map component */}
+              <Typography variant="h6">
+                Map Placeholder (e.g., Google Maps Embed)
+              </Typography>
+            </Box>
+          </Paper>
         </Container>
       </Box>
+
+      {/* Social Media and Call to Action sections (if you have them from previous designs) */}
+      {/* ... */}
     </Box>
   );
 }
-
-// import React from "react";
-// import { Container, Typography, TextField, Button, Box } from "@mui/material";
-
-// export default function Contact() {
-//   return (
-//     <Container maxWidth="md" sx={{ py: 5 }}>
-//       <Typography variant="h4" gutterBottom>
-//         Contact Us
-//       </Typography>
-//       <Typography paragraph>
-//         Ready to transform your business? Reach out to our team for a free
-//         consultation.
-//       </Typography>
-
-//       <form>
-//         <TextField label="Name" fullWidth margin="normal" required />
-//         <TextField label="Email" fullWidth margin="normal" required />
-//         <TextField label="Phone Number" fullWidth margin="normal" />
-//         <TextField
-//           label="Message"
-//           multiline
-//           rows={4}
-//           fullWidth
-//           margin="normal"
-//           required
-//         />
-//         <Button type="submit" variant="contained" color="primary">
-//           Send Message
-//         </Button>
-//       </form>
-
-//       <Box sx={{ mt: 4 }}>
-//         <Typography variant="h6">Office Address:</Typography>
-//         <Typography>Lagos, Nigeria</Typography>
-//         <Typography>Email: info@futurelogix.tech</Typography>
-//       </Box>
-//     </Container>
-//   );
-// }

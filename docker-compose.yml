@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:16-alpine # Use a lightweight PostgreSQL image
+    restart: always
+    environment:
+      POSTGRES_DB: futurelogixdb # Your database name
+      POSTGRES_USER: user # Your database user
+      POSTGRES_PASSWORD: password # Your database password
+      DATABASE_URL: postgresql://user:password@localhost:5432/futurelogixdb?schema=public
+
+    ports:
+      - "5432:5432" # Map host port 5432 to container port 5432
+    volumes:
+      - db_data:/var/lib/postgresql/data # Persist data
+    healthcheck: # Optional but recommended: ensures DB is ready before other services
+      test: ["CMD-SHELL", "pg_isready -U user -d futurelogixdb"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  db_data: # Define the named volume for database persistence
