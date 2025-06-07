@@ -97,7 +97,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+          "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
         },
         "Handler": "contact.handler",
         "Runtime": "nodejs18.x",
@@ -106,7 +106,8 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+            "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+            "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
           }
         },
         "Role": {
@@ -125,7 +126,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+          "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
         },
         "Handler": "blog.handler",
         "Runtime": "nodejs18.x",
@@ -134,7 +135,8 @@
         "Timeout": 6,
         "Environment": {
           "Variables": {
-            "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+            "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+            "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
           }
         },
         "Role": {
@@ -148,24 +150,24 @@
         "BlogPostsLogGroup"
       ]
     },
-    "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c": {
+    "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ContactFormLambdaFunction"
         },
-        "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+        "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
       }
     },
-    "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc": {
+    "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "BlogPostsLambdaFunction"
         },
-        "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+        "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
       }
     },
     "ApiGatewayRestApi": {
@@ -404,7 +406,7 @@
         "BlogPostsLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1749311951398": {
+    "ApiGatewayDeployment1749324960413": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -504,7 +506,7 @@
     "ContactFormLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c"
+        "Ref": "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM"
       },
       "Export": {
         "Name": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
@@ -513,7 +515,7 @@
     "BlogPostsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc"
+        "Ref": "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8"
       },
       "Export": {
         "Name": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"

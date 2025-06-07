@@ -10,7 +10,8 @@
         "runtime": "nodejs18.x",
         "region": "eu-west-2",
         "environment": {
-          "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+          "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+          "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
         },
         "stage": "dev",
         "versionFunctions": true,
@@ -113,7 +114,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+                  "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
                 },
                 "Handler": "contact.handler",
                 "Runtime": "nodejs18.x",
@@ -122,7 +123,8 @@
                 "Timeout": 6,
                 "Environment": {
                   "Variables": {
-                    "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                    "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                    "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
                   }
                 },
                 "Role": {
@@ -141,7 +143,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+                  "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
                 },
                 "Handler": "blog.handler",
                 "Runtime": "nodejs18.x",
@@ -150,7 +152,8 @@
                 "Timeout": 6,
                 "Environment": {
                   "Variables": {
-                    "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                    "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                    "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
                   }
                 },
                 "Role": {
@@ -164,24 +167,24 @@
                 "BlogPostsLogGroup"
               ]
             },
-            "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c": {
+            "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "ContactFormLambdaFunction"
                 },
-                "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+                "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
               }
             },
-            "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc": {
+            "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "BlogPostsLambdaFunction"
                 },
-                "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+                "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
               }
             },
             "ApiGatewayRestApi": {
@@ -420,7 +423,7 @@
                 "BlogPostsLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1749311951398": {
+            "ApiGatewayDeployment1749324960413": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -520,7 +523,7 @@
             "ContactFormLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c"
+                "Ref": "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM"
               },
               "Export": {
                 "Name": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
@@ -529,7 +532,7 @@
             "BlogPostsLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc"
+                "Ref": "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8"
               },
               "Export": {
                 "Name": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"
@@ -600,7 +603,7 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c"
+          "versionLogicalId": "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM"
         },
         "blogPosts": {
           "handler": "blog.handler",
@@ -636,7 +639,7 @@
           "timeout": 6,
           "runtime": "nodejs18.x",
           "vpc": {},
-          "versionLogicalId": "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc"
+          "versionLogicalId": "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8"
         }
       },
       "plugins": [
@@ -648,7 +651,8 @@
       "runtime": "nodejs18.x",
       "region": "eu-west-2",
       "environment": {
-        "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+        "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+        "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
       },
       "stage": "dev",
       "versionFunctions": true,
@@ -751,7 +755,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+                "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
               },
               "Handler": "contact.handler",
               "Runtime": "nodejs18.x",
@@ -760,7 +764,8 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                  "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                  "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
                 }
               },
               "Role": {
@@ -779,7 +784,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+                "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
               },
               "Handler": "blog.handler",
               "Runtime": "nodejs18.x",
@@ -788,7 +793,8 @@
               "Timeout": 6,
               "Environment": {
                 "Variables": {
-                  "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                  "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                  "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
                 }
               },
               "Role": {
@@ -802,24 +808,24 @@
               "BlogPostsLogGroup"
             ]
           },
-          "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c": {
+          "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ContactFormLambdaFunction"
               },
-              "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+              "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
             }
           },
-          "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc": {
+          "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BlogPostsLambdaFunction"
               },
-              "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+              "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
             }
           },
           "ApiGatewayRestApi": {
@@ -1058,7 +1064,7 @@
               "BlogPostsLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1749311951398": {
+          "ApiGatewayDeployment1749324960413": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1158,7 +1164,7 @@
           "ContactFormLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c"
+              "Ref": "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM"
             },
             "Export": {
               "Name": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
@@ -1167,7 +1173,7 @@
           "BlogPostsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc"
+              "Ref": "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8"
             },
             "Export": {
               "Name": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"
@@ -1225,18 +1231,18 @@
     "serviceProviderAwsCfStackName": "futurelogix-api-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-west-2:624914081304:stack/futurelogix-api-dev/8abb4ea0-43b8-11f0-ba8f-0ad34d67b069",
     "serviceProviderAwsCfStackCreated": "2025-06-07T16:00:33.240Z",
-    "serviceProviderAwsCfStackUpdated": null,
-    "serviceProviderAwsCfStackStatus": "CREATE_COMPLETE",
+    "serviceProviderAwsCfStackUpdated": "2025-06-07T17:35:52.138Z",
+    "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "BlogPostsLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-api-dev-blogPosts:1",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-api-dev-blogPosts:2",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "ContactFormLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-api-dev-contactForm:1",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-api-dev-contactForm:2",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
       },
@@ -1351,7 +1357,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+              "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
             },
             "Handler": "contact.handler",
             "Runtime": "nodejs18.x",
@@ -1360,7 +1366,8 @@
             "Timeout": 6,
             "Environment": {
               "Variables": {
-                "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
               }
             },
             "Role": {
@@ -1379,7 +1386,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-api/dev/1749311967650-2025-06-07T15:59:27.650Z/futurelogix-api.zip"
+              "S3Key": "serverless/futurelogix-api/dev/1749324973445-2025-06-07T19:36:13.445Z/futurelogix-api.zip"
             },
             "Handler": "blog.handler",
             "Runtime": "nodejs18.x",
@@ -1388,7 +1395,8 @@
             "Timeout": 6,
             "Environment": {
               "Variables": {
-                "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db"
+                "DATABASE_URL": "postgres://akabom:lbifdfdfdX3@future-logix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com:5432/future-logix-db",
+                "REACT_APP_API_URL": "https://ubi6yxhf3g.execute-api.eu-west-2.amazonaws.com/dev"
               }
             },
             "Role": {
@@ -1402,24 +1410,24 @@
             "BlogPostsLogGroup"
           ]
         },
-        "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c": {
+        "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "ContactFormLambdaFunction"
             },
-            "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+            "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
           }
         },
-        "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc": {
+        "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "BlogPostsLambdaFunction"
             },
-            "CodeSha256": "u/h6BZGktD6/GOO9aTRZuNOujtA/VBP3syI1piA8JBU="
+            "CodeSha256": "7Y1xPwnd0qYBpybm3RdVfi8kNkxyR8y/+Af2QdtPv34="
           }
         },
         "ApiGatewayRestApi": {
@@ -1658,7 +1666,7 @@
             "BlogPostsLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1749311951398": {
+        "ApiGatewayDeployment1749324960413": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -1758,7 +1766,7 @@
         "ContactFormLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "ContactFormLambdaVersionSvWjFMdzTi7lfBlulaI6xAMv9uzWvRQzqjjVoJKAJ2c"
+            "Ref": "ContactFormLambdaVersion8C5AVTjazopmWmIFXYVKRHznMA1nQ7SErsLmQXzzVM"
           },
           "Export": {
             "Name": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
@@ -1767,7 +1775,7 @@
         "BlogPostsLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "BlogPostsLambdaVersion1mv3JXgihVfgHcuE5CVYk2txhe0FuJHJBTIo7VGrMc"
+            "Ref": "BlogPostsLambdaVersion6Amwgz7EL1a3hdEjN9NC1MiDLKADTP950jjAMG8e8"
           },
           "Export": {
             "Name": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"
