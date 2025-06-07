@@ -27,7 +27,7 @@ const contactMethods = [
   {
     icon: <EmailIcon sx={{ fontSize: 40, color: "primary.main" }} />,
     title: "General Inquiries",
-    details: ["info@futurelogix.com", ""], // Email at index 0, Phone at index 1
+    details: ["info@futurelogix.com", ""],
     description: "For general questions about our services or company.",
   },
   {
@@ -53,8 +53,8 @@ const contactMethods = [
 ];
 
 export default function Contact() {
-  // Changed from ContactUs to Contact
   const theme = useTheme();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -62,11 +62,32 @@ export default function Contact() {
     subject: "",
     message: "",
   });
+
   const [statusMessage, setStatusMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (errors[e.target.name]) {
+      setErrors({ ...errors, [e.target.name]: null });
+    }
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.fullName.trim())
+      newErrors.fullName = "Full Name is required.";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email address is invalid.";
+    }
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required.";
+    if (!formData.message.trim()) newErrors.message = "Message is required.";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (event) => {
@@ -74,12 +95,16 @@ export default function Contact() {
     setStatusMessage("Sending your message...");
     setIsSuccess(false);
 
+    if (!validateForm()) {
+      setStatusMessage("Please fix the highlighted errors.");
+      return;
+    }
+
     try {
       const response = await axios.post(`${API_URL}/contact`, formData);
       console.log("Backend response:", response.data);
-      setStatusMessage(response.data.message);
+      setStatusMessage(response.data.message || "Message sent successfully!");
       setIsSuccess(true);
-      // Clear form after successful submission
       setFormData({
         fullName: "",
         email: "",
@@ -93,9 +118,8 @@ export default function Contact() {
         error.response ? error.response.data : error.message
       );
       setStatusMessage(
-        error.response
-          ? error.response.data.error
-          : "An unexpected error occurred. Please try again."
+        error.response?.data?.error ||
+          "Failed to send message. Please try again later."
       );
       setIsSuccess(false);
     }
@@ -258,7 +282,6 @@ export default function Contact() {
               Have a question or need assistance? Fill out the form below, and
               we'll get back to you promptly.
             </Typography>
-
             {statusMessage && (
               <Box
                 sx={{
@@ -277,10 +300,10 @@ export default function Contact() {
                 <Typography variant="body1">{statusMessage}</Typography>
               </Box>
             )}
-
             <Box
               component="form"
               onSubmit={handleSubmit}
+              noValidate
               sx={{ display: "flex", flexDirection: "column", gap: 3 }}
             >
               <TextField
@@ -291,6 +314,8 @@ export default function Contact() {
                 name="fullName"
                 value={formData.fullName}
                 onChange={handleChange}
+                error={!!errors.fullName}
+                helperText={errors.fullName}
               />
               <TextField
                 required
@@ -301,6 +326,8 @@ export default function Contact() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                error={!!errors.email}
+                helperText={errors.email}
               />
               <TextField
                 fullWidth
@@ -318,6 +345,8 @@ export default function Contact() {
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
+                error={!!errors.subject}
+                helperText={errors.subject}
               />
               <TextField
                 required
@@ -329,6 +358,8 @@ export default function Contact() {
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                error={!!errors.message}
+                helperText={errors.message}
               />
               <Button
                 type="submit"
@@ -369,17 +400,11 @@ export default function Contact() {
                 color: theme.palette.text.secondary,
               }}
             >
-              {/* Replace with an actual embedded Google Map iframe or a map component */}
-              <Typography variant="h6">
-                Map Placeholder (e.g., Google Maps Embed)
-              </Typography>
+              <Typography variant="h6">Map Placeholder</Typography>
             </Box>
           </Paper>
         </Container>
       </Box>
-
-      {/* Social Media and Call to Action sections (if you have them from previous designs) */}
-      {/* ... */}
     </Box>
   );
 }

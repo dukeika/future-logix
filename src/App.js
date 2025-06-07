@@ -58,7 +58,7 @@ function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} /> {/* Blog listing page */}
-          <Route path="/blog/:slug" element={<BlogPostDetail />} />{" "}
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
           {/* Individual blog post page */}
           {/* Add more routes for other pages */}
         </Routes>
