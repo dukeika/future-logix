@@ -7,6 +7,13 @@ provider:
   region: eu-west-2
   environment:
     DATABASE_URL: ${env:DATABASE_URL}
+  vpc:
+    securityGroupIds:
+      - sg-08e6e7ab1374dc2e7 # The SG that allows PostgreSQL access (same as RDS)
+    subnetIds:
+      - subnet-0481ba69d5f970444
+      - subnet-02bcbedd0706d18aa
+      - subnet-0066a083dd0285d5c
 
 functions:
   contactForm:

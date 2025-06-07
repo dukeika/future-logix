@@ -6,6 +6,8 @@ module.exports.handler = async () => {
       "SELECT * FROM blog_posts ORDER BY publish_date DESC"
     );
 
+    console.log("✅ Query succeeded. Rows:", result.rows); // ← Add this
+
     return {
       statusCode: 200,
       body: JSON.stringify({ posts: result.rows }),
@@ -15,9 +17,8 @@ module.exports.handler = async () => {
       },
     };
   } catch (err) {
-    console.error("❌ Full error object:", err);
-    console.error("❌ Error message:", err.message);
-    console.error("❌ Error stack:", err.stack);
+    console.error("❌ Query failed:", err.message);
+    console.error(err.stack);
     return {
       statusCode: 500,
       body: JSON.stringify({
