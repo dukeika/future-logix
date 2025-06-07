@@ -27,3 +27,12 @@ functions:
 
 plugins:
   - serverless-dotenv-plugin
+
+functions:
+  blogPosts:
+    handler: blog.handler
+    events:
+      - http:
+          path: blog/posts
+          method: get
+          cors: true
