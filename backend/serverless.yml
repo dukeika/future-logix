@@ -1,0 +1,29 @@
+service: futurelogix-api
+#frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-2
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+
+functions:
+  contactForm:
+    handler: contact.handler
+    events:
+      - http:
+          path: contact
+          method: post
+          cors: true
+
+  blogPosts:
+    handler: blog.handler
+    events:
+      - http:
+          path: blog/posts
+          method: get
+          cors: true
+
+plugins:
+  - serverless-dotenv-plugin
