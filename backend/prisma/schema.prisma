@@ -1,4 +1,4 @@
-// backend/prisma/schema.prisma
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,28 +8,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model ContactSubmission {
-  id          String    @id @default(uuid()) // Unique ID for each submission
-  fullName    String
-  email       String
-  phone       String?   // Optional field
-  subject     String
-  message     String
-  createdAt   DateTime  @default(now()) // Auto-sets current timestamp
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  posts     Post[]
 }
 
-model BlogPost {
-  id           String    @id @default(uuid())
-  slug         String    @unique // For friendly URLs, must be unique
-  title        String
-  summary      String?
-  content      String // Rich text content, will be stored as HTML or Markdown
-  imageUrl     String? // URL to the blog post's featured image (stored in S3 later)
-  author       String?
-  publishDate  DateTime  @default(now())
-  category     String?
-  tags         String[]  // Array of strings (e.g., ["cloud", "AI", "business"])
-  isFeatured   Boolean   @default(false)
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt // Auto-updates on every save
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

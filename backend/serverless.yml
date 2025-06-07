@@ -1,0 +1,65 @@
+# backend/serverless.yml
+service: futurelogix-backend
+
+frameworkVersion: "3"
+useDotenv: true
+
+# --- PLUGINS SECTION: MUST BE HERE! ---
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-offline
+
+  #- serverless-plugin-include-dependencies
+# --- END PLUGINS SECTION ---
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-west-2
+  timeout: 30
+  memorySize: 512
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+    JWT_SECRET: ${env:JWT_SECRET}
+    NODE_ENV: production
+  vpc:
+    securityGroupIds:
+      - sg-0e501d3f1f478caff # IMPORTANT: REPLACE with your Lambda security group ID
+    subnetIds:
+      - subnet-0481ba69d5f970444 # IMPORTANT: REPLACE with subnet IDs from your VPC
+      - subnet-02bcbedd0706d18aa
+      - subnet-0066a083dd0285d5c
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - ec2:CreateNetworkInterface
+            - ec2:DescribeNetworkInterfaces
+            - ec2:DeleteNetworkInterface
+          Resource: "*"
+        - Effect: Allow
+          Action:
+            - rds-db:connect
+          Resource: "arn:aws:rds:eu-west-2:624914081304:db:futurelogix-db/*"
+
+functions:
+  api:
+    handler: server.handler
+    events:
+      - http:
+          path: /
+          method: any
+          cors: true
+      - http:
+          path: /{proxy+}
+          method: any
+          cors: true
+
+custom:
+  serverless-offline:
+    httpPort: 5000
+    lambdaPort: 5001
+  dotenv:
+    path: ./.env
+  testVar: ${env:JWT_SECRET} # This will fail if JWT_SECRET isn't loaded

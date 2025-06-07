@@ -1,66 +1,44 @@
 // backend/server.js
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
 const express = require("express");
 const serverless = require("serverless-http");
-const cors = require("cors");
-
-// Import your new route files
-const contactRoutes = require("./routes/contact");
-const blogRoutes = require("./routes/blog");
+const { PrismaClient } = require("@prisma/client");
+const cors = require("cors"); // For handling cross-origin requests
 
 const app = express();
-app.use(express.json());
-app.use(cors());
+const prisma = new PrismaClient(); // Initialize Prisma Client
 
-// --- Use your API Routes ---
-// Any request starting with /api will be handled by these routes
-app.use("/api", contactRoutes); // e.g., /api/contact
-app.use("/api", blogRoutes); // e.g., /api/blog/posts, /api/admin/blog/posts
+// Middleware
+app.use(express.json()); // For parsing JSON request bodies
+app.use(cors()); // Enable CORS for all origins (adjust for production)
 
-// Basic GET route for the root of your API (still here)
+// Basic Route
 app.get("/", (req, res) => {
-  res.status(200).json({ message: "FutureLogix Backend API is running!" });
+  res.send("Hello from FutureLogix Backend!");
 });
 
-// --- Export for AWS Lambda ---
+// Example: Fetch users from DB (assuming you have a 'User' model in Prisma)
+app.get("/users", async (req, res) => {
+  try {
+    const users = await prisma.user.findMany(); // Example Prisma query
+    res.json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    res.status(500).json({ error: "Failed to fetch users" });
+  }
+});
+
+// You will add more routes here for your application logic
+
+// Export for Serverless
 module.exports.handler = serverless(app);
 
-// --- Local Development Server Setup ---
-if (process.env.NODE_ENV !== "production") {
-  const port = process.env.PORT || 5000;
-  app.listen(port, () => {
-    console.log(`🚀 Local backend running on http://localhost:${port}`);
-    console.log(`DB URL: ${process.env.DATABASE_URL}`);
-  });
-}
-// backend/server.js
-// ... (existing imports and app.use calls) ...
-
-// Basic GET route for the absolute root of your API (this is for http://localhost:5000/)
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "FutureLogix Backend API is running!" });
-});
-
-// ********** ADD THIS ROUTE **********
-// A specific GET route for the /api/ base.
-// This is good for checking if your /api prefix is working and the API endpoints are active.
-app.get("/api/", (req, res) => {
-  res.status(200).json({ message: "FutureLogix API endpoints are active!" });
-});
-// ************************************
-
-// --- Export for AWS Lambda ---
-module.exports.handler = serverless(app);
-
-// --- Local Development Server Setup ---
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-  const port = process.env.PORT || 5000;
-  app.listen(port, () => {
-    console.log(`🚀 Local backend running on http://localhost:${port}`);
-    console.log(`DB URL: ${process.env.DATABASE_URL}`);
+// For local development (when running 'node server.js' directly)
+if (process.env.NODE_ENV === "development" || process.env.IS_OFFLINE) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(
+      `DATABASE_URL: ${process.env.DATABASE_URL ? "Loaded" : "Not Loaded"}`
+    );
   });
 }
