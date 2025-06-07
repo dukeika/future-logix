@@ -17,9 +17,9 @@
           "sg-08e6e7ab1374dc2e7"
         ],
         "subnetIds": [
-          "subnet-0481ba69d5f970444",
           "subnet-02bcbedd0706d18aa",
-          "subnet-0066a083dd0285d5c"
+          "subnet-0066a083dd0285d5c",
+          "subnet-0481ba69d5f970444"
         ]
       },
       "stage": "dev",
@@ -137,7 +137,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-api/dev/1749328408163-2025-06-07T20:33:28.163Z/futurelogix-api.zip"
+                "S3Key": "serverless/futurelogix-api/dev/1749329871126-2025-06-07T20:57:51.126Z/futurelogix-api.zip"
               },
               "Handler": "contact.handler",
               "Runtime": "nodejs18.x",
@@ -174,7 +174,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-api/dev/1749328408163-2025-06-07T20:33:28.163Z/futurelogix-api.zip"
+                "S3Key": "serverless/futurelogix-api/dev/1749329871126-2025-06-07T20:57:51.126Z/futurelogix-api.zip"
               },
               "Handler": "blog.handler",
               "Runtime": "nodejs18.x",
@@ -206,24 +206,24 @@
               "BlogPostsLogGroup"
             ]
           },
-          "ContactFormLambdaVersionSPtx7r1eJazhqSFqZ5ghmmupxgHyLKHrTT6WJHQhwqA": {
+          "ContactFormLambdaVersionRm0dHcA77RTQvCRTvqW6u2prIJmI3qcHrqqwLQbfs": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "ContactFormLambdaFunction"
               },
-              "CodeSha256": "y8yuFNbpArs+PLEueD6Wo6tj9ms1ZHnHDeAsE2otXZI="
+              "CodeSha256": "KAPW7s4weHGLli36ZdW7w2hGtSe2AwiogRAvaT971SY="
             }
           },
-          "BlogPostsLambdaVersion14IqvZ7NixUTpVYKxqe7nuUsFdDazeviDe3ZJIdBu0": {
+          "BlogPostsLambdaVersionbfd7YcDYcrWEfzK29WzDmmpP5cz7bm6F0bpTv7Zig": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "BlogPostsLambdaFunction"
               },
-              "CodeSha256": "y8yuFNbpArs+PLEueD6Wo6tj9ms1ZHnHDeAsE2otXZI="
+              "CodeSha256": "KAPW7s4weHGLli36ZdW7w2hGtSe2AwiogRAvaT971SY="
             }
           },
           "ApiGatewayRestApi": {
@@ -462,7 +462,7 @@
               "BlogPostsLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1749328394686": {
+          "ApiGatewayDeployment1749329858762": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -562,7 +562,7 @@
           "ContactFormLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "ContactFormLambdaVersionSPtx7r1eJazhqSFqZ5ghmmupxgHyLKHrTT6WJHQhwqA"
+              "Ref": "ContactFormLambdaVersionRm0dHcA77RTQvCRTvqW6u2prIJmI3qcHrqqwLQbfs"
             },
             "Export": {
               "Name": "sls-futurelogix-api-dev-ContactFormLambdaFunctionQualifiedArn"
@@ -571,7 +571,7 @@
           "BlogPostsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "BlogPostsLambdaVersion14IqvZ7NixUTpVYKxqe7nuUsFdDazeviDe3ZJIdBu0"
+              "Ref": "BlogPostsLambdaVersionbfd7YcDYcrWEfzK29WzDmmpP5cz7bm6F0bpTv7Zig"
             },
             "Export": {
               "Name": "sls-futurelogix-api-dev-BlogPostsLambdaFunctionQualifiedArn"
@@ -645,7 +645,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "ContactFormLambdaVersionSPtx7r1eJazhqSFqZ5ghmmupxgHyLKHrTT6WJHQhwqA"
+        "versionLogicalId": "ContactFormLambdaVersionRm0dHcA77RTQvCRTvqW6u2prIJmI3qcHrqqwLQbfs"
       },
       "blogPosts": {
         "handler": "blog.handler",
@@ -681,7 +681,7 @@
         "timeout": 6,
         "runtime": "nodejs18.x",
         "vpc": {},
-        "versionLogicalId": "BlogPostsLambdaVersion14IqvZ7NixUTpVYKxqe7nuUsFdDazeviDe3ZJIdBu0"
+        "versionLogicalId": "BlogPostsLambdaVersionbfd7YcDYcrWEfzK29WzDmmpP5cz7bm6F0bpTv7Zig"
       }
     },
     "configValidationMode": "warn",
@@ -704,7 +704,7 @@
     "artifact": "C:\\Users\\akabo\\OneDrive\\Documents\\futurelogix-1\\future-logix\\backend\\.serverless\\futurelogix-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/futurelogix-api/dev/1749328408163-2025-06-07T20:33:28.163Z",
+    "artifactDirectoryName": "serverless/futurelogix-api/dev/1749329871126-2025-06-07T20:57:51.126Z",
     "artifact": "futurelogix-api.zip"
   }
 }

@@ -11,10 +11,9 @@ provider:
     securityGroupIds:
       - sg-08e6e7ab1374dc2e7 # The SG that allows PostgreSQL access (same as RDS)
     subnetIds:
-      - subnet-0481ba69d5f970444
       - subnet-02bcbedd0706d18aa
       - subnet-0066a083dd0285d5c
-
+      - subnet-0481ba69d5f970444
 functions:
   contactForm:
     handler: contact.handler
