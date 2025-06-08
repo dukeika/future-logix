@@ -1,189 +1,130 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
-  TextField,
-  Button,
-  Box,
+  Container,
   Typography,
-  MenuItem,
+  Box,
+  Link,
+  Paper,
   CircularProgress,
-  Alert,
 } from "@mui/material";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-
-function ConsultationForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    message: "",
-    service_of_interest: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
+function BlogPostDetail() {
+  const { slug } = useParams();
+  const [post, setPost] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const services = [
-    { value: "Cloud Solutions", label: "Cloud & AWS Services" },
-    { value: "Library Solutions", label: "Library Solutions" },
-    { value: "Custom Development", label: "Custom Development" },
-    { value: "Security & Compliance", label: "Security & Compliance" },
-    { value: "Other", label: "Other" },
-  ];
+  // Your deployed API Gateway base URL
+  const API_BASE_URL =
+    "https://mbnhzeecc7.execute-api.eu-west-2.amazonaws.com/dev";
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setSuccess(false);
-    setError(null);
-
-    try {
-      const response = await fetch(
-        "https://mbnhzeecc7.execute-api.eu-west-2.amazonaws.com/dev/consultation",
-        {
-          // Replace with your actual API URL
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+  useEffect(() => {
+    const fetchBlogPost = async () => {
+      try {
+        const response = await fetch(`${API_BASE_URL}/blog/${slug}`);
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Blog post not found.");
+          }
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.message || `HTTP error! status: ${response.status}`
-        );
+        const data = await response.json();
+        setPost(data);
+      } catch (err) {
+        console.error(`Failed to fetch blog post with slug ${slug}:`, err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
+    };
+    fetchBlogPost();
+  }, [slug]);
 
-      setSuccess(true);
-      setFormData({
-        // Clear form on success
-        name: "",
-        email: "",
-        phone: "",
-        company: "",
-        message: "",
-        service_of_interest: "",
-      });
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (loading) {
+    return (
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <CircularProgress />
+        <Typography variant="h6" sx={{ mt: 2 }}>
+          Loading blog post...
+        </Typography>
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <Typography variant="h5" color="error">
+          Error: {error}
+        </Typography>
+        {error === "Blog post not found." && (
+          <Typography>
+            The blog post you are looking for does not exist or has been
+            removed.
+          </Typography>
+        )}
+        <Typography sx={{ mt: 2 }}>
+          Please ensure the URL is correct or check our{" "}
+          <Link to="/blog">main blog page</Link>.
+        </Typography>
+      </Container>
+    );
+  }
+
+  if (!post) {
+    // This case might be hit if loading finished without error but no post was set (e.g., empty response)
+    return (
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <Typography variant="h5">No blog post found.</Typography>
+        <Typography sx={{ mt: 2 }}>
+          It seems there's no content for this post yet.
+        </Typography>
+      </Container>
+    );
+  }
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 3,
-        maxWidth: 600,
-        margin: "auto",
-        p: 3,
-        borderRadius: 2,
-        boxShadow: 3,
-      }}
-    >
-      <Typography
-        variant="h5"
-        component="h2"
-        gutterBottom
-        align="center"
-        sx={{ fontWeight: 600 }}
-      >
-        Schedule a Free Consultation
-      </Typography>
-
-      {success && (
-        <Alert severity="success">
-          Your consultation request has been submitted successfully!
-        </Alert>
-      )}
-      {error && <Alert severity="error">{error}</Alert>}
-
-      <TextField
-        label="Your Name"
-        name="name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-        fullWidth
-      />
-      <TextField
-        label="Your Email"
-        name="email"
-        type="email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-        fullWidth
-      />
-      <TextField
-        label="Phone Number (Optional)"
-        name="phone"
-        value={formData.phone}
-        onChange={handleChange}
-        fullWidth
-      />
-      <TextField
-        label="Company Name (Optional)"
-        name="company"
-        value={formData.company}
-        onChange={handleChange}
-        fullWidth
-      />
-      <TextField
-        label="Message / Project Details"
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-        required
-        multiline
-        rows={4}
-        fullWidth
-      />
-      <TextField
-        select
-        label="Service of Interest"
-        name="service_of_interest"
-        value={formData.service_of_interest}
-        onChange={handleChange}
-        fullWidth
-        helperText="Please select the service you are interested in"
-      >
-        {services.map((option) => (
-          <MenuItem key={option.value} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        size="large"
-        fullWidth
-        disabled={loading}
-        sx={{ mt: 2, py: 1.5, fontWeight: 700 }}
-      >
-        {loading ? (
-          <CircularProgress size={24} color="inherit" />
-        ) : (
-          "Submit Request"
+    <Container maxWidth="md" sx={{ py: 8 }}>
+      <Paper elevation={3} sx={{ p: { xs: 3, md: 5 } }}>
+        {post.image_url && (
+          <Box
+            component="img"
+            src={post.image_url}
+            alt={post.title}
+            sx={{
+              width: "100%",
+              height: { xs: 200, sm: 300 },
+              objectFit: "cover",
+              mb: 4,
+              borderRadius: 2,
+            }}
+          />
         )}
-      </Button>
-    </Box>
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{ fontWeight: 700 }}
+        >
+          {post.title}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+          gutterBottom
+          sx={{ mb: 4 }}
+        >
+          Published: {new Date(post.created_at).toLocaleDateString()}
+        </Typography>
+        {/* Render HTML content if your 'content' field is HTML. Be cautious with dangerouslySetInnerHTML.
+                    Ensure the HTML content is sanitized on the backend if it's user-generated. */}
+        <Typography variant="body1" component="div" sx={{ lineHeight: 1.8 }}>
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </Typography>
+      </Paper>
+    </Container>
   );
 }
 
-export default ConsultationForm;
+export default BlogPostDetail;
