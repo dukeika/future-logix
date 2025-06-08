@@ -72,7 +72,7 @@ export default function Header() {
                 },
               }}
             >
-              About Us too
+              About Us to
             </Button>
           </Grid>
           <Grid item>
