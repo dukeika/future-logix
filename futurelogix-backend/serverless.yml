@@ -1,0 +1,57 @@
+service: futurelogix-backend
+
+#frameworkVersion: "3" # Ensure you have Serverless Framework v3 or later
+
+provider:
+  name: aws
+  runtime: nodejs20.x # Or a later compatible version
+  stage: dev # You can have 'dev', 'prod', etc.
+  region: eu-west-2 # Or your desired AWS region (e.g., us-east-1)
+  # Ensure Lambda can access RDS within your VPC
+  vpc:
+    securityGroupIds:
+      - sg-0c1329069d2bc8c4a # Replace with your Lambda Security Group ID
+    subnetIds:
+      - subnet-0481ba69d5f970444
+      - subnet-0066a083dd0285d5c
+      - subnet-02bcbedd0706d18aa
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_DATABASE: ${env:DB_DATABASE}
+    DB_PORT: ${env:DB_PORT}
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - "ses:SendEmail" # If you want to send emails (e.g., for contact form)
+          Resource: "*"
+
+functions:
+  getBlogPosts:
+    handler: handler.getBlogPosts
+    events:
+      - http:
+          path: /blog
+          method: get
+          cors: true # Enable CORS for frontend access
+
+  getBlogPostBySlug:
+    handler: handler.getBlogPostBySlug
+    events:
+      - http:
+          path: /blog/{slug}
+          method: get
+          cors: true
+
+  submitConsultation:
+    handler: handler.submitConsultation
+    events:
+      - http:
+          path: /consultation
+          method: post
+          cors: true
+
+  # Future: Add functions for your store (e.g., createProduct, getProducts, etc.)

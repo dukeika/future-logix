@@ -1,167 +1,116 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import {
   Container,
   Typography,
   Box,
   Paper,
-  Card,
-  CardMedia,
-  Chip,
-  Skeleton,
+  CircularProgress,
 } from "@mui/material";
-import { useParams } from "react-router-dom";
-import DOMPurify from "dompurify";
-import axios from "axios";
 
-export default function BlogPostDetail() {
+function BlogPostDetail() {
   const { slug } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
-
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchBlogPost = async () => {
       try {
-        setLoading(true);
-        const res = await axios.get(`${API_URL}/blog/posts/${slug}`);
-        setPost(res.data);
+        const response = await fetch(
+          `https://mbnhzeecc7.execute-api.eu-west-2.amazonaws.com/dev/blog/${slug}`
+        ); // Replace with your actual API URL
+        if (!response.ok) {
+          if (response.status === 404) {
+            throw new Error("Blog post not found.");
+          }
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setPost(data);
       } catch (err) {
-        console.error("Error fetching blog post:", err);
-        setError("Blog post not found.");
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchPost();
+    fetchBlogPost();
   }, [slug]);
 
   if (loading) {
     return (
-      <Container sx={{ py: 8 }}>
-        <Paper sx={{ p: 4, borderRadius: 3 }}>
-          <Skeleton variant="rectangular" height={250} sx={{ mb: 2 }} />
-          <Skeleton height={40} width="80%" />
-          <Skeleton height={20} width="60%" sx={{ my: 1 }} />
-          <Skeleton variant="text" sx={{ my: 1 }} />
-          <Skeleton variant="text" sx={{ my: 1 }} />
-        </Paper>
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <CircularProgress />
+        <Typography>Loading blog post...</Typography>
       </Container>
     );
   }
 
   if (error) {
     return (
-      <Container sx={{ py: 8 }}>
-        <Paper
-          sx={{
-            p: 4,
-            textAlign: "center",
-            bgcolor: "error.light",
-            color: "error.contrastText",
-          }}
-        >
-          <Typography variant="h5">{error}</Typography>
-        </Paper>
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <Typography variant="h5" color="error">
+          Error: {error}
+        </Typography>
+        {error === "Blog post not found." && (
+          <Typography>
+            The blog post you are looking for does not exist.
+          </Typography>
+        )}
+      </Container>
+    );
+  }
+
+  if (!post) {
+    return (
+      <Container sx={{ py: 8, textAlign: "center" }}>
+        <Typography>No blog post found.</Typography>
       </Container>
     );
   }
 
   return (
-    <Box sx={{ py: 8, bgcolor: "background.default" }}>
-      <Container maxWidth="md">
-        <Card sx={{ borderRadius: 3, boxShadow: 4, overflow: "hidden" }}>
-          {/* Featured Image */}
-          {post.imageUrl ? (
-            <CardMedia
-              component="img"
-              image={post.imageUrl}
-              alt={post.title}
-              sx={{ maxHeight: 400, objectFit: "cover" }}
-            />
-          ) : (
-            <Box
-              sx={{
-                height: 250,
-                bgcolor: "grey.300",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "text.secondary",
-              }}
-            >
-              No Image Available
-            </Box>
-          )}
-
-          {/* Content */}
-          <Paper sx={{ p: 4 }}>
-            <Typography variant="h4" component="h1" gutterBottom>
-              {post.title}
-            </Typography>
-
-            <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-              {new Date(post.publishDate).toLocaleDateString()}
-              {post.author && ` • by ${post.author}`}
-            </Typography>
-
-            {/* Tags */}
-            {post.tags && post.tags.length > 0 && (
-              <Box
-                sx={{ mt: 2, mb: 3, display: "flex", flexWrap: "wrap", gap: 1 }}
-              >
-                {post.tags.map((tag, idx) => (
-                  <Chip
-                    key={idx}
-                    label={tag}
-                    size="small"
-                    sx={{
-                      bgcolor: "primary.light",
-                      color: "primary.contrastText",
-                      fontSize: "0.75rem",
-                    }}
-                  />
-                ))}
-              </Box>
-            )}
-
-            {/* Post Content */}
-            <Box
-              sx={{
-                mt: 3,
-                "& h1, & h2, & h3, & h4, & h5, & h6": {
-                  fontWeight: 600,
-                  mt: 2,
-                },
-                "& p": { mb: 2 },
-                "& img": { maxWidth: "100%", borderRadius: 2 },
-              }}
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(post.content),
-              }}
-            />
-            {/* <Box
-              sx={{
-                mt: 3,
-                "& h1, & h2, & h3, & h4, & h5, & h6": {
-                  fontWeight: 600,
-                  mt: 2,
-                },
-                "& p": {
-                  mb: 2,
-                },
-                "& img": {
-                  maxWidth: "100%",
-                  borderRadius: 2,
-                },
-              }}
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            /> */}
-          </Paper>
-        </Card>
-      </Container>
-    </Box>
+    <Container maxWidth="md" sx={{ py: 8 }}>
+      <Paper elevation={3} sx={{ p: { xs: 3, md: 5 } }}>
+        {post.image_url && (
+          <Box
+            component="img"
+            src={post.image_url}
+            alt={post.title}
+            sx={{
+              width: "100%",
+              height: 300,
+              objectFit: "cover",
+              mb: 4,
+              borderRadius: 2,
+            }}
+          />
+        )}
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{ fontWeight: 700 }}
+        >
+          {post.title}
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          color="text.secondary"
+          gutterBottom
+          sx={{ mb: 4 }}
+        >
+          Published: {new Date(post.created_at).toLocaleDateString()}
+        </Typography>
+        <Typography variant="body1" component="div" sx={{ lineHeight: 1.8 }}>
+          {/* Render HTML content if your 'content' field is HTML */}
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          {/* If content is plain text, just render: */}
+          {/* {post.content} */}
+        </Typography>
+      </Paper>
+    </Container>
   );
 }
+
+export default BlogPostDetail;

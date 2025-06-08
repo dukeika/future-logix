@@ -56,7 +56,7 @@ export default function Header() {
                 },
               }}
             >
-              Home boy
+              Home
             </Button>
           </Grid>
           <Grid item>
