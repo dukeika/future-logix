@@ -124,7 +124,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1749387461353-2025-06-08T12:57:41.353Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1749395592087-2025-06-08T15:13:12.087Z/futurelogix-backend.zip"
         },
         "Handler": "handler.getBlogPosts",
         "Runtime": "nodejs20.x",
@@ -136,7 +136,7 @@
             "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
             "DB_USER": "akabom",
             "DB_PASSWORD": "lbifdfdfdX3",
-            "DB_DATABASE": "futurelogix-db",
+            "DB_DATABASE": "futurelogixdb",
             "DB_PORT": "5432"
           }
         },
@@ -166,7 +166,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1749387461353-2025-06-08T12:57:41.353Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1749395592087-2025-06-08T15:13:12.087Z/futurelogix-backend.zip"
         },
         "Handler": "handler.getBlogPostBySlug",
         "Runtime": "nodejs20.x",
@@ -178,7 +178,7 @@
             "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
             "DB_USER": "akabom",
             "DB_PASSWORD": "lbifdfdfdX3",
-            "DB_DATABASE": "futurelogix-db",
+            "DB_DATABASE": "futurelogixdb",
             "DB_PORT": "5432"
           }
         },
@@ -208,7 +208,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1749387461353-2025-06-08T12:57:41.353Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1749395592087-2025-06-08T15:13:12.087Z/futurelogix-backend.zip"
         },
         "Handler": "handler.submitConsultation",
         "Runtime": "nodejs20.x",
@@ -220,7 +220,7 @@
             "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
             "DB_USER": "akabom",
             "DB_PASSWORD": "lbifdfdfdX3",
-            "DB_DATABASE": "futurelogix-db",
+            "DB_DATABASE": "futurelogixdb",
             "DB_PORT": "5432"
           }
         },
@@ -245,34 +245,34 @@
         "SubmitConsultationLogGroup"
       ]
     },
-    "GetBlogPostsLambdaVersionkWkDWo21LYJtVZqIiJfc2QtTix8Cb8zj29DuNQFZMM": {
+    "GetBlogPostsLambdaVersionoPkDVR5l2c3AK3uIyrDS1lCLcg3jCDqMYxFSztLcE4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetBlogPostsLambdaFunction"
         },
-        "CodeSha256": "akNgWIpUhUnviAHA8eNjZg64zaq7tBKTv7kbeTPLS3s="
+        "CodeSha256": "ZCRbEqcaAldLkjFtdzH/HFC8V79dfznGMH656CwDDD8="
       }
     },
-    "GetBlogPostBySlugLambdaVersionWDZ6GLrL09gLhMnCmTYoaBsPQYH7V6zpuMSOVJTOVw": {
+    "GetBlogPostBySlugLambdaVersionMHB8fCYsF1yqdqP0vU0FRWBdoJravAdR52mrTtcPMHg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetBlogPostBySlugLambdaFunction"
         },
-        "CodeSha256": "akNgWIpUhUnviAHA8eNjZg64zaq7tBKTv7kbeTPLS3s="
+        "CodeSha256": "ZCRbEqcaAldLkjFtdzH/HFC8V79dfznGMH656CwDDD8="
       }
     },
-    "SubmitConsultationLambdaVersionmyHpMn1NgB37aqY3rSMBkMORw8TISum1ugSRIdVZg": {
+    "SubmitConsultationLambdaVersionxJ6nX8tlHpe41vyXRMSWHUQ5n8c47fjzt169vsb4": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "SubmitConsultationLambdaFunction"
         },
-        "CodeSha256": "akNgWIpUhUnviAHA8eNjZg64zaq7tBKTv7kbeTPLS3s="
+        "CodeSha256": "ZCRbEqcaAldLkjFtdzH/HFC8V79dfznGMH656CwDDD8="
       }
     },
     "ApiGatewayRestApi": {
@@ -602,7 +602,7 @@
         "SubmitConsultationLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1749387451256": {
+    "ApiGatewayDeployment1749395575768": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -741,7 +741,7 @@
     "GetBlogPostsLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetBlogPostsLambdaVersionkWkDWo21LYJtVZqIiJfc2QtTix8Cb8zj29DuNQFZMM"
+        "Ref": "GetBlogPostsLambdaVersionoPkDVR5l2c3AK3uIyrDS1lCLcg3jCDqMYxFSztLcE4"
       },
       "Export": {
         "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
@@ -750,7 +750,7 @@
     "GetBlogPostBySlugLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetBlogPostBySlugLambdaVersionWDZ6GLrL09gLhMnCmTYoaBsPQYH7V6zpuMSOVJTOVw"
+        "Ref": "GetBlogPostBySlugLambdaVersionMHB8fCYsF1yqdqP0vU0FRWBdoJravAdR52mrTtcPMHg"
       },
       "Export": {
         "Name": "sls-futurelogix-backend-dev-GetBlogPostBySlugLambdaFunctionQualifiedArn"
@@ -759,7 +759,7 @@
     "SubmitConsultationLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "SubmitConsultationLambdaVersionmyHpMn1NgB37aqY3rSMBkMORw8TISum1ugSRIdVZg"
+        "Ref": "SubmitConsultationLambdaVersionxJ6nX8tlHpe41vyXRMSWHUQ5n8c47fjzt169vsb4"
       },
       "Export": {
         "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
