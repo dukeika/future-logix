@@ -22,7 +22,7 @@ function BlogPostDetail() {
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/blog/${slug}`);
+        const response = await fetch(`${API_BASE_URL}/consultation `);
         if (!response.ok) {
           if (response.status === 404) {
             throw new Error("Blog post not found.");
