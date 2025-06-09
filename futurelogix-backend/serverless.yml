@@ -19,7 +19,7 @@ provider:
     DB_HOST: ${env:DB_HOST}
     DB_USER: ${env:DB_USER}
     DB_PASSWORD: ${env:DB_PASSWORD}
-    DB_DATABASE: futurelogixdb
+    DB_DATABASE: futurelogix-db
     DB_PORT: ${env:DB_PORT}
   iam:
     role:
