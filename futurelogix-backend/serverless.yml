@@ -10,10 +10,9 @@ provider:
   # Ensure Lambda can access RDS within your VPC
   vpc:
     securityGroupIds:
-      - sg-0c1329069d2bc8c4a # Replace with your Lambda Security Group ID
-      - sg-0a0edd4bc438a94ce
-      - sg-04f3f677c39014c9a
-      - sg-0c16f4d2cf7a5d864
+      - sg-02306f57bdf86c9ca # Replace with your Lambda Security Group ID
+      - sg-0f23567320a6aba93
+      - sg-01e08a087c28706ed
     subnetIds:
       - subnet-0481ba69d5f970444
       - subnet-0066a083dd0285d5c
