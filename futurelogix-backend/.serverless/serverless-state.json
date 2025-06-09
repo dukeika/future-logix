@@ -162,7 +162,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1749498842857-2025-06-09T19:54:02.857Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1749499888328-2025-06-09T20:11:28.328Z/futurelogix-backend.zip"
               },
               "Handler": "handler.getBlogPosts",
               "Runtime": "nodejs20.x",
@@ -202,7 +202,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1749498842857-2025-06-09T19:54:02.857Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1749499888328-2025-06-09T20:11:28.328Z/futurelogix-backend.zip"
               },
               "Handler": "handler.getBlogPostBySlug",
               "Runtime": "nodejs20.x",
@@ -242,7 +242,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1749498842857-2025-06-09T19:54:02.857Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1749499888328-2025-06-09T20:11:28.328Z/futurelogix-backend.zip"
               },
               "Handler": "handler.submitConsultation",
               "Runtime": "nodejs20.x",
@@ -634,7 +634,7 @@
               "SubmitConsultationLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1749498832232": {
+          "ApiGatewayDeployment1749499871015": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -954,7 +954,7 @@
     "artifact": "C:\\Users\\akabo\\OneDrive\\Documents\\futurelogix-1\\future-logix\\futurelogix-backend\\.serverless\\futurelogix-backend.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/futurelogix-backend/dev/1749498842857-2025-06-09T19:54:02.857Z",
+    "artifactDirectoryName": "serverless/futurelogix-backend/dev/1749499888328-2025-06-09T20:11:28.328Z",
     "artifact": "futurelogix-backend.zip"
   }
 }
