@@ -15,7 +15,8 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-import ConsultationForm from "../components/ConsultationForm"; // Import the form component
+// Import the form component we previously generated
+import ConsultationForm from "../components/ConsultationForm";
 
 function Contact() {
   return (
@@ -30,8 +31,8 @@ function Contact() {
         Get In Touch With Us
       </Typography>
 
-      <Grid container spacing={5} justifyContent="center">
-        {/* Contact Information Section */}
+      <Grid container spacing={5} justifyContent="center" alignItems="stretch">
+        {/* Contact Information Section - Grid Item 1 */}
         <Grid item xs={12} md={5}>
           <Paper
             elevation={3}
@@ -51,26 +52,36 @@ function Contact() {
             >
               Contact Information
             </Typography>
+
+            {/* Location */}
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-              <IconButton color="primary" sx={{ mr: 1 }}>
+              <IconButton color="primary" sx={{ mr: 1 }} aria-label="Location">
                 <LocationOnIcon />
               </IconButton>
               <Typography variant="body1">
-                123 Digital Way, Innovation City, State, Country
+                123 Digital Way, Lekki, Lagos, Nigeria
               </Typography>
             </Box>
+
+            {/* Phone */}
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-              <IconButton color="primary" sx={{ mr: 1 }}>
+              <IconButton color="primary" sx={{ mr: 1 }} aria-label="Phone">
                 <PhoneIcon />
               </IconButton>
               <Typography variant="body1">
-                <Link href="tel:+1234567890" color="inherit" underline="hover">
-                  +1 (234) 567-890
+                <Link
+                  href="tel:+2348012345678"
+                  color="inherit"
+                  underline="hover"
+                >
+                  +234 (801) 234-5678
                 </Link>
               </Typography>
             </Box>
+
+            {/* Email */}
             <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-              <IconButton color="primary" sx={{ mr: 1 }}>
+              <IconButton color="primary" sx={{ mr: 1 }} aria-label="Email">
                 <EmailIcon />
               </IconButton>
               <Typography variant="body1">
@@ -92,6 +103,8 @@ function Contact() {
             >
               Follow Us
             </Typography>
+
+            {/* Social Media Icons */}
             <Box>
               <IconButton
                 color="primary"
@@ -124,31 +137,16 @@ function Contact() {
           </Paper>
         </Grid>
 
-        {/* Consultation Form Section */}
+        {/* Consultation Form Section - Grid Item 2 */}
         <Grid item xs={12} md={7}>
-          <ConsultationForm />{" "}
-          {/* This is where your form component is rendered */}
+          <Paper elevation={5} sx={{ p: { xs: 3, sm: 5 }, height: "100%" }}>
+            {/* This is where the ConsultationForm component is rendered.
+              All form logic is handled inside that component.
+            */}
+            <ConsultationForm />
+          </Paper>
         </Grid>
       </Grid>
-
-      {/* Optional: Add a map here if you have a physical location */}
-      {/* <Box sx={{ mt: 8, textAlign: 'center' }}>
-                <Typography variant="h4" component="h2" gutterBottom sx={{ fontWeight: 600 }}>
-                    Find Us on the Map
-                </Typography>
-                <Paper elevation={3} sx={{ height: 400, width: '100%', overflow: 'hidden', borderRadius: 2 }}>
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.208154148496!2d-122.4194156846817!3d37.77492977975982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808580857c0f0f0f%3A0x4c2f4e8d3e6c3d8e!2sGolden%20Gate%20Bridge!5e0!3m2!1sen!2sus!4v1678888888888!5m2!1sen!2sus"
-                        width="100%"
-                        height="100%"
-                        style={{ border: 0 }}
-                        allowFullScreen=""
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                        title="Our Location"
-                    ></iframe>
-                </Paper>
-            </Box> */}
     </Container>
   );
 }

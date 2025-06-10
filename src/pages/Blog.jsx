@@ -105,7 +105,7 @@ function Blog() {
                   <CardMedia
                     component="img"
                     height="200"
-                    image={post.image_url}
+                    image={post.imageUrl}
                     alt={post.title}
                     sx={{ objectFit: "cover" }}
                   />
