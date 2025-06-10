@@ -11,7 +11,7 @@ import {
 import { useTheme } from "@mui/material";
 
 const API_BASE_URL =
-  "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev"; // Replace with your actual API Gateway endpoint for blog posts
+  "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev"; // Make sure this is correct // Replace with your actual API Gateway endpoint for blog posts
 
 export default function BlogPostDetail() {
   const theme = useTheme();
