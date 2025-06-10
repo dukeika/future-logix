@@ -107,22 +107,7 @@ export default function Header() {
               Case Studies
             </Button>
           </Grid>
-          <Grid item>
-            <Button
-              component={Link}
-              to="/blog"
-              color="inherit"
-              sx={{
-                color: "#000",
-                fontWeight: 600,
-                "&:hover": {
-                  color: "#00B74A",
-                },
-              }}
-            >
-              Blog
-            </Button>
-          </Grid>
+
           <Grid item>
             <Button
               component={Link}

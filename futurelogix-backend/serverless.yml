@@ -32,28 +32,6 @@ provider:
           Resource: "*"
 
 functions:
-  getBlogPosts:
-    handler: handler.getBlogPosts
-    events:
-      - http:
-          path: /blog
-          method: get
-          cors: true # Enable CORS for frontend access
 
-  getBlogPostBySlug:
-    handler: handler.getBlogPostBySlug
-    events:
-      - http:
-          path: /blog/{slug}
-          method: get
-          cors: true
-
-  submitConsultation:
-    handler: handler.submitConsultation
-    events:
-      - http:
-          path: /consultation
-          method: post
-          cors: true
 
   # Future: Add functions for your store (e.g., createProduct, getProducts, etc.)

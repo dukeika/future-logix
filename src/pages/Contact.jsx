@@ -16,7 +16,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 // Import the form component we previously generated
-import ConsultationForm from "../components/ConsultationForm";
+//import ConsultationForm from "../components/ConsultationForm";
 
 function Contact() {
   return (
@@ -143,7 +143,6 @@ function Contact() {
             {/* This is where the ConsultationForm component is rendered.
               All form logic is handled inside that component.
             */}
-            <ConsultationForm />
           </Paper>
         </Grid>
       </Grid>

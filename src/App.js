@@ -9,8 +9,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact"; // Your redesigned contact page
-import Blog from "./pages/Blog"; // Your main blog listing page
-import BlogPostDetail from "./pages/BlogPostDetail"; // The new detail page
+
 import Header from "./components/Header"; // Assuming you have these
 import Footer from "./components/Footer"; // Assuming you have these
 
@@ -57,9 +56,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} /> {/* Blog listing page */}
-          <Route path="/blog/:slug" element={<BlogPostDetail />} />
-          {/* Individual blog post page */}
+
           {/* Add more routes for other pages */}
         </Routes>
         <Footer /> {/* Assuming you have a Footer component */}
