@@ -1,3 +1,4 @@
+// src/components/Header.jsx
 import React from "react";
 import { AppBar, Toolbar, Button, Box, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -7,9 +8,9 @@ export default function Header() {
     <AppBar
       position="static"
       sx={{
-        bgcolor: "transparent", // Transparent background
-        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Subtle shadow
-        borderBottom: "1px solid rgba(0, 0, 0, 0.1)", // Optional subtle border
+        bgcolor: "transparent",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+        borderBottom: "1px solid rgba(0, 0, 0, 0.1)",
       }}
     >
       <Toolbar>
@@ -27,16 +28,6 @@ export default function Header() {
             onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
           />
         </Box>
-        {/* <Box sx={{ display: "flex", alignItems: "center" }}>
-          <img
-            src="/FUTURELOGIX.png"
-            alt="Future Logix Logo"
-            style={{
-              height: "50px",
-              marginRight: "16px",
-            }}
-          />
-        </Box> */}
 
         {/* Navigation Menu */}
         <Box sx={{ flexGrow: 1 }} />
@@ -49,10 +40,10 @@ export default function Header() {
               to="/"
               color="inherit"
               sx={{
-                color: "#000", // 🔲 Black text for menu items
+                color: "#000",
                 fontWeight: 600,
                 "&:hover": {
-                  color: "#00B74A", // Optional: Green on hover
+                  color: "#00B74A",
                 },
               }}
             >
@@ -107,7 +98,23 @@ export default function Header() {
               Case Studies
             </Button>
           </Grid>
-
+          {/* New Blog Link */}
+          <Grid item>
+            <Button
+              component={Link}
+              to="/blog"
+              color="inherit"
+              sx={{
+                color: "#000",
+                fontWeight: 600,
+                "&:hover": {
+                  color: "#00B74A",
+                },
+              }}
+            >
+              Blog
+            </Button>
+          </Grid>
           <Grid item>
             <Button
               component={Link}
@@ -125,14 +132,14 @@ export default function Header() {
             </Button>
           </Grid>
 
-          {/* Call to Action Button */}
+          {/* Call to Action Button - Will be updated for consultation form */}
           <Grid item>
             <Button
               variant="contained"
               href="/contact"
               sx={{
-                backgroundColor: "#000", // Black background
-                color: "#f9f9f9", // Very light (almost white) text
+                backgroundColor: "#000",
+                color: "#f9f9f9",
                 fontWeight: 600,
                 borderRadius: 2,
                 px: 2,

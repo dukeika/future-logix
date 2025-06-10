@@ -1,65 +1,32 @@
-// frontend/src/App.js (Example - adjust based on your actual router setup)
+// src/App.js
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-
-// Import your pages/components
 import Home from "./pages/Home";
 import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact"; // Your redesigned contact page
-
-import Header from "./components/Header"; // Assuming you have these
-import Footer from "./components/Footer"; // Assuming you have these
-
-// Define your custom theme (if you have one)
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#1976d2", // Example blue
-    },
-    secondary: {
-      main: "#dc004e", // Example pink
-    },
-    background: {
-      default: "#f8f9fa", // Light gray background
-      paper: "#ffffff",
-    },
-  },
-  typography: {
-    fontFamily: "Roboto, Arial, sans-serif",
-    h1: { fontSize: "3rem" },
-    h2: { fontSize: "2.5rem" },
-    h3: { fontSize: "2rem" },
-    // ... other typography settings
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          textTransform: "none", // Prevent uppercase buttons
-        },
-      },
-    },
-  },
-});
+import Contact from "./pages/Contact";
+import Blog from "./pages/Blog"; // Import the new Blog component
+import BlogPostDetail from "./pages/BlogPostDetail"; // Import the new BlogPostDetail component
+import Header from "./components/Header"; // Assuming Header is your main navigation
+import Footer from "./components/Footer"; // Assuming you have a Footer component
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./components/theme"; // Your custom MUI theme
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline /> {/* Provides a consistent baseline for styling */}
       <Router>
-        <Header /> {/* Assuming you have a Header component */}
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-
-          {/* Add more routes for other pages */}
+          <Route path="/blog" element={<Blog />} />{" "}
+          {/* Route for the main blog page */}
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />{" "}
+          {/* Route for individual blog posts */}
+          {/* Add other routes for Services, Case Studies, etc., if they exist */}
         </Routes>
-        <Footer /> {/* Assuming you have a Footer component */}
+        <Footer />
       </Router>
     </ThemeProvider>
   );

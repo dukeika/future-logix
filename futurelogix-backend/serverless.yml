@@ -1,22 +1,26 @@
-service: futurelogix-backend
+# futurelogix-backend/serverless.yml
 
-#frameworkVersion: "3" # Ensure you have Serverless Framework v3 or later
+service: futurelogix-backend
 
 provider:
   name: aws
-  runtime: nodejs20.x # Or a later compatible version
-  stage: dev # You can have 'dev', 'prod', etc.
-  region: eu-west-2 # Or your desired AWS region (e.g., us-east-1)
-  # Ensure Lambda can access RDS within your VPC
+  runtime: nodejs20.x
+  stage: dev
+  region: eu-west-2
   vpc:
-    securityGroupIds:
-      - sg-02306f57bdf86c9ca # Replace with your Lambda Security Group ID
-      - sg-0f23567320a6aba93
-      - sg-01e08a087c28706ed
-    subnetIds:
-      - subnet-0481ba69d5f970444
-      - subnet-0066a083dd0285d5c
-      - subnet-02bcbedd0706d18aa
+    provider:
+      securityGroupIds:
+        - sg-0c6e1b7f3efcc31e3
+        - sg-0bb17b13c11359fe6
+        - sg-0f688fba8f11ddc61
+        - sg-096f5be10f343c7ac
+        - sg-033a6ff5b3b53c1dc
+        - sg-0df3e50722c22f10a
+        - sg-056255b5b10f4ad9d
+      subnetIds:
+        - subnet-0e49ffbd10a18b237
+        - subnet-0ae08e9da3278f59c
+        - subnet-00463b83c6c02b2a3
   environment:
     DB_HOST: ${env:DB_HOST}
     DB_USER: ${env:DB_USER}
@@ -30,8 +34,71 @@ provider:
           Action:
             - "ses:SendEmail" # If you want to send emails (e.g., for contact form)
           Resource: "*"
+        # Add permissions for RDS Data API if you use it, or ensure Lambda's VPC allows connections to RDS
+        # For simplicity, we assume direct PG connection is allowed through VPC
 
 functions:
+  # Existing functions (if any)
 
+  # Blog Functions
+  createBlogPost:
+    handler: handler.createBlogPost
+    events:
+      - http:
+          path: blog
+          method: post
+          cors: true
+          private: false # Set to true for authenticated access
+  getBlogPosts:
+    handler: handler.getBlogPosts
+    events:
+      - http:
+          path: blog
+          method: get
+          cors: true
+          private: false
+  getBlogPostBySlug:
+    handler: handler.getBlogPostBySlug
+    events:
+      - http:
+          path: blog/{slug}
+          method: get
+          cors: true
+          private: false
+  updateBlogPost:
+    handler: handler.updateBlogPost
+    events:
+      - http:
+          path: blog/id/{id} # CHANGED: Added '/id'
+          method: put
+          cors: true
+          private: false # Set to true for authenticated access
+  deleteBlogPost:
+    handler: handler.deleteBlogPost
+    events:
+      - http:
+          path: blog/id/{id} # CHANGED: Added '/id'
+          method: delete
+          cors: true
+          private: false # Set to true for authenticated access
 
-  # Future: Add functions for your store (e.g., createProduct, getProducts, etc.)
+  # Consultation Form Function
+  submitConsultation:
+    handler: handler.submitConsultation
+    events:
+      - http:
+          path: consultation
+          method: post
+          cors: true
+          private: false
+
+  # Feedback Form Function
+  submitFeedback:
+    handler: handler.submitFeedback
+    events:
+      - http:
+          path: feedback
+          method: post
+          cors: true
+          private: false
+# Future: Add functions for your store (e.g., createProduct, getProducts, etc.)
