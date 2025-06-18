@@ -11,22 +11,16 @@
         "stage": "dev",
         "region": "eu-west-2",
         "vpc": {
-          "provider": {
-            "securityGroupIds": [
-              "sg-0c6e1b7f3efcc31e3",
-              "sg-0bb17b13c11359fe6",
-              "sg-0f688fba8f11ddc61",
-              "sg-096f5be10f343c7ac",
-              "sg-033a6ff5b3b53c1dc",
-              "sg-0df3e50722c22f10a",
-              "sg-056255b5b10f4ad9d"
-            ],
-            "subnetIds": [
-              "subnet-0e49ffbd10a18b237",
-              "subnet-0ae08e9da3278f59c",
-              "subnet-00463b83c6c02b2a3"
-            ]
-          }
+          "securityGroupIds": [
+            "sg-0e8dfc01a7a63952f",
+            "sg-092b57e643c8aea7f",
+            "sg-0f688fba8f11ddc61"
+          ],
+          "subnetIds": [
+            "subnet-0e49ffbd10a18b237",
+            "subnet-0ae08e9da3278f59c",
+            "subnet-00463b83c6c02b2a3"
+          ]
         },
         "environment": {
           "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
@@ -53,46 +47,28 @@
           "AWSTemplateFormatVersion": "2010-09-09",
           "Description": "The AWS CloudFormation template for this Serverless application",
           "Resources": {
-            "CreateBlogPostLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-createBlogPost"
-              }
-            },
             "GetBlogPostsLogGroup": {
               "Type": "AWS::Logs::LogGroup",
               "Properties": {
                 "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPosts"
               }
             },
-            "GetBlogPostBySlugLogGroup": {
+            "GetBlogPostLogGroup": {
               "Type": "AWS::Logs::LogGroup",
               "Properties": {
-                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPostBySlug"
-              }
-            },
-            "UpdateBlogPostLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-updateBlogPost"
-              }
-            },
-            "DeleteBlogPostLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-deleteBlogPost"
-              }
-            },
-            "SubmitConsultationLogGroup": {
-              "Type": "AWS::Logs::LogGroup",
-              "Properties": {
-                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
+                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPost"
               }
             },
             "SubmitFeedbackLogGroup": {
               "Type": "AWS::Logs::LogGroup",
               "Properties": {
                 "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitFeedback"
+              }
+            },
+            "SubmitConsultationLogGroup": {
+              "Type": "AWS::Logs::LogGroup",
+              "Properties": {
+                "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
               }
             },
             "IamRoleLambdaExecution": {
@@ -194,44 +170,12 @@
                 ]
               }
             },
-            "CreateBlogPostLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-                },
-                "Handler": "handler.createBlogPost",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "futurelogix-backend-dev-createBlogPost",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                    "DB_USER": "akabom",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_DATABASE": "futurelogix-db",
-                    "DB_PORT": "5432"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "CreateBlogPostLogGroup"
-              ]
-            },
             "GetBlogPostsLambdaFunction": {
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.getBlogPosts",
                 "Runtime": "nodejs20.x",
@@ -252,22 +196,34 @@
                     "IamRoleLambdaExecution",
                     "Arn"
                   ]
+                },
+                "VpcConfig": {
+                  "SecurityGroupIds": [
+                    "sg-0e8dfc01a7a63952f",
+                    "sg-092b57e643c8aea7f",
+                    "sg-0f688fba8f11ddc61"
+                  ],
+                  "SubnetIds": [
+                    "subnet-0e49ffbd10a18b237",
+                    "subnet-0ae08e9da3278f59c",
+                    "subnet-00463b83c6c02b2a3"
+                  ]
                 }
               },
               "DependsOn": [
                 "GetBlogPostsLogGroup"
               ]
             },
-            "GetBlogPostBySlugLambdaFunction": {
+            "GetBlogPostLambdaFunction": {
               "Type": "AWS::Lambda::Function",
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
                 },
-                "Handler": "handler.getBlogPostBySlug",
+                "Handler": "handler.getBlogPost",
                 "Runtime": "nodejs20.x",
-                "FunctionName": "futurelogix-backend-dev-getBlogPostBySlug",
+                "FunctionName": "futurelogix-backend-dev-getBlogPost",
                 "MemorySize": 1024,
                 "Timeout": 6,
                 "Environment": {
@@ -284,106 +240,22 @@
                     "IamRoleLambdaExecution",
                     "Arn"
                   ]
-                }
-              },
-              "DependsOn": [
-                "GetBlogPostBySlugLogGroup"
-              ]
-            },
-            "UpdateBlogPostLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
                 },
-                "Handler": "handler.updateBlogPost",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "futurelogix-backend-dev-updateBlogPost",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                    "DB_USER": "akabom",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_DATABASE": "futurelogix-db",
-                    "DB_PORT": "5432"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
+                "VpcConfig": {
+                  "SecurityGroupIds": [
+                    "sg-0e8dfc01a7a63952f",
+                    "sg-092b57e643c8aea7f",
+                    "sg-0f688fba8f11ddc61"
+                  ],
+                  "SubnetIds": [
+                    "subnet-0e49ffbd10a18b237",
+                    "subnet-0ae08e9da3278f59c",
+                    "subnet-00463b83c6c02b2a3"
                   ]
                 }
               },
               "DependsOn": [
-                "UpdateBlogPostLogGroup"
-              ]
-            },
-            "DeleteBlogPostLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-                },
-                "Handler": "handler.deleteBlogPost",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "futurelogix-backend-dev-deleteBlogPost",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                    "DB_USER": "akabom",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_DATABASE": "futurelogix-db",
-                    "DB_PORT": "5432"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "DeleteBlogPostLogGroup"
-              ]
-            },
-            "SubmitConsultationLambdaFunction": {
-              "Type": "AWS::Lambda::Function",
-              "Properties": {
-                "Code": {
-                  "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-                },
-                "Handler": "handler.submitConsultation",
-                "Runtime": "nodejs20.x",
-                "FunctionName": "futurelogix-backend-dev-submitConsultation",
-                "MemorySize": 1024,
-                "Timeout": 6,
-                "Environment": {
-                  "Variables": {
-                    "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                    "DB_USER": "akabom",
-                    "DB_PASSWORD": "<REDACTED>",
-                    "DB_DATABASE": "futurelogix-db",
-                    "DB_PORT": "5432"
-                  }
-                },
-                "Role": {
-                  "Fn::GetAtt": [
-                    "IamRoleLambdaExecution",
-                    "Arn"
-                  ]
-                }
-              },
-              "DependsOn": [
-                "SubmitConsultationLogGroup"
+                "GetBlogPostLogGroup"
               ]
             },
             "SubmitFeedbackLambdaFunction": {
@@ -391,7 +263,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.submitFeedback",
                 "Runtime": "nodejs20.x",
@@ -412,80 +284,106 @@
                     "IamRoleLambdaExecution",
                     "Arn"
                   ]
+                },
+                "VpcConfig": {
+                  "SecurityGroupIds": [
+                    "sg-0e8dfc01a7a63952f",
+                    "sg-092b57e643c8aea7f",
+                    "sg-0f688fba8f11ddc61"
+                  ],
+                  "SubnetIds": [
+                    "subnet-0e49ffbd10a18b237",
+                    "subnet-0ae08e9da3278f59c",
+                    "subnet-00463b83c6c02b2a3"
+                  ]
                 }
               },
               "DependsOn": [
                 "SubmitFeedbackLogGroup"
               ]
             },
-            "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
+            "SubmitConsultationLambdaFunction": {
+              "Type": "AWS::Lambda::Function",
               "Properties": {
-                "FunctionName": {
-                  "Ref": "CreateBlogPostLambdaFunction"
+                "Code": {
+                  "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
+                  "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
                 },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-              }
+                "Handler": "handler.submitConsultation",
+                "Runtime": "nodejs20.x",
+                "FunctionName": "futurelogix-backend-dev-submitConsultation",
+                "MemorySize": 1024,
+                "Timeout": 6,
+                "Environment": {
+                  "Variables": {
+                    "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
+                    "DB_USER": "akabom",
+                    "DB_PASSWORD": "<REDACTED>",
+                    "DB_DATABASE": "futurelogix-db",
+                    "DB_PORT": "5432"
+                  }
+                },
+                "Role": {
+                  "Fn::GetAtt": [
+                    "IamRoleLambdaExecution",
+                    "Arn"
+                  ]
+                },
+                "VpcConfig": {
+                  "SecurityGroupIds": [
+                    "sg-0e8dfc01a7a63952f",
+                    "sg-092b57e643c8aea7f",
+                    "sg-0f688fba8f11ddc61"
+                  ],
+                  "SubnetIds": [
+                    "subnet-0e49ffbd10a18b237",
+                    "subnet-0ae08e9da3278f59c",
+                    "subnet-00463b83c6c02b2a3"
+                  ]
+                }
+              },
+              "DependsOn": [
+                "SubmitConsultationLogGroup"
+              ]
             },
-            "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y": {
+            "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetBlogPostsLambdaFunction"
                 },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+                "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
               }
             },
-            "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs": {
+            "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
-                  "Ref": "GetBlogPostBySlugLambdaFunction"
+                  "Ref": "GetBlogPostLambdaFunction"
                 },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+                "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
               }
             },
-            "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "UpdateBlogPostLambdaFunction"
-                },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-              }
-            },
-            "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "DeleteBlogPostLambdaFunction"
-                },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-              }
-            },
-            "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY": {
-              "Type": "AWS::Lambda::Version",
-              "DeletionPolicy": "Retain",
-              "Properties": {
-                "FunctionName": {
-                  "Ref": "SubmitConsultationLambdaFunction"
-                },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-              }
-            },
-            "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc": {
+            "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "SubmitFeedbackLambdaFunction"
                 },
-                "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+                "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
+              }
+            },
+            "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY": {
+              "Type": "AWS::Lambda::Version",
+              "DeletionPolicy": "Retain",
+              "Properties": {
+                "FunctionName": {
+                  "Ref": "SubmitConsultationLambdaFunction"
+                },
+                "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
               }
             },
             "ApiGatewayRestApi": {
@@ -527,25 +425,16 @@
                 }
               }
             },
-            "ApiGatewayResourceBlogId": {
+            "ApiGatewayResourceFeedback": {
               "Type": "AWS::ApiGateway::Resource",
               "Properties": {
                 "ParentId": {
-                  "Ref": "ApiGatewayResourceBlog"
+                  "Fn::GetAtt": [
+                    "ApiGatewayRestApi",
+                    "RootResourceId"
+                  ]
                 },
-                "PathPart": "id",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceBlogIdIdVar": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Ref": "ApiGatewayResourceBlogId"
-                },
-                "PathPart": "{id}",
+                "PathPart": "feedback",
                 "RestApiId": {
                   "Ref": "ApiGatewayRestApi"
                 }
@@ -561,21 +450,6 @@
                   ]
                 },
                 "PathPart": "consultation",
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayResourceFeedback": {
-              "Type": "AWS::ApiGateway::Resource",
-              "Properties": {
-                "ParentId": {
-                  "Fn::GetAtt": [
-                    "ApiGatewayRestApi",
-                    "RootResourceId"
-                  ]
-                },
-                "PathPart": "feedback",
                 "RestApiId": {
                   "Ref": "ApiGatewayRestApi"
                 }
@@ -610,7 +484,7 @@
                       "ResponseParameters": {
                         "method.response.header.Access-Control-Allow-Origin": "'*'",
                         "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
                       },
                       "ResponseTemplates": {
                         "application/json": ""
@@ -671,7 +545,7 @@
                 }
               }
             },
-            "ApiGatewayMethodBlogIdIdVarOptions": {
+            "ApiGatewayMethodFeedbackOptions": {
               "Type": "AWS::ApiGateway::Method",
               "Properties": {
                 "AuthorizationType": "NONE",
@@ -700,7 +574,7 @@
                       "ResponseParameters": {
                         "method.response.header.Access-Control-Allow-Origin": "'*'",
                         "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
                       },
                       "ResponseTemplates": {
                         "application/json": ""
@@ -709,7 +583,7 @@
                   ]
                 },
                 "ResourceId": {
-                  "Ref": "ApiGatewayResourceBlogIdIdVar"
+                  "Ref": "ApiGatewayResourceFeedback"
                 },
                 "RestApiId": {
                   "Ref": "ApiGatewayRestApi"
@@ -760,97 +634,6 @@
                   "Ref": "ApiGatewayRestApi"
                 }
               }
-            },
-            "ApiGatewayMethodFeedbackOptions": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "AuthorizationType": "NONE",
-                "HttpMethod": "OPTIONS",
-                "MethodResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": true,
-                      "method.response.header.Access-Control-Allow-Headers": true,
-                      "method.response.header.Access-Control-Allow-Methods": true
-                    },
-                    "ResponseModels": {}
-                  }
-                ],
-                "RequestParameters": {},
-                "Integration": {
-                  "Type": "MOCK",
-                  "RequestTemplates": {
-                    "application/json": "{statusCode:200}"
-                  },
-                  "ContentHandling": "CONVERT_TO_TEXT",
-                  "IntegrationResponses": [
-                    {
-                      "StatusCode": "200",
-                      "ResponseParameters": {
-                        "method.response.header.Access-Control-Allow-Origin": "'*'",
-                        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
-                      },
-                      "ResponseTemplates": {
-                        "application/json": ""
-                      }
-                    }
-                  ]
-                },
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceFeedback"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                }
-              }
-            },
-            "ApiGatewayMethodBlogPost": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "POST",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceBlog"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "CreateBlogPostLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "CreateBlogPostLambdaPermissionApiGateway"
-              ]
             },
             "ApiGatewayMethodBlogGet": {
               "Type": "AWS::ApiGateway::Method",
@@ -929,7 +712,7 @@
                         ":lambda:path/2015-03-31/functions/",
                         {
                           "Fn::GetAtt": [
-                            "GetBlogPostBySlugLambdaFunction",
+                            "GetBlogPostLambdaFunction",
                             "Arn"
                           ]
                         },
@@ -941,145 +724,7 @@
                 "MethodResponses": []
               },
               "DependsOn": [
-                "GetBlogPostBySlugLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodBlogIdIdVarPut": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "PUT",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceBlogIdIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "UpdateBlogPostLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "UpdateBlogPostLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodBlogIdIdVarDelete": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "DELETE",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceBlogIdIdVar"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "DeleteBlogPostLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "DeleteBlogPostLambdaPermissionApiGateway"
-              ]
-            },
-            "ApiGatewayMethodConsultationPost": {
-              "Type": "AWS::ApiGateway::Method",
-              "Properties": {
-                "HttpMethod": "POST",
-                "RequestParameters": {},
-                "ResourceId": {
-                  "Ref": "ApiGatewayResourceConsultation"
-                },
-                "RestApiId": {
-                  "Ref": "ApiGatewayRestApi"
-                },
-                "ApiKeyRequired": "<REDACTED>",
-                "AuthorizationType": "NONE",
-                "Integration": {
-                  "IntegrationHttpMethod": "POST",
-                  "Type": "AWS_PROXY",
-                  "Uri": {
-                    "Fn::Join": [
-                      "",
-                      [
-                        "arn:",
-                        {
-                          "Ref": "AWS::Partition"
-                        },
-                        ":apigateway:",
-                        {
-                          "Ref": "AWS::Region"
-                        },
-                        ":lambda:path/2015-03-31/functions/",
-                        {
-                          "Fn::GetAtt": [
-                            "SubmitConsultationLambdaFunction",
-                            "Arn"
-                          ]
-                        },
-                        "/invocations"
-                      ]
-                    ]
-                  }
-                },
-                "MethodResponses": []
-              },
-              "DependsOn": [
-                "SubmitConsultationLambdaPermissionApiGateway"
+                "GetBlogPostLambdaPermissionApiGateway"
               ]
             },
             "ApiGatewayMethodFeedbackPost": {
@@ -1128,7 +773,53 @@
                 "SubmitFeedbackLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1750220469969": {
+            "ApiGatewayMethodConsultationPost": {
+              "Type": "AWS::ApiGateway::Method",
+              "Properties": {
+                "HttpMethod": "POST",
+                "RequestParameters": {},
+                "ResourceId": {
+                  "Ref": "ApiGatewayResourceConsultation"
+                },
+                "RestApiId": {
+                  "Ref": "ApiGatewayRestApi"
+                },
+                "ApiKeyRequired": "<REDACTED>",
+                "AuthorizationType": "NONE",
+                "Integration": {
+                  "IntegrationHttpMethod": "POST",
+                  "Type": "AWS_PROXY",
+                  "Uri": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":apigateway:",
+                        {
+                          "Ref": "AWS::Region"
+                        },
+                        ":lambda:path/2015-03-31/functions/",
+                        {
+                          "Fn::GetAtt": [
+                            "SubmitConsultationLambdaFunction",
+                            "Arn"
+                          ]
+                        },
+                        "/invocations"
+                      ]
+                    ]
+                  }
+                },
+                "MethodResponses": []
+              },
+              "DependsOn": [
+                "SubmitConsultationLambdaPermissionApiGateway"
+              ]
+            },
+            "ApiGatewayDeployment1750266574576": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -1139,54 +830,13 @@
               "DependsOn": [
                 "ApiGatewayMethodBlogOptions",
                 "ApiGatewayMethodBlogSlugVarOptions",
-                "ApiGatewayMethodBlogIdIdVarOptions",
-                "ApiGatewayMethodConsultationOptions",
                 "ApiGatewayMethodFeedbackOptions",
-                "ApiGatewayMethodBlogPost",
+                "ApiGatewayMethodConsultationOptions",
                 "ApiGatewayMethodBlogGet",
                 "ApiGatewayMethodBlogSlugVarGet",
-                "ApiGatewayMethodBlogIdIdVarPut",
-                "ApiGatewayMethodBlogIdIdVarDelete",
-                "ApiGatewayMethodConsultationPost",
-                "ApiGatewayMethodFeedbackPost"
+                "ApiGatewayMethodFeedbackPost",
+                "ApiGatewayMethodConsultationPost"
               ]
-            },
-            "CreateBlogPostLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "CreateBlogPostLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
             },
             "GetBlogPostsLambdaPermissionApiGateway": {
               "Type": "AWS::Lambda::Permission",
@@ -1225,123 +875,12 @@
                 }
               }
             },
-            "GetBlogPostBySlugLambdaPermissionApiGateway": {
+            "GetBlogPostLambdaPermissionApiGateway": {
               "Type": "AWS::Lambda::Permission",
               "Properties": {
                 "FunctionName": {
                   "Fn::GetAtt": [
-                    "GetBlogPostBySlugLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "UpdateBlogPostLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "UpdateBlogPostLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "DeleteBlogPostLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "DeleteBlogPostLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "Action": "lambda:InvokeFunction",
-                "Principal": "apigateway.amazonaws.com",
-                "SourceArn": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":execute-api:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":",
-                      {
-                        "Ref": "AWS::AccountId"
-                      },
-                      ":",
-                      {
-                        "Ref": "ApiGatewayRestApi"
-                      },
-                      "/*/*"
-                    ]
-                  ]
-                }
-              }
-            },
-            "SubmitConsultationLambdaPermissionApiGateway": {
-              "Type": "AWS::Lambda::Permission",
-              "Properties": {
-                "FunctionName": {
-                  "Fn::GetAtt": [
-                    "SubmitConsultationLambdaFunction",
+                    "GetBlogPostLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -1409,6 +948,43 @@
                   ]
                 }
               }
+            },
+            "SubmitConsultationLambdaPermissionApiGateway": {
+              "Type": "AWS::Lambda::Permission",
+              "Properties": {
+                "FunctionName": {
+                  "Fn::GetAtt": [
+                    "SubmitConsultationLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":execute-api:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":",
+                      {
+                        "Ref": "ApiGatewayRestApi"
+                      },
+                      "/*/*"
+                    ]
+                  ]
+                }
+              }
             }
           },
           "Outputs": {
@@ -1418,67 +994,40 @@
                 "Name": "sls-futurelogix-backend-dev-ServerlessDeploymentBucketName"
               }
             },
-            "CreateBlogPostLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ"
-              },
-              "Export": {
-                "Name": "sls-futurelogix-backend-dev-CreateBlogPostLambdaFunctionQualifiedArn"
-              }
-            },
             "GetBlogPostsLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y"
+                "Ref": "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
               }
             },
-            "GetBlogPostBySlugLambdaFunctionQualifiedArn": {
+            "GetBlogPostLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs"
+                "Ref": "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg"
               },
               "Export": {
-                "Name": "sls-futurelogix-backend-dev-GetBlogPostBySlugLambdaFunctionQualifiedArn"
-              }
-            },
-            "UpdateBlogPostLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw"
-              },
-              "Export": {
-                "Name": "sls-futurelogix-backend-dev-UpdateBlogPostLambdaFunctionQualifiedArn"
-              }
-            },
-            "DeleteBlogPostLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88"
-              },
-              "Export": {
-                "Name": "sls-futurelogix-backend-dev-DeleteBlogPostLambdaFunctionQualifiedArn"
-              }
-            },
-            "SubmitConsultationLambdaFunctionQualifiedArn": {
-              "Description": "Current Lambda function version",
-              "Value": {
-                "Ref": "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY"
-              },
-              "Export": {
-                "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
+                "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
               }
             },
             "SubmitFeedbackLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc"
+                "Ref": "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
+              }
+            },
+            "SubmitConsultationLambdaFunctionQualifiedArn": {
+              "Description": "Current Lambda function version",
+              "Value": {
+                "Ref": "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY"
+              },
+              "Export": {
+                "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
               }
             },
             "ServiceEndpoint": {
@@ -1511,43 +1060,6 @@
         }
       },
       "functions": {
-        "createBlogPost": {
-          "handler": "handler.createBlogPost",
-          "events": [
-            {
-              "http": {
-                "path": "blog",
-                "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "private": false,
-                "integration": "AWS_PROXY"
-              }
-            }
-          ],
-          "name": "futurelogix-backend-dev-createBlogPost",
-          "package": {},
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ"
-        },
         "getBlogPosts": {
           "handler": "handler.getBlogPosts",
           "events": [
@@ -1572,7 +1084,6 @@
                   ],
                   "allowCredentials": "<REDACTED>"
                 },
-                "private": false,
                 "integration": "AWS_PROXY"
               }
             }
@@ -1583,10 +1094,10 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y"
+          "versionLogicalId": "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ"
         },
-        "getBlogPostBySlug": {
-          "handler": "handler.getBlogPostBySlug",
+        "getBlogPost": {
+          "handler": "handler.getBlogPost",
           "events": [
             {
               "http": {
@@ -1609,129 +1120,17 @@
                   ],
                   "allowCredentials": "<REDACTED>"
                 },
-                "private": false,
                 "integration": "AWS_PROXY"
               }
             }
           ],
-          "name": "futurelogix-backend-dev-getBlogPostBySlug",
+          "name": "futurelogix-backend-dev-getBlogPost",
           "package": {},
           "memory": 1024,
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs"
-        },
-        "updateBlogPost": {
-          "handler": "handler.updateBlogPost",
-          "events": [
-            {
-              "http": {
-                "path": "blog/id/{id}",
-                "method": "put",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "PUT"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "private": false,
-                "integration": "AWS_PROXY"
-              }
-            }
-          ],
-          "name": "futurelogix-backend-dev-updateBlogPost",
-          "package": {},
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw"
-        },
-        "deleteBlogPost": {
-          "handler": "handler.deleteBlogPost",
-          "events": [
-            {
-              "http": {
-                "path": "blog/id/{id}",
-                "method": "delete",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "DELETE"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "private": false,
-                "integration": "AWS_PROXY"
-              }
-            }
-          ],
-          "name": "futurelogix-backend-dev-deleteBlogPost",
-          "package": {},
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88"
-        },
-        "submitConsultation": {
-          "handler": "handler.submitConsultation",
-          "events": [
-            {
-              "http": {
-                "path": "consultation",
-                "method": "post",
-                "cors": {
-                  "origin": "*",
-                  "methods": [
-                    "OPTIONS",
-                    "POST"
-                  ],
-                  "headers": [
-                    "Content-Type",
-                    "X-Amz-Date",
-                    "Authorization",
-                    "X-Api-Key",
-                    "X-Amz-Security-Token",
-                    "X-Amz-User-Agent",
-                    "X-Amzn-Trace-Id"
-                  ],
-                  "allowCredentials": "<REDACTED>"
-                },
-                "private": false,
-                "integration": "AWS_PROXY"
-              }
-            }
-          ],
-          "name": "futurelogix-backend-dev-submitConsultation",
-          "package": {},
-          "memory": 1024,
-          "timeout": 6,
-          "runtime": "nodejs20.x",
-          "vpc": {},
-          "versionLogicalId": "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY"
+          "versionLogicalId": "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg"
         },
         "submitFeedback": {
           "handler": "handler.submitFeedback",
@@ -1757,7 +1156,6 @@
                   ],
                   "allowCredentials": "<REDACTED>"
                 },
-                "private": false,
                 "integration": "AWS_PROXY"
               }
             }
@@ -1768,7 +1166,43 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc"
+          "versionLogicalId": "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4"
+        },
+        "submitConsultation": {
+          "handler": "handler.submitConsultation",
+          "events": [
+            {
+              "http": {
+                "path": "consultation",
+                "method": "post",
+                "cors": {
+                  "origin": "*",
+                  "methods": [
+                    "OPTIONS",
+                    "POST"
+                  ],
+                  "headers": [
+                    "Content-Type",
+                    "X-Amz-Date",
+                    "Authorization",
+                    "X-Api-Key",
+                    "X-Amz-Security-Token",
+                    "X-Amz-User-Agent",
+                    "X-Amzn-Trace-Id"
+                  ],
+                  "allowCredentials": "<REDACTED>"
+                },
+                "integration": "AWS_PROXY"
+              }
+            }
+          ],
+          "name": "futurelogix-backend-dev-submitConsultation",
+          "package": {},
+          "memory": 1024,
+          "timeout": 6,
+          "runtime": "nodejs20.x",
+          "vpc": {},
+          "versionLogicalId": "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY"
         }
       }
     },
@@ -1778,22 +1212,16 @@
       "stage": "dev",
       "region": "eu-west-2",
       "vpc": {
-        "provider": {
-          "securityGroupIds": [
-            "sg-0c6e1b7f3efcc31e3",
-            "sg-0bb17b13c11359fe6",
-            "sg-0f688fba8f11ddc61",
-            "sg-096f5be10f343c7ac",
-            "sg-033a6ff5b3b53c1dc",
-            "sg-0df3e50722c22f10a",
-            "sg-056255b5b10f4ad9d"
-          ],
-          "subnetIds": [
-            "subnet-0e49ffbd10a18b237",
-            "subnet-0ae08e9da3278f59c",
-            "subnet-00463b83c6c02b2a3"
-          ]
-        }
+        "securityGroupIds": [
+          "sg-0e8dfc01a7a63952f",
+          "sg-092b57e643c8aea7f",
+          "sg-0f688fba8f11ddc61"
+        ],
+        "subnetIds": [
+          "subnet-0e49ffbd10a18b237",
+          "subnet-0ae08e9da3278f59c",
+          "subnet-00463b83c6c02b2a3"
+        ]
       },
       "environment": {
         "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
@@ -1820,46 +1248,28 @@
         "AWSTemplateFormatVersion": "2010-09-09",
         "Description": "The AWS CloudFormation template for this Serverless application",
         "Resources": {
-          "CreateBlogPostLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-createBlogPost"
-            }
-          },
           "GetBlogPostsLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPosts"
             }
           },
-          "GetBlogPostBySlugLogGroup": {
+          "GetBlogPostLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPostBySlug"
-            }
-          },
-          "UpdateBlogPostLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-updateBlogPost"
-            }
-          },
-          "DeleteBlogPostLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-deleteBlogPost"
-            }
-          },
-          "SubmitConsultationLogGroup": {
-            "Type": "AWS::Logs::LogGroup",
-            "Properties": {
-              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
+              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPost"
             }
           },
           "SubmitFeedbackLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
               "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitFeedback"
+            }
+          },
+          "SubmitConsultationLogGroup": {
+            "Type": "AWS::Logs::LogGroup",
+            "Properties": {
+              "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
             }
           },
           "IamRoleLambdaExecution": {
@@ -1961,44 +1371,12 @@
               ]
             }
           },
-          "CreateBlogPostLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-              },
-              "Handler": "handler.createBlogPost",
-              "Runtime": "nodejs20.x",
-              "FunctionName": "futurelogix-backend-dev-createBlogPost",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                  "DB_USER": "akabom",
-                  "DB_PASSWORD": "<REDACTED>",
-                  "DB_DATABASE": "futurelogix-db",
-                  "DB_PORT": "5432"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "CreateBlogPostLogGroup"
-            ]
-          },
           "GetBlogPostsLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
               },
               "Handler": "handler.getBlogPosts",
               "Runtime": "nodejs20.x",
@@ -2019,22 +1397,34 @@
                   "IamRoleLambdaExecution",
                   "Arn"
                 ]
+              },
+              "VpcConfig": {
+                "SecurityGroupIds": [
+                  "sg-0e8dfc01a7a63952f",
+                  "sg-092b57e643c8aea7f",
+                  "sg-0f688fba8f11ddc61"
+                ],
+                "SubnetIds": [
+                  "subnet-0e49ffbd10a18b237",
+                  "subnet-0ae08e9da3278f59c",
+                  "subnet-00463b83c6c02b2a3"
+                ]
               }
             },
             "DependsOn": [
               "GetBlogPostsLogGroup"
             ]
           },
-          "GetBlogPostBySlugLambdaFunction": {
+          "GetBlogPostLambdaFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
               },
-              "Handler": "handler.getBlogPostBySlug",
+              "Handler": "handler.getBlogPost",
               "Runtime": "nodejs20.x",
-              "FunctionName": "futurelogix-backend-dev-getBlogPostBySlug",
+              "FunctionName": "futurelogix-backend-dev-getBlogPost",
               "MemorySize": 1024,
               "Timeout": 6,
               "Environment": {
@@ -2051,106 +1441,22 @@
                   "IamRoleLambdaExecution",
                   "Arn"
                 ]
-              }
-            },
-            "DependsOn": [
-              "GetBlogPostBySlugLogGroup"
-            ]
-          },
-          "UpdateBlogPostLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
               },
-              "Handler": "handler.updateBlogPost",
-              "Runtime": "nodejs20.x",
-              "FunctionName": "futurelogix-backend-dev-updateBlogPost",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                  "DB_USER": "akabom",
-                  "DB_PASSWORD": "<REDACTED>",
-                  "DB_DATABASE": "futurelogix-db",
-                  "DB_PORT": "5432"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
+              "VpcConfig": {
+                "SecurityGroupIds": [
+                  "sg-0e8dfc01a7a63952f",
+                  "sg-092b57e643c8aea7f",
+                  "sg-0f688fba8f11ddc61"
+                ],
+                "SubnetIds": [
+                  "subnet-0e49ffbd10a18b237",
+                  "subnet-0ae08e9da3278f59c",
+                  "subnet-00463b83c6c02b2a3"
                 ]
               }
             },
             "DependsOn": [
-              "UpdateBlogPostLogGroup"
-            ]
-          },
-          "DeleteBlogPostLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-              },
-              "Handler": "handler.deleteBlogPost",
-              "Runtime": "nodejs20.x",
-              "FunctionName": "futurelogix-backend-dev-deleteBlogPost",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                  "DB_USER": "akabom",
-                  "DB_PASSWORD": "<REDACTED>",
-                  "DB_DATABASE": "futurelogix-db",
-                  "DB_PORT": "5432"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "DeleteBlogPostLogGroup"
-            ]
-          },
-          "SubmitConsultationLambdaFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {
-              "Code": {
-                "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-              },
-              "Handler": "handler.submitConsultation",
-              "Runtime": "nodejs20.x",
-              "FunctionName": "futurelogix-backend-dev-submitConsultation",
-              "MemorySize": 1024,
-              "Timeout": 6,
-              "Environment": {
-                "Variables": {
-                  "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                  "DB_USER": "akabom",
-                  "DB_PASSWORD": "<REDACTED>",
-                  "DB_DATABASE": "futurelogix-db",
-                  "DB_PORT": "5432"
-                }
-              },
-              "Role": {
-                "Fn::GetAtt": [
-                  "IamRoleLambdaExecution",
-                  "Arn"
-                ]
-              }
-            },
-            "DependsOn": [
-              "SubmitConsultationLogGroup"
+              "GetBlogPostLogGroup"
             ]
           },
           "SubmitFeedbackLambdaFunction": {
@@ -2158,7 +1464,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
               },
               "Handler": "handler.submitFeedback",
               "Runtime": "nodejs20.x",
@@ -2179,80 +1485,106 @@
                   "IamRoleLambdaExecution",
                   "Arn"
                 ]
+              },
+              "VpcConfig": {
+                "SecurityGroupIds": [
+                  "sg-0e8dfc01a7a63952f",
+                  "sg-092b57e643c8aea7f",
+                  "sg-0f688fba8f11ddc61"
+                ],
+                "SubnetIds": [
+                  "subnet-0e49ffbd10a18b237",
+                  "subnet-0ae08e9da3278f59c",
+                  "subnet-00463b83c6c02b2a3"
+                ]
               }
             },
             "DependsOn": [
               "SubmitFeedbackLogGroup"
             ]
           },
-          "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
+          "SubmitConsultationLambdaFunction": {
+            "Type": "AWS::Lambda::Function",
             "Properties": {
-              "FunctionName": {
-                "Ref": "CreateBlogPostLambdaFunction"
+              "Code": {
+                "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
+                "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
               },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-            }
+              "Handler": "handler.submitConsultation",
+              "Runtime": "nodejs20.x",
+              "FunctionName": "futurelogix-backend-dev-submitConsultation",
+              "MemorySize": 1024,
+              "Timeout": 6,
+              "Environment": {
+                "Variables": {
+                  "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
+                  "DB_USER": "akabom",
+                  "DB_PASSWORD": "<REDACTED>",
+                  "DB_DATABASE": "futurelogix-db",
+                  "DB_PORT": "5432"
+                }
+              },
+              "Role": {
+                "Fn::GetAtt": [
+                  "IamRoleLambdaExecution",
+                  "Arn"
+                ]
+              },
+              "VpcConfig": {
+                "SecurityGroupIds": [
+                  "sg-0e8dfc01a7a63952f",
+                  "sg-092b57e643c8aea7f",
+                  "sg-0f688fba8f11ddc61"
+                ],
+                "SubnetIds": [
+                  "subnet-0e49ffbd10a18b237",
+                  "subnet-0ae08e9da3278f59c",
+                  "subnet-00463b83c6c02b2a3"
+                ]
+              }
+            },
+            "DependsOn": [
+              "SubmitConsultationLogGroup"
+            ]
           },
-          "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y": {
+          "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetBlogPostsLambdaFunction"
               },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+              "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
             }
           },
-          "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs": {
+          "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
-                "Ref": "GetBlogPostBySlugLambdaFunction"
+                "Ref": "GetBlogPostLambdaFunction"
               },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+              "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
             }
           },
-          "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "UpdateBlogPostLambdaFunction"
-              },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-            }
-          },
-          "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "DeleteBlogPostLambdaFunction"
-              },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-            }
-          },
-          "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY": {
-            "Type": "AWS::Lambda::Version",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-              "FunctionName": {
-                "Ref": "SubmitConsultationLambdaFunction"
-              },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-            }
-          },
-          "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc": {
+          "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SubmitFeedbackLambdaFunction"
               },
-              "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+              "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
+            }
+          },
+          "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY": {
+            "Type": "AWS::Lambda::Version",
+            "DeletionPolicy": "Retain",
+            "Properties": {
+              "FunctionName": {
+                "Ref": "SubmitConsultationLambdaFunction"
+              },
+              "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
             }
           },
           "ApiGatewayRestApi": {
@@ -2294,25 +1626,16 @@
               }
             }
           },
-          "ApiGatewayResourceBlogId": {
+          "ApiGatewayResourceFeedback": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
               "ParentId": {
-                "Ref": "ApiGatewayResourceBlog"
+                "Fn::GetAtt": [
+                  "ApiGatewayRestApi",
+                  "RootResourceId"
+                ]
               },
-              "PathPart": "id",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourceBlogIdIdVar": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourceBlogId"
-              },
-              "PathPart": "{id}",
+              "PathPart": "feedback",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -2328,21 +1651,6 @@
                 ]
               },
               "PathPart": "consultation",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourceFeedback": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "PathPart": "feedback",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -2377,7 +1685,7 @@
                     "ResponseParameters": {
                       "method.response.header.Access-Control-Allow-Origin": "'*'",
                       "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -2438,7 +1746,7 @@
               }
             }
           },
-          "ApiGatewayMethodBlogIdIdVarOptions": {
+          "ApiGatewayMethodFeedbackOptions": {
             "Type": "AWS::ApiGateway::Method",
             "Properties": {
               "AuthorizationType": "NONE",
@@ -2467,7 +1775,7 @@
                     "ResponseParameters": {
                       "method.response.header.Access-Control-Allow-Origin": "'*'",
                       "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
                     },
                     "ResponseTemplates": {
                       "application/json": ""
@@ -2476,7 +1784,7 @@
                 ]
               },
               "ResourceId": {
-                "Ref": "ApiGatewayResourceBlogIdIdVar"
+                "Ref": "ApiGatewayResourceFeedback"
               },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
@@ -2527,97 +1835,6 @@
                 "Ref": "ApiGatewayRestApi"
               }
             }
-          },
-          "ApiGatewayMethodFeedbackOptions": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "AuthorizationType": "NONE",
-              "HttpMethod": "OPTIONS",
-              "MethodResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true
-                  },
-                  "ResponseModels": {}
-                }
-              ],
-              "RequestParameters": {},
-              "Integration": {
-                "Type": "MOCK",
-                "RequestTemplates": {
-                  "application/json": "{statusCode:200}"
-                },
-                "ContentHandling": "CONVERT_TO_TEXT",
-                "IntegrationResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'*'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
-                    },
-                    "ResponseTemplates": {
-                      "application/json": ""
-                    }
-                  }
-                ]
-              },
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceFeedback"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodBlogPost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceBlog"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": "<REDACTED>",
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "CreateBlogPostLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "CreateBlogPostLambdaPermissionApiGateway"
-            ]
           },
           "ApiGatewayMethodBlogGet": {
             "Type": "AWS::ApiGateway::Method",
@@ -2696,7 +1913,7 @@
                       ":lambda:path/2015-03-31/functions/",
                       {
                         "Fn::GetAtt": [
-                          "GetBlogPostBySlugLambdaFunction",
+                          "GetBlogPostLambdaFunction",
                           "Arn"
                         ]
                       },
@@ -2708,145 +1925,7 @@
               "MethodResponses": []
             },
             "DependsOn": [
-              "GetBlogPostBySlugLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayMethodBlogIdIdVarPut": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "PUT",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceBlogIdIdVar"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": "<REDACTED>",
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "UpdateBlogPostLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "UpdateBlogPostLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayMethodBlogIdIdVarDelete": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "DELETE",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceBlogIdIdVar"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": "<REDACTED>",
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "DeleteBlogPostLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "DeleteBlogPostLambdaPermissionApiGateway"
-            ]
-          },
-          "ApiGatewayMethodConsultationPost": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "HttpMethod": "POST",
-              "RequestParameters": {},
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceConsultation"
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              },
-              "ApiKeyRequired": "<REDACTED>",
-              "AuthorizationType": "NONE",
-              "Integration": {
-                "IntegrationHttpMethod": "POST",
-                "Type": "AWS_PROXY",
-                "Uri": {
-                  "Fn::Join": [
-                    "",
-                    [
-                      "arn:",
-                      {
-                        "Ref": "AWS::Partition"
-                      },
-                      ":apigateway:",
-                      {
-                        "Ref": "AWS::Region"
-                      },
-                      ":lambda:path/2015-03-31/functions/",
-                      {
-                        "Fn::GetAtt": [
-                          "SubmitConsultationLambdaFunction",
-                          "Arn"
-                        ]
-                      },
-                      "/invocations"
-                    ]
-                  ]
-                }
-              },
-              "MethodResponses": []
-            },
-            "DependsOn": [
-              "SubmitConsultationLambdaPermissionApiGateway"
+              "GetBlogPostLambdaPermissionApiGateway"
             ]
           },
           "ApiGatewayMethodFeedbackPost": {
@@ -2895,7 +1974,53 @@
               "SubmitFeedbackLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1750220469969": {
+          "ApiGatewayMethodConsultationPost": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+              "HttpMethod": "POST",
+              "RequestParameters": {},
+              "ResourceId": {
+                "Ref": "ApiGatewayResourceConsultation"
+              },
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "ApiKeyRequired": "<REDACTED>",
+              "AuthorizationType": "NONE",
+              "Integration": {
+                "IntegrationHttpMethod": "POST",
+                "Type": "AWS_PROXY",
+                "Uri": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":apigateway:",
+                      {
+                        "Ref": "AWS::Region"
+                      },
+                      ":lambda:path/2015-03-31/functions/",
+                      {
+                        "Fn::GetAtt": [
+                          "SubmitConsultationLambdaFunction",
+                          "Arn"
+                        ]
+                      },
+                      "/invocations"
+                    ]
+                  ]
+                }
+              },
+              "MethodResponses": []
+            },
+            "DependsOn": [
+              "SubmitConsultationLambdaPermissionApiGateway"
+            ]
+          },
+          "ApiGatewayDeployment1750266574576": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2906,54 +2031,13 @@
             "DependsOn": [
               "ApiGatewayMethodBlogOptions",
               "ApiGatewayMethodBlogSlugVarOptions",
-              "ApiGatewayMethodBlogIdIdVarOptions",
-              "ApiGatewayMethodConsultationOptions",
               "ApiGatewayMethodFeedbackOptions",
-              "ApiGatewayMethodBlogPost",
+              "ApiGatewayMethodConsultationOptions",
               "ApiGatewayMethodBlogGet",
               "ApiGatewayMethodBlogSlugVarGet",
-              "ApiGatewayMethodBlogIdIdVarPut",
-              "ApiGatewayMethodBlogIdIdVarDelete",
-              "ApiGatewayMethodConsultationPost",
-              "ApiGatewayMethodFeedbackPost"
+              "ApiGatewayMethodFeedbackPost",
+              "ApiGatewayMethodConsultationPost"
             ]
-          },
-          "CreateBlogPostLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "CreateBlogPostLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
           },
           "GetBlogPostsLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
@@ -2992,123 +2076,12 @@
               }
             }
           },
-          "GetBlogPostBySlugLambdaPermissionApiGateway": {
+          "GetBlogPostLambdaPermissionApiGateway": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
               "FunctionName": {
                 "Fn::GetAtt": [
-                  "GetBlogPostBySlugLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "UpdateBlogPostLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "UpdateBlogPostLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "DeleteBlogPostLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "DeleteBlogPostLambdaFunction",
-                  "Arn"
-                ]
-              },
-              "Action": "lambda:InvokeFunction",
-              "Principal": "apigateway.amazonaws.com",
-              "SourceArn": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":execute-api:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":",
-                    {
-                      "Ref": "AWS::AccountId"
-                    },
-                    ":",
-                    {
-                      "Ref": "ApiGatewayRestApi"
-                    },
-                    "/*/*"
-                  ]
-                ]
-              }
-            }
-          },
-          "SubmitConsultationLambdaPermissionApiGateway": {
-            "Type": "AWS::Lambda::Permission",
-            "Properties": {
-              "FunctionName": {
-                "Fn::GetAtt": [
-                  "SubmitConsultationLambdaFunction",
+                  "GetBlogPostLambdaFunction",
                   "Arn"
                 ]
               },
@@ -3176,6 +2149,43 @@
                 ]
               }
             }
+          },
+          "SubmitConsultationLambdaPermissionApiGateway": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "FunctionName": {
+                "Fn::GetAtt": [
+                  "SubmitConsultationLambdaFunction",
+                  "Arn"
+                ]
+              },
+              "Action": "lambda:InvokeFunction",
+              "Principal": "apigateway.amazonaws.com",
+              "SourceArn": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":execute-api:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":",
+                    {
+                      "Ref": "AWS::AccountId"
+                    },
+                    ":",
+                    {
+                      "Ref": "ApiGatewayRestApi"
+                    },
+                    "/*/*"
+                  ]
+                ]
+              }
+            }
           }
         },
         "Outputs": {
@@ -3185,67 +2195,40 @@
               "Name": "sls-futurelogix-backend-dev-ServerlessDeploymentBucketName"
             }
           },
-          "CreateBlogPostLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ"
-            },
-            "Export": {
-              "Name": "sls-futurelogix-backend-dev-CreateBlogPostLambdaFunctionQualifiedArn"
-            }
-          },
           "GetBlogPostsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y"
+              "Ref": "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
             }
           },
-          "GetBlogPostBySlugLambdaFunctionQualifiedArn": {
+          "GetBlogPostLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs"
+              "Ref": "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg"
             },
             "Export": {
-              "Name": "sls-futurelogix-backend-dev-GetBlogPostBySlugLambdaFunctionQualifiedArn"
-            }
-          },
-          "UpdateBlogPostLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw"
-            },
-            "Export": {
-              "Name": "sls-futurelogix-backend-dev-UpdateBlogPostLambdaFunctionQualifiedArn"
-            }
-          },
-          "DeleteBlogPostLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88"
-            },
-            "Export": {
-              "Name": "sls-futurelogix-backend-dev-DeleteBlogPostLambdaFunctionQualifiedArn"
-            }
-          },
-          "SubmitConsultationLambdaFunctionQualifiedArn": {
-            "Description": "Current Lambda function version",
-            "Value": {
-              "Ref": "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY"
-            },
-            "Export": {
-              "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
+              "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
             }
           },
           "SubmitFeedbackLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc"
+              "Ref": "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
+            }
+          },
+          "SubmitConsultationLambdaFunctionQualifiedArn": {
+            "Description": "Current Lambda function version",
+            "Value": {
+              "Ref": "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY"
+            },
+            "Export": {
+              "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -3286,7 +2269,7 @@
       "serviceProvider": null,
       "instanceParameters": null
     },
-    "serviceRawFile": "# futurelogix-backend/serverless.yml\r\n\r\nservice: futurelogix-backend\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x\r\n  stage: dev\r\n  region: eu-west-2\r\n  vpc:\r\n    provider:\r\n      securityGroupIds:\r\n        - sg-0c6e1b7f3efcc31e3\r\n        - sg-0bb17b13c11359fe6\r\n        - sg-0f688fba8f11ddc61\r\n        - sg-096f5be10f343c7ac\r\n        - sg-033a6ff5b3b53c1dc\r\n        - sg-0df3e50722c22f10a\r\n        - sg-056255b5b10f4ad9d\r\n      subnetIds:\r\n        - subnet-0e49ffbd10a18b237\r\n        - subnet-0ae08e9da3278f59c\r\n        - subnet-00463b83c6c02b2a3\r\n  environment:\r\n    DB_HOST: ${env:DB_HOST}\r\n    DB_USER: ${env:DB_USER}\r\n    DB_PASSWORD: ${env:DB_PASSWORD}\r\n    DB_DATABASE: ${env:DB_DATABASE}\r\n    DB_PORT: ${env:DB_PORT}\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: \"Allow\"\r\n          Action:\r\n            - \"ses:SendEmail\" # If you want to send emails (e.g., for contact form)\r\n          Resource: \"*\"\r\n        # Add permissions for RDS Data API if you use it, or ensure Lambda's VPC allows connections to RDS\r\n        # For simplicity, we assume direct PG connection is allowed through VPC\r\n\r\nfunctions:\r\n  # Existing functions (if any)\r\n\r\n  # Blog Functions\r\n  createBlogPost:\r\n    handler: handler.createBlogPost\r\n    events:\r\n      - http:\r\n          path: blog\r\n          method: post\r\n          cors: true\r\n          private: false # Set to true for authenticated access\r\n  getBlogPosts:\r\n    handler: handler.getBlogPosts\r\n    events:\r\n      - http:\r\n          path: blog\r\n          method: get\r\n          cors: true\r\n          private: false\r\n  getBlogPostBySlug:\r\n    handler: handler.getBlogPostBySlug\r\n    events:\r\n      - http:\r\n          path: blog/{slug}\r\n          method: get\r\n          cors: true\r\n          private: false\r\n  updateBlogPost:\r\n    handler: handler.updateBlogPost\r\n    events:\r\n      - http:\r\n          path: blog/id/{id} # CHANGED: Added '/id'\r\n          method: put\r\n          cors: true\r\n          private: false # Set to true for authenticated access\r\n  deleteBlogPost:\r\n    handler: handler.deleteBlogPost\r\n    events:\r\n      - http:\r\n          path: blog/id/{id} # CHANGED: Added '/id'\r\n          method: delete\r\n          cors: true\r\n          private: false # Set to true for authenticated access\r\n\r\n  # Consultation Form Function\r\n  submitConsultation:\r\n    handler: handler.submitConsultation\r\n    events:\r\n      - http:\r\n          path: consultation\r\n          method: post\r\n          cors: true\r\n          private: false\r\n\r\n  # Feedback Form Function\r\n  submitFeedback:\r\n    handler: handler.submitFeedback\r\n    events:\r\n      - http:\r\n          path: feedback\r\n          method: post\r\n          cors: true\r\n          private: false\r\n# Future: Add functions for your store (e.g., createProduct, getProducts, etc.)\r\n",
+    "serviceRawFile": "service: futurelogix-backend\r\n\r\n#frameworkVersion: \"3\" # Ensure you have Serverless Framework v3 or later\r\n\r\nprovider:\r\n  name: aws\r\n  runtime: nodejs20.x # Or a later compatible version\r\n  stage: dev # You can have 'dev', 'prod', etc.\r\n  region: eu-west-2 # Or your desired AWS region (e.g., us-east-1)\r\n  # Ensure Lambda can access RDS within your VPC\r\n  vpc:\r\n    securityGroupIds:\r\n      - sg-0e8dfc01a7a63952f # rds-lambda-1\r\n      - sg-092b57e643c8aea7f # futurelogix-sg\r\n      - sg-0f688fba8f11ddc61 # lambda-rds-1\r\n      #- sg-056255b5b10f4ad9d # lambda-rds-2\r\n      #- sg-0c6e1b7f3efcc31e3 # lambda-rds-3\r\n      #- sg-033a6ff5b3b53c1dc # lambda-rds-4\r\n      #- sg-0df3e50722c22f10a # lambda-rds-5\r\n      #- sg-096f5be10f343c7ac # lambda-rds-6\r\n      #- sg-0bb17b13c11359fe6 # lambda-rds-7\r\n    subnetIds:\r\n      - subnet-0e49ffbd10a18b237\r\n      - subnet-0ae08e9da3278f59c\r\n      - subnet-00463b83c6c02b2a3\r\n  environment:\r\n    DB_HOST: ${env:DB_HOST}\r\n    DB_USER: ${env:DB_USER}\r\n    DB_PASSWORD: ${env:DB_PASSWORD}\r\n    DB_DATABASE: ${env:DB_DATABASE}\r\n    DB_PORT: ${env:DB_PORT}\r\n  iam:\r\n    role:\r\n      statements:\r\n        - Effect: \"Allow\"\r\n          Action:\r\n            - \"ses:SendEmail\" # If you want to send emails (e.g., for contact form)\r\n          Resource: \"*\"\r\n\r\nfunctions:\r\n  # Your function definitions go here. For example:\r\n  getBlogPosts:\r\n    handler: handler.getBlogPosts\r\n    events:\r\n      - http:\r\n          path: blog\r\n          method: get\r\n          cors: true\r\n\r\n  getBlogPost:\r\n    handler: handler.getBlogPost\r\n    events:\r\n      - http:\r\n          path: blog/{slug}\r\n          method: get\r\n          cors: true\r\n\r\n  submitFeedback:\r\n    handler: handler.submitFeedback\r\n    events:\r\n      - http:\r\n          path: feedback\r\n          method: post\r\n          cors: true\r\n\r\n  submitConsultation:\r\n    handler: handler.submitConsultation\r\n    events:\r\n      - http:\r\n          path: consultation\r\n          method: post\r\n          cors: true\r\n",
     "command": [
       "deploy"
     ],
@@ -3299,42 +2282,42 @@
     "serviceProviderAwsCfStackName": "futurelogix-backend-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-west-2:624914081304:stack/futurelogix-backend-dev/cfddd390-45d4-11f0-8c10-02f99cba2429",
     "serviceProviderAwsCfStackCreated": "2025-06-10T08:27:57.246Z",
-    "serviceProviderAwsCfStackUpdated": "2025-06-10T08:42:11.202Z",
+    "serviceProviderAwsCfStackUpdated": "2025-06-18T04:24:09.160Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "GetBlogPostsLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPosts:8",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPosts:9",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "UpdateBlogPostLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-updateBlogPost:2",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-updateBlogPost:3",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-UpdateBlogPostLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "DeleteBlogPostLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-deleteBlogPost:2",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-deleteBlogPost:3",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-DeleteBlogPostLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "CreateBlogPostLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-createBlogPost:2",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-createBlogPost:3",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-CreateBlogPostLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetBlogPostBySlugLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPostBySlug:8",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPostBySlug:9",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-GetBlogPostBySlugLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "SubmitConsultationLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitConsultation:8",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitConsultation:9",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
       },
@@ -3351,7 +2334,7 @@
       },
       {
         "OutputKey": "SubmitFeedbackLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitFeedback:2",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitFeedback:3",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
       }
@@ -3360,46 +2343,28 @@
       "AWSTemplateFormatVersion": "2010-09-09",
       "Description": "The AWS CloudFormation template for this Serverless application",
       "Resources": {
-        "CreateBlogPostLogGroup": {
-          "Type": "AWS::Logs::LogGroup",
-          "Properties": {
-            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-createBlogPost"
-          }
-        },
         "GetBlogPostsLogGroup": {
           "Type": "AWS::Logs::LogGroup",
           "Properties": {
             "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPosts"
           }
         },
-        "GetBlogPostBySlugLogGroup": {
+        "GetBlogPostLogGroup": {
           "Type": "AWS::Logs::LogGroup",
           "Properties": {
-            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPostBySlug"
-          }
-        },
-        "UpdateBlogPostLogGroup": {
-          "Type": "AWS::Logs::LogGroup",
-          "Properties": {
-            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-updateBlogPost"
-          }
-        },
-        "DeleteBlogPostLogGroup": {
-          "Type": "AWS::Logs::LogGroup",
-          "Properties": {
-            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-deleteBlogPost"
-          }
-        },
-        "SubmitConsultationLogGroup": {
-          "Type": "AWS::Logs::LogGroup",
-          "Properties": {
-            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
+            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-getBlogPost"
           }
         },
         "SubmitFeedbackLogGroup": {
           "Type": "AWS::Logs::LogGroup",
           "Properties": {
             "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitFeedback"
+          }
+        },
+        "SubmitConsultationLogGroup": {
+          "Type": "AWS::Logs::LogGroup",
+          "Properties": {
+            "LogGroupName": "/aws/lambda/futurelogix-backend-dev-submitConsultation"
           }
         },
         "IamRoleLambdaExecution": {
@@ -3501,44 +2466,12 @@
             ]
           }
         },
-        "CreateBlogPostLambdaFunction": {
-          "Type": "AWS::Lambda::Function",
-          "Properties": {
-            "Code": {
-              "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-            },
-            "Handler": "handler.createBlogPost",
-            "Runtime": "nodejs20.x",
-            "FunctionName": "futurelogix-backend-dev-createBlogPost",
-            "MemorySize": 1024,
-            "Timeout": 6,
-            "Environment": {
-              "Variables": {
-                "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                "DB_USER": "akabom",
-                "DB_PASSWORD": "<REDACTED>",
-                "DB_DATABASE": "futurelogix-db",
-                "DB_PORT": "5432"
-              }
-            },
-            "Role": {
-              "Fn::GetAtt": [
-                "IamRoleLambdaExecution",
-                "Arn"
-              ]
-            }
-          },
-          "DependsOn": [
-            "CreateBlogPostLogGroup"
-          ]
-        },
         "GetBlogPostsLambdaFunction": {
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
             },
             "Handler": "handler.getBlogPosts",
             "Runtime": "nodejs20.x",
@@ -3559,22 +2492,34 @@
                 "IamRoleLambdaExecution",
                 "Arn"
               ]
+            },
+            "VpcConfig": {
+              "SecurityGroupIds": [
+                "sg-0e8dfc01a7a63952f",
+                "sg-092b57e643c8aea7f",
+                "sg-0f688fba8f11ddc61"
+              ],
+              "SubnetIds": [
+                "subnet-0e49ffbd10a18b237",
+                "subnet-0ae08e9da3278f59c",
+                "subnet-00463b83c6c02b2a3"
+              ]
             }
           },
           "DependsOn": [
             "GetBlogPostsLogGroup"
           ]
         },
-        "GetBlogPostBySlugLambdaFunction": {
+        "GetBlogPostLambdaFunction": {
           "Type": "AWS::Lambda::Function",
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
             },
-            "Handler": "handler.getBlogPostBySlug",
+            "Handler": "handler.getBlogPost",
             "Runtime": "nodejs20.x",
-            "FunctionName": "futurelogix-backend-dev-getBlogPostBySlug",
+            "FunctionName": "futurelogix-backend-dev-getBlogPost",
             "MemorySize": 1024,
             "Timeout": 6,
             "Environment": {
@@ -3591,106 +2536,22 @@
                 "IamRoleLambdaExecution",
                 "Arn"
               ]
-            }
-          },
-          "DependsOn": [
-            "GetBlogPostBySlugLogGroup"
-          ]
-        },
-        "UpdateBlogPostLambdaFunction": {
-          "Type": "AWS::Lambda::Function",
-          "Properties": {
-            "Code": {
-              "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
             },
-            "Handler": "handler.updateBlogPost",
-            "Runtime": "nodejs20.x",
-            "FunctionName": "futurelogix-backend-dev-updateBlogPost",
-            "MemorySize": 1024,
-            "Timeout": 6,
-            "Environment": {
-              "Variables": {
-                "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                "DB_USER": "akabom",
-                "DB_PASSWORD": "<REDACTED>",
-                "DB_DATABASE": "futurelogix-db",
-                "DB_PORT": "5432"
-              }
-            },
-            "Role": {
-              "Fn::GetAtt": [
-                "IamRoleLambdaExecution",
-                "Arn"
+            "VpcConfig": {
+              "SecurityGroupIds": [
+                "sg-0e8dfc01a7a63952f",
+                "sg-092b57e643c8aea7f",
+                "sg-0f688fba8f11ddc61"
+              ],
+              "SubnetIds": [
+                "subnet-0e49ffbd10a18b237",
+                "subnet-0ae08e9da3278f59c",
+                "subnet-00463b83c6c02b2a3"
               ]
             }
           },
           "DependsOn": [
-            "UpdateBlogPostLogGroup"
-          ]
-        },
-        "DeleteBlogPostLambdaFunction": {
-          "Type": "AWS::Lambda::Function",
-          "Properties": {
-            "Code": {
-              "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-            },
-            "Handler": "handler.deleteBlogPost",
-            "Runtime": "nodejs20.x",
-            "FunctionName": "futurelogix-backend-dev-deleteBlogPost",
-            "MemorySize": 1024,
-            "Timeout": 6,
-            "Environment": {
-              "Variables": {
-                "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                "DB_USER": "akabom",
-                "DB_PASSWORD": "<REDACTED>",
-                "DB_DATABASE": "futurelogix-db",
-                "DB_PORT": "5432"
-              }
-            },
-            "Role": {
-              "Fn::GetAtt": [
-                "IamRoleLambdaExecution",
-                "Arn"
-              ]
-            }
-          },
-          "DependsOn": [
-            "DeleteBlogPostLogGroup"
-          ]
-        },
-        "SubmitConsultationLambdaFunction": {
-          "Type": "AWS::Lambda::Function",
-          "Properties": {
-            "Code": {
-              "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
-            },
-            "Handler": "handler.submitConsultation",
-            "Runtime": "nodejs20.x",
-            "FunctionName": "futurelogix-backend-dev-submitConsultation",
-            "MemorySize": 1024,
-            "Timeout": 6,
-            "Environment": {
-              "Variables": {
-                "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
-                "DB_USER": "akabom",
-                "DB_PASSWORD": "<REDACTED>",
-                "DB_DATABASE": "futurelogix-db",
-                "DB_PORT": "5432"
-              }
-            },
-            "Role": {
-              "Fn::GetAtt": [
-                "IamRoleLambdaExecution",
-                "Arn"
-              ]
-            }
-          },
-          "DependsOn": [
-            "SubmitConsultationLogGroup"
+            "GetBlogPostLogGroup"
           ]
         },
         "SubmitFeedbackLambdaFunction": {
@@ -3698,7 +2559,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
             },
             "Handler": "handler.submitFeedback",
             "Runtime": "nodejs20.x",
@@ -3719,80 +2580,106 @@
                 "IamRoleLambdaExecution",
                 "Arn"
               ]
+            },
+            "VpcConfig": {
+              "SecurityGroupIds": [
+                "sg-0e8dfc01a7a63952f",
+                "sg-092b57e643c8aea7f",
+                "sg-0f688fba8f11ddc61"
+              ],
+              "SubnetIds": [
+                "subnet-0e49ffbd10a18b237",
+                "subnet-0ae08e9da3278f59c",
+                "subnet-00463b83c6c02b2a3"
+              ]
             }
           },
           "DependsOn": [
             "SubmitFeedbackLogGroup"
           ]
         },
-        "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ": {
-          "Type": "AWS::Lambda::Version",
-          "DeletionPolicy": "Retain",
+        "SubmitConsultationLambdaFunction": {
+          "Type": "AWS::Lambda::Function",
           "Properties": {
-            "FunctionName": {
-              "Ref": "CreateBlogPostLambdaFunction"
+            "Code": {
+              "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
+              "S3Key": "serverless/futurelogix-backend/dev/1750266641661-2025-06-18T17:10:41.661Z/futurelogix-backend.zip"
             },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-          }
+            "Handler": "handler.submitConsultation",
+            "Runtime": "nodejs20.x",
+            "FunctionName": "futurelogix-backend-dev-submitConsultation",
+            "MemorySize": 1024,
+            "Timeout": 6,
+            "Environment": {
+              "Variables": {
+                "DB_HOST": "futurelogix-db.cnqa06cko6qz.eu-west-2.rds.amazonaws.com",
+                "DB_USER": "akabom",
+                "DB_PASSWORD": "<REDACTED>",
+                "DB_DATABASE": "futurelogix-db",
+                "DB_PORT": "5432"
+              }
+            },
+            "Role": {
+              "Fn::GetAtt": [
+                "IamRoleLambdaExecution",
+                "Arn"
+              ]
+            },
+            "VpcConfig": {
+              "SecurityGroupIds": [
+                "sg-0e8dfc01a7a63952f",
+                "sg-092b57e643c8aea7f",
+                "sg-0f688fba8f11ddc61"
+              ],
+              "SubnetIds": [
+                "subnet-0e49ffbd10a18b237",
+                "subnet-0ae08e9da3278f59c",
+                "subnet-00463b83c6c02b2a3"
+              ]
+            }
+          },
+          "DependsOn": [
+            "SubmitConsultationLogGroup"
+          ]
         },
-        "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y": {
+        "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "GetBlogPostsLambdaFunction"
             },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+            "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
           }
         },
-        "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs": {
+        "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
-              "Ref": "GetBlogPostBySlugLambdaFunction"
+              "Ref": "GetBlogPostLambdaFunction"
             },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+            "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
           }
         },
-        "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw": {
-          "Type": "AWS::Lambda::Version",
-          "DeletionPolicy": "Retain",
-          "Properties": {
-            "FunctionName": {
-              "Ref": "UpdateBlogPostLambdaFunction"
-            },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-          }
-        },
-        "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88": {
-          "Type": "AWS::Lambda::Version",
-          "DeletionPolicy": "Retain",
-          "Properties": {
-            "FunctionName": {
-              "Ref": "DeleteBlogPostLambdaFunction"
-            },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-          }
-        },
-        "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY": {
-          "Type": "AWS::Lambda::Version",
-          "DeletionPolicy": "Retain",
-          "Properties": {
-            "FunctionName": {
-              "Ref": "SubmitConsultationLambdaFunction"
-            },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
-          }
-        },
-        "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc": {
+        "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "SubmitFeedbackLambdaFunction"
             },
-            "CodeSha256": "LgMC6xzbh9eJpIUVWVeeiEmUd5y2hDIgVjYn/8Be+hI="
+            "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
+          }
+        },
+        "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY": {
+          "Type": "AWS::Lambda::Version",
+          "DeletionPolicy": "Retain",
+          "Properties": {
+            "FunctionName": {
+              "Ref": "SubmitConsultationLambdaFunction"
+            },
+            "CodeSha256": "NUGxXnlDgPjSMcgJCJQZY9Vg9t/eDoe+tfgZpgJjI54="
           }
         },
         "ApiGatewayRestApi": {
@@ -3834,25 +2721,16 @@
             }
           }
         },
-        "ApiGatewayResourceBlogId": {
+        "ApiGatewayResourceFeedback": {
           "Type": "AWS::ApiGateway::Resource",
           "Properties": {
             "ParentId": {
-              "Ref": "ApiGatewayResourceBlog"
+              "Fn::GetAtt": [
+                "ApiGatewayRestApi",
+                "RootResourceId"
+              ]
             },
-            "PathPart": "id",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayResourceBlogIdIdVar": {
-          "Type": "AWS::ApiGateway::Resource",
-          "Properties": {
-            "ParentId": {
-              "Ref": "ApiGatewayResourceBlogId"
-            },
-            "PathPart": "{id}",
+            "PathPart": "feedback",
             "RestApiId": {
               "Ref": "ApiGatewayRestApi"
             }
@@ -3868,21 +2746,6 @@
               ]
             },
             "PathPart": "consultation",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayResourceFeedback": {
-          "Type": "AWS::ApiGateway::Resource",
-          "Properties": {
-            "ParentId": {
-              "Fn::GetAtt": [
-                "ApiGatewayRestApi",
-                "RootResourceId"
-              ]
-            },
-            "PathPart": "feedback",
             "RestApiId": {
               "Ref": "ApiGatewayRestApi"
             }
@@ -3917,7 +2780,7 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": "'*'",
                     "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,POST'"
+                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'"
                   },
                   "ResponseTemplates": {
                     "application/json": ""
@@ -3978,7 +2841,7 @@
             }
           }
         },
-        "ApiGatewayMethodBlogIdIdVarOptions": {
+        "ApiGatewayMethodFeedbackOptions": {
           "Type": "AWS::ApiGateway::Method",
           "Properties": {
             "AuthorizationType": "NONE",
@@ -4007,7 +2870,7 @@
                   "ResponseParameters": {
                     "method.response.header.Access-Control-Allow-Origin": "'*'",
                     "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,PUT'"
+                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
                   },
                   "ResponseTemplates": {
                     "application/json": ""
@@ -4016,7 +2879,7 @@
               ]
             },
             "ResourceId": {
-              "Ref": "ApiGatewayResourceBlogIdIdVar"
+              "Ref": "ApiGatewayResourceFeedback"
             },
             "RestApiId": {
               "Ref": "ApiGatewayRestApi"
@@ -4067,97 +2930,6 @@
               "Ref": "ApiGatewayRestApi"
             }
           }
-        },
-        "ApiGatewayMethodFeedbackOptions": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "AuthorizationType": "NONE",
-            "HttpMethod": "OPTIONS",
-            "MethodResponses": [
-              {
-                "StatusCode": "200",
-                "ResponseParameters": {
-                  "method.response.header.Access-Control-Allow-Origin": true,
-                  "method.response.header.Access-Control-Allow-Headers": true,
-                  "method.response.header.Access-Control-Allow-Methods": true
-                },
-                "ResponseModels": {}
-              }
-            ],
-            "RequestParameters": {},
-            "Integration": {
-              "Type": "MOCK",
-              "RequestTemplates": {
-                "application/json": "{statusCode:200}"
-              },
-              "ContentHandling": "CONVERT_TO_TEXT",
-              "IntegrationResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": "'*'",
-                    "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent,X-Amzn-Trace-Id'",
-                    "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'"
-                  },
-                  "ResponseTemplates": {
-                    "application/json": ""
-                  }
-                }
-              ]
-            },
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceFeedback"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "ApiGatewayMethodBlogPost": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "HttpMethod": "POST",
-            "RequestParameters": {},
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceBlog"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "ApiKeyRequired": "<REDACTED>",
-            "AuthorizationType": "NONE",
-            "Integration": {
-              "IntegrationHttpMethod": "POST",
-              "Type": "AWS_PROXY",
-              "Uri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "CreateBlogPostLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              }
-            },
-            "MethodResponses": []
-          },
-          "DependsOn": [
-            "CreateBlogPostLambdaPermissionApiGateway"
-          ]
         },
         "ApiGatewayMethodBlogGet": {
           "Type": "AWS::ApiGateway::Method",
@@ -4236,7 +3008,7 @@
                     ":lambda:path/2015-03-31/functions/",
                     {
                       "Fn::GetAtt": [
-                        "GetBlogPostBySlugLambdaFunction",
+                        "GetBlogPostLambdaFunction",
                         "Arn"
                       ]
                     },
@@ -4248,145 +3020,7 @@
             "MethodResponses": []
           },
           "DependsOn": [
-            "GetBlogPostBySlugLambdaPermissionApiGateway"
-          ]
-        },
-        "ApiGatewayMethodBlogIdIdVarPut": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "HttpMethod": "PUT",
-            "RequestParameters": {},
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceBlogIdIdVar"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "ApiKeyRequired": "<REDACTED>",
-            "AuthorizationType": "NONE",
-            "Integration": {
-              "IntegrationHttpMethod": "POST",
-              "Type": "AWS_PROXY",
-              "Uri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "UpdateBlogPostLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              }
-            },
-            "MethodResponses": []
-          },
-          "DependsOn": [
-            "UpdateBlogPostLambdaPermissionApiGateway"
-          ]
-        },
-        "ApiGatewayMethodBlogIdIdVarDelete": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "HttpMethod": "DELETE",
-            "RequestParameters": {},
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceBlogIdIdVar"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "ApiKeyRequired": "<REDACTED>",
-            "AuthorizationType": "NONE",
-            "Integration": {
-              "IntegrationHttpMethod": "POST",
-              "Type": "AWS_PROXY",
-              "Uri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "DeleteBlogPostLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              }
-            },
-            "MethodResponses": []
-          },
-          "DependsOn": [
-            "DeleteBlogPostLambdaPermissionApiGateway"
-          ]
-        },
-        "ApiGatewayMethodConsultationPost": {
-          "Type": "AWS::ApiGateway::Method",
-          "Properties": {
-            "HttpMethod": "POST",
-            "RequestParameters": {},
-            "ResourceId": {
-              "Ref": "ApiGatewayResourceConsultation"
-            },
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            },
-            "ApiKeyRequired": "<REDACTED>",
-            "AuthorizationType": "NONE",
-            "Integration": {
-              "IntegrationHttpMethod": "POST",
-              "Type": "AWS_PROXY",
-              "Uri": {
-                "Fn::Join": [
-                  "",
-                  [
-                    "arn:",
-                    {
-                      "Ref": "AWS::Partition"
-                    },
-                    ":apigateway:",
-                    {
-                      "Ref": "AWS::Region"
-                    },
-                    ":lambda:path/2015-03-31/functions/",
-                    {
-                      "Fn::GetAtt": [
-                        "SubmitConsultationLambdaFunction",
-                        "Arn"
-                      ]
-                    },
-                    "/invocations"
-                  ]
-                ]
-              }
-            },
-            "MethodResponses": []
-          },
-          "DependsOn": [
-            "SubmitConsultationLambdaPermissionApiGateway"
+            "GetBlogPostLambdaPermissionApiGateway"
           ]
         },
         "ApiGatewayMethodFeedbackPost": {
@@ -4435,7 +3069,53 @@
             "SubmitFeedbackLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1750220469969": {
+        "ApiGatewayMethodConsultationPost": {
+          "Type": "AWS::ApiGateway::Method",
+          "Properties": {
+            "HttpMethod": "POST",
+            "RequestParameters": {},
+            "ResourceId": {
+              "Ref": "ApiGatewayResourceConsultation"
+            },
+            "RestApiId": {
+              "Ref": "ApiGatewayRestApi"
+            },
+            "ApiKeyRequired": "<REDACTED>",
+            "AuthorizationType": "NONE",
+            "Integration": {
+              "IntegrationHttpMethod": "POST",
+              "Type": "AWS_PROXY",
+              "Uri": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":apigateway:",
+                    {
+                      "Ref": "AWS::Region"
+                    },
+                    ":lambda:path/2015-03-31/functions/",
+                    {
+                      "Fn::GetAtt": [
+                        "SubmitConsultationLambdaFunction",
+                        "Arn"
+                      ]
+                    },
+                    "/invocations"
+                  ]
+                ]
+              }
+            },
+            "MethodResponses": []
+          },
+          "DependsOn": [
+            "SubmitConsultationLambdaPermissionApiGateway"
+          ]
+        },
+        "ApiGatewayDeployment1750266574576": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -4446,54 +3126,13 @@
           "DependsOn": [
             "ApiGatewayMethodBlogOptions",
             "ApiGatewayMethodBlogSlugVarOptions",
-            "ApiGatewayMethodBlogIdIdVarOptions",
-            "ApiGatewayMethodConsultationOptions",
             "ApiGatewayMethodFeedbackOptions",
-            "ApiGatewayMethodBlogPost",
+            "ApiGatewayMethodConsultationOptions",
             "ApiGatewayMethodBlogGet",
             "ApiGatewayMethodBlogSlugVarGet",
-            "ApiGatewayMethodBlogIdIdVarPut",
-            "ApiGatewayMethodBlogIdIdVarDelete",
-            "ApiGatewayMethodConsultationPost",
-            "ApiGatewayMethodFeedbackPost"
+            "ApiGatewayMethodFeedbackPost",
+            "ApiGatewayMethodConsultationPost"
           ]
-        },
-        "CreateBlogPostLambdaPermissionApiGateway": {
-          "Type": "AWS::Lambda::Permission",
-          "Properties": {
-            "FunctionName": {
-              "Fn::GetAtt": [
-                "CreateBlogPostLambdaFunction",
-                "Arn"
-              ]
-            },
-            "Action": "lambda:InvokeFunction",
-            "Principal": "apigateway.amazonaws.com",
-            "SourceArn": {
-              "Fn::Join": [
-                "",
-                [
-                  "arn:",
-                  {
-                    "Ref": "AWS::Partition"
-                  },
-                  ":execute-api:",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  ":",
-                  {
-                    "Ref": "AWS::AccountId"
-                  },
-                  ":",
-                  {
-                    "Ref": "ApiGatewayRestApi"
-                  },
-                  "/*/*"
-                ]
-              ]
-            }
-          }
         },
         "GetBlogPostsLambdaPermissionApiGateway": {
           "Type": "AWS::Lambda::Permission",
@@ -4532,123 +3171,12 @@
             }
           }
         },
-        "GetBlogPostBySlugLambdaPermissionApiGateway": {
+        "GetBlogPostLambdaPermissionApiGateway": {
           "Type": "AWS::Lambda::Permission",
           "Properties": {
             "FunctionName": {
               "Fn::GetAtt": [
-                "GetBlogPostBySlugLambdaFunction",
-                "Arn"
-              ]
-            },
-            "Action": "lambda:InvokeFunction",
-            "Principal": "apigateway.amazonaws.com",
-            "SourceArn": {
-              "Fn::Join": [
-                "",
-                [
-                  "arn:",
-                  {
-                    "Ref": "AWS::Partition"
-                  },
-                  ":execute-api:",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  ":",
-                  {
-                    "Ref": "AWS::AccountId"
-                  },
-                  ":",
-                  {
-                    "Ref": "ApiGatewayRestApi"
-                  },
-                  "/*/*"
-                ]
-              ]
-            }
-          }
-        },
-        "UpdateBlogPostLambdaPermissionApiGateway": {
-          "Type": "AWS::Lambda::Permission",
-          "Properties": {
-            "FunctionName": {
-              "Fn::GetAtt": [
-                "UpdateBlogPostLambdaFunction",
-                "Arn"
-              ]
-            },
-            "Action": "lambda:InvokeFunction",
-            "Principal": "apigateway.amazonaws.com",
-            "SourceArn": {
-              "Fn::Join": [
-                "",
-                [
-                  "arn:",
-                  {
-                    "Ref": "AWS::Partition"
-                  },
-                  ":execute-api:",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  ":",
-                  {
-                    "Ref": "AWS::AccountId"
-                  },
-                  ":",
-                  {
-                    "Ref": "ApiGatewayRestApi"
-                  },
-                  "/*/*"
-                ]
-              ]
-            }
-          }
-        },
-        "DeleteBlogPostLambdaPermissionApiGateway": {
-          "Type": "AWS::Lambda::Permission",
-          "Properties": {
-            "FunctionName": {
-              "Fn::GetAtt": [
-                "DeleteBlogPostLambdaFunction",
-                "Arn"
-              ]
-            },
-            "Action": "lambda:InvokeFunction",
-            "Principal": "apigateway.amazonaws.com",
-            "SourceArn": {
-              "Fn::Join": [
-                "",
-                [
-                  "arn:",
-                  {
-                    "Ref": "AWS::Partition"
-                  },
-                  ":execute-api:",
-                  {
-                    "Ref": "AWS::Region"
-                  },
-                  ":",
-                  {
-                    "Ref": "AWS::AccountId"
-                  },
-                  ":",
-                  {
-                    "Ref": "ApiGatewayRestApi"
-                  },
-                  "/*/*"
-                ]
-              ]
-            }
-          }
-        },
-        "SubmitConsultationLambdaPermissionApiGateway": {
-          "Type": "AWS::Lambda::Permission",
-          "Properties": {
-            "FunctionName": {
-              "Fn::GetAtt": [
-                "SubmitConsultationLambdaFunction",
+                "GetBlogPostLambdaFunction",
                 "Arn"
               ]
             },
@@ -4716,6 +3244,43 @@
               ]
             }
           }
+        },
+        "SubmitConsultationLambdaPermissionApiGateway": {
+          "Type": "AWS::Lambda::Permission",
+          "Properties": {
+            "FunctionName": {
+              "Fn::GetAtt": [
+                "SubmitConsultationLambdaFunction",
+                "Arn"
+              ]
+            },
+            "Action": "lambda:InvokeFunction",
+            "Principal": "apigateway.amazonaws.com",
+            "SourceArn": {
+              "Fn::Join": [
+                "",
+                [
+                  "arn:",
+                  {
+                    "Ref": "AWS::Partition"
+                  },
+                  ":execute-api:",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  ":",
+                  {
+                    "Ref": "AWS::AccountId"
+                  },
+                  ":",
+                  {
+                    "Ref": "ApiGatewayRestApi"
+                  },
+                  "/*/*"
+                ]
+              ]
+            }
+          }
         }
       },
       "Outputs": {
@@ -4725,67 +3290,40 @@
             "Name": "sls-futurelogix-backend-dev-ServerlessDeploymentBucketName"
           }
         },
-        "CreateBlogPostLambdaFunctionQualifiedArn": {
-          "Description": "Current Lambda function version",
-          "Value": {
-            "Ref": "CreateBlogPostLambdaVersionKNeTUBSdH4094WL2X0KyfCTjM5yptihk6SzbvLssTdQ"
-          },
-          "Export": {
-            "Name": "sls-futurelogix-backend-dev-CreateBlogPostLambdaFunctionQualifiedArn"
-          }
-        },
         "GetBlogPostsLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "GetBlogPostsLambdaVersionWauAKLNfZ1p3uFZeviikflgiHkgaXjW2r6PEb7Ci3Y"
+            "Ref": "GetBlogPostsLambdaVersionrlmIG9H4SRhXQayQy80YpbSehrzdgUVrq2rdGoHwwyQ"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
           }
         },
-        "GetBlogPostBySlugLambdaFunctionQualifiedArn": {
+        "GetBlogPostLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "GetBlogPostBySlugLambdaVersionWIoiOvRbax4ncyEPVI73isvtrRygRx5syf0SGwmQs"
+            "Ref": "GetBlogPostLambdaVersionrQNqgBsUdI6YQI7ylpuWjmbZsMgrnaYxaF99VAQAg"
           },
           "Export": {
-            "Name": "sls-futurelogix-backend-dev-GetBlogPostBySlugLambdaFunctionQualifiedArn"
-          }
-        },
-        "UpdateBlogPostLambdaFunctionQualifiedArn": {
-          "Description": "Current Lambda function version",
-          "Value": {
-            "Ref": "UpdateBlogPostLambdaVersion6lDXcL2DZEXaNi2b4js17cGyb5DGcDcGW4XhZ1Dgw"
-          },
-          "Export": {
-            "Name": "sls-futurelogix-backend-dev-UpdateBlogPostLambdaFunctionQualifiedArn"
-          }
-        },
-        "DeleteBlogPostLambdaFunctionQualifiedArn": {
-          "Description": "Current Lambda function version",
-          "Value": {
-            "Ref": "DeleteBlogPostLambdaVersion777aaricy9ElRFiKrl22cPk6Z8miirxAbJzCTg9Qk88"
-          },
-          "Export": {
-            "Name": "sls-futurelogix-backend-dev-DeleteBlogPostLambdaFunctionQualifiedArn"
-          }
-        },
-        "SubmitConsultationLambdaFunctionQualifiedArn": {
-          "Description": "Current Lambda function version",
-          "Value": {
-            "Ref": "SubmitConsultationLambdaVersionwrnQH743xowP8Mmoym3jbrmTt8PyFSuZqeaYZAyY"
-          },
-          "Export": {
-            "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
+            "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
           }
         },
         "SubmitFeedbackLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "SubmitFeedbackLambdaVersionHJi0jsAjID65ekryaZ0LONMASFNLJuiijvgPKeoWc"
+            "Ref": "SubmitFeedbackLambdaVersionkPlvzymjGWCymQO4zntdEHTu1JQXxBWiGQ73fFW4"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
+          }
+        },
+        "SubmitConsultationLambdaFunctionQualifiedArn": {
+          "Description": "Current Lambda function version",
+          "Value": {
+            "Ref": "SubmitConsultationLambdaVersionZQJpqvWaz3TfrtdWuK804KH3vefR4IoXa9nMicKOY"
+          },
+          "Export": {
+            "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
           }
         },
         "ServiceEndpoint": {
