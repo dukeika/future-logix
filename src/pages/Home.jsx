@@ -33,7 +33,7 @@ export default function Home() {
     {
       quote:
         "FutureLogix transformed our cloud infrastructure, significantly cutting costs and boosting our operational efficiency. Their team is incredibly knowledgeable and supportive.",
-      client: "Aisha Mohammed",
+      client: "Uwem Ebong",
       title: "CEO",
       company: "Innovate Africa Tech",
       avatar: "/images/aisha-mohammed-avatar.jpg", // Replace with actual path
