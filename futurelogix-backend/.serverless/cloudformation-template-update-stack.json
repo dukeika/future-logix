@@ -148,7 +148,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.createBlogPost",
         "Runtime": "nodejs20.x",
@@ -180,7 +180,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.getBlogPosts",
         "Runtime": "nodejs20.x",
@@ -212,7 +212,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.getBlogPostBySlug",
         "Runtime": "nodejs20.x",
@@ -244,7 +244,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.updateBlogPost",
         "Runtime": "nodejs20.x",
@@ -276,7 +276,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.deleteBlogPost",
         "Runtime": "nodejs20.x",
@@ -308,7 +308,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.submitConsultation",
         "Runtime": "nodejs20.x",
@@ -340,7 +340,7 @@
       "Properties": {
         "Code": {
           "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-          "S3Key": "serverless/futurelogix-backend/dev/1750218981149-2025-06-18T03:56:21.149Z/futurelogix-backend.zip"
+          "S3Key": "serverless/futurelogix-backend/dev/1750220523716-2025-06-18T04:22:03.716Z/futurelogix-backend.zip"
         },
         "Handler": "handler.submitFeedback",
         "Runtime": "nodejs20.x",
@@ -1077,7 +1077,7 @@
         "SubmitFeedbackLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1750218898168": {
+    "ApiGatewayDeployment1750220469969": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
