@@ -5,21 +5,20 @@ import {
   Box,
   List,
   ListItem,
-  Button,
   ListItemText,
+  Button,
 } from "@mui/material";
 
 export default function CloudSolutions() {
   return (
     <Container maxWidth="md" sx={{ py: 5 }}>
       <Typography variant="h4" gutterBottom>
-        Cloud Migration & AWS Consulting
+        Cloud Migration & Management
       </Typography>
-
       <Typography paragraph>
         Transform your IT infrastructure with our comprehensive cloud migration
-        services. From assessment to implementation, we ensure a seamless
-        transition to the cloud.
+        services. We specialize in AWS, Azure, and Google Cloud solutions
+        tailored to your business needs.
       </Typography>
 
       <Typography variant="h6" gutterBottom>
@@ -54,10 +53,10 @@ export default function CloudSolutions() {
           <ListItemText primary="Instant scalability" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Enterprise-grade security" />
+          <ListItemText primary="99.99% uptime guarantee" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="99.99% uptime guarantee" />
+          <ListItemText primary="Enterprise-grade security" />
         </ListItem>
         <ListItem>
           <ListItemText primary="Flexible, usage-based pricing" />
@@ -76,7 +75,7 @@ export default function CloudSolutions() {
       </Typography>
 
       <Box sx={{ mt: 3 }}>
-        <Button variant="contained" color="primary" href="/pricing/cloud">
+        <Button variant="contained" color="primary" href="/pricing">
           View Cloud Pricing Options
         </Button>
       </Box>

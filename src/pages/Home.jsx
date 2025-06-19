@@ -6,17 +6,10 @@ import {
   Box,
   Card,
   Grid,
-  Paper,
-  CardContent,
-  CardActionArea,
   useTheme, // Hook to access the theme
 } from "@mui/material";
 
 // MUI Icons
-import CloudQueueIcon from "@mui/icons-material/CloudQueue";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
-import DeveloperModeIcon from "@mui/icons-material/DeveloperMode";
-import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"; // For process steps
 import SettingsIcon from "@mui/icons-material/Settings"; // For process steps
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline"; // For process steps
@@ -33,33 +26,6 @@ import InsightsSection from "../components/InsightsSection"; // Import insights 
 export default function Home() {
   const theme = useTheme(); // Access the theme to use its colors
 
-  const testimonials = [
-    {
-      quote:
-        "FutureLogix transformed our cloud infrastructure, significantly cutting costs and boosting our operational efficiency. Their team is incredibly knowledgeable and supportive.",
-      client: "Uwem Ebong",
-      title: "CEO",
-      company: "Innovate Africa Tech",
-      avatar: "/images/aisha-mohammed-avatar.jpg", // Replace with actual path
-    },
-    {
-      quote:
-        "Implementing Koha with FutureLogix was seamless. Our library staff are now more productive, and our patrons have a much better experience. Highly recommend!",
-      client: "Dr. Emeka Obi",
-      title: "Library Director",
-      company: "University of Lagos",
-      avatar: "/images/emeka-obi-avatar.jpg", // Replace with actual path
-    },
-    {
-      quote:
-        "The custom software FutureLogix developed has revolutionized our internal processes. They understood our unique needs perfectly and delivered beyond expectations.",
-      client: "Sarah Kalu",
-      title: "Head of Operations",
-      company: "Eko Logistics",
-      avatar: "/images/sarah-kalu-avatar.jpg", // Replace with actual path
-    },
-  ];
-
   const clientLogos = [
     "/images/client-logo-gtbank.png", // Replace with actual paths and ensure grayscale
     "/images/client-logo-mtn.png",
@@ -67,32 +33,6 @@ export default function Home() {
     "/images/client-logo-access.png",
     "/images/client-logo-dangote.png",
     "/images/client-logo-konga.png",
-  ];
-
-  const blogPosts = [
-    {
-      title: "The Future of Cloud in African Enterprises: Scaling for Growth",
-      excerpt:
-        "Explore how African businesses are leveraging AWS to achieve unprecedented scalability and cost-efficiency in a rapidly evolving digital landscape...",
-      image: "/images/blog-cloud-africa.jpg", // Replace with actual path
-      link: "/blog/cloud-in-african-enterprises",
-    },
-    {
-      title:
-        "Why Open Source ILS is Revolutionizing Library Management in Nigeria",
-      excerpt:
-        "Discover the benefits of Koha and DSpace for modernizing information access and digital preservation in academic and public libraries...",
-      image: "/images/blog-library-open-source.jpg", // Replace with actual path
-      link: "/blog/open-source-library-management",
-    },
-    {
-      title:
-        "Building Secure Applications from the Ground Up: A Developer's Guide",
-      excerpt:
-        "Understanding the crucial steps to integrate robust security practices into your development lifecycle to protect valuable data and ensure compliance...",
-      image: "/images/blog-secure-dev.jpg", // Replace with actual path
-      link: "/blog/secure-application-development",
-    },
   ];
 
   return (

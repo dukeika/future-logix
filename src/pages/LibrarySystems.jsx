@@ -2,21 +2,22 @@ import React from "react";
 import {
   Container,
   Typography,
+  Box,
   List,
   ListItem,
   ListItemText,
+  Button,
 } from "@mui/material";
 
 export default function LibrarySystems() {
   return (
     <Container maxWidth="md" sx={{ py: 5 }}>
       <Typography variant="h4" gutterBottom>
-        Koha Library Implementation
+        Koha Implementation Services
       </Typography>
-
       <Typography paragraph>
-        Complete library automation solution using open-source Koha software,
-        tailored to your collection size and user needs.
+        Modernize your library operations with tailored Koha implementations —
+        fully customized to your collection size and user needs.
       </Typography>
 
       <Typography variant="h6" gutterBottom>
@@ -54,6 +55,37 @@ export default function LibrarySystems() {
           <ListItemText primary="User Access Control" />
         </ListItem>
       </List>
+
+      <Typography variant="h6" gutterBottom>
+        Benefits
+      </Typography>
+      <List>
+        <ListItem>
+          <ListItemText primary="60% reduction in cataloging time" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Eliminate licensing fees (open source)" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Modern, intuitive interface" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Integration with other systems" />
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Scalable with growing collections" />
+        </ListItem>
+      </List>
+
+      <Box sx={{ mt: 3 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          href="/services/library-systems#dspace"
+        >
+          Learn About DSpace Solutions
+        </Button>
+      </Box>
     </Container>
   );
 }

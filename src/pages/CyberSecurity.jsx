@@ -2,9 +2,11 @@ import React from "react";
 import {
   Container,
   Typography,
+  Box,
   List,
   ListItem,
   ListItemText,
+  Button,
 } from "@mui/material";
 
 export default function CyberSecurity() {
@@ -13,14 +15,13 @@ export default function CyberSecurity() {
       <Typography variant="h4" gutterBottom>
         Cybersecurity & Compliance
       </Typography>
-
       <Typography paragraph>
-        Protect your digital assets with comprehensive security assessments,
-        penetration testing, and compliance frameworks.
+        Protect your valuable assets with comprehensive security strategies and
+        compliance frameworks including ISO27001, GDPR, and PCI-DSS.
       </Typography>
 
       <Typography variant="h6" gutterBottom>
-        What We Offer
+        Our Approach
       </Typography>
       <List>
         <ListItem>
@@ -36,12 +37,12 @@ export default function CyberSecurity() {
           <ListItemText primary="Firewall Configuration" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Intrusion Detection" />
+          <ListItemText primary="Ongoing Monitoring" />
         </ListItem>
       </List>
 
       <Typography variant="h6" gutterBottom>
-        Compliance Services
+        Compliance Frameworks
       </Typography>
       <List>
         <ListItem>
@@ -54,9 +55,23 @@ export default function CyberSecurity() {
           <ListItemText primary="PCI DSS" />
         </ListItem>
         <ListItem>
-          <ListItemText primary="Industry-Specific Regulations" />
+          <ListItemText primary="CBN Data Security Framework" />
         </ListItem>
       </List>
+
+      <Typography variant="h6" gutterBottom>
+        Real-World Use Case
+      </Typography>
+      <Typography paragraph>
+        One bank reduced breach risk by 90% and passed its regulatory audit
+        after implementing our compliance framework.
+      </Typography>
+
+      <Box sx={{ mt: 3 }}>
+        <Button variant="contained" color="primary" href="/contact">
+          Get a Free Security Audit
+        </Button>
+      </Box>
     </Container>
   );
 }

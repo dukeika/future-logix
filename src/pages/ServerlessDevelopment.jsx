@@ -5,29 +5,28 @@ import {
   Box,
   List,
   ListItem,
-  Button,
   ListItemText,
+  Button,
 } from "@mui/material";
 
-export default function ServerlessWebDev() {
+export default function ServerlessDevelopment() {
   return (
     <Container maxWidth="md" sx={{ py: 5 }}>
       <Typography variant="h4" gutterBottom>
         Serverless Web Application Development
       </Typography>
-
       <Typography paragraph>
         Build scalable, cost-effective applications that grow with your
-        business. Our serverless architecture ensures high availability, low
-        maintenance, and pay-as-you-go pricing.
+        business. Our stack includes React.js, Next.js, AWS Lambda, DynamoDB,
+        and modern deployment pipelines.
       </Typography>
 
       <Typography variant="h6" gutterBottom>
-        Our Stack
+        Our Tech Stack
       </Typography>
       <List>
         <ListItem>
-          <ListItemText primary="Frontend: React.js, Next.js, Vue.js" />
+          <ListItemText primary="Frontend: React.js, Vue.js, Next.js" />
         </ListItem>
         <ListItem>
           <ListItemText primary="Backend: AWS Lambda, API Gateway" />
@@ -68,16 +67,16 @@ export default function ServerlessWebDev() {
         Cost Comparison
       </Typography>
       <Typography paragraph>
-        - Traditional Hosting: ₦180,000/month
+        - Traditional Hosting: ₦180,000/month fixed
         <br />
-        - Serverless Solution: ₦45,000–90,000/month
+        - Serverless Solution: ₦45,000–90,000/month variable
         <br />
         <strong>Potential Monthly Savings: ₦90,000–135,000</strong>
       </Typography>
 
       <Box sx={{ mt: 3 }}>
-        <Button variant="contained" color="primary" href="/pricing/serverless">
-          View Serverless Pricing Options
+        <Button variant="contained" color="primary" href="/pricing">
+          View Serverless App Pricing
         </Button>
       </Box>
     </Container>
