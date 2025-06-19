@@ -1,22 +1,18 @@
-// src/pages/Blog.jsx
 import React, { useState, useEffect } from "react";
 import {
   Container,
   Typography,
+  Box,
   Grid,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Button,
-  Box,
   CircularProgress,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useTheme } from "@mui/material";
-
-const API_BASE_URL =
-  "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev"; // Make sure this is correct, Replace with your actual API Gateway endpoint for blog posts
+import { useTheme } from "@mui/material/styles";
 
 export default function Blog() {
   const theme = useTheme();
@@ -24,18 +20,25 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Replace with your actual API endpoint
+  const API_BASE_URL =
+    process.env.REACT_APP_API_URL ||
+    "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev";
+
   useEffect(() => {
     const fetchBlogPosts = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/blog`); // Adjust path if necessary
+        const response = await fetch(`${API_BASE_URL}/blog/posts`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        setBlogPosts(data);
+
+        // Ensure we extract the posts array correctly
+        setBlogPosts(data.posts || []);
       } catch (err) {
-        setError(err);
-        console.error("Failed to fetch blog posts:", err);
+        setError(err.message || "Failed to load blog posts.");
+        console.error("Error fetching blog posts:", err);
       } finally {
         setLoading(false);
       }
@@ -57,19 +60,30 @@ export default function Blog() {
 
   if (error) {
     return (
-      <Container
-        maxWidth="lg"
-        sx={{ py: 8, textAlign: "center", color: "error.main" }}
-      >
-        <Typography variant="h5">Error loading blog posts.</Typography>
-        <Typography variant="body1">{error.message}</Typography>
+      <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
+        <Typography variant="h5" color="error">
+          Error loading blog posts
+        </Typography>
+        <Typography variant="body1" sx={{ mt: 2 }}>
+          {error}
+        </Typography>
+      </Container>
+    );
+  }
+
+  if (blogPosts.length === 0) {
+    return (
+      <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
+        <Typography variant="h6" color="text.secondary">
+          No blog posts available yet.
+        </Typography>
       </Container>
     );
   }
 
   return (
     <Box
-      sx={{ bgcolor: theme.palette.background.default, py: { xs: 8, md: 12 } }}
+      sx={{ bgcolor: theme.palette.background.default, py: { xs: 6, md: 10 } }}
     >
       <Container maxWidth="lg">
         <Typography
@@ -77,87 +91,276 @@ export default function Blog() {
           component="h1"
           align="center"
           gutterBottom
-          sx={{ fontWeight: 700, mb: 6, color: theme.palette.primary.main }}
+          sx={{
+            fontWeight: 700,
+            mb: { xs: 4, md: 6 },
+            color: theme.palette.primary.main,
+          }}
         >
           Our Latest Insights
         </Typography>
 
-        {blogPosts.length === 0 ? (
-          <Typography variant="h6" align="center" color="text.secondary">
-            No blog posts found. Check back later!
-          </Typography>
-        ) : (
-          <Grid container spacing={4} justifyContent="center">
-            {blogPosts.map((post) => (
-              <Grid item xs={12} sm={6} md={4} key={post.id}>
-                <Card
-                  elevation={2}
-                  sx={{
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardActionArea
-                    component={Link}
-                    to={`/blog/${post.slug}`}
+        <Grid container spacing={4}>
+          {blogPosts.map((post) => (
+            <Grid item xs={12} sm={6} md={4} key={post.id}>
+              <Card
+                elevation={2}
+                sx={{
+                  height: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  borderRadius: 2,
+                  transition: "transform 0.3s ease-in-out",
+                  "&:hover": {
+                    transform: "translateY(-6px)",
+                    boxShadow: theme.shadows[4],
+                  },
+                }}
+              >
+                {/* Featured Image */}
+                {post.imageUrl && (
+                  <CardActionArea component={Link} to={`/blog/${post.slug}`}>
+                    <CardMedia
+                      component="img"
+                      height="200"
+                      image={post.imageUrl}
+                      alt={post.title}
+                      sx={{ objectFit: "cover" }}
+                    />
+                  </CardActionArea>
+                )}
+
+                {/* Content */}
+                <CardContent>
+                  <Typography
+                    variant="h5"
+                    component="h3"
+                    gutterBottom
+                    sx={{
+                      fontWeight: 600,
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    {post.title}
+                  </Typography>
+
+                  <Typography
+                    variant="subtitle2"
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    {new Date(post.publishDate).toLocaleDateString()}{" "}
+                    {post.author && ` • by ${post.author}`}
+                  </Typography>
+
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    paragraph
                     sx={{ flexGrow: 1 }}
                   >
-                    {post.image_url && (
-                      <CardMedia
-                        component="img"
-                        height="200"
-                        image={post.image_url}
-                        alt={post.title}
-                        sx={{ objectFit: "cover" }}
-                      />
-                    )}
-                    <CardContent sx={{ p: { xs: 3, md: 4 } }}>
-                      <Typography
-                        variant="h6"
-                        component="h3"
-                        gutterBottom
-                        sx={{
-                          fontWeight: 600,
-                          color: theme.palette.primary.main,
-                        }}
-                      >
-                        {post.title}
-                      </Typography>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ mb: 1 }}
-                      >
-                        By {post.author} on{" "}
-                        {new Date(post.published_date).toLocaleDateString()}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {post.content.substring(0, 150)}...{" "}
-                        {/* Show a snippet */}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
+                    {post.summary || `${post.content.substring(0, 150)}...`}
+                  </Typography>
+
                   <Button
                     component={Link}
                     to={`/blog/${post.slug}`}
-                    variant="text"
-                    color="primary"
+                    variant="contained"
+                    size="small"
+                    fullWidth
                     sx={{
-                      alignSelf: "flex-end",
-                      mr: 2,
-                      mb: 2,
-                      fontWeight: 600,
+                      mt: "auto",
+                      bgcolor: theme.palette.primary.light,
+                      color: theme.palette.primary.contrastText,
+                      "&:hover": {
+                        bgcolor: theme.palette.primary.dark,
+                      },
                     }}
                   >
-                    Read More
+                    Read Full Article
                   </Button>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        )}
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* Optional: Add a Call-to-action */}
+        <Box sx={{ mt: 8, textAlign: "center" }}>
+          <Button
+            variant="outlined"
+            color="primary"
+            href="/blog"
+            sx={{ px: 4, py: 1.2, fontWeight: 600 }}
+          >
+            View All Articles
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
 }
+
+// // src/pages/Blog.jsx
+// import React, { useState, useEffect } from "react";
+// import {
+//   Container,
+//   Typography,
+//   Grid,
+//   Card,
+//   CardActionArea,
+//   CardContent,
+//   CardMedia,
+//   Button,
+//   Box,
+//   CircularProgress,
+// } from "@mui/material";
+// import { Link } from "react-router-dom";
+// import { useTheme } from "@mui/material";
+
+// const API_BASE_URL =
+//   "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev"; // Make sure this is correct, Replace with your actual API Gateway endpoint for blog posts
+
+// export default function Blog() {
+//   const theme = useTheme();
+//   const [blogPosts, setBlogPosts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   const [error, setError] = useState(null);
+
+//   useEffect(() => {
+//     const fetchBlogPosts = async () => {
+//       try {
+//         const response = await fetch(`${API_BASE_URL}/blog`); // Adjust path if necessary
+//         if (!response.ok) {
+//           throw new Error(`HTTP error! status: ${response.status}`);
+//         }
+//         const data = await response.json();
+//         setBlogPosts(data);
+//       } catch (err) {
+//         setError(err);
+//         console.error("Failed to fetch blog posts:", err);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchBlogPosts();
+//   }, []);
+
+//   if (loading) {
+//     return (
+//       <Container maxWidth="lg" sx={{ py: 8, textAlign: "center" }}>
+//         <CircularProgress color="primary" />
+//         <Typography variant="h6" sx={{ mt: 2 }}>
+//           Loading blog posts...
+//         </Typography>
+//       </Container>
+//     );
+//   }
+
+//   if (error) {
+//     return (
+//       <Container
+//         maxWidth="lg"
+//         sx={{ py: 8, textAlign: "center", color: "error.main" }}
+//       >
+//         <Typography variant="h5">Error loading blog posts.</Typography>
+//         <Typography variant="body1">{error.message}</Typography>
+//       </Container>
+//     );
+//   }
+
+//   return (
+//     <Box
+//       sx={{ bgcolor: theme.palette.background.default, py: { xs: 8, md: 12 } }}
+//     >
+//       <Container maxWidth="lg">
+//         <Typography
+//           variant="h3"
+//           component="h1"
+//           align="center"
+//           gutterBottom
+//           sx={{ fontWeight: 700, mb: 6, color: theme.palette.primary.main }}
+//         >
+//           Our Latest Insights
+//         </Typography>
+
+//         {blogPosts.length === 0 ? (
+//           <Typography variant="h6" align="center" color="text.secondary">
+//             No blog posts found. Check back later!
+//           </Typography>
+//         ) : (
+//           <Grid container spacing={4} justifyContent="center">
+//             {blogPosts.map((post) => (
+//               <Grid item xs={12} sm={6} md={4} key={post.id}>
+//                 <Card
+//                   elevation={2}
+//                   sx={{
+//                     height: "100%",
+//                     display: "flex",
+//                     flexDirection: "column",
+//                   }}
+//                 >
+//                   <CardActionArea
+//                     component={Link}
+//                     to={`/blog/${post.slug}`}
+//                     sx={{ flexGrow: 1 }}
+//                   >
+//                     {post.image_url && (
+//                       <CardMedia
+//                         component="img"
+//                         height="200"
+//                         image={post.image_url}
+//                         alt={post.title}
+//                         sx={{ objectFit: "cover" }}
+//                       />
+//                     )}
+//                     <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+//                       <Typography
+//                         variant="h6"
+//                         component="h3"
+//                         gutterBottom
+//                         sx={{
+//                           fontWeight: 600,
+//                           color: theme.palette.primary.main,
+//                         }}
+//                       >
+//                         {post.title}
+//                       </Typography>
+//                       <Typography
+//                         variant="body2"
+//                         color="text.secondary"
+//                         sx={{ mb: 1 }}
+//                       >
+//                         By {post.author} on{" "}
+//                         {new Date(post.published_date).toLocaleDateString()}
+//                       </Typography>
+//                       <Typography variant="body2" color="text.secondary">
+//                         {post.content.substring(0, 150)}...{" "}
+//                         {/* Show a snippet */}
+//                       </Typography>
+//                     </CardContent>
+//                   </CardActionArea>
+//                   <Button
+//                     component={Link}
+//                     to={`/blog/${post.slug}`}
+//                     variant="text"
+//                     color="primary"
+//                     sx={{
+//                       alignSelf: "flex-end",
+//                       mr: 2,
+//                       mb: 2,
+//                       fontWeight: 600,
+//                     }}
+//                   >
+//                     Read More
+//                   </Button>
+//                 </Card>
+//               </Grid>
+//             ))}
+//           </Grid>
+//         )}
+//       </Container>
+//     </Box>
+//   );
+// }
