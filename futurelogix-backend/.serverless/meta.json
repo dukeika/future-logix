@@ -175,7 +175,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.getBlogPosts",
                 "Runtime": "nodejs20.x",
@@ -219,7 +219,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.getBlogPost",
                 "Runtime": "nodejs20.x",
@@ -263,7 +263,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.submitFeedback",
                 "Runtime": "nodejs20.x",
@@ -307,7 +307,7 @@
               "Properties": {
                 "Code": {
                   "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                  "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                  "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
                 },
                 "Handler": "handler.submitConsultation",
                 "Runtime": "nodejs20.x",
@@ -346,44 +346,44 @@
                 "SubmitConsultationLogGroup"
               ]
             },
-            "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw": {
+            "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetBlogPostsLambdaFunction"
                 },
-                "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+                "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
               }
             },
-            "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M": {
+            "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "GetBlogPostLambdaFunction"
                 },
-                "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+                "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
               }
             },
-            "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg": {
+            "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "SubmitFeedbackLambdaFunction"
                 },
-                "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+                "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
               }
             },
-            "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4": {
+            "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc": {
               "Type": "AWS::Lambda::Version",
               "DeletionPolicy": "Retain",
               "Properties": {
                 "FunctionName": {
                   "Ref": "SubmitConsultationLambdaFunction"
                 },
-                "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+                "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
               }
             },
             "ApiGatewayRestApi": {
@@ -819,7 +819,7 @@
                 "SubmitConsultationLambdaPermissionApiGateway"
               ]
             },
-            "ApiGatewayDeployment1750294597094": {
+            "ApiGatewayDeployment1750297888859": {
               "Type": "AWS::ApiGateway::Deployment",
               "Properties": {
                 "RestApiId": {
@@ -997,7 +997,7 @@
             "GetBlogPostsLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw"
+                "Ref": "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
@@ -1006,7 +1006,7 @@
             "GetBlogPostLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M"
+                "Ref": "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
@@ -1015,7 +1015,7 @@
             "SubmitFeedbackLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg"
+                "Ref": "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
@@ -1024,7 +1024,7 @@
             "SubmitConsultationLambdaFunctionQualifiedArn": {
               "Description": "Current Lambda function version",
               "Value": {
-                "Ref": "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4"
+                "Ref": "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc"
               },
               "Export": {
                 "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
@@ -1094,7 +1094,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw"
+          "versionLogicalId": "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE"
         },
         "getBlogPost": {
           "handler": "handler.getBlogPost",
@@ -1130,7 +1130,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M"
+          "versionLogicalId": "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM"
         },
         "submitFeedback": {
           "handler": "handler.submitFeedback",
@@ -1166,7 +1166,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg"
+          "versionLogicalId": "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI"
         },
         "submitConsultation": {
           "handler": "handler.submitConsultation",
@@ -1202,7 +1202,7 @@
           "timeout": 6,
           "runtime": "nodejs20.x",
           "vpc": {},
-          "versionLogicalId": "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4"
+          "versionLogicalId": "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc"
         }
       }
     },
@@ -1376,7 +1376,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
               },
               "Handler": "handler.getBlogPosts",
               "Runtime": "nodejs20.x",
@@ -1420,7 +1420,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
               },
               "Handler": "handler.getBlogPost",
               "Runtime": "nodejs20.x",
@@ -1464,7 +1464,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
               },
               "Handler": "handler.submitFeedback",
               "Runtime": "nodejs20.x",
@@ -1508,7 +1508,7 @@
             "Properties": {
               "Code": {
                 "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-                "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+                "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
               },
               "Handler": "handler.submitConsultation",
               "Runtime": "nodejs20.x",
@@ -1547,44 +1547,44 @@
               "SubmitConsultationLogGroup"
             ]
           },
-          "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw": {
+          "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetBlogPostsLambdaFunction"
               },
-              "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+              "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
             }
           },
-          "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M": {
+          "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetBlogPostLambdaFunction"
               },
-              "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+              "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
             }
           },
-          "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg": {
+          "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SubmitFeedbackLambdaFunction"
               },
-              "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+              "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
             }
           },
-          "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4": {
+          "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "SubmitConsultationLambdaFunction"
               },
-              "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+              "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
             }
           },
           "ApiGatewayRestApi": {
@@ -2020,7 +2020,7 @@
               "SubmitConsultationLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1750294597094": {
+          "ApiGatewayDeployment1750297888859": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -2198,7 +2198,7 @@
           "GetBlogPostsLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw"
+              "Ref": "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
@@ -2207,7 +2207,7 @@
           "GetBlogPostLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M"
+              "Ref": "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
@@ -2216,7 +2216,7 @@
           "SubmitFeedbackLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg"
+              "Ref": "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
@@ -2225,7 +2225,7 @@
           "SubmitConsultationLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4"
+              "Ref": "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc"
             },
             "Export": {
               "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
@@ -2282,24 +2282,24 @@
     "serviceProviderAwsCfStackName": "futurelogix-backend-dev",
     "serviceProviderAwsCfStackId": "arn:aws:cloudformation:eu-west-2:624914081304:stack/futurelogix-backend-dev/cfddd390-45d4-11f0-8c10-02f99cba2429",
     "serviceProviderAwsCfStackCreated": "2025-06-10T08:27:57.246Z",
-    "serviceProviderAwsCfStackUpdated": "2025-06-18T23:58:17.149Z",
+    "serviceProviderAwsCfStackUpdated": "2025-06-19T00:58:19.170Z",
     "serviceProviderAwsCfStackStatus": "UPDATE_COMPLETE",
     "serviceProviderAwsCfStackOutputs": [
       {
         "OutputKey": "GetBlogPostsLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPosts:11",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPosts:12",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "GetBlogPostLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPost:2",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-getBlogPost:3",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
       },
       {
         "OutputKey": "SubmitConsultationLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitConsultation:11",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitConsultation:12",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"
       },
@@ -2316,7 +2316,7 @@
       },
       {
         "OutputKey": "SubmitFeedbackLambdaFunctionQualifiedArn",
-        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitFeedback:5",
+        "OutputValue": "arn:aws:lambda:eu-west-2:624914081304:function:futurelogix-backend-dev-submitFeedback:6",
         "Description": "Current Lambda function version",
         "ExportName": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
       }
@@ -2453,7 +2453,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
             },
             "Handler": "handler.getBlogPosts",
             "Runtime": "nodejs20.x",
@@ -2497,7 +2497,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
             },
             "Handler": "handler.getBlogPost",
             "Runtime": "nodejs20.x",
@@ -2541,7 +2541,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
             },
             "Handler": "handler.submitFeedback",
             "Runtime": "nodejs20.x",
@@ -2585,7 +2585,7 @@
           "Properties": {
             "Code": {
               "S3Bucket": "serverless-framework-deployments-eu-west-2-49a49cd9-22d1",
-              "S3Key": "serverless/futurelogix-backend/dev/1750294645908-2025-06-19T00:57:25.908Z/futurelogix-backend.zip"
+              "S3Key": "serverless/futurelogix-backend/dev/1750297947824-2025-06-19T01:52:27.824Z/futurelogix-backend.zip"
             },
             "Handler": "handler.submitConsultation",
             "Runtime": "nodejs20.x",
@@ -2624,44 +2624,44 @@
             "SubmitConsultationLogGroup"
           ]
         },
-        "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw": {
+        "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "GetBlogPostsLambdaFunction"
             },
-            "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+            "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
           }
         },
-        "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M": {
+        "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "GetBlogPostLambdaFunction"
             },
-            "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+            "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
           }
         },
-        "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg": {
+        "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "SubmitFeedbackLambdaFunction"
             },
-            "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+            "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
           }
         },
-        "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4": {
+        "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc": {
           "Type": "AWS::Lambda::Version",
           "DeletionPolicy": "Retain",
           "Properties": {
             "FunctionName": {
               "Ref": "SubmitConsultationLambdaFunction"
             },
-            "CodeSha256": "jJslp5LE0PpFlZo7pWBlq66PhIn+V0DKcIsVyEo0hZw="
+            "CodeSha256": "PszYBiTR4RbYwqdPLYaLsH14i++0jPyLpusb5nWGRs8="
           }
         },
         "ApiGatewayRestApi": {
@@ -3097,7 +3097,7 @@
             "SubmitConsultationLambdaPermissionApiGateway"
           ]
         },
-        "ApiGatewayDeployment1750294597094": {
+        "ApiGatewayDeployment1750297888859": {
           "Type": "AWS::ApiGateway::Deployment",
           "Properties": {
             "RestApiId": {
@@ -3275,7 +3275,7 @@
         "GetBlogPostsLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "GetBlogPostsLambdaVersioneGGGQTCWN1kNM41eOfYZdHnJl4eyirLlqY7mUHCYaw"
+            "Ref": "GetBlogPostsLambdaVersion08Ja8oCF8hrfztqcV8EcmQtLbzgJJCVnULwtTLelFE"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-GetBlogPostsLambdaFunctionQualifiedArn"
@@ -3284,7 +3284,7 @@
         "GetBlogPostLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "GetBlogPostLambdaVersion29TyUICYoVvkehxSNjTC65TGkhTWn0WAKBMMyuPG2M"
+            "Ref": "GetBlogPostLambdaVersionDkHtkSfE6WBnDtLRcnWG4KPEgtAKAkAbmG4xKM"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-GetBlogPostLambdaFunctionQualifiedArn"
@@ -3293,7 +3293,7 @@
         "SubmitFeedbackLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "SubmitFeedbackLambdaVersionDaPKFKY40w5l80DVmyT4kq1hWeCF8PDrvkoxLN5Rfg"
+            "Ref": "SubmitFeedbackLambdaVersionLpAegGH4VWZQMaom1WKMlm0vMsFDxypNKV43SS7vI"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-SubmitFeedbackLambdaFunctionQualifiedArn"
@@ -3302,7 +3302,7 @@
         "SubmitConsultationLambdaFunctionQualifiedArn": {
           "Description": "Current Lambda function version",
           "Value": {
-            "Ref": "SubmitConsultationLambdaVersionWSuxDqmgTe6jgfWr8Z0mH6g7cAraOoARGjv9m5o4"
+            "Ref": "SubmitConsultationLambdaVersionePu4WU0WnurjALpyPc8WhZafisgXq6QfLCUmaNoHLc"
           },
           "Export": {
             "Name": "sls-futurelogix-backend-dev-SubmitConsultationLambdaFunctionQualifiedArn"

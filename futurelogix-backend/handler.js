@@ -108,7 +108,7 @@ module.exports.getBlogPosts = async (event) => {
 };
 
 // Lambda function to get a single blog post by slug
-module.exports.getBlogPostBySlug = async (event) => {
+module.exports.getBlogPost = async (event) => {
   const client = await getDbClient();
   try {
     const { slug } = event.pathParameters;
