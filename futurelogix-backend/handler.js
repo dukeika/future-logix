@@ -11,7 +11,7 @@ const dbConfig = {
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
   ssl: {
-    rejectUnauthorized: false, // Adjust based on your RDS SSL certificate
+    rejectUnauthorized: false, // Adjust based on your RDS SSL certificate (true for production with proper cert)
   },
 };
 
@@ -38,9 +38,10 @@ module.exports.createBlogPost = async (event) => {
     const { title, content, author, image_url } = JSON.parse(event.body);
     const slug = generateSlug(title); // Generate slug from title
 
+    // Using published_date column as inferred from getBlogPosts query
     const query = `
-      INSERT INTO blog_posts (title, content, author, image_url, slug)
-      VALUES ($1, $2, $3, $4, $5)
+      INSERT INTO blog_posts (title, content, author, image_url, slug, published_date)
+      VALUES ($1, $2, $3, $4, $5, NOW())
       RETURNING *;
     `;
     const values = [title, content, author, image_url, slug];
@@ -77,6 +78,7 @@ module.exports.getBlogPosts = async (event) => {
   const client = await getDbClient();
   try {
     const result = await client.query(
+      // Query uses 'published_date' as indicated in your error logs
       "SELECT * FROM blog_posts ORDER BY published_date DESC"
     );
     return {
@@ -160,7 +162,7 @@ module.exports.updateBlogPost = async (event) => {
 
     const query = `
       UPDATE blog_posts
-      SET title = $1, content = $2, author = $3, image_url = $4, slug = $5
+      SET title = $1, content = $2, author = $3, image_url = $4, slug = $5, updated_at = NOW()
       WHERE id = $6
       RETURNING *;
     `;
@@ -251,9 +253,73 @@ module.exports.deleteBlogPost = async (event) => {
   }
 };
 
-// Other existing Lambda functions can remain here or be moved to separate files for modularity.
-// Example of a placeholder for existing contact form logic (assuming it was removed)
-// module.exports.submitContactForm = async (event) => {
-//   // Your existing contact form logic
-//   // ...
-// };
+// NEW: Lambda function to submit feedback
+module.exports.submitFeedback = async (event) => {
+  const client = await getDbClient(); // Use your existing DB client helper
+  try {
+    const { name, email, message } = JSON.parse(event.body);
+
+    // Basic validation
+    if (!name || !email || !message) {
+      return {
+        statusCode: 400,
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+        body: JSON.stringify({
+          message: "Name, email, and message are required.",
+        }),
+      };
+    }
+
+    // Insert feedback into the 'feedback' table
+    const query = `
+      INSERT INTO feedback (name, email, message, submitted_at)
+      VALUES ($1, $2, $3, NOW())
+      RETURNING *;
+    `;
+    const values = [name, email, message];
+    const result = await client.query(query, values);
+
+    // Optional: Send an email notification using SES (uncomment and configure if needed)
+    /*
+    const params = {
+        Destination: { ToAddresses: ['your-recipient-email@example.com'] }, // Replace with your actual recipient email
+        Message: {
+            Body: { Text: { Data: `New Feedback from ${name} (${email}):\n\n${message}` } },
+            Subject: { Data: 'New Feedback Submitted for EduManage' },
+        },
+        Source: 'no-reply@your-verified-ses-domain.com', // Replace with your verified SES email or domain
+    };
+    await ses.sendEmail(params).promise();
+    */
+
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify({
+        message: "Feedback submitted successfully!",
+        feedbackId: result.rows[0].id,
+      }),
+    };
+  } catch (error) {
+    console.error("Error submitting feedback:", error);
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify({
+        message: "Error submitting feedback",
+        error: error.message,
+      }),
+    };
+  } finally {
+    client.end();
+  }
+};
