@@ -5,78 +5,86 @@ import {
   Box,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
+  Card,
   Button,
 } from "@mui/material";
 
+import LightbulbIcon from "@mui/icons-material/Lightbulb";
+import SpeedIcon from "@mui/icons-material/Speed";
+import MoneyOffIcon from "@mui/icons-material/MoneyOff";
+import LockIcon from "@mui/icons-material/Lock";
+
 export default function ServerlessDevelopment() {
   return (
-    <Container maxWidth="md" sx={{ py: 5 }}>
-      <Typography variant="h4" gutterBottom>
-        Serverless Web Application Development
-      </Typography>
-      <Typography paragraph>
-        Build scalable, cost-effective applications that grow with your
-        business. Our stack includes React.js, Next.js, AWS Lambda, DynamoDB,
-        and modern deployment pipelines.
-      </Typography>
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <LightbulbIcon color="primary" fontSize="large" />
+        <Typography variant="h4" gutterBottom>
+          Serverless Web Application Development
+        </Typography>
+        <Typography variant="subtitle1">
+          Build scalable, cost-effective applications that grow with your
+          business.
+        </Typography>
+      </Box>
 
-      <Typography variant="h6" gutterBottom>
-        Our Tech Stack
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="Frontend: React.js, Vue.js, Next.js" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Backend: AWS Lambda, API Gateway" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Database: DynamoDB, RDS Serverless" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Authentication: Cognito, Auth0" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Deployment: AWS Amplify, CodePipeline" />
-        </ListItem>
-      </List>
+      {/* Tech Stack */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Our Serverless Stack
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemText primary="Frontend: React.js, Vue.js, Next.js" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Backend: AWS Lambda, API Gateway" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Database: DynamoDB, RDS Serverless" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Authentication: Cognito, Auth0" />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary="Deployment: AWS Amplify, CodePipeline" />
+          </ListItem>
+        </List>
+      </Card>
 
-      <Typography variant="h6" gutterBottom>
-        Key Features
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="Auto-scaling for traffic spikes" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Pay-per-use model" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Built-in redundancy" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Global CDN for fast performance" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Enterprise-grade security" />
-        </ListItem>
-      </List>
+      {/* Features */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Why Go Serverless?
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <SpeedIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Auto-scaling for traffic spikes" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <MoneyOffIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Pay-per-use model" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <LockIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Built-in redundancy & security" />
+          </ListItem>
+        </List>
+      </Card>
 
-      <Typography variant="h6" gutterBottom>
-        Cost Comparison
-      </Typography>
-      <Typography paragraph>
-        - Traditional Hosting: ₦180,000/month fixed
-        <br />
-        - Serverless Solution: ₦45,000–90,000/month variable
-        <br />
-        <strong>Potential Monthly Savings: ₦90,000–135,000</strong>
-      </Typography>
-
-      <Box sx={{ mt: 3 }}>
-        <Button variant="contained" color="primary" href="/pricing">
-          View Serverless App Pricing
+      {/* CTA */}
+      <Box sx={{ textAlign: "center" }}>
+        <Button variant="contained" color="primary" href="/contact">
+          Get a Free App Estimate
         </Button>
       </Box>
     </Container>

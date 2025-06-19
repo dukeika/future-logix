@@ -3,87 +3,102 @@ import {
   Container,
   Typography,
   Box,
-  List,
-  ListItem,
-  ListItemText,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
   Button,
+  Card,
 } from "@mui/material";
+
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function LibrarySystems() {
   return (
-    <Container maxWidth="md" sx={{ py: 5 }}>
-      <Typography variant="h4" gutterBottom>
-        Koha Implementation Services
-      </Typography>
-      <Typography paragraph>
-        Modernize your library operations with tailored Koha implementations —
-        fully customized to your collection size and user needs.
-      </Typography>
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <LibraryBooksIcon color="primary" fontSize="large" />
+        <Typography variant="h4" gutterBottom>
+          Koha Implementation Services
+        </Typography>
+        <Typography variant="subtitle1">
+          Complete library automation solution tailored to your collection size
+          and user needs.
+        </Typography>
+      </Box>
 
-      <Typography variant="h6" gutterBottom>
-        Implementation Process
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="Week 1–2: Needs Assessment" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Week 3–6: System Configuration" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Week 7–8: Data Migration" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Week 9–10: Training & Go-Live" />
-        </ListItem>
-      </List>
+      {/* Step-by-Step Process */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Implementation Process
+        </Typography>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            Week 1–2: Needs Assessment
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
+              <li>Current system analysis</li>
+              <li>Requirements gathering</li>
+              <li>Workflow mapping</li>
+              <li>User interviews</li>
+            </ul>
+          </AccordionDetails>
+        </Accordion>
 
-      <Typography variant="h6" gutterBottom>
-        Features
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="Cataloging (MARC21, Dublin Core)" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="OPAC & Circulation" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Reports & Statistics" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="User Access Control" />
-        </ListItem>
-      </List>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            Week 3–6: System Configuration
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
+              <li>Server setup and installation</li>
+              <li>Cataloging setup</li>
+              <li>User permissions</li>
+              <li>Custom integrations</li>
+            </ul>
+          </AccordionDetails>
+        </Accordion>
 
-      <Typography variant="h6" gutterBottom>
-        Benefits
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="60% reduction in cataloging time" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Eliminate licensing fees (open source)" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Modern, intuitive interface" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Integration with other systems" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Scalable with growing collections" />
-        </ListItem>
-      </List>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            Week 7–8: Data Migration
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
+              <li>Data cleaning and mapping</li>
+              <li>Bulk import processes</li>
+              <li>Data validation</li>
+            </ul>
+          </AccordionDetails>
+        </Accordion>
+      </Card>
 
-      <Box sx={{ mt: 3 }}>
-        <Button
-          variant="contained"
-          color="primary"
-          href="/services/library-systems#dspace"
-        >
-          Learn About DSpace Solutions
+      {/* Features */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Key Features
+        </Typography>
+        <ul>
+          <li>
+            <strong>Cataloging:</strong> MARC21, Dublin Core standards
+          </li>
+          <li>
+            <strong>OPAC:</strong> Online Public Access Catalog
+          </li>
+          <li>
+            <strong>Reports:</strong> Custom reports and statistics
+          </li>
+          <li>
+            <strong>Multi-format Support:</strong> Books, media, digital assets
+          </li>
+        </ul>
+      </Card>
+
+      {/* CTA */}
+      <Box sx={{ textAlign: "center" }}>
+        <Button variant="contained" color="primary" href="/contact">
+          Request a Demo
         </Button>
       </Box>
     </Container>

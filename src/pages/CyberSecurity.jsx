@@ -3,73 +3,86 @@ import {
   Container,
   Typography,
   Box,
+  Card,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Button,
 } from "@mui/material";
 
+import SecurityIcon from "@mui/icons-material/Security";
+import ShieldIcon from "@mui/icons-material/Shield";
+
 export default function CyberSecurity() {
   return (
-    <Container maxWidth="md" sx={{ py: 5 }}>
-      <Typography variant="h4" gutterBottom>
-        Cybersecurity & Compliance
-      </Typography>
-      <Typography paragraph>
-        Protect your valuable assets with comprehensive security strategies and
-        compliance frameworks including ISO27001, GDPR, and PCI-DSS.
-      </Typography>
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Box sx={{ textAlign: "center", mb: 4 }}>
+        <SecurityIcon color="primary" fontSize="large" />
+        <Typography variant="h4" gutterBottom>
+          Cybersecurity & Compliance
+        </Typography>
+        <Typography variant="subtitle1">
+          Protect your valuable assets with comprehensive security strategies
+          and compliance frameworks.
+        </Typography>
+      </Box>
 
-      <Typography variant="h6" gutterBottom>
-        Our Approach
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="Vulnerability Assessments" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Penetration Testing" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Compliance Planning" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Firewall Configuration" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Ongoing Monitoring" />
-        </ListItem>
-      </List>
+      {/* Security Audit */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Security Audit
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemIcon>
+              <ShieldIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Vulnerability Assessments" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <ShieldIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Penetration Testing" />
+          </ListItem>
+          <ListItem>
+            <ListItemIcon>
+              <ShieldIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText primary="Compliance Gap Analysis" />
+          </ListItem>
+        </List>
+      </Card>
 
-      <Typography variant="h6" gutterBottom>
-        Compliance Frameworks
-      </Typography>
-      <List>
-        <ListItem>
-          <ListItemText primary="GDPR" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="ISO 27001" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="PCI DSS" />
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="CBN Data Security Framework" />
-        </ListItem>
-      </List>
+      {/* Compliance Frameworks */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Compliance Frameworks
+        </Typography>
+        <ul>
+          <li>GDPR</li>
+          <li>ISO 27001</li>
+          <li>PCI DSS</li>
+          <li>CBN Data Security Framework</li>
+        </ul>
+      </Card>
 
-      <Typography variant="h6" gutterBottom>
-        Real-World Use Case
-      </Typography>
-      <Typography paragraph>
-        One bank reduced breach risk by 90% and passed its regulatory audit
-        after implementing our compliance framework.
-      </Typography>
+      {/* Real-World Impact */}
+      <Card elevation={3} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Real-World Impact
+        </Typography>
+        <Typography paragraph>
+          One bank reduced breach risk by 90% and passed its regulatory audit
+          after implementing our compliance framework.
+        </Typography>
+      </Card>
 
-      <Box sx={{ mt: 3 }}>
+      {/* CTA */}
+      <Box sx={{ textAlign: "center" }}>
         <Button variant="contained" color="primary" href="/contact">
-          Get a Free Security Audit
+          Schedule a Free Security Audit
         </Button>
       </Box>
     </Container>
