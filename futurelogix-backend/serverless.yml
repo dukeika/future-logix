@@ -78,4 +78,4 @@ functions:
           path: feedback/all # Or just 'feedback' if you want to reuse the path, but be careful with methods
           method: get
           cors: true
-          private: true # Recommended for admin endpoints
+          # private: true # Recommended for admin endpoints
