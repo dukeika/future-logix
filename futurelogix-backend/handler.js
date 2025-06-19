@@ -323,3 +323,38 @@ module.exports.submitFeedback = async (event) => {
     client.end();
   }
 };
+
+// In futurelogix-backend/handler.js
+// ... (your existing code, including getDbClient)
+
+module.exports.getFeedback = async (event) => {
+  const client = await getDbClient();
+  try {
+    const result = await client.query(
+      "SELECT * FROM feedback ORDER BY submitted_at DESC"
+    );
+    return {
+      statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify(result.rows),
+    };
+  } catch (error) {
+    console.error("Error fetching feedback:", error);
+    return {
+      statusCode: 500,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true,
+      },
+      body: JSON.stringify({
+        message: "Error fetching feedback",
+        error: error.message,
+      }),
+    };
+  } finally {
+    client.end();
+  }
+};

@@ -70,3 +70,12 @@ functions:
           path: consultation
           method: post
           cors: true
+
+  getFeedback:
+    handler: handler.getFeedback
+    events:
+      - http:
+          path: feedback/all # Or just 'feedback' if you want to reuse the path, but be careful with methods
+          method: get
+          cors: true
+          private: true # Recommended for admin endpoints
