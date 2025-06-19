@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 // Import Material-UI components
 import {
@@ -12,10 +13,10 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Paper, // Used for TableContainer background/elevation
-  CircularProgress, // For loading state
-  Alert, // For error messages
-  Box, // For flexbox utilities or spacing
+  Paper,
+  CircularProgress,
+  Alert,
+  Box,
 } from "@mui/material";
 
 const API_BASE_URL =
@@ -25,6 +26,7 @@ const BlogAdminPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const fetchBlogPosts = async () => {
@@ -57,22 +59,17 @@ const BlogAdminPage = () => {
     }
   };
 
-  // Placeholder for navigation to Add/Edit forms
-  // In a real app, you'd use react-router-dom's useNavigate hook here
-  const handleAddEdit = (postId = null) => {
-    if (postId) {
-      // Example: navigate(`/admin/blog/edit/${postId}`);
-      alert(`Simulating edit for post ID: ${postId}`);
+  const handleAddEdit = (slug = null) => {
+    // Now accepts slug for editing
+    if (slug) {
+      navigate(`/admin/blog/edit/${slug}`); // Navigate to edit page with slug
     } else {
-      // Example: navigate(`/admin/blog/new`);
-      alert("Simulating add new blog post.");
+      navigate("/admin/blog/new"); // Navigate to add new page
     }
   };
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      {" "}
-      {/* Use Container for consistent page width and padding */}
       <Box
         sx={{
           display: "flex",
@@ -88,11 +85,12 @@ const BlogAdminPage = () => {
           variant="contained"
           color="primary"
           onClick={() => handleAddEdit()}
-          sx={{ textTransform: "none" }} // Prevents uppercase transformation
+          sx={{ textTransform: "none" }}
         >
           Add New Blog Post
         </Button>
       </Box>
+
       {loading && (
         <Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>
           <CircularProgress />
@@ -101,20 +99,21 @@ const BlogAdminPage = () => {
           </Typography>
         </Box>
       )}
+
       {error && (
         <Alert severity="error" sx={{ my: 4 }}>
           {error}
         </Alert>
       )}
+
       {!loading && !error && blogPosts.length === 0 && (
         <Alert severity="info" sx={{ my: 4 }}>
           No blog posts found. Start by adding one!
         </Alert>
       )}
+
       {!loading && !error && blogPosts.length > 0 && (
         <TableContainer component={Paper} elevation={3}>
-          {" "}
-          {/* Paper for background and shadow */}
           <Table sx={{ minWidth: 650 }} aria-label="blog posts table">
             <TableHead>
               <TableRow>
@@ -155,7 +154,7 @@ const BlogAdminPage = () => {
                       variant="outlined"
                       color="primary"
                       size="small"
-                      onClick={() => handleAddEdit(post.id)}
+                      onClick={() => handleAddEdit(post.slug)}
                       sx={{ mr: 1, textTransform: "none" }}
                     >
                       Edit
