@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -6,28 +6,42 @@ import {
   Box,
   Card,
   Grid,
-  useTheme, // Hook to access the theme
+  useTheme,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  IconButton,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 
-// MUI Icons
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline"; // For process steps
-import SettingsIcon from "@mui/icons-material/Settings"; // For process steps
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline"; // For process steps
-import SupportAgentIcon from "@mui/icons-material/SupportAgent"; // For process steps
+// MUI Icons (rest of your existing icons)
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import SettingsIcon from "@mui/icons-material/Settings";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
-// Assuming HeroSection is an existing component.
-// Make sure HeroSection handles its own background image/video and specific content.
+// Assuming existing components
 import HeroSection from "../components/HeroSection";
 import ServicesSection from "../components/ServicesSection";
-import WhyPartnerSection from "../components/WhyPartnerSection"; // Import new component
-import TestimonialsSection from "../components/TestimonialsSection"; // Import new testimonials section
-import InsightsSection from "../components/InsightsSection"; // Import insights section
+import WhyPartnerSection from "../components/WhyPartnerSection";
+import TestimonialsSection from "../components/TestimonialsSection";
+import InsightsSection from "../components/InsightsSection";
+import NewsletterForm from "../components/NewsletterForm";
 
 export default function Home() {
-  const theme = useTheme(); // Access the theme to use its colors
+  const theme = useTheme();
+  const [openConsultationDialog, setOpenConsultationDialog] = useState(false);
+
+  const handleOpenConsultationDialog = () => {
+    setOpenConsultationDialog(true);
+  };
+
+  const handleCloseConsultationDialog = () => {
+    setOpenConsultationDialog(false);
+  };
 
   const clientLogos = [
-    "/images/client-logo-gtbank.png", // Replace with actual paths and ensure grayscale
+    "/images/client-logo-gtbank.png",
     "/images/client-logo-mtn.png",
     "/images/client-logo-unilag.png",
     "/images/client-logo-access.png",
@@ -38,7 +52,8 @@ export default function Home() {
   return (
     <Box sx={{ bgcolor: theme.palette.background.default }}>
       {/* Hero Section */}
-      <HeroSection />
+      {/* Ensure your HeroSection component passes the onClick handler to the relevant button */}
+      <HeroSection onConsultationClick={handleOpenConsultationDialog} />
 
       {/* Services Section */}
       <ServicesSection />
@@ -51,26 +66,19 @@ export default function Home() {
         sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.background.paper }}
       >
         <Container maxWidth="lg">
-          <Typography
-            variant="h4"
-            component="h2"
-            align="center"
-            gutterBottom
-            sx={{
-              mb: { xs: 4, md: 6 },
-              fontWeight: 600,
-              color: theme.palette.primary.main,
-            }}
-          >
-            {/* 🔥 New Testimonials Section */}
-            <TestimonialsSection />
-          </Typography>
+          {/* Testimonials Section */}
+          <TestimonialsSection />
 
           {/* Client Logos */}
           <Typography
             variant="h6"
             align="center"
-            sx={{ mb: 4, fontWeight: 600, color: theme.palette.text.primary }}
+            sx={{
+              mb: 4,
+              mt: { xs: 6, md: 8 },
+              fontWeight: 600,
+              color: theme.palette.text.primary,
+            }}
           >
             Our Valued Partners
           </Typography>
@@ -89,11 +97,11 @@ export default function Home() {
                   sx={{
                     width: "100%",
                     height: "auto",
-                    maxWidth: 120, // Max size for logos
-                    filter: "grayscale(100%) brightness(150%)", // Grayscale for corporate look
+                    maxWidth: 120,
+                    filter: "grayscale(100%) brightness(150%)",
                     opacity: 0.7,
                     transition: "opacity 0.3s ease-in-out",
-                    "&:hover": { opacity: 1, filter: "none" }, // Color on hover
+                    "&:hover": { opacity: 1, filter: "none" },
                   }}
                 />
               </Grid>
@@ -101,6 +109,7 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
+
       {/* 6. Your Success, Our Structured Approach (Collaborative Approach) */}
       <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.primary.light }}>
         <Container maxWidth="lg">
@@ -246,9 +255,16 @@ export default function Home() {
           </Grid>
         </Container>
       </Box>
-      {/* 7. Stay Ahead with FutureLogix Insights (Insights & Thought Leadership) */}
 
+      {/* 7. Stay Ahead with FutureLogix Insights (Insights & Thought Leadership) */}
       <InsightsSection />
+
+      {/* Newsletter Signup Section */}
+      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.grey[100] }}>
+        <Container maxWidth="md">
+          <NewsletterForm />
+        </Container>
+      </Box>
 
       {/* 8. Ready to Accelerate Your Digital Transformation? (Final Call to Action) */}
       <Box
@@ -287,9 +303,9 @@ export default function Home() {
           >
             <Button
               variant="contained"
-              color="secondary" // Use a contrasting color for the button
+              color="secondary"
               size="large"
-              href="/contact"
+              onClick={handleOpenConsultationDialog}
               sx={{
                 px: 5,
                 py: 1.8,
@@ -302,7 +318,7 @@ export default function Home() {
             </Button>
             <Button
               variant="outlined"
-              color="inherit" // Inherits white from parent box
+              color="inherit"
               size="large"
               href="/services"
               sx={{
@@ -323,6 +339,46 @@ export default function Home() {
           </Box>
         </Container>
       </Box>
+
+      {/* Zoho Consultation Form Dialog */}
+      <Dialog
+        open={openConsultationDialog}
+        onClose={handleCloseConsultationDialog}
+        maxWidth="md"
+        fullWidth
+        aria-labelledby="consultation-form-title"
+      >
+        <DialogTitle id="consultation-form-title">
+          <Box
+            display="flex"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            <Typography variant="h5" component="span" sx={{ fontWeight: 600 }}>
+              Schedule Your Free Consultation
+            </Typography>
+            <IconButton
+              aria-label="close"
+              onClick={handleCloseConsultationDialog}
+              sx={{
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </Box>
+        </DialogTitle>
+        <DialogContent dividers sx={{ p: 0 }}>
+          <Box sx={{ width: "100%", height: "600px" }}>
+            <iframe
+              aria-label="Consultation form"
+              frameBorder="0"
+              style={{ height: "100%", width: "100%", border: "none" }}
+              src="https://forms.zohopublic.com/futurelogixlimited1/form/Consultationform/formperma/nLvIySWd-5puLbQ5LKOnomYpzX0oZStSTR9GYVIPgII" // <--- UPDATED SRC HERE
+            ></iframe>
+          </Box>
+        </DialogContent>
+      </Dialog>
     </Box>
   );
 }

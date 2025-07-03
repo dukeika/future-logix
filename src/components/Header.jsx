@@ -133,7 +133,7 @@ export default function Header() {
           </Grid>
 
           {/* Call to Action Button - Will be updated for consultation form */}
-          <Grid item>
+          {/* <Grid item>
             <Button
               variant="contained"
               href="/contact"
@@ -152,7 +152,7 @@ export default function Header() {
             >
               Get a Free Consultation
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Toolbar>
     </AppBar>
