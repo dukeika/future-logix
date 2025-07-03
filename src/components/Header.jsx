@@ -131,28 +131,6 @@ export default function Header() {
               Contact Us
             </Button>
           </Grid>
-
-          {/* Call to Action Button - Will be updated for consultation form */}
-          {/* <Grid item>
-            <Button
-              variant="contained"
-              href="/contact"
-              sx={{
-                backgroundColor: "#000",
-                color: "#f9f9f9",
-                fontWeight: 600,
-                borderRadius: 2,
-                px: 2,
-                py: 1,
-                "&:hover": {
-                  backgroundColor: "#333",
-                  color: "#fff",
-                },
-              }}
-            >
-              Get a Free Consultation
-            </Button>
-          </Grid> */}
         </Grid>
       </Toolbar>
     </AppBar>
