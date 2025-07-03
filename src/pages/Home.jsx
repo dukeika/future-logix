@@ -14,11 +14,11 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
-// MUI Icons (rest of your existing icons)
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
-import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+// MUI Icons (rest of your existing icons) - these will no longer be used in this section
+// import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+// import SettingsIcon from "@mui/icons-material/Settings";
+// import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+// import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 
 // Assuming existing components
 import HeroSection from "../components/HeroSection";
@@ -110,8 +110,10 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* 6. Your Success, Our Structured Approach (Collaborative Approach) */}
-      <Box sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.primary.light }}>
+      {/* 6. Your Success, Our Structured Approach (Collaborative Approach) - UPDATED SECTION */}
+      <Box
+        sx={{ py: { xs: 8, md: 12 }, bgcolor: theme.palette.background.paper }}
+      >
         <Container maxWidth="lg">
           <Typography
             variant="h4"
@@ -130,129 +132,38 @@ export default function Home() {
             variant="h6"
             align="center"
             paragraph
-            sx={{ mb: { xs: 4, md: 8 }, color: theme.palette.text.primary }}
+            // Corrected: Removed the inline comment from this line
+            sx={{ mb: { xs: 2, md: 4 }, color: theme.palette.text.primary }}
           >
             We believe in transparency, collaboration, and proven methodologies
             to deliver transformative results.
           </Typography>
 
-          <Grid container spacing={{ xs: 3, md: 4 }} justifyContent="center">
-            {/* Step 1: Assessment Phase */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Card
-                elevation={2}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <Box sx={{ mb: 2, color: theme.palette.secondary.main }}>
-                  <CheckCircleOutlineIcon sx={{ fontSize: 50 }} />
-                </Box>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: theme.palette.primary.main }}
-                >
-                  1. Assessment Phase
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  We begin by deeply understanding your current infrastructure,
-                  challenges, and aspirations through comprehensive audits and
-                  discussions. This ensures our solutions are perfectly aligned
-                  with your strategic goals.
-                </Typography>
-              </Card>
-            </Grid>
-            {/* Step 2: Planning Phase */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Card
-                elevation={2}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <Box sx={{ mb: 2, color: theme.palette.secondary.main }}>
-                  <SettingsIcon sx={{ fontSize: 50 }} />
-                </Box>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: theme.palette.primary.main }}
-                >
-                  2. Planning Phase
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Our experts craft a detailed, customized roadmap, outlining
-                  timelines, resources, and clear milestones. Every step is
-                  planned with precision and your input.
-                </Typography>
-              </Card>
-            </Grid>
-            {/* Step 3: Execution Phase */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Card
-                elevation={2}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <Box sx={{ mb: 2, color: theme.palette.secondary.main }}>
-                  <PlayCircleOutlineIcon sx={{ fontSize: 50 }} />
-                </Box>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: theme.palette.primary.main }}
-                >
-                  3. Execution Phase
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  With meticulous planning, our certified teams implement the
-                  solution, adhering to best practices and rigorous quality
-                  standards. We maintain open communication, providing regular
-                  updates on progress.
-                </Typography>
-              </Card>
-            </Grid>
-            {/* Step 4: Support & Optimization */}
-            <Grid item xs={12} sm={6} md={3}>
-              <Card
-                elevation={2}
-                sx={{
-                  p: { xs: 3, md: 4 },
-                  textAlign: "center",
-                  height: "100%",
-                }}
-              >
-                <Box sx={{ mb: 2, color: theme.palette.secondary.main }}>
-                  <SupportAgentIcon sx={{ fontSize: 50 }} />
-                </Box>
-                <Typography
-                  variant="h5"
-                  component="h3"
-                  gutterBottom
-                  sx={{ fontWeight: 600, color: theme.palette.primary.main }}
-                >
-                  4. Support & Optimization
-                </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  Our partnership extends beyond implementation. We offer
-                  continuous monitoring, tiered support, and ongoing
-                  optimization to ensure long-term performance and adaptation to
-                  evolving needs.
-                </Typography>
-              </Card>
-            </Grid>
-          </Grid>
+          {/* Replaced Grid with Cards/Icons with the new image */}
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              maxWidth: "100%",
+              mx: "auto",
+              p: { xs: 2, sm: 4 },
+            }}
+          >
+            <Box
+              component="img"
+              src="/images/future-logix-structured-approach.png"
+              alt="FutureLogix Structured Approach"
+              sx={{
+                width: "100%",
+                height: "auto",
+                display: "block",
+                maxWidth: "800px",
+                borderRadius: theme.shape.borderRadius,
+                boxShadow: theme.shadows[3],
+              }}
+            />
+          </Box>
         </Container>
       </Box>
 
@@ -374,7 +285,7 @@ export default function Home() {
               aria-label="Consultation form"
               frameBorder="0"
               style={{ height: "100%", width: "100%", border: "none" }}
-              src="https://forms.zohopublic.com/futurelogixlimited1/form/Consultationform/formperma/nLvIySWd-5puLbQ5LKOnomYpzX0oZStSTR9GYVIPgII" // <--- UPDATED SRC HERE
+              src="https://forms.zohopublic.com/futurelogixlimited1/form/Consultationform/formperma/nLvIySWd-5puLbQ5LKOnomYpzX0oZStSTR9GYVIPgII"
             ></iframe>
           </Box>
         </DialogContent>
