@@ -70,7 +70,7 @@ export default function Home() {
           <TestimonialsSection />
 
           {/* Client Logos */}
-          <Typography
+          {/* <Typography
             variant="h6"
             align="center"
             sx={{
@@ -81,8 +81,8 @@ export default function Home() {
             }}
           >
             Our Valued Partners
-          </Typography>
-          <Grid
+          </Typography> */}
+          {/* <Grid
             container
             spacing={{ xs: 2, md: 4 }}
             justifyContent="center"
@@ -106,7 +106,7 @@ export default function Home() {
                 />
               </Grid>
             ))}
-          </Grid>
+          </Grid> */}
         </Container>
       </Box>
 
