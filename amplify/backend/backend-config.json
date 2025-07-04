@@ -1,0 +1,44 @@
+{
+  "api": {
+    "blogApi": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "createPostFunction"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "createPostFunction": {
+      "build": true,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_createPostFunction_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createPostFunction"
+        }
+      ]
+    },
+    "AMPLIFY_function_createPostFunction_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "createPostFunction"
+        }
+      ]
+    }
+  }
+}

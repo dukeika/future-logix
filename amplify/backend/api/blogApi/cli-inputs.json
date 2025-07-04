@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "paths": {
+    "/posts": {
+      "name": "/posts",
+      "lambdaFunction": "createPostFunction",
+      "permissions": {
+        "setting": "open"
+      }
+    },
+    "/blog": {
+      "name": "/blog",
+      "lambdaFunction": "createPostFunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
