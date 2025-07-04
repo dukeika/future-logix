@@ -1,24 +1,17 @@
 service: futurelogix-backend
 
-#frameworkVersion: "3" # Ensure you have Serverless Framework v3 or later
+#frameworkVersion: "3"
 
 provider:
   name: aws
-  runtime: nodejs20.x # Or a later compatible version
-  stage: dev # You can have 'dev', 'prod', etc.
-  region: eu-west-2 # Or your desired AWS region (e.g., us-east-1)
-  # Ensure Lambda can access RDS within your VPC
+  runtime: nodejs20.x
+  stage: dev
+  region: eu-west-2
   vpc:
     securityGroupIds:
       - sg-0e8dfc01a7a63952f # rds-lambda-1
       - sg-092b57e643c8aea7f # futurelogix-sg
       - sg-0f688fba8f11ddc61 # lambda-rds-1
-      #- sg-056255b5b10f4ad9d # lambda-rds-2
-      #- sg-0c6e1b7f3efcc31e3 # lambda-rds-3
-      #- sg-033a6ff5b3b53c1dc # lambda-rds-4
-      #- sg-0df3e50722c22f10a # lambda-rds-5
-      #- sg-096f5be10f343c7ac # lambda-rds-6
-      #- sg-0bb17b13c11359fe6 # lambda-rds-7
     subnetIds:
       - subnet-0e49ffbd10a18b237
       - subnet-0ae08e9da3278f59c
@@ -29,16 +22,25 @@ provider:
     DB_PASSWORD: ${env:DB_PASSWORD}
     DB_DATABASE: ${env:DB_DATABASE}
     DB_PORT: ${env:DB_PORT}
+    REGION: ${self:provider.region}
   iam:
     role:
       statements:
         - Effect: "Allow"
           Action:
-            - "ses:SendEmail" # If you want to send emails (e.g., for contact form)
+            - "lambda:InvokeFunction"
+            - "lambda:InvokeAsync"
           Resource: "*"
 
 functions:
-  # Your function definitions go here. For example:
+  createBlogPost:
+    handler: handler.createBlogPost
+    events:
+      - http:
+          path: blog
+          method: post
+          cors: true
+
   getBlogPosts:
     handler: handler.getBlogPosts
     events:
@@ -55,27 +57,18 @@ functions:
           method: get
           cors: true
 
-  submitFeedback:
-    handler: handler.submitFeedback
+  updateBlogPost:
+    handler: handler.updateBlogPost
     events:
       - http:
-          path: feedback
-          method: post
+          path: blog/id/{id}
+          method: put
           cors: true
 
-  submitConsultation:
-    handler: handler.submitConsultation
+  deleteBlogPost:
+    handler: handler.deleteBlogPost
     events:
       - http:
-          path: consultation
-          method: post
+          path: blog/id/{id}
+          method: delete
           cors: true
-
-  getFeedback:
-    handler: handler.getFeedback
-    events:
-      - http:
-          path: feedback/all # Or just 'feedback' if you want to reuse the path, but be careful with methods
-          method: get
-          cors: true
-          # private: true # Recommended for admin endpoints
