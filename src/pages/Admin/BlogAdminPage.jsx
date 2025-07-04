@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 
 const API_BASE_URL =
-  "https://0eo2680b63.execute-api.eu-west-2.amazonaws.com/dev"; // IMPORTANT: Replace with your actual API Gateway URL
+  "https://dtsevdpphf.execute-api.eu-west-2.amazonaws.com/dev"; // IMPORTANT: Replace with your actual API Gateway URL
 
 const BlogAdminPage = () => {
   const [blogPosts, setBlogPosts] = useState([]);
