@@ -29,6 +29,7 @@ function NewsletterForm() {
         {/* The Zoho Forms iframe */}
         <iframe
           aria-label="Newsletter"
+          title="Newsletter Signup Form"
           frameBorder="0"
           style={{ height: "100%", width: "100%", border: "none" }} // Use 100% height and width
           src="https://forms.zohopublic.com/futurelogixlimited1/form/Newsletter1/formperma/yeW6uR7bcwKHUtjbzYpkdMojnM484BrKqqVOfZJiFEM"

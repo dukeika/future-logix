@@ -40,9 +40,9 @@ function App() {
             path="/admin/blog/edit/:slug"
             element={<AddEditBlogPostForm />}
           />
-          <Route path="/admin/feedback" element={<FeedbackAdminPage />} />{" "}
+          <Route path="/admin/feedback" element={<FeedbackAdminPage />} />
           {/* NEW: Route for Feedback Admin */}
-          // Service Detail Routes
+          {/* Service Detail Routes */}
           <Route
             path="/services/cloud-solutions"
             element={<CloudSolutions />}

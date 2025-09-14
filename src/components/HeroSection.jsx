@@ -5,7 +5,6 @@ import { Box, Container, Typography, Button, useTheme } from "@mui/material";
 
 export default function HeroSection({ onConsultationClick }) {
   // <--- Accept the prop here
-  const theme = useTheme();
 
   return (
     <Box
