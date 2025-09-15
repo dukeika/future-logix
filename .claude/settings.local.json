@@ -16,7 +16,8 @@
       "Bash(echo:*)",
       "Bash(done)",
       "Bash(aws amplify get-app:*)",
-      "Bash(amplify init:*)"
+      "Bash(amplify init:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []
