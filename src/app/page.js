@@ -148,8 +148,8 @@ export default function Home() {
               <div className="bg-white rounded-xl p-8 shadow-lg">
                 <div className="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="italic mb-4 text-gray-700">
-                  "Future Logix transformed our entire IT infrastructure. Their cloud migration
-                  saved us 40% on operational costs while improving our system reliability."
+                  &ldquo;Future Logix transformed our entire IT infrastructure. Their cloud migration
+                  saved us 40% on operational costs while improving our system reliability.&rdquo;
                 </p>
                 <p className="font-semibold text-blue-700">
                   - CEO, Lagos Manufacturing Company
@@ -158,8 +158,8 @@ export default function Home() {
               <div className="bg-white rounded-xl p-8 shadow-lg">
                 <div className="text-yellow-400 text-2xl mb-4">⭐⭐⭐⭐⭐</div>
                 <p className="italic mb-4 text-gray-700">
-                  "The cybersecurity audit revealed critical vulnerabilities we didn't know existed.
-                  Their solutions protected us from potential threats."
+                  &ldquo;The cybersecurity audit revealed critical vulnerabilities we didn&apos;t know existed.
+                  Their solutions protected us from potential threats.&rdquo;
                 </p>
                 <p className="font-semibold text-blue-700">
                   - CTO, Financial Services Firm

@@ -56,7 +56,7 @@ export default function BlogPost() {
         <main className="flex-grow flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">Post Not Found</h1>
-            <p className="text-gray-600 mb-8">The blog post you're looking for doesn't exist.</p>
+            <p className="text-gray-600 mb-8">The blog post you&apos;re looking for doesn&apos;t exist.</p>
             <Link href="/blog">
               <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">
                 Back to Blog

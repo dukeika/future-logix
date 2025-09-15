@@ -54,7 +54,7 @@ export default function BlogAdmin() {
         alert('Post updated successfully!');
       }
     } else {
-      const newPost = addBlogPost(formData);
+      addBlogPost(formData);
       setPosts(getBlogPosts());
       resetForm();
       alert('Post created successfully!');

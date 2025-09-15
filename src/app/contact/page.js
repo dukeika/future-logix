@@ -31,7 +31,7 @@ export default function Contact() {
                 <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
                   <h2 className="text-3xl font-bold text-blue-700 mb-6">Get In Touch</h2>
                   <p className="text-gray-700 mb-8 leading-relaxed text-lg">
-                    Whether you're looking to migrate to the cloud, enhance your cybersecurity,
+                    Whether you&apos;re looking to migrate to the cloud, enhance your cybersecurity,
                     or automate your business processes, our team is here to help.
                   </p>
 
@@ -98,7 +98,7 @@ export default function Contact() {
                 <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                   <div className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] p-6">
                     <h2 className="text-3xl font-bold text-white">Send us a Message</h2>
-                    <p className="text-blue-100">We'll get back to you within 24 hours</p>
+                    <p className="text-blue-100">We&apos;ll get back to you within 24 hours</p>
                   </div>
                   <div className="h-[500px]">
                     <iframe

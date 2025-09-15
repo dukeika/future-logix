@@ -67,7 +67,7 @@ export default function About() {
                 <h3 className="text-2xl font-semibold text-green-700 mb-4">Excellence</h3>
                 <p className="text-gray-600 leading-relaxed">
                   We are committed to delivering the highest quality solutions and services
-                  that exceed our clients' expectations.
+                  that exceed our clients&apos; expectations.
                 </p>
               </div>
 
