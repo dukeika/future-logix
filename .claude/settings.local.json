@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth:*)",
+      "Read(//c/Users/akabo/**)",
+      "Bash(git clone:*)",
+      "WebFetch(domain:api.github.com)",
+      "Bash(git fetch:*)",
+      "Bash(git log:*)",
+      "Bash(find:*)",
+      "Bash(npm cache clean:*)",
+      "Bash(timeout 60 npm install)",
+      "Bash(npx next:*)",
+      "Bash(for region in us-east-2 eu-west-1 ap-southeast-1)",
+      "Bash(do echo \"Region: $region\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(aws amplify get-app:*)",
+      "Bash(amplify init:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
