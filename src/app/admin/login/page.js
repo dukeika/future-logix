@@ -1,11 +1,13 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 
-export default function AdminLogin() {
+export const dynamic = "force-dynamic";
+
+function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [password, setPassword] = useState("");
@@ -31,7 +33,7 @@ export default function AdminLogin() {
         const redirect = searchParams.get("redirect") || "/admin";
         router.push(redirect);
       }
-    } catch (err) {
+    } catch {
       setError("Unable to login right now. Please try again.");
     } finally {
       setLoading(false);
@@ -84,5 +86,13 @@ export default function AdminLogin() {
 
       <Footer />
     </div>
+  );
+}
+
+export default function AdminLogin() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-gray-700">Loading...</div>}>
+      <LoginContent />
+    </Suspense>
   );
 }
