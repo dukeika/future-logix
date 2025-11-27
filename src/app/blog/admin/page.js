@@ -12,14 +12,14 @@ export default function BlogAdmin() {
   const [editingPost, setEditingPost] = useState(null);
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    title: '',
-    excerpt: '',
-    content: '',
-    category: 'Cloud Computing',
-    author: 'Future Logix Team',
-    readTime: '5 min read',
-    color: 'blue',
-    published: false
+    title: "",
+    excerpt: "",
+    content: "",
+    category: "Cloud Computing",
+    author: "Future Logix Team",
+    readTime: "5 min read",
+    color: "blue",
+    published: false,
   });
 
   useEffect(() => {
@@ -28,18 +28,18 @@ export default function BlogAdmin() {
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
   };
 
   const handleCategoryChange = (category) => {
-    const categoryData = categories.find(cat => cat.name === category);
-    setFormData(prev => ({
+    const categoryData = categories.find((cat) => cat.name === category);
+    setFormData((prev) => ({
       ...prev,
       category,
-      color: categoryData ? categoryData.color : 'blue'
+      color: categoryData ? categoryData.color : "blue",
     }));
   };
 
@@ -51,13 +51,13 @@ export default function BlogAdmin() {
       if (updated) {
         setPosts(getBlogPosts());
         resetForm();
-        alert('Post updated successfully!');
+        alert("Post updated successfully!");
       }
     } else {
       addBlogPost(formData);
       setPosts(getBlogPosts());
       resetForm();
-      alert('Post created successfully!');
+      alert("Post created successfully!");
     }
   };
 
@@ -67,47 +67,60 @@ export default function BlogAdmin() {
     setFormData({
       title: post.title,
       excerpt: post.excerpt,
-      content: post.content || '',
+      content: post.content || "",
       category: post.category,
       author: post.author,
       readTime: post.readTime,
       color: post.color,
-      published: post.published
+      published: post.published,
     });
     setShowForm(true);
   };
 
   const handleDelete = (id) => {
-    if (confirm('Are you sure you want to delete this post?')) {
+    if (confirm("Are you sure you want to delete this post?")) {
       deleteBlogPost(id);
       setPosts(getBlogPosts());
-      alert('Post deleted successfully!');
+      alert("Post deleted successfully!");
     }
   };
 
   const resetForm = () => {
     setFormData({
-      title: '',
-      excerpt: '',
-      content: '',
-      category: 'Cloud Computing',
-      author: 'Future Logix Team',
-      readTime: '5 min read',
-      color: 'blue',
-      published: false
+      title: "",
+      excerpt: "",
+      content: "",
+      category: "Cloud Computing",
+      author: "Future Logix Team",
+      readTime: "5 min read",
+      color: "blue",
+      published: false,
     });
     setIsEditing(false);
     setEditingPost(null);
     setShowForm(false);
   };
 
+  const handleSignOut = async () => {
+    try {
+      await fetch("/api/admin/session", { method: "DELETE" });
+    } finally {
+      window.location.href = "/admin/login";
+    }
+  };
+
   const getCategoryColor = (color) => {
     switch (color) {
-      case 'blue': return 'bg-blue-100 text-blue-700';
-      case 'green': return 'bg-green-100 text-green-700';
-      case 'purple': return 'bg-purple-100 text-purple-700';
-      case 'orange': return 'bg-orange-100 text-orange-700';
-      default: return 'bg-blue-100 text-blue-700';
+      case "blue":
+        return "bg-blue-100 text-blue-700";
+      case "green":
+        return "bg-green-100 text-green-700";
+      case "purple":
+        return "bg-purple-100 text-purple-700";
+      case "orange":
+        return "bg-orange-100 text-orange-700";
+      default:
+        return "bg-blue-100 text-blue-700";
     }
   };
 
@@ -116,21 +129,28 @@ export default function BlogAdmin() {
       <Header />
 
       <main className="flex-grow">
-        {/* Admin Header */}
-        <section className="bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white py-12">
-          <div className="max-w-6xl mx-auto px-4">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Blog Administration</h1>
-            <p className="text-xl text-blue-100">Manage your blog posts and content</p>
+        <section className="bg-gradient-to-br from-[#0B1D4D] via-[#123072] to-[#0A1A3F] text-white py-12 relative overflow-hidden">
+          <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top_left,#3B82F6,transparent_35%),radial-gradient(circle_at_bottom_right,#EAB308,transparent_30%)]" />
+          <div className="max-w-6xl mx-auto px-4 relative z-10">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+              <div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Blog Administration</h1>
+                <p className="text-xl text-blue-100">Manage your blog posts and content</p>
+              </div>
+              <button
+                onClick={handleSignOut}
+                className="inline-flex items-center px-4 py-2 rounded-lg border border-white/40 text-white font-semibold hover:bg-white/10 transition"
+              >
+                Sign out
+              </button>
+            </div>
           </div>
         </section>
 
-        {/* Admin Controls */}
         <section className="py-8 bg-white border-b">
           <div className="max-w-6xl mx-auto px-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-gray-800">
-                Blog Posts ({posts.length})
-              </h2>
+              <h2 className="text-2xl font-bold text-gray-800">Blog Posts ({posts.length})</h2>
               <button
                 onClick={() => {
                   resetForm();
@@ -144,19 +164,13 @@ export default function BlogAdmin() {
           </div>
         </section>
 
-        {/* Blog Post Form */}
         {showForm && (
           <section className="py-8 bg-blue-50">
             <div className="max-w-4xl mx-auto px-4">
               <div className="bg-white rounded-2xl shadow-lg p-8">
                 <div className="flex justify-between items-center mb-6">
-                  <h3 className="text-2xl font-bold text-gray-800">
-                    {isEditing ? 'Edit Post' : 'Create New Post'}
-                  </h3>
-                  <button
-                    onClick={resetForm}
-                    className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
-                  >
+                  <h3 className="text-2xl font-bold text-gray-800">{isEditing ? "Edit Post" : "Create New Post"}</h3>
+                  <button onClick={resetForm} className="text-gray-500 hover:text-gray-700 text-2xl font-bold">
                     ×
                   </button>
                 </div>
@@ -164,9 +178,7 @@ export default function BlogAdmin() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Title *
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Title *</label>
                       <input
                         type="text"
                         name="title"
@@ -179,9 +191,7 @@ export default function BlogAdmin() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Category *
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
                       <select
                         name="category"
                         value={formData.category}
@@ -198,9 +208,7 @@ export default function BlogAdmin() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Author
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Author</label>
                       <input
                         type="text"
                         name="author"
@@ -212,9 +220,7 @@ export default function BlogAdmin() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Read Time
-                      </label>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">Read Time</label>
                       <input
                         type="text"
                         name="readTime"
@@ -227,9 +233,7 @@ export default function BlogAdmin() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Excerpt *
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Excerpt *</label>
                     <textarea
                       name="excerpt"
                       value={formData.excerpt}
@@ -242,9 +246,7 @@ export default function BlogAdmin() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Content *
-                    </label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Content *</label>
                     <textarea
                       name="content"
                       value={formData.content}
@@ -264,9 +266,7 @@ export default function BlogAdmin() {
                       onChange={handleInputChange}
                       className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
-                    <label className="ml-2 block text-sm text-gray-700">
-                      Publish immediately
-                    </label>
+                    <label className="ml-2 block text-sm text-gray-700">Publish immediately</label>
                   </div>
 
                   <div className="flex gap-4">
@@ -274,7 +274,7 @@ export default function BlogAdmin() {
                       type="submit"
                       className="bg-[#1854CE] hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-colors"
                     >
-                      {isEditing ? 'Update Post' : 'Create Post'}
+                      {isEditing ? "Update Post" : "Create Post"}
                     </button>
                     <button
                       type="button"
@@ -290,7 +290,6 @@ export default function BlogAdmin() {
           </section>
         )}
 
-        {/* Posts List */}
         <section className="py-8">
           <div className="max-w-6xl mx-auto px-4">
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
@@ -298,21 +297,11 @@ export default function BlogAdmin() {
                 <table className="w-full">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Title
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Category
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Date
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Status
-                      </th>
-                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Actions
-                      </th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                      <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -320,12 +309,8 @@ export default function BlogAdmin() {
                       <tr key={post.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4">
                           <div>
-                            <div className="text-sm font-medium text-gray-900">
-                              {post.title}
-                            </div>
-                            <div className="text-sm text-gray-500 truncate max-w-xs">
-                              {post.excerpt}
-                            </div>
+                            <div className="text-sm font-medium text-gray-900">{post.title}</div>
+                            <div className="text-sm text-gray-500 truncate max-w-xs">{post.excerpt}</div>
                           </div>
                         </td>
                         <td className="px-6 py-4">
@@ -333,29 +318,21 @@ export default function BlogAdmin() {
                             {post.category}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-500">
-                          {new Date(post.date).toLocaleDateString()}
-                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500">{new Date(post.date).toLocaleDateString()}</td>
                         <td className="px-6 py-4">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            post.published
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {post.published ? 'Published' : 'Draft'}
+                          <span
+                            className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                              post.published ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
+                            }`}
+                          >
+                            {post.published ? "Published" : "Draft"}
                           </span>
                         </td>
                         <td className="px-6 py-4 text-sm font-medium space-x-2">
-                          <button
-                            onClick={() => handleEdit(post)}
-                            className="text-blue-600 hover:text-blue-900 font-semibold"
-                          >
+                          <button onClick={() => handleEdit(post)} className="text-blue-600 hover:text-blue-900 font-semibold">
                             Edit
                           </button>
-                          <button
-                            onClick={() => handleDelete(post.id)}
-                            className="text-red-600 hover:text-red-900 font-semibold"
-                          >
+                          <button onClick={() => handleDelete(post.id)} className="text-red-600 hover:text-red-900 font-semibold">
                             Delete
                           </button>
                         </td>

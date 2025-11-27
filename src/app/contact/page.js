@@ -1,182 +1,199 @@
 'use client';
 
-import React from "react";
+import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
 export default function Contact() {
+  const [status, setStatus] = useState("");
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formEl = event.currentTarget;
+    setStatus("");
+    const formData = new FormData(formEl);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Failed to submit");
+      setStatus("Thanks for reaching out. We will respond shortly.");
+      formEl.reset();
+    } catch (error) {
+      setStatus("Sorry, something went wrong. Please try again.");
+      console.error("Contact submit failed", error);
+    }
+  };
+
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Header />
 
       <main className="flex-grow">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-blue-700 via-blue-800 to-blue-900 text-white py-16 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-blue-900 opacity-10"></div>
-          <div className="max-w-6xl mx-auto px-4 relative z-10">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">Contact Us</h1>
-            <p className="text-xl max-w-3xl mx-auto text-blue-100">
-              Ready to transform your business? Get in touch with our experts today.
+        {/* Hero */}
+        <section className="bg-gradient-to-br from-[#0B1D4D] via-[#123072] to-[#0A1A3F] text-white relative overflow-hidden">
+          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top_left,#3B82F6,transparent_35%),radial-gradient(circle_at_bottom_right,#EAB308,transparent_30%)]" />
+          <div className="max-w-6xl mx-auto px-4 py-16 relative z-10">
+            <p className="uppercase text-xs font-bold text-yellow-300 tracking-wide mb-3">Contact</p>
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Talk with Future Logix</h1>
+            <p className="text-lg md:text-xl text-blue-100 max-w-3xl">
+              Ready to migrate to the cloud, strengthen security, automate workflows, or build something new? Reach out for a
+              free consultation.
             </p>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
         </section>
 
-        {/* Contact Content */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              {/* Contact Information */}
-              <div>
-                <div className="bg-white rounded-2xl shadow-lg p-8 mb-8">
-                  <h2 className="text-3xl font-bold text-blue-700 mb-6">Get In Touch</h2>
-                  <p className="text-gray-700 mb-8 leading-relaxed text-lg">
-                    Whether you&apos;re looking to migrate to the cloud, enhance your cybersecurity,
-                    or automate your business processes, our team is here to help.
-                  </p>
-
-                  <div className="space-y-6">
-                    <div className="flex items-center">
-                      <div className="bg-blue-100 rounded-full p-3 mr-4">
-                        <span className="text-2xl">📞</span>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-800">Phone</h3>
-                        <p className="text-blue-600 font-medium">+234 (0) 123 456 7890</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center">
-                      <div className="bg-green-100 rounded-full p-3 mr-4">
-                        <span className="text-2xl">✉️</span>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-800">Email</h3>
-                        <p className="text-green-600 font-medium">info@futurelogix.tech</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center">
-                      <div className="bg-purple-100 rounded-full p-3 mr-4">
-                        <span className="text-2xl">📍</span>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-800">Location</h3>
-                        <p className="text-purple-600 font-medium">Lekki, Lagos, Nigeria</p>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center">
-                      <div className="bg-orange-100 rounded-full p-3 mr-4">
-                        <span className="text-2xl">🕒</span>
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-gray-800">Business Hours</h3>
-                        <p className="text-orange-600 font-medium">Mon-Fri: 9AM-6PM WAT</p>
-                      </div>
+        {/* Contact info and form */}
+        <section className="py-16 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+            <div className="space-y-6">
+              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+                <p className="uppercase text-xs font-bold text-blue-600 tracking-wide mb-2">Get in touch</p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">We respond within hours</h2>
+                <p className="text-gray-700 leading-relaxed mb-6">
+                  Tell us about your goals and challenges. We will share a quick plan and next steps for cloud, security,
+                  automation, or product delivery.
+                </p>
+                <div className="space-y-4 text-sm text-gray-700">
+                  <div className="flex gap-3">
+                    <span className="w-2 h-2 rounded-full bg-blue-600 mt-2" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Phone</p>
+                      <p>+234 706 110 6212</p>
                     </div>
                   </div>
-                </div>
-
-                {/* Quick Contact Cards */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div className="bg-blue-50 border-l-4 border-blue-500 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                    <div className="text-3xl mb-2">💬</div>
-                    <h3 className="font-semibold text-blue-700 mb-2">Live Chat</h3>
-                    <p className="text-gray-600 text-sm">Available 24/7</p>
+                  <div className="flex gap-3">
+                    <span className="w-2 h-2 rounded-full bg-green-600 mt-2" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Email</p>
+                      <p>admin@futurelogix.tech</p>
+                    </div>
                   </div>
-                  <div className="bg-green-50 border-l-4 border-green-500 rounded-lg p-6 text-center hover:shadow-lg transition-shadow">
-                    <div className="text-3xl mb-2">📱</div>
-                    <h3 className="font-semibold text-green-700 mb-2">WhatsApp</h3>
-                    <p className="text-gray-600 text-sm">Quick responses</p>
+                  <div className="flex gap-3">
+                    <span className="w-2 h-2 rounded-full bg-purple-600 mt-2" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Location</p>
+                      <p>Lekki, Lagos, Nigeria</p>
+                    </div>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="w-2 h-2 rounded-full bg-orange-500 mt-2" />
+                    <div>
+                      <p className="font-semibold text-gray-900">Business Hours</p>
+                      <p>Mon-Fri: 9AM-6PM WAT</p>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Contact Form */}
-              <div>
-                <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-                  <div className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] p-6">
-                    <h2 className="text-3xl font-bold text-white">Send us a Message</h2>
-                    <p className="text-blue-100">We&apos;ll get back to you within 24 hours</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white rounded-2xl border border-blue-100 p-6 shadow-sm">
+                  <p className="text-sm font-semibold text-blue-700 mb-1">Live chat</p>
+                  <p className="text-gray-700">Available 24/7</p>
+                </div>
+                <div className="bg-white rounded-2xl border border-green-100 p-6 shadow-sm">
+                  <p className="text-sm font-semibold text-green-700 mb-1">WhatsApp</p>
+                  <p className="text-gray-700">Quick responses</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] p-6">
+                <h2 className="text-2xl font-bold text-white">Send us a message</h2>
+                <p className="text-blue-100">We will reply within 24 hours.</p>
+              </div>
+              <div className="p-6">
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-800 mb-1">Name *</label>
+                      <input
+                        name="name"
+                        required
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-800 mb-1">Email *</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="you@example.com"
+                      />
+                    </div>
                   </div>
-                  <div className="h-[500px]">
-                    <iframe
-                      aria-label='Contact Us'
-                      frameBorder="0"
-                      style={{height:'500px', width:'99%', border:'none'}}
-                      src='https://forms.zohopublic.com/futurelogixlimited1/form/ContactUs/formperma/ZQ_j41Nb--BJM2NyfGWPmJOunK9U77k5gO9dH1PeDWs'
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-800 mb-1">Phone</label>
+                      <input
+                        name="phone"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="+234..."
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-800 mb-1">Topic</label>
+                      <select
+                        name="topic"
+                        className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      >
+                        <option>Cloud Migration</option>
+                        <option>Cybersecurity</option>
+                        <option>Automation</option>
+                        <option>Custom Development</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1">Message *</label>
+                    <textarea
+                      name="message"
+                      rows={5}
+                      required
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="How can we help?"
                     />
                   </div>
-                </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg transition-transform hover:-translate-y-0.5"
+                  >
+                    Send message
+                  </button>
+                  {status && <p className="text-sm font-semibold text-blue-800">{status}</p>}
+                </form>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-blue-50">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <div className="bg-white rounded-2xl shadow-xl p-12">
-              <h2 className="text-4xl font-bold mb-6 text-gray-800">Schedule a Free Consultation</h2>
-              <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-                Ready to discuss your IT needs? Schedule a free consultation with our experts
-                to explore how we can help transform your business.
-              </p>
-              <button
-                onClick={() => {
-                  window.open('https://forms.zohopublic.com/futurelogixlimited1/form/Consultationform/formperma/nLvIySWd-5puLbQ5LKOnomYpzX0oZStSTR9GYVIPgII', '_blank');
-                }}
-                className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-8 rounded-xl text-lg shadow-lg transform hover:scale-105 transition-all duration-200"
-              >
-                Book Free Consultation →
-              </button>
+        {/* Stats strip */}
+        <section className="py-14 bg-gradient-to-r from-[#123072] to-[#0B1D4D] text-white">
+          <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <p className="text-3xl font-bold text-yellow-300">24/7</p>
+              <p className="text-blue-100">Support available</p>
             </div>
-          </div>
-        </section>
-
-        {/* Map Section */}
-        <section className="py-20 bg-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-8 text-gray-800">Find Us</h2>
-            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-              <div className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] p-4">
-                <h3 className="text-xl font-semibold text-white">Our Location in Lagos</h3>
-              </div>
-              <div className="h-[400px]">
-                <iframe
-                  title="Future Logix Location"
-                  width="100%"
-                  height="100%"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6989746352243!2d3.601536!3d6.439244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf4b1b4b1b4b1%3A0x1b4b1b4b1b4b1b4b!2sLekki%2C%20Lagos%2C%20Nigeria!5e0!3m2!1sen!2s!4v1234567890"
-                  allowFullScreen
-                  style={{ border: 0 }}
-                />
-              </div>
+            <div>
+              <p className="text-3xl font-bold text-yellow-300">{"< 2hrs"}</p>
+              <p className="text-blue-100">Average first response</p>
             </div>
-          </div>
-        </section>
-
-        {/* Contact Stats */}
-        <section className="py-16 bg-gradient-to-r from-[#1854CE] to-[#1436A2] text-white">
-          <div className="max-w-6xl mx-auto px-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              <div>
-                <div className="text-3xl font-bold text-yellow-400">24/7</div>
-                <p className="text-blue-100">Support Available</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-yellow-400">&lt; 2hrs</div>
-                <p className="text-blue-100">Response Time</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-yellow-400">100+</div>
-                <p className="text-blue-100">Happy Clients</p>
-              </div>
-              <div>
-                <div className="text-3xl font-bold text-yellow-400">5★</div>
-                <p className="text-blue-100">Average Rating</p>
-              </div>
+            <div>
+              <p className="text-3xl font-bold text-yellow-300">100+</p>
+              <p className="text-blue-100">Clients served</p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-yellow-300">5.0</p>
+              <p className="text-blue-100">Average rating</p>
             </div>
           </div>
         </section>

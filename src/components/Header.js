@@ -7,21 +7,23 @@ import Image from "next/image";
 export default function Header() {
   return (
     <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-40">
-      <nav className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+      <nav className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-6 py-4 max-w-7xl mx-auto">
         {/* Logo */}
-        <Link href="/" className="flex items-center group">
-          <Image
-            src="/FUTURELOGIX.png"
-            alt="Future Logix Logo"
-            width={120}
-            height={60}
-            className="mr-3 transition-transform duration-300 group-hover:scale-105"
-            priority
-          />
-        </Link>
+        <div className="flex justify-between w-full md:w-auto">
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/FUTURELOGIX.png"
+              alt="Future Logix Logo"
+              width={300}
+              height={170}
+              className="w-[300px] h-auto transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+          </Link>
+        </div>
 
         {/* Navigation Menu */}
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1 md:justify-end">
           <Link
             href="/"
             className="px-4 py-2 rounded-lg text-gray-700 font-semibold hover:text-[#1854CE] hover:bg-blue-50 transition-all duration-200"
