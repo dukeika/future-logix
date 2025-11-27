@@ -21,8 +21,13 @@ export function middleware(request) {
 
   const password = process.env.ADMIN_PASSWORD;
   if (!password) {
-    console.warn("ADMIN_PASSWORD is not set; admin and submission endpoints are unprotected.");
-    return NextResponse.next();
+    console.warn("ADMIN_PASSWORD is not set; blocking access to admin and submission endpoints.");
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json({ error: "ADMIN_PASSWORD is not configured" }, { status: 503 });
+    }
+    const missingUrl = new URL("/admin/login", request.url);
+    missingUrl.searchParams.set("reason", "missing-password");
+    return NextResponse.redirect(missingUrl);
   }
 
   const expected = hashSecret(password);

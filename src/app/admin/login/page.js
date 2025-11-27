@@ -10,6 +10,7 @@ export const dynamic = "force-dynamic";
 function LoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const reason = searchParams.get("reason");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -58,6 +59,11 @@ function LoginContent() {
         <section className="py-12 bg-gray-50">
           <div className="max-w-md mx-auto px-4">
             <div className="bg-white border border-gray-200 rounded-2xl shadow-lg p-8">
+              {reason === "missing-password" && (
+                <p className="text-sm font-semibold text-red-700 mb-4">
+                  ADMIN_PASSWORD is not set on the server. Set it in your environment to enable login.
+                </p>
+              )}
               <form className="space-y-4" onSubmit={onSubmit}>
                 <div>
                   <label className="block text-sm font-semibold text-gray-800 mb-1">Admin password</label>
