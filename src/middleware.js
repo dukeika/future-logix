@@ -1,14 +1,19 @@
-import crypto from "crypto";
 import { NextResponse } from "next/server";
 
 const protectedMatchers = ["/admin", "/blog/admin", "/api/contact", "/api/consultations"];
 
-const hashSecret = (secret) => crypto.createHash("sha256").update(secret).digest("hex");
+const hashSecret = async (secret) => {
+  const data = new TextEncoder().encode(secret);
+  const hashBuffer = await globalThis.crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+};
 
 const isProtected = (pathname) =>
   protectedMatchers.some((base) => pathname === base || pathname.startsWith(`${base}/`));
 
-export function middleware(request) {
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
 
   if (pathname === "/admin/login") {
@@ -30,7 +35,7 @@ export function middleware(request) {
     return NextResponse.redirect(missingUrl);
   }
 
-  const expected = hashSecret(password);
+  const expected = await hashSecret(password);
   const session = request.cookies.get("admin_session")?.value || "";
 
   if (session === expected) {
@@ -50,5 +55,5 @@ export function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/blog/admin/:path*", "/api/contact/:path*", "/api/consultations/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/blog/admin", "/blog/admin/:path*", "/api/contact/:path*", "/api/consultations/:path*"],
 };
