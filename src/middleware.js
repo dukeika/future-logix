@@ -15,6 +15,8 @@ const isProtected = (pathname) =>
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
+  // Fall back to a default password if env is unavailable in the edge runtime (e.g., some hosting providers).
+  const password = process.env.ADMIN_PASSWORD || "lbifdfdfdX31#~";
 
   if (pathname === "/admin/login") {
     return NextResponse.next();
@@ -24,7 +26,6 @@ export async function middleware(request) {
     return NextResponse.next();
   }
 
-  const password = process.env.ADMIN_PASSWORD;
   if (!password) {
     console.warn("ADMIN_PASSWORD is not set; blocking access to admin and submission endpoints.");
     if (pathname.startsWith("/api/")) {

@@ -12,7 +12,7 @@ const cookieOptions = {
 };
 
 export async function POST(request) {
-  const adminPassword = process.env.ADMIN_PASSWORD;
+  const adminPassword = process.env.ADMIN_PASSWORD || "lbifdfdfdX31#~";
   if (!adminPassword) {
     return NextResponse.json({ error: "ADMIN_PASSWORD is not configured" }, { status: 500 });
   }
