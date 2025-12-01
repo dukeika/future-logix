@@ -1,7 +1,13 @@
 // Lightweight SES email helper. Requires AWS credentials and NOTIFY_FROM/NOTIFY_TO env vars.
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
-const region = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
+// Allow SES to live in a different region than the app (e.g., Amplify eu-west-2, SES us-east-1).
+const region =
+  process.env.AWS_SES_REGION ||
+  process.env.SES_REGION ||
+  process.env.AWS_REGION ||
+  process.env.AWS_DEFAULT_REGION ||
+  "us-east-1";
 const fromAddress = process.env.NOTIFY_FROM;
 const toAddress = process.env.NOTIFY_TO || process.env.NOTIFY_FROM;
 
