@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const protectedMatchers = ["/admin", "/blog/admin", "/api/contact", "/api/consultations"];
+const protectedMatchers = ["/admin", "/blog/admin"];
 
 const hashSecret = async (secret) => {
   const data = new TextEncoder().encode(secret);
@@ -15,8 +15,7 @@ const isProtected = (pathname) =>
 
 export async function middleware(request) {
   const { pathname } = request.nextUrl;
-  // Fall back to a default password if env is unavailable in the edge runtime (e.g., some hosting providers).
-  const password = process.env.ADMIN_PASSWORD || "lbifdfdfdX31#~";
+  const password = process.env.ADMIN_PASSWORD;
 
   if (pathname === "/admin/login") {
     return NextResponse.next();
@@ -56,5 +55,5 @@ export async function middleware(request) {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*", "/blog/admin", "/blog/admin/:path*", "/api/contact/:path*", "/api/consultations/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/blog/admin", "/blog/admin/:path*"],
 };

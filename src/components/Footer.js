@@ -22,8 +22,19 @@ export default function Footer() {
               <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold">
                 X / Twitter
               </a>
-              <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold">
-                Email
+              <a
+                href="https://futurelogix.ng"
+                className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold"
+                target="_blank"
+                rel="noreferrer"
+              >
+                futurelogix.ng
+              </a>
+              <a
+                href="mailto:admin@futurelogix.ng"
+                className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-semibold"
+              >
+                admin@futurelogix.ng
               </a>
             </div>
           </div>

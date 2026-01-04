@@ -1,10 +1,18 @@
-'use client';
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
 import { getBlogPosts } from "../../data/blogPosts";
+
+export const metadata = {
+  title: "Future Logix Blog | Cloud, Security, Automation Insights",
+  description: "Insights and guides on cloud migration, cybersecurity, automation, and modern software delivery.",
+  alternates: {
+    canonical: "/blog",
+  },
+};
+
+export const dynamic = "force-dynamic";
 
 const categories = [
   { name: "Cloud Computing", color: "blue", count: 12 },
@@ -14,12 +22,7 @@ const categories = [
 ];
 
 export default function Blog() {
-  const [blogPosts, setBlogPosts] = useState([]);
-
-  useEffect(() => {
-    const posts = getBlogPosts().filter((post) => post.published);
-    setBlogPosts(posts);
-  }, []);
+  const blogPosts = getBlogPosts().filter((post) => post.published);
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">

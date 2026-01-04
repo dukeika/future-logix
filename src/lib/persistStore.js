@@ -24,6 +24,10 @@ export function loadStore() {
 
 export function saveStore(store) {
   const data = JSON.stringify(store, null, 2);
-  fs.mkdirSync(path.dirname(storePath), { recursive: true });
-  fs.writeFileSync(storePath, data, "utf-8");
+  try {
+    fs.mkdirSync(path.dirname(storePath), { recursive: true });
+    fs.writeFileSync(storePath, data, "utf-8");
+  } catch (err) {
+    console.warn("Failed to persist submission store; continuing in-memory only", err?.message);
+  }
 }

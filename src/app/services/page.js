@@ -1,9 +1,30 @@
-'use client';
-
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
+
+export function generateMetadata() {
+  return {
+    title: "Future Logix Services | Cloud, Security, Automation",
+    description: "Explore Future Logix services for cloud migration, cybersecurity, automation, and custom development.",
+    alternates: {
+      canonical: "/services",
+    },
+    openGraph: {
+      title: "Future Logix Services | Cloud, Security, Automation",
+      description: "Explore Future Logix services for cloud migration, cybersecurity, automation, and custom development.",
+      url: "/services",
+      siteName: "Future Logix",
+      locale: "en_NG",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Future Logix Services | Cloud, Security, Automation",
+      description: "Explore Future Logix services for cloud migration, cybersecurity, automation, and custom development.",
+    },
+  };
+}
 
 const services = [
   {

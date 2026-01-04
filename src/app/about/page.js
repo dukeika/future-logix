@@ -1,9 +1,33 @@
-'use client';
-
 import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Link from "next/link";
+
+export function generateMetadata() {
+  return {
+    title: "About Future Logix | Digital Transformation in Lagos",
+    description:
+      "Learn about Future Logix, a Lagos-based digital transformation consultancy delivering cloud, security, and automation.",
+    alternates: {
+      canonical: "/about",
+    },
+    openGraph: {
+      title: "About Future Logix | Digital Transformation in Lagos",
+      description:
+        "Learn about Future Logix, a Lagos-based digital transformation consultancy delivering cloud, security, and automation.",
+      url: "/about",
+      siteName: "Future Logix",
+      locale: "en_NG",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "About Future Logix | Digital Transformation in Lagos",
+      description:
+        "Learn about Future Logix, a Lagos-based digital transformation consultancy delivering cloud, security, and automation.",
+    },
+  };
+}
 
 export default function About() {
   return (
@@ -41,7 +65,7 @@ export default function About() {
               <p className="uppercase text-xs font-bold text-yellow-500 tracking-wide mb-2">Vision</p>
               <h2 className="text-2xl font-bold mb-4 text-gray-900">Be the trusted transformation partner across Africa</h2>
               <p className="text-gray-700 leading-relaxed">
-                We aim to be the go-to partner for cloud adoption, security uplift, and automation — known for dependable
+                We aim to be the go-to partner for cloud adoption, security uplift, and automation - known for dependable
                 delivery, documentation, and long-term support.
               </p>
             </div>

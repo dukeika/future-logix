@@ -1,11 +1,11 @@
-'use client';
-
-import React, { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import React from "react";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
-import Link from "next/link";
 import { getBlogPost, getBlogPosts } from "../../../data/blogPosts";
+
+export const dynamic = "force-dynamic";
 
 const categoryColor = (color) => {
   switch (color) {
@@ -37,64 +37,49 @@ const gradientColor = (color) => {
   }
 };
 
-export default function BlogPost() {
-  const params = useParams();
-  const router = useRouter();
-  const [post, setPost] = useState(null);
-  const [relatedPosts, setRelatedPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    if (params.id) {
-      const foundPost = getBlogPost(params.id);
-
-      if (foundPost && foundPost.published) {
-        setPost(foundPost);
-
-        const allPosts = getBlogPosts().filter((p) => p.published && p.id !== foundPost.id);
-        const sameCategory = allPosts.filter((p) => p.category === foundPost.category).slice(0, 2);
-        const other = allPosts.filter((p) => p.category !== foundPost.category).slice(0, 3 - sameCategory.length);
-        setRelatedPosts([...sameCategory, ...other]);
-      } else {
-        router.push("/blog");
-      }
-
-      setLoading(false);
-    }
-  }, [params.id, router]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex flex-col bg-white">
-        <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading post...</p>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+export function generateMetadata({ params }) {
+  const post = getBlogPost(params.id);
+  if (!post || !post.published) {
+    return {
+      title: "Post not found | Future Logix Blog",
+      description: "The blog post you are looking for does not exist.",
+      alternates: {
+        canonical: "/blog",
+      },
+    };
   }
 
-  if (!post) {
-    return (
-      <div className="min-h-screen flex flex-col bg-white">
-        <Header />
-        <main className="flex-grow flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">Post not found</h1>
-            <p className="text-gray-600 mb-8">The blog post you are looking for does not exist.</p>
-            <Link href="/blog">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg">Back to blog</button>
-            </Link>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
+  return {
+    title: `${post.title} | Future Logix Blog`,
+    description: post.excerpt,
+    alternates: {
+      canonical: `/blog/${post.id}`,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: "article",
+      url: `/blog/${post.id}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+    },
+  };
+}
+
+export default function BlogPost({ params }) {
+  const post = getBlogPost(params.id);
+
+  if (!post || !post.published) {
+    notFound();
   }
+
+  const allPosts = getBlogPosts().filter((p) => p.published && p.id !== post.id);
+  const sameCategory = allPosts.filter((p) => p.category === post.category).slice(0, 2);
+  const other = allPosts.filter((p) => p.category !== post.category).slice(0, 3 - sameCategory.length);
+  const relatedPosts = [...sameCategory, ...other];
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
@@ -152,7 +137,9 @@ export default function BlogPost() {
           <div className="max-w-4xl mx-auto px-4">
             <article className="prose prose-lg max-w-none text-gray-800">
               <div className="space-y-6 leading-relaxed">
-                {post.content.split("\n\n").map((paragraph, index) => (
+                {post.content.split("
+
+").map((paragraph, index) => (
                   <p key={index} className="mb-4">
                     {paragraph}
                   </p>

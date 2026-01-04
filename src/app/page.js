@@ -1,10 +1,37 @@
-'use client';
-
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { getBlogPosts } from "../data/blogPosts";
+import ConsultationForm from "../components/ConsultationForm";
+
+export const dynamic = "force-dynamic";
+
+export function generateMetadata() {
+  return {
+    title: "Future Logix - IT Solutions & Digital Transformation",
+    description:
+      "Leading IT solutions and digital transformation consulting firm in Lagos, Nigeria. Specializing in cloud migration, cybersecurity, and business automation.",
+    alternates: {
+      canonical: "/",
+    },
+    openGraph: {
+      title: "Future Logix - IT Solutions & Digital Transformation",
+      description:
+        "Leading IT solutions and digital transformation consulting firm in Lagos, Nigeria. Specializing in cloud migration, cybersecurity, and business automation.",
+      url: "/",
+      siteName: "Future Logix",
+      locale: "en_NG",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Future Logix - IT Solutions & Digital Transformation",
+      description:
+        "Leading IT solutions and digital transformation consulting firm in Lagos, Nigeria. Specializing in cloud migration, cybersecurity, and business automation.",
+    },
+  };
+}
 
 const services = [
   {
@@ -69,38 +96,10 @@ const clientStories = [
 ];
 
 export default function Home() {
-  const [recentPosts, setRecentPosts] = useState([]);
-  const [consultationStatus, setConsultationStatus] = useState("");
-
-  useEffect(() => {
-    const posts = getBlogPosts()
-      .filter((post) => post.published)
-      .sort((a, b) => new Date(b.date) - new Date(a.date))
-      .slice(0, 3);
-    setRecentPosts(posts);
-  }, []);
-
-  const handleConsultationSubmit = async (event) => {
-    event.preventDefault();
-    const formEl = event.currentTarget;
-    setConsultationStatus("");
-    const formData = new FormData(formEl);
-    const payload = Object.fromEntries(formData.entries());
-
-    try {
-      const res = await fetch("/api/consultations", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error("Failed to submit consultation");
-      setConsultationStatus("Thank you. We received your consultation request and will respond shortly.");
-      formEl.reset();
-    } catch (error) {
-      setConsultationStatus("Sorry, something went wrong. Please try again.");
-      console.error("Consultation submit failed", error);
-    }
-  };
+  const recentPosts = getBlogPosts()
+    .filter((post) => post.published)
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
@@ -444,7 +443,7 @@ export default function Home() {
               <p className="uppercase text-xs font-bold text-blue-600 tracking-wide mb-2">Consultation</p>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Book a consultation</h2>
               <p className="text-lg text-gray-700 mb-4">
-                Tell us what you need — cloud migration, security uplift, automation, or a new build. We will respond with
+                Tell us what you need - cloud migration, security uplift, automation, or a new build. We will respond with
                 a proposed plan and next steps.
               </p>
               <ul className="space-y-3 text-sm text-gray-700">
@@ -461,90 +460,8 @@ export default function Home() {
                   All details route to the admin dashboard for follow-up.
                 </li>
               </ul>
-              {consultationStatus && (
-                <p className="mt-4 text-sm font-semibold text-blue-800">{consultationStatus}</p>
-              )}
             </div>
-
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
-              <form className="space-y-4" onSubmit={handleConsultationSubmit}>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-1">Name *</label>
-                  <input
-                    name="name"
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Your full name"
-                  />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1">Email *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="you@example.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1">Phone</label>
-                    <input
-                      name="phone"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      placeholder="+234..."
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-1">Topic</label>
-                  <select
-                    name="topic"
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  >
-                    <option>Cloud Migration</option>
-                    <option>Cybersecurity</option>
-                    <option>Automation</option>
-                    <option>Custom Development</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1">Preferred Date</label>
-                    <input
-                      type="date"
-                      name="preferredDate"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-800 mb-1">Preferred Time</label>
-                    <input
-                      type="time"
-                      name="preferredTime"
-                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-800 mb-1">Notes</label>
-                  <textarea
-                    name="notes"
-                    rows={4}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Project goals, timelines, questions..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg transition-transform hover:-translate-y-0.5"
-                >
-                  Submit consultation request
-                </button>
-              </form>
-            </div>
+            <ConsultationForm />
           </div>
         </section>
       </main>

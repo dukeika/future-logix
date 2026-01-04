@@ -1,18 +1,20 @@
 import crypto from "crypto";
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+
 const hashSecret = (secret) => crypto.createHash("sha256").update(secret).digest("hex");
 
 const cookieOptions = {
   httpOnly: true,
-  secure: true,
+  secure: process.env.NODE_ENV === "production",
   sameSite: "lax",
   path: "/",
   maxAge: 60 * 60 * 8, // 8 hours
 };
 
 export async function POST(request) {
-  const adminPassword = process.env.ADMIN_PASSWORD || "lbifdfdfdX31#~";
+  const adminPassword = process.env.ADMIN_PASSWORD;
   if (!adminPassword) {
     return NextResponse.json({ error: "ADMIN_PASSWORD is not configured" }, { status: 500 });
   }

@@ -10,6 +10,7 @@ const region =
   "us-east-1";
 const fromAddress = process.env.NOTIFY_FROM;
 const toAddress = process.env.NOTIFY_TO || process.env.NOTIFY_FROM;
+const archiveAddress = process.env.NOTIFY_ARCHIVE_TO;
 
 const ses = new SESClient({ region });
 
@@ -21,7 +22,10 @@ export async function sendNotificationEmail({ subject, html, text }) {
 
   const params = {
     Source: fromAddress,
-    Destination: { ToAddresses: [toAddress] },
+    Destination: {
+      ToAddresses: [toAddress],
+      ...(archiveAddress ? { BccAddresses: [archiveAddress].filter((addr) => addr && addr !== toAddress) } : {}),
+    },
     Message: {
       Subject: { Data: subject, Charset: "UTF-8" },
       Body: {

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
-import { addContactMessage, listContactMessages, updateContactMessage } from "../../../lib/inMemoryStore";
+import { addContactMessage, listContactMessages, updateContactMessage } from "../../../lib/submissionsStore";
 import { sendNotificationEmail } from "../../../lib/notify";
+import { isAdminRequest } from "../../../lib/adminAuth";
+
+export const runtime = "nodejs";
 
 const parseBody = async (request) => {
   const contentType = request.headers.get("content-type") || "";
@@ -15,8 +18,12 @@ const clean = (value) => (typeof value === "string" ? value.trim() : "");
 const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 const MAX_MESSAGE_LENGTH = 4000;
 
-export async function GET() {
-  return NextResponse.json({ items: listContactMessages() });
+export async function GET(request) {
+  if (!isAdminRequest(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  const items = await listContactMessages();
+  return NextResponse.json({ items });
 }
 
 export async function POST(request) {
@@ -39,7 +46,7 @@ export async function POST(request) {
     return NextResponse.json({ error: "Message is too long." }, { status: 400 });
   }
 
-  const record = addContactMessage({
+  const record = await addContactMessage({
     name,
     email,
     phone: phone || "",
@@ -65,12 +72,15 @@ export async function POST(request) {
 }
 
 export async function PATCH(request) {
+  if (!isAdminRequest(request)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
   const data = await parseBody(request);
   const { id, status, note } = data || {};
   if (!id) {
     return NextResponse.json({ error: "id is required" }, { status: 400 });
   }
-  const updated = updateContactMessage(Number(id), {
+  const updated = await updateContactMessage(Number(id), {
     status: status || undefined,
     note: note || "",
   });
