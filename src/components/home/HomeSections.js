@@ -352,7 +352,7 @@ export function ServicesBand() {
               <div
                 key={service.name}
                 className={`rounded-[2rem] border p-6 sm:p-7 ${
-                  index === 0
+                  service.slug === "workflow-automation" || service.slug === "custom-software-development"
                     ? "border-cyan-300/20 bg-[linear-gradient(145deg,#10233d,#0b1321)]"
                     : "border-white/10 bg-white/[0.04]"
                 }`}
@@ -367,6 +367,14 @@ export function ServicesBand() {
                     <h3 className="text-2xl font-semibold">{service.name}</h3>
                     <p className="mt-3 text-sm leading-7 text-slate-300">{service.summary}</p>
                     <p className="mt-4 text-sm leading-7 text-slate-400">{service.value}</p>
+                    {service.href !== "/services" && (
+                      <Link
+                        href={service.href}
+                        className="mt-5 inline-flex rounded-full border border-white/[0.08] bg-white/[0.05] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
+                      >
+                        View service
+                      </Link>
+                    )}
                   </div>
                   <div className="flex flex-wrap gap-2 lg:justify-end">
                     {service.bullets.map((bullet) => (

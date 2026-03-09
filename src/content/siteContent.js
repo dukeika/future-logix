@@ -163,6 +163,9 @@ export const products = [
 export const services = [
   {
     name: "Cloud and Infrastructure",
+    slug: "cloud-and-infrastructure",
+    category: "Operational Foundation",
+    href: "/services",
     summary:
       "Set up the hosting, deployment, and operational foundation needed to run modern software reliably and with less friction.",
     value: "Helps teams move away from fragile setups and into infrastructure they can operate with more confidence.",
@@ -170,6 +173,9 @@ export const services = [
   },
   {
     name: "Cybersecurity",
+    slug: "cybersecurity",
+    category: "Risk and Resilience",
+    href: "/services",
     summary:
       "Strengthen security posture with practical controls, reviews, and implementation support suited to growing organizations.",
     value: "Helps reduce preventable risk and gives teams a more disciplined security baseline as systems and exposure grow.",
@@ -177,6 +183,9 @@ export const services = [
   },
   {
     name: "Workflow Automation",
+    slug: "workflow-automation",
+    category: "Featured Service",
+    href: "/services/workflow-automation",
     summary:
       "Replace repetitive manual work with workflows, integrations, and system logic that improve speed and consistency.",
     value: "Helps teams spend less time on repetitive coordination and more time on real business execution.",
@@ -184,6 +193,9 @@ export const services = [
   },
   {
     name: "Custom Software Development",
+    slug: "custom-software-development",
+    category: "Featured Service",
+    href: "/services/custom-software-development",
     summary:
       "Build internal tools, customer-facing platforms, and tailored software products around clear business needs.",
     value: "Helps organizations create systems that fit how they actually operate instead of forcing work into generic tools.",
@@ -191,6 +203,9 @@ export const services = [
   },
   {
     name: "Product Engineering and Advisory",
+    slug: "technology-advisory",
+    category: "Strategy and Delivery",
+    href: "/services",
     summary:
       "Shape better digital products and make stronger technology decisions with a team that understands both delivery and business positioning.",
     value: "Helps leaders avoid expensive misdirection and move toward products and systems with stronger market fit.",
@@ -304,9 +319,9 @@ export const footerGroups = {
     { label: "Product Portfolio", href: "/products" },
   ],
   services: [
-    { label: "Cloud and Infrastructure", href: "/services" },
-    { label: "Cybersecurity", href: "/services" },
-    { label: "Workflow Automation", href: "/services" },
+    { label: "Workflow Automation", href: "/services/workflow-automation" },
+    { label: "Custom Software Development", href: "/services/custom-software-development" },
+    { label: "All Services", href: "/services" },
   ],
   company: [
     { label: "About", href: "/about" },
@@ -530,6 +545,318 @@ export const classPointDetail = {
       { label: "Visit ClassPoint", href: "https://classpoint.ng", external: true },
       { label: "Talk to Future Logix", href: "/contact" },
       { label: "Back to Products", href: "/products" },
+    ],
+  },
+};
+
+export const servicesHub = {
+  hero: {
+    eyebrow: "Services",
+    title: "Practical technology services for businesses that need better systems, not more noise.",
+    description:
+      "Future Logix works with growing businesses and institutions that need to reduce process friction, build better software, strengthen digital operations, and make more grounded technology decisions.",
+    primaryCta: { label: "Talk to Us", href: "/contact" },
+    secondaryCta: { label: "Explore Service Areas", href: "#service-areas" },
+    supportPoints: [
+      "Business-aware delivery",
+      "Implementation-minded support",
+      "Built for operational clarity",
+    ],
+  },
+  architecture: {
+    eyebrow: "Service Areas",
+    title: "A focused services portfolio built around outcomes that matter to growing organizations.",
+    description:
+      "Future Logix offers service lines that help clients improve execution, modernize internal systems, reduce operating drag, and make more credible technology decisions.",
+  },
+  engagement: {
+    eyebrow: "How We Work",
+    title: "A delivery model designed to reduce uncertainty and move work into action.",
+    description:
+      "Services are structured around practical engagement: understand the bottleneck, define the right technical response, implement what is needed, and improve the system after it goes live.",
+    steps: [
+      {
+        title: "Understand the business bottleneck",
+        body: "Start from operational pressure points, growth constraints, or product needs rather than rushing into tools too early.",
+      },
+      {
+        title: "Define the right technical path",
+        body: "Shape the service around what will actually improve workflow, visibility, speed, or delivery quality.",
+      },
+      {
+        title: "Build, implement, and integrate",
+        body: "Handle the technical execution with a bias toward usable systems and clean adoption.",
+      },
+      {
+        title: "Support improvement over time",
+        body: "Refine the workflow, system, or platform after launch so the work continues to create value.",
+      },
+    ],
+  },
+  featured: {
+    eyebrow: "Featured Services",
+    title: "Workflow Automation and Custom Software Development lead the services story in this phase.",
+    description:
+      "These two offers are the most direct bridge between business pain and visible transformation. They make the Future Logix services side feel concrete, outcome-oriented, and immediately relevant.",
+  },
+  paths: {
+    eyebrow: "Next Step",
+    title: "Choose the service path that matches your need.",
+    description:
+      "Some teams need automation help. Others need a custom platform. Others need a broader technology conversation. The service journey should make those choices obvious.",
+    actions: [
+      {
+        title: "Workflow automation support",
+        body: "For businesses trying to reduce repetitive work, connect systems, and improve operational speed.",
+        label: "Explore Automation",
+        href: "/services/workflow-automation",
+      },
+      {
+        title: "Custom software support",
+        body: "For businesses that need a tailored portal, workflow system, dashboard, or internal platform.",
+        label: "Explore Custom Software",
+        href: "/services/custom-software-development",
+      },
+      {
+        title: "Broader technology consultation",
+        body: "For leadership teams that need help deciding what to build, improve, secure, or modernize next.",
+        label: "Talk to Future Logix",
+        href: "/contact",
+      },
+    ],
+  },
+};
+
+export const workflowAutomationDetail = {
+  slug: "workflow-automation",
+  name: "Workflow Automation",
+  hero: {
+    eyebrow: "Workflow Automation",
+    title: "Automation that reduces manual work and helps operations move faster.",
+    description:
+      "Future Logix helps organizations design and implement automation workflows that reduce repetitive work, improve visibility, and make execution more consistent across the business.",
+    audience: "For SMEs, operations teams, service businesses, and growing organizations dealing with repeated process friction.",
+    primaryCta: { label: "Discuss an Automation Project", href: "/contact" },
+    secondaryCta: { label: "Book a Consultation", href: "/contact" },
+  },
+  challenge: {
+    eyebrow: "Business Challenge",
+    title: "Manual processes quietly slow down teams long before leaders notice the cost clearly.",
+    description:
+      "Many organizations operate with repeated tasks spread across email, spreadsheets, chat, and disconnected tools. The result is slow turnaround, inconsistent follow-up, hidden bottlenecks, and staff time lost to work that should no longer be manual.",
+    items: [
+      "Repetitive manual processes that keep stealing staff time",
+      "Disconnected systems that create double entry and follow-up gaps",
+      "Slow approvals, notifications, and internal handoffs",
+      "Weak visibility into what is happening across day-to-day operations",
+    ],
+  },
+  examples: {
+    eyebrow: "What We Help Automate",
+    title: "Automation work is shaped around the workflows businesses repeat every day.",
+    description:
+      "The goal is not automation for its own sake. It is to remove process drag where it keeps slowing down delivery, coordination, and business response time.",
+    items: [
+      {
+        title: "Lead capture and follow-up",
+        body: "Route enquiries quickly, trigger the right follow-up steps, and reduce dropped opportunities.",
+      },
+      {
+        title: "Operational approvals",
+        body: "Reduce lag in internal approvals by creating clearer routing and decision paths.",
+      },
+      {
+        title: "Internal notifications",
+        body: "Trigger alerts and updates automatically when work reaches the next stage.",
+      },
+      {
+        title: "System integrations",
+        body: "Connect the tools teams already use so information moves with less manual intervention.",
+      },
+      {
+        title: "Reporting pipelines",
+        body: "Structure recurring reporting flows so teams get visibility without rebuilding reports manually every time.",
+      },
+      {
+        title: "Task routing and onboarding flows",
+        body: "Automate assignment, sequencing, and onboarding steps for smoother internal execution.",
+      },
+    ],
+  },
+  outcomes: {
+    eyebrow: "Outcomes",
+    title: "The value of automation is operational clarity, speed, and consistency.",
+    items: [
+      "Less manual work across repetitive business processes",
+      "Faster execution and reduced process delays",
+      "Fewer avoidable errors caused by fragmented handoffs",
+      "Better visibility into what is happening across operations",
+      "A more scalable operating model as the business grows",
+    ],
+  },
+  audience: {
+    eyebrow: "Who It Is For",
+    title: "Best suited to organizations where repeated process friction is already visible.",
+    description:
+      "Workflow automation is especially relevant when teams are growing, service delivery is becoming more complex, or operations are still leaning too heavily on scattered manual coordination.",
+    segments: [
+      "SMEs trying to improve operational efficiency",
+      "Operations teams carrying too much process overhead",
+      "Growing companies that need better internal coordination",
+      "Service businesses handling recurring follow-up and approvals",
+      "Organizations with obvious admin bottlenecks and repeated workflow drag",
+    ],
+  },
+  approach: {
+    eyebrow: "How Future Logix Approaches It",
+    title: "Automation starts with understanding the workflow, not with forcing a tool.",
+    steps: [
+      {
+        title: "Map the current workflow",
+        body: "Understand how work currently moves, where it stalls, and where manual steps are creating avoidable drag.",
+      },
+      {
+        title: "Design the right automation path",
+        body: "Choose the automation logic, approvals, integrations, and triggers that fit the business context.",
+      },
+      {
+        title: "Implement and connect the tools",
+        body: "Build the automation flow and connect the systems involved so work moves more consistently.",
+      },
+      {
+        title: "Monitor and improve",
+        body: "Refine the workflow after rollout so it continues to support the business as processes evolve.",
+      },
+    ],
+  },
+  conversion: {
+    eyebrow: "Next Step",
+    title: "Need to reduce process drag in your business?",
+    description:
+      "Future Logix can help you review the workflow, identify what should be automated, and implement a more scalable path forward.",
+    actions: [
+      { label: "Talk to Future Logix", href: "/contact" },
+      { label: "Discuss an Automation Project", href: "/contact" },
+      { label: "Back to Services", href: "/services" },
+    ],
+  },
+};
+
+export const customSoftwareDetail = {
+  slug: "custom-software-development",
+  name: "Custom Software Development",
+  hero: {
+    eyebrow: "Custom Software Development",
+    title: "Software built around how your business actually works.",
+    description:
+      "Future Logix helps organizations plan and build custom platforms, portals, internal systems, and operational software when off-the-shelf tools no longer fit the work clearly enough.",
+    audience: "For growing businesses, operators, founders, schools, and institutions that need a more tailored digital foundation.",
+    primaryCta: { label: "Discuss Your Project", href: "/contact" },
+    secondaryCta: { label: "Get a Consultation", href: "/contact" },
+  },
+  challenge: {
+    eyebrow: "Business Challenge",
+    title: "Custom software becomes necessary when the business has outgrown workarounds.",
+    description:
+      "There is a point where spreadsheets, disconnected tools, and generic platforms create more friction than value. That is when a tailored system can start improving control, workflow quality, and long-term operating efficiency.",
+    items: [
+      "Off-the-shelf tools no longer match how the business runs",
+      "Operations are fragmented across too many disconnected systems",
+      "Internal workflows need a platform built around the actual process",
+      "Growth now depends on a portal, dashboard, internal system, or business application",
+    ],
+  },
+  examples: {
+    eyebrow: "What We Can Help Build",
+    title: "The focus is on systems that support real operations, delivery, and growth.",
+    description:
+      "Future Logix works on custom software where the business needs a system that fits more precisely than a generic tool can.",
+    items: [
+      {
+        title: "Internal business platforms",
+        body: "Build internal tools that give teams more structure, visibility, and control over day-to-day work.",
+      },
+      {
+        title: "Client portals",
+        body: "Create cleaner client-facing experiences for access, updates, service interaction, or account management.",
+      },
+      {
+        title: "Workflow systems",
+        body: "Turn repeated operational processes into a more usable system rather than a patchwork of manual steps.",
+      },
+      {
+        title: "Dashboards and admin systems",
+        body: "Give leaders and operators a clearer view into performance, records, and operational activity.",
+      },
+      {
+        title: "Business web applications",
+        body: "Build tailored web-based systems that support a specific business model or internal process.",
+      },
+      {
+        title: "Product MVPs and operational software",
+        body: "Support new product ideas or operational software needs with a more structured build path.",
+      },
+    ],
+  },
+  outcomes: {
+    eyebrow: "Outcomes",
+    title: "Good custom software should create fit, clarity, and room to scale.",
+    items: [
+      "Systems aligned more closely with real business needs",
+      "Better operational control and cleaner internal workflows",
+      "Reduced process friction across teams and users",
+      "A platform that leaves more room for future growth",
+      "A stronger user experience than fragmented manual workarounds",
+    ],
+  },
+  audience: {
+    eyebrow: "Who It Is For",
+    title: "A fit for organizations that need a more tailored system than generic tools can provide.",
+    description:
+      "This service is most relevant when a business has clear operational complexity, a defined workflow challenge, or a product idea that needs a credible technical build path.",
+    segments: [
+      "Growing businesses building around more structured operations",
+      "Founders needing an MVP, internal platform, or business application",
+      "Operators trying to replace spreadsheets and disconnected tools",
+      "Schools or institutions that need a custom operational system",
+      "Teams that need a portal, dashboard, workflow platform, or admin system",
+    ],
+  },
+  approach: {
+    eyebrow: "How Future Logix Approaches It",
+    title: "The work moves from discovery and clarity into build, launch, and improvement.",
+    steps: [
+      {
+        title: "Discovery",
+        body: "Understand the business model, users, workflows, and what the software is supposed to improve.",
+      },
+      {
+        title: "Requirements clarity",
+        body: "Define the important workflows, constraints, and core capabilities before building too much too early.",
+      },
+      {
+        title: "Architecture and planning",
+        body: "Shape a credible build path with the right technical structure for the scope and stage of the product.",
+      },
+      {
+        title: "Design and build",
+        body: "Implement the system with a bias toward usability, maintainability, and operational fit.",
+      },
+      {
+        title: "Launch and improvement",
+        body: "Support rollout, gather learning, and improve the system after real use begins.",
+      },
+    ],
+  },
+  conversion: {
+    eyebrow: "Next Step",
+    title: "Need software that fits your business more closely?",
+    description:
+      "Future Logix can help you scope the right system, define the build path, and move from fragmented workarounds to a more usable platform.",
+    actions: [
+      { label: "Discuss Your Project", href: "/contact" },
+      { label: "Talk to Future Logix", href: "/contact" },
+      { label: "Back to Services", href: "/services" },
     ],
   },
 };
