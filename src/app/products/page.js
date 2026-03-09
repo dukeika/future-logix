@@ -33,8 +33,8 @@ export default function ProductsPage() {
                   meta={product.status}
                   title={product.name}
                   description={product.summary}
-                  href={product.href}
-                  cta={product.cta}
+                  href={product.ctas?.[0]?.href}
+                  cta={product.ctas?.[0]?.label}
                 >
                   <p className="mt-4 text-sm leading-7 text-slate-600">{product.detail}</p>
                 </FeatureCard>

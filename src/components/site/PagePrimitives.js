@@ -39,9 +39,12 @@ export function SectionHeading({ eyebrow, title, description, align = "left", to
 
 export function PromoStrip({ items }) {
   return (
-    <div className="grid gap-3 rounded-[2rem] border border-white/10 bg-white/5 p-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-3 rounded-[2rem] border border-white/10 bg-white/5 p-4 sm:grid-cols-2 xl:grid-cols-5">
       {items.map((item) => (
-        <div key={item} className="rounded-[1.5rem] border border-white/[0.08] bg-[#0f1a2d] px-4 py-5 text-sm font-medium text-slate-200">
+        <div
+          key={item}
+          className="rounded-[1.5rem] border border-white/[0.08] bg-[#0f1a2d] px-4 py-5 text-sm font-medium text-slate-200 transition duration-300 hover:-translate-y-0.5 hover:border-cyan-300/30 hover:bg-[#12213b]"
+        >
           {item}
         </div>
       ))}
@@ -49,15 +52,19 @@ export function PromoStrip({ items }) {
   );
 }
 
-export function FeatureCard({ title, description, meta, href, cta, variant = "dark", children }) {
+export function FeatureCard({ title, description, meta, href, cta, variant = "dark", className = "", children }) {
   const classes =
     variant === "light"
-      ? "border-slate-200 bg-white text-slate-950 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.35)]"
-      : "border-white/10 bg-white/[0.04] text-white";
+      ? "border-slate-200 bg-white text-slate-950 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.35)] hover:border-cyan-200"
+      : "border-white/10 bg-white/[0.04] text-white hover:border-cyan-300/30 hover:bg-white/[0.06]";
 
   return (
-    <article className={`rounded-[2rem] border p-6 sm:p-8 ${classes}`}>
-      {meta && <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-cyan-300">{meta}</p>}
+    <article className={`rounded-[2rem] border p-6 transition duration-300 sm:p-8 ${classes} ${className}`}>
+      {meta && (
+        <p className={`text-[11px] font-semibold uppercase tracking-[0.24em] ${variant === "light" ? "text-cyan-700" : "text-cyan-300"}`}>
+          {meta}
+        </p>
+      )}
       <h3 className="mt-4 text-2xl font-semibold">{title}</h3>
       <p className={`mt-3 text-sm leading-7 ${variant === "light" ? "text-slate-600" : "text-slate-300"}`}>{description}</p>
       {children}
@@ -102,4 +109,13 @@ export function CtaBand({ eyebrow, title, body, primaryHref = "/contact", primar
       </div>
     </div>
   );
+}
+
+export function Pill({ children, tone = "dark" }) {
+  const classes =
+    tone === "light"
+      ? "border-slate-200 bg-slate-50 text-slate-700"
+      : "border-white/[0.1] bg-white/[0.05] text-slate-200";
+
+  return <span className={`inline-flex rounded-full border px-3 py-2 text-sm font-medium ${classes}`}>{children}</span>;
 }
