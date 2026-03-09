@@ -10,10 +10,10 @@ export const navigation = [
 
 export const featuredProduct = {
   name: "ClassPoint",
-  href: "/products#classpoint",
+  href: "/products/classpoint",
   category: "Flagship Product",
   summary:
-    "A classroom engagement and digital learning product for schools, training teams, and institutions that need better participation, structure, and visibility.",
+    "A school operations platform for Nigerian schools that need better structure across administration, records, communication, and daily delivery.",
 };
 
 export const trustPoints = [
@@ -135,13 +135,14 @@ export const products = [
     slug: "classpoint",
     status: "Flagship Product",
     summary:
-      "A digital learning and classroom engagement product for schools, training providers, and institutions that want more structured, interactive teaching experiences.",
+      "A school operations platform for Nigerian schools that need more structure across administration, communication, academic workflows, and daily visibility.",
     detail:
-      "ClassPoint helps improve engagement, session flow, and learning visibility for organizations that need a more modern educational experience.",
-    audience: "Built for schools, training organizations, and teams delivering structured learning programs.",
-    problem: "It solves fragmented participation, low session visibility, and weak digital engagement in learning environments.",
+      "ClassPoint helps schools reduce operational stress by bringing key records, workflows, and communication into one practical system.",
+    audience: "Built for private schools, school owners, administrators, and operations-focused education teams.",
+    problem:
+      "It helps schools reduce admin overload, disconnected records, communication friction, and manual fee, attendance, and result workflows.",
     ctas: [
-      { label: "Explore ClassPoint", href: "/products#classpoint" },
+      { label: "Explore ClassPoint", href: "/products/classpoint" },
       { label: "Talk to Us", href: "/contact" },
     ],
   },
@@ -299,7 +300,7 @@ export const insights = [
 
 export const footerGroups = {
   products: [
-    { label: "ClassPoint", href: "/products#classpoint" },
+    { label: "ClassPoint", href: "/products/classpoint" },
     { label: "Product Portfolio", href: "/products" },
   ],
   services: [
@@ -313,4 +314,222 @@ export const footerGroups = {
     { label: "Insights", href: "/insights" },
     { label: "Contact", href: "/contact" },
   ],
+};
+
+export const productHub = {
+  hero: {
+    eyebrow: "Products",
+    title: "Products built for practical operations, clear adoption, and long-term relevance.",
+    description:
+      "Future Logix builds software products for real operational problems. The product side of the company is designed to create useful systems that organizations can adopt, trust, and grow with, starting with ClassPoint.",
+    primaryCta: { label: "Explore ClassPoint", href: "/products/classpoint" },
+    secondaryCta: { label: "Talk to Us", href: "/contact" },
+    supportingPoints: [
+      "Backed by Future Logix",
+      "Built for local operating realities",
+      "Designed for real-world adoption",
+    ],
+  },
+  philosophy: {
+    eyebrow: "How We Build",
+    title: "A product approach shaped by business reality, not feature inflation.",
+    description:
+      "Future Logix products are built to solve recurring operational problems with clear workflows, sensible implementation, and room to scale over time.",
+    pillars: [
+      {
+        title: "Practical first",
+        body: "Products start from real operational pressure points, not abstract product theory.",
+      },
+      {
+        title: "Adoption-aware",
+        body: "The goal is not to impress with complexity. It is to make modernization easier to adopt and sustain.",
+      },
+      {
+        title: "Scalable by design",
+        body: "Each product is shaped to support growth, clearer data visibility, and stronger operating discipline over time.",
+      },
+      {
+        title: "Built with local context",
+        body: "Workflows and priorities are informed by how African organizations actually run, communicate, and grow.",
+      },
+    ],
+  },
+  spotlight: {
+    eyebrow: "Flagship Product",
+    title: "ClassPoint is the first product to carry the Future Logix portfolio into the market.",
+    description:
+      "ClassPoint gives the product side of Future Logix real commercial substance. It is positioned as a focused solution for school operations, not a placeholder name inside a portfolio deck.",
+    quickFacts: [
+      "School operations platform",
+      "Built for Nigerian schools",
+      "Designed for administrative clarity",
+    ],
+  },
+  portfolio: {
+    eyebrow: "Growing Portfolio",
+    title: "Future Logix is building a product company with room for more category-specific solutions.",
+    description:
+      "The portfolio is intentionally starting with one clear flagship product. That gives the brand focus today while leaving room for future products that solve practical business and institutional problems.",
+    tracks: [
+      {
+        title: "Focused expansion",
+        body: "Future products will be added where there is a repeatable problem, a credible product case, and a clear path to adoption.",
+      },
+      {
+        title: "Partner-ready direction",
+        body: "The product side of Future Logix is structured to support product conversations with operators, institutional buyers, and strategic partners.",
+      },
+    ],
+    cta: {
+      label: "Talk to Future Logix",
+      href: "/contact",
+    },
+  },
+  paths: {
+    eyebrow: "Next Step",
+    title: "Choose the right product path from here.",
+    description:
+      "Whether you want to evaluate ClassPoint, understand the portfolio direction, or discuss a product partnership, the next step should be clear.",
+    actions: [
+      {
+        title: "View ClassPoint details",
+        body: "See what ClassPoint is for, what it solves, and why it matters to school operators.",
+        label: "Go to ClassPoint",
+        href: "/products/classpoint",
+      },
+      {
+        title: "Visit the product website",
+        body: "Open the ClassPoint site if you want to engage with the product brand directly.",
+        label: "Visit ClassPoint",
+        href: "https://classpoint.ng",
+        external: true,
+      },
+      {
+        title: "Talk to Future Logix",
+        body: "Start a conversation about product partnerships, institutional needs, or future portfolio opportunities.",
+        label: "Talk to Us",
+        href: "/contact",
+      },
+    ],
+  },
+};
+
+export const classPointDetail = {
+  hero: {
+    eyebrow: "ClassPoint",
+    title: "A school operations platform for Nigerian schools.",
+    description:
+      "ClassPoint helps schools run more clearly by bringing key administrative records, academic workflows, and communication touchpoints into one more usable system.",
+    audience: "For private schools, school leaders, administrators, and operations-focused education teams.",
+    primaryCta: { label: "Visit ClassPoint", href: "https://classpoint.ng", external: true },
+    secondaryCta: { label: "Talk to Future Logix", href: "/contact" },
+    stats: [
+      { label: "Category", value: "School Operations" },
+      { label: "Market Focus", value: "Nigerian Schools" },
+      { label: "Backed By", value: "Future Logix" },
+    ],
+  },
+  problems: {
+    eyebrow: "Why It Exists",
+    title: "Schools often outgrow manual coordination before they outgrow ambition.",
+    description:
+      "As schools grow, everyday operations become harder to manage consistently. Records live in too many places, communication becomes fragmented, and leadership loses visibility into what is happening across admin and academic workflows.",
+    items: [
+      "Administrative overload across admissions, student records, and routine follow-up",
+      "Disconnected workflows for fees, attendance, and results",
+      "Communication friction between school leadership, staff, and families",
+      "Limited visibility into day-to-day operations as the school grows",
+    ],
+  },
+  capabilities: {
+    eyebrow: "Key Capabilities",
+    title: "ClassPoint brings the school’s core operational workflows into a more structured system.",
+    description:
+      "The product is positioned around the practical areas schools need to manage well every day, not a long list of abstract features.",
+    items: [
+      {
+        title: "Admissions and records",
+        body: "Keep student information, entry workflows, and core records more organized from the start.",
+      },
+      {
+        title: "Fees and finance operations",
+        body: "Reduce confusion around school fee processes and improve visibility into payment-related administration.",
+      },
+      {
+        title: "Attendance and daily activity",
+        body: "Track attendance and everyday school workflows with less reliance on scattered manual follow-up.",
+      },
+      {
+        title: "Results and academic workflows",
+        body: "Support academic reporting and result-related processes with a system that is easier to manage consistently.",
+      },
+      {
+        title: "Parent-teacher-school communication",
+        body: "Create a clearer communication layer between the school and the people it serves.",
+      },
+      {
+        title: "Administrative visibility",
+        body: "Give school leadership better line of sight into operational activity and where follow-up is needed.",
+      },
+    ],
+  },
+  audience: {
+    eyebrow: "Who It Is For",
+    title: "Built for schools that need better systems without taking on unnecessary complexity.",
+    description:
+      "ClassPoint is a fit for schools that are growing, carrying too much operational workload manually, or trying to modernize school administration in a more structured way.",
+    segments: [
+      {
+        title: "Private schools",
+        body: "Schools looking for stronger structure across administration, records, and academic operations.",
+      },
+      {
+        title: "School leaders and owners",
+        body: "Decision-makers who need better visibility, control, and confidence in how the school is running.",
+      },
+      {
+        title: "Administrative teams",
+        body: "Teams handling the daily operational burden of records, communication, fees, attendance, and reporting.",
+      },
+      {
+        title: "Growing schools",
+        body: "Schools moving beyond manual workarounds and looking for a cleaner modernization path.",
+      },
+    ],
+  },
+  differentiation: {
+    eyebrow: "Why ClassPoint",
+    title: "A product shaped around school realities, not generic software assumptions.",
+    description:
+      "ClassPoint is positioned as a practical modernization path for schools. It is backed by Future Logix, grounded in local realities, and aimed at operational usefulness rather than unnecessary complexity.",
+    points: [
+      {
+        title: "Built around local school realities",
+        body: "The product direction reflects how Nigerian schools actually operate and where operational friction tends to build up.",
+      },
+      {
+        title: "Practical workflows over bloated systems",
+        body: "The goal is to make school operations easier to manage, not to bury teams under software complexity.",
+      },
+      {
+        title: "Designed for adoption",
+        body: "ClassPoint is positioned as a system schools can realistically move into, not an intimidating digital overhaul.",
+      },
+      {
+        title: "Backed by Future Logix",
+        body: "The product sits inside a broader technology company that can support product evolution, implementation thinking, and long-term continuity.",
+      },
+    ],
+  },
+  conversion: {
+    eyebrow: "Next Step",
+    title: "Interested in ClassPoint for your school or institution?",
+    description:
+      "Use the route that fits your stage: go directly to the product site, request a conversation with Future Logix, or start a broader discussion around school technology needs.",
+    actions: [
+      { label: "Visit ClassPoint", href: "https://classpoint.ng", external: true },
+      { label: "Talk to Future Logix", href: "/contact" },
+      { label: "Back to Products", href: "/products" },
+    ],
+  },
 };
