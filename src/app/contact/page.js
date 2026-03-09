@@ -1,133 +1,79 @@
-import React from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import ContactForm from "../../components/ContactForm";
+import ConsultationForm from "../../components/ConsultationForm";
+import { CtaBand, PageContainer, PageShell, Section, SectionHeading } from "../../components/site/PagePrimitives";
 
-export function generateMetadata() {
-  return {
-    title: "Contact Future Logix | Book a Consultation",
-    description: "Contact Future Logix for cloud migration, cybersecurity, automation, or custom development support.",
-    alternates: {
-      canonical: "/contact",
-    },
-    openGraph: {
-      title: "Contact Future Logix | Book a Consultation",
-      description: "Contact Future Logix for cloud migration, cybersecurity, automation, or custom development support.",
-      url: "/contact",
-      siteName: "Future Logix",
-      locale: "en_NG",
-      type: "website",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Contact Future Logix | Book a Consultation",
-      description: "Contact Future Logix for cloud migration, cybersecurity, automation, or custom development support.",
-    },
-  };
-}
+export const metadata = {
+  title: "Contact | Future Logix",
+  description: "Talk to Future Logix about products, services, partnerships, and technology delivery.",
+};
 
-export default function Contact() {
+export default function ContactPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900">
+    <PageShell>
       <Header />
+      <main>
+        <Section className="pb-12 pt-16 sm:pt-24">
+          <PageContainer>
+            <SectionHeading
+              eyebrow="Contact"
+              title="Talk to Future Logix about products, delivery, or long-term partnership."
+              description="This page is now structured as a real conversion destination rather than a simple brochure contact page."
+            />
+          </PageContainer>
+        </Section>
 
-      <main className="flex-grow">
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-[#0B1D4D] via-[#123072] to-[#0A1A3F] text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_top_left,#3B82F6,transparent_35%),radial-gradient(circle_at_bottom_right,#EAB308,transparent_30%)]" />
-          <div className="max-w-6xl mx-auto px-4 py-16 relative z-10">
-            <p className="uppercase text-xs font-bold text-yellow-300 tracking-wide mb-3">Contact</p>
-            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Talk with Future Logix</h1>
-            <p className="text-lg md:text-xl text-blue-100 max-w-3xl">
-              Ready to migrate to the cloud, strengthen security, automate workflows, or build something new? Reach out for a
-              free consultation.
-            </p>
-          </div>
-        </section>
-
-        {/* Contact info and form */}
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
-            <div className="space-y-6">
-              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-                <p className="uppercase text-xs font-bold text-blue-600 tracking-wide mb-2">Get in touch</p>
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">We respond within hours</h2>
-                <p className="text-gray-700 leading-relaxed mb-6">
-                  Tell us about your goals and challenges. We will share a quick plan and next steps for cloud, security,
-                  automation, or product delivery.
-                </p>
-                <div className="space-y-4 text-sm text-gray-700">
-                  <div className="flex gap-3">
-                    <span className="w-2 h-2 rounded-full bg-blue-600 mt-2" />
-                    <div>
-                      <p className="font-semibold text-gray-900">Phone</p>
-                      <p>+234 706 110 6212</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="w-2 h-2 rounded-full bg-green-600 mt-2" />
-                  <div>
-                      <p className="font-semibold text-gray-900">Email</p>
-                      <p>admin@futurelogix.ng</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="w-2 h-2 rounded-full bg-purple-600 mt-2" />
-                    <div>
-                      <p className="font-semibold text-gray-900">Location</p>
-                      <p>Lekki, Lagos, Nigeria</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="w-2 h-2 rounded-full bg-orange-500 mt-2" />
-                    <div>
-                      <p className="font-semibold text-gray-900">Business Hours</p>
-                      <p>Mon-Fri: 9AM-6PM WAT</p>
-                    </div>
-                  </div>
+        <Section tone="light">
+          <PageContainer>
+            <div className="grid gap-6 lg:grid-cols-[0.75fr_1.25fr]">
+              <div className="rounded-[2rem] border border-slate-200 bg-white p-8 text-slate-950 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.35)]">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-700">Contact Details</p>
+                <h2 className="mt-4 text-3xl font-semibold">Start with the right conversation.</h2>
+                <div className="mt-6 space-y-4 text-sm leading-7 text-slate-600">
+                  <p>Products and portfolio discussions</p>
+                  <p>Service and delivery enquiries</p>
+                  <p>ClassPoint partnerships</p>
+                  <p>General business conversations</p>
+                </div>
+                <div className="mt-8 space-y-4 text-sm">
+                  <p className="font-semibold text-slate-950">admin@futurelogix.ng</p>
+                  <p className="font-semibold text-slate-950">+234 706 110 6212</p>
+                  <p className="text-slate-600">Lagos, Nigeria</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-white rounded-2xl border border-blue-100 p-6 shadow-sm">
-                  <p className="text-sm font-semibold text-blue-700 mb-1">Live chat</p>
-                  <p className="text-gray-700">Available 24/7</p>
-                </div>
-                <div className="bg-white rounded-2xl border border-green-100 p-6 shadow-sm">
-                  <p className="text-sm font-semibold text-green-700 mb-1">WhatsApp</p>
-                  <p className="text-gray-700">Quick responses</p>
-                </div>
-              </div>
+              <ContactForm />
             </div>
+          </PageContainer>
+        </Section>
 
-            <ContactForm />
-          </div>
-        </section>
+        <Section>
+          <PageContainer>
+            <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+              <SectionHeading
+                eyebrow="Strategy Session"
+                title="Prefer a more structured conversation?"
+                description="Use the consultation form for a planned discussion around products, services, or a new initiative."
+              />
+              <ConsultationForm />
+            </div>
+          </PageContainer>
+        </Section>
 
-        {/* Stats strip */}
-        <section className="py-14 bg-gradient-to-r from-[#123072] to-[#0B1D4D] text-white">
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <p className="text-3xl font-bold text-yellow-300">24/7</p>
-              <p className="text-blue-100">Support available</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-yellow-300">{"< 2hrs"}</p>
-              <p className="text-blue-100">Average first response</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-yellow-300">100+</p>
-              <p className="text-blue-100">Clients served</p>
-            </div>
-            <div>
-              <p className="text-3xl font-bold text-yellow-300">5.0</p>
-              <p className="text-blue-100">Average rating</p>
-            </div>
-          </div>
-        </section>
+        <Section className="pt-0">
+          <PageContainer>
+            <CtaBand
+              eyebrow="Ready When You Are"
+              title="Future Logix now has a cleaner conversion path for product and service conversations."
+              body="This page can be expanded later with map, scheduling integrations, FAQs, or sales routing logic without replacing the structure."
+              primaryHref="/contact"
+              primaryLabel="Send an Enquiry"
+            />
+          </PageContainer>
+        </Section>
       </main>
-
       <Footer />
-    </div>
+    </PageShell>
   );
 }

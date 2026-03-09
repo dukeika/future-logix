@@ -28,76 +28,75 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-      <div className="bg-gradient-to-r from-[#1854CE] to-[#1645B8] p-6">
-        <h2 className="text-2xl font-bold text-white">Send us a message</h2>
-        <p className="text-blue-100">We will reply within 24 hours.</p>
+    <div className="rounded-[2rem] border border-slate-200 bg-white p-7 text-slate-950 shadow-[0_24px_70px_-40px_rgba(15,23,42,0.35)]">
+      <div className="mb-6">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-700">General Enquiries</p>
+        <h2 className="mt-3 text-2xl font-semibold">Send us a message</h2>
+        <p className="mt-2 text-sm leading-7 text-slate-600">Tell us what you are building, improving, or planning next.</p>
       </div>
-      <div className="p-6">
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">Name *</label>
-              <input
-                name="name"
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">Email *</label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="you@example.com"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">Phone</label>
-              <input
-                name="phone"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="+234..."
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-800 mb-1">Topic</label>
-              <select
-                name="topic"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option>Cloud Migration</option>
-                <option>Cybersecurity</option>
-                <option>Automation</option>
-                <option>Custom Development</option>
-                <option>Other</option>
-              </select>
-            </div>
-          </div>
+      <form className="space-y-4" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <label className="block text-sm font-semibold text-gray-800 mb-1">Message *</label>
-            <textarea
-              name="message"
-              rows={5}
+            <label className="mb-1 block text-sm font-semibold text-slate-800">Name *</label>
+            <input
+              name="name"
               required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="How can we help?"
+              className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-cyan-400"
+              placeholder="Your name"
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg transition-transform hover:-translate-y-0.5"
-          >
-            Send message
-          </button>
-          {status && <p className="text-sm font-semibold text-blue-800">{status}</p>}
-        </form>
-      </div>
+          <div>
+            <label className="mb-1 block text-sm font-semibold text-slate-800">Email *</label>
+            <input
+              type="email"
+              name="email"
+              required
+              className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-cyan-400"
+              placeholder="you@example.com"
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-semibold text-slate-800">Phone</label>
+            <input
+              name="phone"
+              className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-cyan-400"
+              placeholder="+234..."
+            />
+          </div>
+          <div>
+            <label className="mb-1 block text-sm font-semibold text-slate-800">Topic</label>
+            <select
+              name="topic"
+              className="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-cyan-400"
+            >
+              <option>Products</option>
+              <option>Services</option>
+              <option>Partnership</option>
+              <option>ClassPoint</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label className="mb-1 block text-sm font-semibold text-slate-800">Message *</label>
+          <textarea
+            name="message"
+            rows={5}
+            required
+            className="w-full rounded-3xl border border-slate-200 px-4 py-3 text-sm text-slate-950 outline-none transition focus:border-cyan-400"
+            placeholder="What would you like to discuss?"
+          />
+        </div>
+        <button
+          type="submit"
+          className="inline-flex w-full justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+        >
+          Send message
+        </button>
+        {status && <p className="text-sm font-semibold text-cyan-800">{status}</p>}
+      </form>
     </div>
   );
 }
