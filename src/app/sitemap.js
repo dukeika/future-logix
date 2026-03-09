@@ -9,6 +9,8 @@ export default function sitemap() {
     "services/workflow-automation",
     "services/custom-software-development",
     "industries",
+    "industries/education",
+    "industries/smes",
     "insights",
     "about",
     "contact",

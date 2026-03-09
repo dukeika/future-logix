@@ -418,7 +418,7 @@ export function IndustriesSection() {
               <div
                 key={industry.name}
                 className={`rounded-[2rem] border p-6 ${
-                  index === 0 || index === 3
+                  industry.slug === "education" || industry.slug === "smes"
                     ? "border-cyan-300/20 bg-cyan-300/10"
                     : "border-white/10 bg-white/[0.04]"
                 } ${index === 4 ? "md:col-span-2" : ""}`}
@@ -431,6 +431,14 @@ export function IndustriesSection() {
                 <p className="mt-3 text-sm leading-7 text-slate-300">
                   <span className="font-semibold text-white">Future Logix:</span> {industry.help}
                 </p>
+                {industry.href !== "/industries" && (
+                  <Link
+                    href={industry.href}
+                    className="mt-5 inline-flex rounded-full border border-white/[0.08] bg-white/[0.05] px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
+                  >
+                    View industry
+                  </Link>
+                )}
               </div>
             ))}
           </div>

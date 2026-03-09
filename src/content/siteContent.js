@@ -216,30 +216,45 @@ export const services = [
 export const industries = [
   {
     name: "Education",
+    slug: "education",
+    href: "/industries/education",
+    category: "Featured Industry",
     organization: "Schools, training providers, and learning-focused institutions",
     need: "Need better structure, engagement, and visibility across teaching and training delivery.",
     help: "Future Logix helps with products like ClassPoint and the digital systems that support modern learning experiences.",
   },
   {
     name: "SMEs and Growing Businesses",
+    slug: "smes",
+    href: "/industries/smes",
+    category: "Featured Industry",
     organization: "Businesses moving from manual operations to more scalable systems",
     need: "Need simpler workflows, better visibility, and tools that reduce operational drag.",
     help: "Future Logix helps design practical systems, automation, and digital foundations that support growth without overengineering.",
   },
   {
     name: "Professional Services",
+    slug: "professional-services",
+    href: "/industries",
+    category: "Industry Focus",
     organization: "Firms that sell expertise and depend on coordinated internal delivery",
     need: "Need clearer internal processes, client-facing systems, and better control over delivery operations.",
     help: "Future Logix helps improve workflow, reporting, and digital infrastructure so teams can deliver more consistently.",
   },
   {
     name: "Service-Led Organizations",
+    slug: "service-led-organizations",
+    href: "/industries",
+    category: "Industry Focus",
     organization: "Organizations whose performance depends on process, responsiveness, and operational coordination",
     need: "Need systems that reduce friction, improve accountability, and make service delivery easier to manage.",
     help: "Future Logix helps implement platforms, automations, and supporting technology that make service operations more resilient.",
   },
   {
     name: "Startups and Product Ventures",
+    slug: "startups-and-product-ventures",
+    href: "/industries",
+    category: "Industry Focus",
     organization: "Early-stage teams building digital products or new technology-led services",
     need: "Need product thinking, technical execution, and scalable foundations without wasting time on the wrong build path.",
     help: "Future Logix helps founders and product teams move from concept to usable product with stronger structure and clearer technical decisions.",
@@ -857,6 +872,318 @@ export const customSoftwareDetail = {
       { label: "Discuss Your Project", href: "/contact" },
       { label: "Talk to Future Logix", href: "/contact" },
       { label: "Back to Services", href: "/services" },
+    ],
+  },
+};
+
+export const industriesHub = {
+  hero: {
+    eyebrow: "Industries",
+    title: "Technology that makes more sense when it is grounded in how the organization actually operates.",
+    description:
+      "Future Logix builds products and delivers services for specific operational environments, not abstract market categories. The industries layer shows where the company is most commercially relevant and how its work fits real business contexts.",
+    primaryCta: { label: "Explore Education", href: "/industries/education" },
+    secondaryCta: { label: "Explore SMEs", href: "/industries/smes" },
+    tertiaryCta: { label: "Talk to Us", href: "/contact" },
+  },
+  coverage: {
+    eyebrow: "Industry Coverage",
+    title: "Focused on environments where operational clarity, better systems, and practical modernization matter.",
+    description:
+      "Future Logix is not trying to claim every market. The focus is on sectors where better products, cleaner workflows, and implementation-minded technology support can make a visible difference.",
+  },
+  fit: {
+    eyebrow: "How Future Logix Helps",
+    title: "Products, services, and implementation support combined around real operating needs.",
+    description:
+      "Across industries, Future Logix brings together software products, delivery services, and practical modernization support. That combination helps clients choose whether they need a product, a tailored system, an automation path, or broader technical guidance.",
+    points: [
+      {
+        title: "Products where recurring problems justify a repeatable solution",
+        body: "ClassPoint is the current example: a focused product response to school operations pressure.",
+      },
+      {
+        title: "Services where the need is operational improvement or a tailored build",
+        body: "Workflow automation, custom software, infrastructure, and advisory support help organizations modernize more intentionally.",
+      },
+      {
+        title: "Implementation that respects local realities and adoption limits",
+        body: "The work is framed to be practical, operationally credible, and easier to adopt in real-world business environments.",
+      },
+    ],
+  },
+  featured: {
+    eyebrow: "Featured Industry Paths",
+    title: "Education and SMEs are the strongest industry stories in this phase.",
+    description:
+      "These two industry paths create the clearest connection between Future Logix offerings and real operational challenges. They show where the company’s product and service mix is easiest to understand commercially.",
+  },
+  paths: {
+    eyebrow: "Next Step",
+    title: "Choose the industry path that fits your context.",
+    description:
+      "Start with education if you are evaluating school operations systems and modernization. Start with SMEs if you are trying to reduce process drag and improve business operations. Use contact if your need cuts across multiple contexts.",
+    actions: [
+      {
+        title: "Education organizations",
+        body: "See how Future Logix supports schools and education operators with ClassPoint, custom systems, and practical modernization support.",
+        label: "Explore Education",
+        href: "/industries/education",
+      },
+      {
+        title: "SMEs and growing businesses",
+        body: "See how Future Logix helps businesses reduce manual work, improve systems, and create a better foundation for growth.",
+        label: "Explore SMEs",
+        href: "/industries/smes",
+      },
+      {
+        title: "Broader industry conversation",
+        body: "Talk to Future Logix if your organization needs a more tailored discussion across products, services, or modernization priorities.",
+        label: "Talk to Us",
+        href: "/contact",
+      },
+    ],
+  },
+};
+
+export const educationIndustryDetail = {
+  slug: "education",
+  hero: {
+    eyebrow: "Education",
+    title: "Technology support for schools and education organizations that need better operational structure.",
+    description:
+      "Future Logix helps education organizations modernize day-to-day administration, records, communication, and internal workflows through a mix of product, service, and implementation support.",
+    primaryCta: { label: "Explore ClassPoint", href: "/products/classpoint" },
+    secondaryCta: { label: "Talk to Future Logix", href: "/contact" },
+  },
+  challenge: {
+    eyebrow: "Education Challenges",
+    title: "Schools often need better systems long before they have the capacity to manage a complex digital transformation.",
+    description:
+      "Education organizations regularly carry operational stress across administration, records, communication, fee tracking, attendance, academic workflows, and everyday coordination. The challenge is not just digitization. It is finding systems that are practical enough to adopt and useful enough to improve how the school runs.",
+    items: [
+      "Administrative overload across admissions, records, and everyday follow-up",
+      "Disconnected school data and inconsistent visibility across operations",
+      "Communication gaps between school leadership, staff, parents, and guardians",
+      "Pressure around attendance, results, and fee-related workflows",
+      "Limited capacity to modernize without creating more complexity for the team",
+    ],
+  },
+  fit: {
+    eyebrow: "Where Future Logix Fits",
+    title: "Future Logix can support schools through products, tailored systems, workflow improvement, and broader modernization guidance.",
+    cards: [
+      {
+        title: "ClassPoint for school operations",
+        body: "Use ClassPoint as the flagship product path when the need is a more structured platform for school administration and operational visibility.",
+        label: "Explore ClassPoint",
+        href: "/products/classpoint",
+      },
+      {
+        title: "Custom software for tailored institutional needs",
+        body: "Build a more specific system when the education organization has workflows or structures that need a tailored platform.",
+        label: "Explore Custom Software",
+        href: "/services/custom-software-development",
+      },
+      {
+        title: "Workflow automation for repeated admin processes",
+        body: "Reduce internal process drag where repetitive approvals, notifications, or coordination tasks slow the institution down.",
+        label: "Explore Automation",
+        href: "/services/workflow-automation",
+      },
+      {
+        title: "Consultation for broader modernization planning",
+        body: "Start with a Future Logix conversation if the school needs a clearer technology roadmap before choosing a product or service path.",
+        label: "Talk to Us",
+        href: "/contact",
+      },
+    ],
+  },
+  solutionMap: {
+    eyebrow: "Solution Mapping",
+    title: "The focus is on solving education operations problems with the right level of structure.",
+    items: [
+      {
+        title: "School operations platform",
+        body: "Support day-to-day administration, records, and visibility through a product path like ClassPoint.",
+      },
+      {
+        title: "Automation for operational handoffs",
+        body: "Improve internal communication, notifications, and repeated administrative flows where manual coordination creates delays.",
+      },
+      {
+        title: "Custom systems for tailored education workflows",
+        body: "Build systems for institutions that need a more specific operational model than a standard product can provide.",
+      },
+    ],
+  },
+  audience: {
+    eyebrow: "Who This Is For",
+    title: "Relevant to education operators responsible for making the institution run more clearly.",
+    description:
+      "The education path is designed for schools and institutions carrying operational complexity and looking for a more practical route into better systems.",
+    segments: [
+      "Private schools",
+      "School owners and proprietors",
+      "School leaders and management teams",
+      "School administrators and operations teams",
+      "Growing education institutions modernizing delivery",
+    ],
+  },
+  relevance: {
+    eyebrow: "Why Future Logix Is Relevant Here",
+    title: "The advantage is not abstract education-tech language. It is practical operational fit.",
+    points: [
+      {
+        title: "Local operational awareness",
+        body: "The work is framed around how schools in this market actually operate and where friction usually builds up.",
+      },
+      {
+        title: "Adoption-friendly modernization",
+        body: "The goal is not to overwhelm schools with bloated software, but to create a more realistic path into better systems.",
+      },
+      {
+        title: "Product and services in one company",
+        body: "Future Logix can support the school through both ClassPoint and service-led modernization when the need extends beyond a single product.",
+      },
+      {
+        title: "Long-term support mindset",
+        body: "The relationship is positioned around continued improvement, not a one-off implementation with no continuity.",
+      },
+    ],
+  },
+  conversion: {
+    eyebrow: "Next Step",
+    title: "Looking at systems for your school or education organization?",
+    description:
+      "Start with ClassPoint if you want to evaluate the flagship product path, or talk to Future Logix if the need is broader and requires a more tailored discussion.",
+    actions: [
+      { label: "Explore ClassPoint", href: "/products/classpoint" },
+      { label: "Talk to Future Logix", href: "/contact" },
+      { label: "Discuss Education Operations Needs", href: "/contact" },
+    ],
+  },
+};
+
+export const smesIndustryDetail = {
+  slug: "smes",
+  hero: {
+    eyebrow: "SMEs and Growing Businesses",
+    title: "Support for businesses that need better systems as growth makes operations more complex.",
+    description:
+      "Future Logix helps growing businesses modernize operations through workflow automation, custom software, stronger digital foundations, and clearer technology direction.",
+    primaryCta: { label: "Explore Services", href: "/services" },
+    secondaryCta: { label: "Talk to Future Logix", href: "/contact" },
+  },
+  challenge: {
+    eyebrow: "SME Challenges",
+    title: "Growth usually exposes process problems before it feels like a technology project.",
+    description:
+      "Many SMEs grow into a stage where manual workflows, fragmented tools, weak visibility, and repeated process bottlenecks start slowing the business down. The issue is not that the business needs more software everywhere. It is that the current setup no longer fits the way the business now operates.",
+    items: [
+      "Too many manual workflows across internal operations",
+      "Disconnected tools and inconsistent handoffs between teams",
+      "Weak visibility into execution, status, and business performance",
+      "Growth creating internal complexity faster than systems are improving",
+      "Off-the-shelf tools no longer fitting the real operating model clearly",
+    ],
+  },
+  fit: {
+    eyebrow: "Where Future Logix Fits",
+    title: "Future Logix helps SMEs improve how the business runs, not just add more tools.",
+    cards: [
+      {
+        title: "Workflow automation for operational efficiency",
+        body: "Reduce repeated admin work, approvals, notifications, and coordination drag through better workflow design and automation.",
+        label: "Explore Workflow Automation",
+        href: "/services/workflow-automation",
+      },
+      {
+        title: "Custom software for better operational fit",
+        body: "Build systems, dashboards, portals, or internal tools when the business has outgrown generic software and spreadsheets.",
+        label: "Explore Custom Software",
+        href: "/services/custom-software-development",
+      },
+      {
+        title: "Cloud, security, and advisory support",
+        body: "Strengthen infrastructure, security posture, and broader technology decision-making where the business needs more disciplined foundations.",
+        label: "Explore Services",
+        href: "/services",
+      },
+      {
+        title: "Consultation for roadmap clarity",
+        body: "Start with a Future Logix conversation when the business knows there is operational drag but needs help defining the right next move.",
+        label: "Talk to Us",
+        href: "/contact",
+      },
+    ],
+  },
+  solutionMap: {
+    eyebrow: "Solution Mapping",
+    title: "The SME path focuses on systems that improve execution, visibility, and scalability.",
+    items: [
+      {
+        title: "Automation for repeated business processes",
+        body: "Reduce recurring manual tasks, approvals, notifications, and fragmented follow-up.",
+      },
+      {
+        title: "Internal systems and operational software",
+        body: "Build internal platforms, portals, dashboards, or business applications around the way the company actually works.",
+      },
+      {
+        title: "Modernization support for better business foundations",
+        body: "Strengthen the business with more structured infrastructure, cleaner workflows, and better technical direction over time.",
+      },
+    ],
+  },
+  audience: {
+    eyebrow: "Who This Is For",
+    title: "Relevant to operators and business leaders trying to scale without operational chaos.",
+    description:
+      "The SME industry path is built for organizations that are moving beyond scattered manual systems and need a more credible operating setup.",
+    segments: [
+      "Founders",
+      "Operators and operations leads",
+      "SMEs and growing businesses",
+      "Service-led businesses",
+      "Businesses outgrowing spreadsheets and disconnected tools",
+    ],
+  },
+  relevance: {
+    eyebrow: "Why Future Logix Is Relevant Here",
+    title: "The value is in practical implementation and better operational fit, not over-engineered transformation language.",
+    points: [
+      {
+        title: "Business-aware delivery",
+        body: "The work is framed around business bottlenecks, workflow quality, and operating reality rather than generic technology enthusiasm.",
+      },
+      {
+        title: "Practical implementation",
+        body: "Future Logix is positioned to define and implement systems that teams can actually use and sustain.",
+      },
+      {
+        title: "Scalable thinking",
+        body: "The focus is on improving today’s operations without creating systems the business will outgrow too quickly.",
+      },
+      {
+        title: "Product-minded approach",
+        body: "The combination of product thinking and service delivery helps Future Logix build cleaner, more usable systems for growing organizations.",
+      },
+      {
+        title: "No over-engineering of simple problems",
+        body: "The goal is to solve the real operational issue at the right level, not to turn every bottleneck into an oversized technology program.",
+      },
+    ],
+  },
+  conversion: {
+    eyebrow: "Next Step",
+    title: "Need better systems for a growing business?",
+    description:
+      "Explore the relevant service paths if you already know the kind of support you need, or talk to Future Logix if the business needs a broader operational or software discussion first.",
+    actions: [
+      { label: "Explore Services", href: "/services" },
+      { label: "Talk to Future Logix", href: "/contact" },
+      { label: "Discuss Operations or Software Needs", href: "/contact" },
     ],
   },
 };
