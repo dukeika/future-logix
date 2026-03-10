@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%;
+    --foreground: 215 28% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 28% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 28% 17%;
+    --primary: 210 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 156 100% 33%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 40%;
+    --accent: 210 20% 96%;
+    --accent-foreground: 215 28% 17%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 18% 90%;
+    --input: 214 18% 90%;
+    --ring: 210 100% 40%;
+    --radius: 1rem;
+    --brand-primary: #0066cc;
+    --brand-secondary: #00aa66;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    font-family: var(--font-sans), sans-serif;
+    background-image:
+      radial-gradient(circle at top left, rgba(0, 102, 204, 0.1), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(0, 170, 102, 0.08), transparent 26%);
+  }
+}
+
+@layer components {
+  .hero-grid {
+    @apply grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end;
+  }
+}
