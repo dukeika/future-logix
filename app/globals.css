@@ -43,10 +43,26 @@
       radial-gradient(circle at top left, rgba(0, 102, 204, 0.1), transparent 28%),
       radial-gradient(circle at bottom right, rgba(0, 170, 102, 0.08), transparent 26%);
   }
+
+  a {
+    @apply text-inherit;
+  }
+
+  input::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
 }
 
 @layer components {
   .hero-grid {
-    @apply grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end;
+    @apply grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center;
+  }
+
+  .section-shell {
+    @apply py-10 sm:py-14 lg:py-20;
+  }
+
+  .surface-panel {
+    @apply rounded-[1.75rem] border border-border bg-white/80 shadow-soft backdrop-blur;
   }
 }

@@ -2,6 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 
+import { Footer } from "@/components/Footer";
+import { Navigation } from "@/components/Navigation";
+
 import "./globals.css";
 
 const inter = Inter({
@@ -57,7 +60,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.variable}>{children}</body>
+      <body className={inter.variable}>
+        <div className="flex min-h-screen flex-col">
+          <Navigation />
+          <main className="flex-1 pt-20 sm:pt-24">{children}</main>
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 }
