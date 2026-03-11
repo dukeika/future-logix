@@ -15,3 +15,12 @@ export interface SocialLink {
   href: string;
   icon: LucideIcon;
 }
+
+export interface ProductFeature {
+  label: string;
+  icon: LucideIcon;
+}
+
+export interface ProductDirectionItem {
+  label: string;
+}
