@@ -129,6 +129,15 @@ export default function PrivacyPage() {
             </section>
 
             <section>
+              <h2 className="text-xl font-semibold text-foreground">Cookie Choices</h2>
+              <p className="mt-3">
+                When you visit our website, you can accept or reject optional analytics cookies
+                through the cookie notice shown on the site. Essential cookies required for basic
+                site operation remain active regardless of that choice.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-xl font-semibold text-foreground">Contact Us</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>

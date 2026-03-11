@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { AnalyticsScripts } from "@/components/monitoring/AnalyticsScripts";
 import { WebVitalsReporter } from "@/components/monitoring/WebVitalsReporter";
 import { Navigation } from "@/components/Navigation";
+import { CookieBanner } from "@/components/shared/CookieBanner";
 
 import "./globals.css";
 
@@ -118,6 +119,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <CookieBanner />
       </body>
     </html>
   );

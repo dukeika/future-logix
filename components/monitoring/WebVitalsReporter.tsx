@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { useState } from "react";
 import { useReportWebVitals } from "next/web-vitals";
+import {
+  COOKIE_CONSENT_STORAGE_KEY,
+  isCookieConsentValue,
+} from "@/lib/cookie-consent";
 
 const WEB_VITALS_ENDPOINT = process.env.NEXT_PUBLIC_WEB_VITALS_ENDPOINT;
 const ERROR_ENDPOINT = process.env.NEXT_PUBLIC_ERROR_REPORTING_ENDPOINT;
@@ -52,7 +57,29 @@ function reportMetric(metric: WebVitalMetric) {
 }
 
 export function WebVitalsReporter() {
-  useReportWebVitals(reportMetric);
+  const [hasConsent, setHasConsent] = useState(false);
+
+  useEffect(() => {
+    const readConsent = () => {
+      const storedValue = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
+      setHasConsent(isCookieConsentValue(storedValue) && storedValue === "accepted");
+    };
+
+    readConsent();
+    window.addEventListener("future-logix-cookie-consent", readConsent);
+
+    return () => {
+      window.removeEventListener("future-logix-cookie-consent", readConsent);
+    };
+  }, []);
+
+  useReportWebVitals((metric) => {
+    if (!hasConsent) {
+      return;
+    }
+
+    reportMetric(metric);
+  });
 
   useEffect(() => {
     if (!ERROR_ENDPOINT) {
