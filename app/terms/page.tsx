@@ -21,7 +21,7 @@ export default function TermsPage() {
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">
             <section>
-              <p className="font-medium text-foreground">Last updated: March 2026</p>
+              <p className="font-medium text-foreground">Last updated: March 11, 2026</p>
             </section>
 
             <section>
@@ -35,9 +35,19 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-semibold text-foreground">Use of Services</h2>
               <p className="mt-3">
-                Future Logix provides technology consulting, product implementation, and software
-                development services. All services are subject to separate written agreements
-                specifying scope, deliverables, timelines, and fees.
+                Future Logix Limited provides technology consulting, product implementation, and
+                software development services. All services are subject to separate written
+                agreements specifying scope, deliverables, timelines, and fees.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-foreground">Service Engagement</h2>
+              <p className="mt-3">
+                All professional services require a written Statement of Work or Service Agreement
+                specifying scope, deliverables, timelines, fees, and payment terms. No service is
+                considered engaged until both parties have executed such agreement. Website
+                information is illustrative only and does not constitute an offer to contract.
               </p>
             </section>
 
@@ -78,14 +88,15 @@ export default function TermsPage() {
             <section>
               <h2 className="text-xl font-semibold text-foreground">Limitation of Liability</h2>
               <p className="mt-3">
-                To the maximum extent permitted by law, Future Logix shall not be liable for any
-                indirect, incidental, special, consequential, or punitive damages arising from your
-                use of our services.
+                To the maximum extent permitted by law, Future Logix Limited shall not be liable
+                for any indirect, incidental, special, consequential, or punitive damages,
+                including but not limited to loss of profits, data, or business interruption,
+                arising from your use of our services or website.
               </p>
               <p className="mt-3">
-                Our total liability for any claim arising from these terms or our services shall
-                not exceed the amount paid by you to Future Logix in the twelve months preceding
-                the claim.
+                Our total liability for any claim shall not exceed the total amount paid by you to
+                Future Logix Limited in the twelve (12) months preceding the claim, or ₦500,000
+                (Five Hundred Thousand Naira), whichever is greater.
               </p>
             </section>
 
@@ -111,8 +122,8 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold text-foreground">Governing Law</h2>
               <p className="mt-3">
                 These Terms shall be governed by the laws of the Federal Republic of Nigeria. Any
-                disputes shall be subject to the exclusive jurisdiction of the courts of Lagos
-                State.
+                disputes shall first attempt resolution through good faith negotiation, then
+                mediation in Lagos, Nigeria, and finally the courts of Lagos State if necessary.
               </p>
             </section>
 
@@ -138,6 +149,7 @@ export default function TermsPage() {
                 <p>Future Logix Limited</p>
                 <p>Email: admin@futurelogix.ng</p>
                 <p>Phone: +23470611006212</p>
+                <p>Address: Lagos, Nigeria</p>
               </div>
             </section>
           </div>
