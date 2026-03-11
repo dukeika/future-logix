@@ -31,11 +31,12 @@ export function Footer() {
           <div className="space-y-5">
             <div>
               <Image
-                src="/images/future-logix-logo.svg"
+                src="/images/future-logix-logo.png"
                 alt="Future Logix"
-                width={168}
-                height={42}
-                sizes="168px"
+                width={128}
+                height={32}
+                sizes="128px"
+                className="h-8 w-auto"
               />
               <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
                 Products &amp; Technology Services

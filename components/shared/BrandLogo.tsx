@@ -25,12 +25,13 @@ export function BrandLogo({
     >
       <div className="flex flex-col">
         <Image
-          src="/images/future-logix-logo.svg"
+          src="/images/future-logix-logo.png"
           alt="Future Logix"
-          width={168}
-          height={42}
+          width={160}
+          height={40}
           priority={priority}
-          sizes="168px"
+          sizes="(max-width: 640px) 128px, 160px"
+          className="h-8 w-auto sm:h-10"
         />
         {showTagline ? (
           <span className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]">

@@ -11,8 +11,10 @@ import { CookieBanner } from "@/components/shared/CookieBanner";
 import "./globals.css";
 
 const GOOGLE_SEARCH_CONSOLE_TOKEN = "your-google-verification-code";
-const LOGO_URL = "https://futurelogix.ng/images/future-logix-logo.svg";
-const OG_IMAGE_URL = "https://futurelogix.ng/opengraph-image.png";
+const LOGO_URL = "https://futurelogix.ng/images/future-logix-logo.png";
+const APPLE_TOUCH_ICON_URL = "https://futurelogix.ng/apple-touch-icon.png";
+const OG_IMAGE_URL = "https://futurelogix.ng/og-image.png";
+const TWITTER_IMAGE_URL = "https://futurelogix.ng/twitter-image.png";
 const LINKEDIN_URL = "https://linkedin.com/company/futurelogix";
 const TWITTER_URL = "https://twitter.com/futurelogix";
 
@@ -42,6 +44,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [{ url: "https://futurelogix.ng/favicon.ico" }],
+    apple: [{ url: APPLE_TOUCH_ICON_URL }],
+    shortcut: [{ url: "https://futurelogix.ng/favicon.ico" }],
+  },
   verification: {
     google: GOOGLE_SEARCH_CONSOLE_TOKEN,
   },
@@ -67,7 +74,7 @@ export const metadata: Metadata = {
     title: "Future Logix",
     description:
       "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: ClassPoint.",
-    images: [OG_IMAGE_URL],
+    images: [TWITTER_IMAGE_URL],
   },
 };
 
