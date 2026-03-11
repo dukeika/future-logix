@@ -24,3 +24,15 @@ export interface ProductFeature {
 export interface ProductDirectionItem {
   label: string;
 }
+
+export interface Service {
+  number: string;
+  title: string;
+  description: string;
+  capabilities: string[];
+  startingPrice: string;
+  delivery: string;
+  cta: string;
+  href: string;
+  icon: LucideIcon;
+}
