@@ -27,11 +27,11 @@ export function BrandLogo({
         <Image
           src="/images/future-logix-logo.png"
           alt="Future Logix"
-          width={160}
-          height={40}
+          width={400}
+          height={100}
           priority={priority}
           sizes="(max-width: 640px) 128px, 160px"
-          className="h-8 w-auto sm:h-10"
+          className="h-8 w-auto shrink-0 object-contain sm:h-10"
         />
         {showTagline ? (
           <span className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]">

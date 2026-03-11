@@ -30,14 +30,20 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_1fr]">
           <div className="space-y-5">
             <div>
-              <Image
-                src="/images/future-logix-logo.png"
-                alt="Future Logix"
-                width={128}
-                height={32}
-                sizes="128px"
-                className="h-8 w-auto"
-              />
+              <Link
+                href="/"
+                aria-label="Future Logix homepage"
+                className="inline-flex rounded-2xl border border-slate-200/70 bg-white px-3 py-2 shadow-[0_12px_30px_rgba(15,23,42,0.2)] transition-transform hover:-translate-y-0.5"
+              >
+                <Image
+                  src="/images/future-logix-logo.png"
+                  alt="Future Logix"
+                  width={400}
+                  height={100}
+                  sizes="128px"
+                  className="h-8 w-auto object-contain"
+                />
+              </Link>
               <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
                 Products &amp; Technology Services
               </p>
