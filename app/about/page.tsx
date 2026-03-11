@@ -84,25 +84,24 @@ export default function AboutPage() {
                 <div className="mt-5 space-y-4 rounded-[1.2rem] border border-border/70 bg-white/70 p-5">
                   <div>
                     <h3 className="text-base font-semibold text-foreground">
-                      Founder &amp; Managing Director: [Name]
+                      Founder &amp; Managing Director: Akabom Kadana
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      [Name] founded Future Logix in [Year] after [X years] leading technology
-                      implementation at [previous relevant experience]. The consistent gap between
-                      technology promise and operational reality in African organizations motivated
-                      the creation of a company focused on delivery, not presentations.
+                      Akabom Kadana founded Future Logix in 2023 after 10 years consulting for
+                      African edtech companies. The consistent gap between technology promise and
+                      operational reality in African organizations motivated the creation of a
+                      company focused on delivery, not presentations.
                     </p>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      Direct experience includes: [specific relevant projects or roles]. Education:
-                      [relevant degrees or certifications]. Based in Lagos.
+                      Direct experience includes: AWS Solutions Architect and AWS AI Certified.
+                      Education and certifications focused on cloud architecture, artificial
+                      intelligence implementation, and scalable system design for emerging markets.
+                      Based in Lagos.
                     </p>
                   </div>
-                  <div className="rounded-[1rem] border border-dashed border-border bg-background px-4 py-8 text-center text-sm font-medium text-muted-foreground">
-                    Founder and team photos to be added
-                  </div>
                   <p className="text-sm leading-7 text-muted-foreground">
-                    Contact [Name] directly: [email] for partnership, press, or significant
-                    engagement discussions.
+                    Contact Akabom directly: admin@futurelogix.ng for partnership, press, or
+                    significant engagement discussions.
                   </p>
                 </div>
               </div>
@@ -110,8 +109,8 @@ export default function AboutPage() {
               <div className="rounded-[1.5rem] border border-border/80 bg-background/80 p-6">
                 <h2 className="text-xl font-semibold text-foreground">Team</h2>
                 <p className="mt-4 text-base leading-8 text-muted-foreground">
-                  Future Logix operates with a core team of [X] permanent staff and a network of
-                  [X] specialized consultants for specific implementation needs. This structure
+                  Future Logix operates with a core team of 3 permanent staff and a network of 5
+                  specialized consultants for specific implementation needs. This structure
                   maintains consistent quality while accessing deep expertise for complex
                   requirements.
                 </p>
