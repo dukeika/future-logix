@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, MessageSquare, X } from "lucide-react";
 
 import { BrandLogo } from "@/components/shared/BrandLogo";
@@ -102,11 +101,12 @@ export function Navigation() {
 
   return (
     <>
-      <motion.header
-        initial={false}
-        animate={{ y: isVisible ? 0 : -120 }}
-        transition={{ duration: 0.24, ease: "easeOut" }}
+      <header
         className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/92 backdrop-blur-xl"
+        style={{
+          transform: isVisible ? "translateY(0)" : "translateY(-120px)",
+          transition: "transform 240ms ease-out",
+        }}
       >
         <SiteContainer className="flex h-20 items-center justify-between gap-4">
           <BrandLogo priority />
@@ -153,80 +153,70 @@ export function Navigation() {
             <Menu className="h-5 w-5" />
           </Button>
         </SiteContainer>
-      </motion.header>
+      </header>
 
-      <AnimatePresence>
-        {isOpen ? (
-          <motion.div
-            ref={overlayRef}
-            id="mobile-navigation"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-slate-950/65 backdrop-blur-sm lg:hidden"
+      {isOpen ? (
+        <div
+          ref={overlayRef}
+          id="mobile-navigation"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
+          className="fixed inset-0 z-[60] bg-slate-950/65 backdrop-blur-sm lg:hidden"
+        >
+          <div
+            className="ml-auto flex h-full w-full max-w-sm flex-col bg-background px-6 pb-8 pt-6"
+            style={{
+              transform: "translateX(0)",
+              transition: "transform 280ms ease-out",
+            }}
           >
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.28, ease: "easeOut" }}
-              className="ml-auto flex h-full w-full max-w-sm flex-col bg-background px-6 pb-8 pt-6"
-            >
-              <div className="flex items-center justify-between">
-                <BrandLogo />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  className="h-11 w-11 rounded-full"
-                  onClick={() => setIsOpen(false)}
-                  aria-label="Close mobile menu"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </div>
-
-              <nav aria-label="Mobile navigation" className="mt-10 flex flex-1 flex-col gap-3">
-                {navItems.map((item, index) => {
-                  const isActive = isItemActive(item.href);
-
-                  return (
-                    <motion.div
-                      key={item.href}
-                      initial={{ opacity: 0, x: 16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.2, delay: index * 0.04 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={cn(
-                          "block rounded-2xl border px-4 py-4 text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                          isActive
-                            ? "border-primary/30 bg-primary/10 text-primary"
-                            : "border-border bg-white/60 text-foreground"
-                        )}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        {item.label}
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-              </nav>
-
+            <div className="flex items-center justify-between">
+              <BrandLogo />
               <Button
-                asChild
-                className="mt-6 h-12 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="h-11 w-11 rounded-full"
+                onClick={() => setIsOpen(false)}
+                aria-label="Close mobile menu"
               >
-                <Link href="/contact">Talk to Us</Link>
+                <X className="h-5 w-5" />
               </Button>
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
+            </div>
+
+            <nav aria-label="Mobile navigation" className="mt-10 flex flex-1 flex-col gap-3">
+              {navItems.map((item) => {
+                const isActive = isItemActive(item.href);
+
+                return (
+                  <div key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "block rounded-2xl border px-4 py-4 text-lg font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                        isActive
+                          ? "border-primary/30 bg-primary/10 text-primary"
+                          : "border-border bg-white/60 text-foreground"
+                      )}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  </div>
+                );
+              })}
+            </nav>
+
+            <Button
+              asChild
+              className="mt-6 h-12 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90"
+            >
+              <Link href="/contact">Talk to Us</Link>
+            </Button>
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }
