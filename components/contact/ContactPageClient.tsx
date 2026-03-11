@@ -275,13 +275,13 @@ export function ContactPageClient() {
                     </div>
                   </a>
                   <a
-                    href="tel:+23470611006212"
+                    href="tel:*2347061106212"
                     className="flex items-start gap-3 rounded-2xl border border-border/80 bg-background/80 px-4 py-4"
                   >
                     <Phone className="mt-1 h-5 w-5 text-primary" />
                     <div>
                       <p className="text-sm font-semibold text-foreground">Phone</p>
-                      <p className="text-sm text-muted-foreground">+23470611006212</p>
+                      <p className="text-sm text-muted-foreground">*2347061106212</p>
                     </div>
                   </a>
                   <div className="flex items-start gap-3 rounded-2xl border border-border/80 bg-background/80 px-4 py-4">

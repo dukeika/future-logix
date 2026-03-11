@@ -216,7 +216,7 @@ export function buildSubmitterContactEmail(values: ContactFormValues) {
       "",
       `Your message: ${summary}`,
       "",
-      "For urgent matters, call +23470611006212.",
+      "For urgent matters, call *2347061106212.",
     ].join("\n"),
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
@@ -224,7 +224,7 @@ export function buildSubmitterContactEmail(values: ContactFormValues) {
         <p>Thank you for contacting Future Logix.</p>
         <p>We typically respond within 24 hours.</p>
         <p><strong>Your message:</strong> ${summary}</p>
-        <p>For urgent matters, call +23470611006212.</p>
+        <p>For urgent matters, call *2347061106212.</p>
       </div>
     `,
   };
