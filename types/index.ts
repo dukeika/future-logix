@@ -57,6 +57,7 @@ export interface InsightArticle {
   category: string;
   title: string;
   excerpt: string;
+  content?: string[];
 }
 
 export interface ContactInterestOption {

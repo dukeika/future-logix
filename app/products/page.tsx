@@ -43,13 +43,57 @@ export default function ProductsPage() {
             </Button>
           </div>
 
-          <div className="rounded-[1.5rem] border border-dashed border-border bg-white/60 p-6 text-center">
+          <div className="rounded-[1.5rem] border border-border/80 bg-white/70 p-6">
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Coming Soon
+              Platform Expansion
             </p>
-            <p className="mt-3 text-base leading-7 text-muted-foreground">
-              Future products will be introduced here as the portfolio expands.
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              Future Logix is actively developing specialized solutions for sectors where
+              operational complexity meets growth opportunity. Our product philosophy centers on
+              building tools that integrate seamlessly with existing workflows while providing
+              clear, measurable improvements in efficiency and visibility.
             </p>
+
+            <div className="mt-6 grid gap-5">
+              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
+                <h2 className="text-lg font-semibold text-foreground">Operations Hub — Early Development</h2>
+                <p className="mt-3 text-base leading-8 text-muted-foreground">
+                  A unified operations platform for service-led businesses that brings client
+                  management, project tracking, billing, and team coordination into one system.
+                  Designed specifically for the realities of African professional services firms:
+                  intermittent connectivity, multi-currency operations, and lean teams managing
+                  complex delivery.
+                </p>
+              </div>
+
+              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
+                <h2 className="text-lg font-semibold text-foreground">Financial Operations Layer — Research Phase</h2>
+                <p className="mt-3 text-base leading-8 text-muted-foreground">
+                  Embedded financial tools for businesses moving from spreadsheet-based tracking to
+                  structured, auditable systems. Not a replacement for accounting software, but an
+                  operational layer that connects transactions to business activities automatically.
+                </p>
+              </div>
+
+              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
+                <h2 className="text-lg font-semibold text-foreground">Integration Bridge — Architecture Phase</h2>
+                <p className="mt-3 text-base leading-8 text-muted-foreground">
+                  A middleware platform solving the fragmentation problem: connecting popular local
+                  tools (payment processors, SMS gateways, identity verification) with modern
+                  business systems without requiring custom development for each connection.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-[1.35rem] border border-primary/10 bg-primary/5 p-5">
+              <h2 className="text-lg font-semibold text-foreground">Our Product Criteria</h2>
+              <p className="mt-3 text-base leading-8 text-muted-foreground">
+                Before any product carries the Future Logix name, it must demonstrate: measurable
+                time savings within the first week of use, functionality without constant internet
+                connectivity, clear pricing without hidden scaling costs, and implementation support
+                from real humans who understand the local context.
+              </p>
+            </div>
           </div>
         </div>
       </SiteContainer>

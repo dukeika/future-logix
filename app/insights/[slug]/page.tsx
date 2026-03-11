@@ -48,10 +48,18 @@ export default function InsightDetailPage({ params }: InsightDetailPageProps) {
             subtitle={article.title}
             supportingCopy={article.excerpt}
           />
-          <div className="rounded-[1.5rem] border border-dashed border-border bg-white/60 p-6">
-            <p className="text-base leading-8 text-muted-foreground">
-              Full article content for this insight is coming soon.
-            </p>
+          <div className="space-y-5 rounded-[1.5rem] border border-border/80 bg-white/70 p-6">
+            {article.content?.length ? (
+              article.content.map((paragraph) => (
+                <p key={paragraph} className="text-base leading-8 text-muted-foreground">
+                  {paragraph}
+                </p>
+              ))
+            ) : (
+              <p className="text-base leading-8 text-muted-foreground">
+                Full article content for this insight is coming soon.
+              </p>
+            )}
           </div>
         </div>
       </SiteContainer>
