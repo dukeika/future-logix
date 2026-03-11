@@ -75,3 +75,19 @@ export interface NewsletterSubscription {
   confirmedAt?: string;
   unsubscribedAt?: string;
 }
+
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  organization?: string;
+  phone?: string;
+  interest: string;
+  message: string;
+  source: string;
+  submittedAt: string;
+  status: "new" | "resolved";
+  notes?: string;
+  referralSource?: string;
+  ipAddress?: string;
+}

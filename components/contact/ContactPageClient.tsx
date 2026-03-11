@@ -40,6 +40,7 @@ const interestOptions: ContactInterestOption[] = [
 
 export function ContactPageClient() {
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState<string>("");
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -57,14 +58,37 @@ export function ContactPageClient() {
   const onSubmit = async (values: ContactFormValues) => {
     try {
       setSubmitState("idle");
-      // TODO: Replace console logging with API submission when backend endpoint is available.
-      console.log("TODO: integrate contact form API", values);
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      setSubmitMessage("");
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...values,
+          source: "contact-page",
+          companyWebsite: "",
+        }),
+      });
+
+      const data = (await response.json()) as { message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.message ?? "Something went wrong. Please try again or email us directly.");
+      }
+
       setSubmitState("success");
+      setSubmitMessage(data.message ?? "Thank you for your message. We'll respond within 24 hours.");
       form.reset();
     } catch (error) {
       console.error(error);
       setSubmitState("error");
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong. Please try again or email us directly."
+      );
     }
   };
 
@@ -83,6 +107,17 @@ export function ContactPageClient() {
             <div className="surface-panel px-5 py-8 sm:px-8">
               <Form {...form}>
                 <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)} noValidate>
+                  <div className="hidden" aria-hidden="true">
+                    <label htmlFor="companyWebsite">Company website</label>
+                    <input
+                      id="companyWebsite"
+                      name="companyWebsite"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   <div className="grid gap-5 sm:grid-cols-2">
                     <FormField
                       control={form.control}
@@ -205,7 +240,7 @@ export function ContactPageClient() {
                       role="status"
                       aria-live="polite"
                     >
-                      Thank you for your message. We&apos;ll respond within 24 hours.
+                      {submitMessage || "Thank you for your message. We'll respond within 24 hours."}
                     </div>
                   ) : null}
 
@@ -214,7 +249,7 @@ export function ContactPageClient() {
                       className="rounded-2xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
                       role="alert"
                     >
-                      Something went wrong. Please try again or email us directly.
+                      {submitMessage || "Something went wrong. Please try again or email us directly."}
                     </div>
                   ) : null}
 
