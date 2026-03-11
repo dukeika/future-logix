@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import Image from "next/image";
 import { Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -31,8 +30,14 @@ export function Footer() {
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_1fr]">
           <div className="space-y-5">
             <div>
-              <p className="text-lg font-semibold">Future Logix</p>
-              <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-400">
+              <Image
+                src="/images/future-logix-logo.svg"
+                alt="Future Logix"
+                width={168}
+                height={42}
+                sizes="168px"
+              />
+              <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-400">
                 Products &amp; Technology Services
               </p>
             </div>
@@ -52,7 +57,9 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 text-secondary" />
-                <span>+23470611006212</span>
+                <a href="tel:+23470611006212" className="hover:text-white">
+                  +23470611006212
+                </a>
               </div>
             </div>
           </div>
@@ -79,20 +86,17 @@ export function Footer() {
                 Subscribe for product updates, practical insights, and company news.
               </p>
             </div>
-            <form
-              className="flex flex-col gap-3 sm:flex-row"
-              onSubmit={(event) => event.preventDefault()}
-            >
+            <div className="flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 aria-label="Email address"
                 placeholder="Enter your email"
                 className="h-11 flex-1 rounded-full border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition focus:border-secondary focus:ring-2 focus:ring-secondary/30"
               />
-              <Button type="submit" className="h-11 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
+              <Button type="button" className="h-11 rounded-full bg-secondary font-semibold text-slate-950 hover:bg-secondary/90">
                 Subscribe
               </Button>
-            </form>
+            </div>
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Social</p>
               <div className="mt-3 flex gap-3">

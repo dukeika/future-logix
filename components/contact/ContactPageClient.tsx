@@ -200,13 +200,20 @@ export function ContactPageClient() {
                   />
 
                   {submitState === "success" ? (
-                    <div className="rounded-2xl border border-secondary/20 bg-secondary/10 px-4 py-3 text-sm text-secondary">
+                    <div
+                      className="rounded-2xl border border-secondary/20 bg-secondary/10 px-4 py-3 text-sm text-secondary"
+                      role="status"
+                      aria-live="polite"
+                    >
                       Thank you for your message. We&apos;ll respond within 24 hours.
                     </div>
                   ) : null}
 
                   {submitState === "error" ? (
-                    <div className="rounded-2xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                    <div
+                      className="rounded-2xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                      role="alert"
+                    >
                       Something went wrong. Please try again or email us directly.
                     </div>
                   ) : null}

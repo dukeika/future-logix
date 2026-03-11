@@ -39,6 +39,8 @@
   body {
     @apply min-h-screen bg-background text-foreground antialiased;
     font-family: var(--font-sans), sans-serif;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
     background-image:
       radial-gradient(circle at top left, rgba(0, 102, 204, 0.1), transparent 28%),
       radial-gradient(circle at bottom right, rgba(0, 170, 102, 0.08), transparent 26%);
@@ -108,5 +110,20 @@
 
   .skip-link:focus {
     @apply not-sr-only;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

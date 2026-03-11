@@ -1,9 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import { Cloud, Code, RefreshCw, Workflow } from "lucide-react";
-import { useRef } from "react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -84,19 +80,11 @@ const services: Service[] = [
 ];
 
 export function ServicesSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
-
   return (
-    <section ref={sectionRef} className="section-shell">
+    <section className="section-shell">
       <SiteContainer>
         <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-5xl"
-          >
+          <div className="max-w-5xl">
             <SectionHeader
               number="02"
               title="Services"
@@ -104,20 +92,14 @@ export function ServicesSection() {
               description="Some visitors are looking for a product. Others need a technology partner who can help them design, build, secure, or improve core systems. The homepage should make both paths obvious."
               supportingCopy="Future Logix is intentionally presented as a parent technology brand with two clean entry points: a product path for solution buyers, and a service path for organizations that need design, implementation, or long-term support."
             />
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2">
-            {services.map((service, index) => {
+            {services.map((service) => {
               const Icon = service.icon;
 
               return (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 36 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
-                  transition={{ duration: 0.45, delay: 0.1 * index, ease: "easeOut" }}
-                  className="group"
-                >
+                <div key={service.title} className="group">
                   <Card className="h-full border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
                     <CardHeader className="space-y-5 p-5 sm:p-6">
                       <div className="flex items-start justify-between gap-4">
@@ -171,7 +153,7 @@ export function ServicesSection() {
                       </Button>
                     </CardFooter>
                   </Card>
-                </motion.div>
+                </div>
               );
             })}
           </div>

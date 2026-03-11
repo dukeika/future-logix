@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import {
   ArrowUpRight,
   BadgeCheck,
@@ -13,10 +10,8 @@ import {
   GraduationCap,
   Layers3,
   LineChart,
-  ShieldCheck,
   UsersRound,
 } from "lucide-react";
-import { useRef } from "react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
@@ -38,19 +33,11 @@ const directionItems: ProductDirectionItem[] = [
 ];
 
 export function ProductsSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
-
   return (
-    <section ref={sectionRef} className="section-shell">
+    <section className="section-shell">
       <SiteContainer>
         <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-4xl"
-          >
+          <div className="max-w-4xl">
             <SectionHeader
               number="01"
               title="Products"
@@ -58,15 +45,10 @@ export function ProductsSection() {
               description="Future Logix is building a product company, not just a services brand."
               supportingCopy="ClassPoint leads the portfolio today, while the wider Future Logix platform is positioned to support more products, stronger service lines, and deeper long-term partnerships over time."
             />
-          </motion.div>
+          </div>
 
           <div className="grid gap-6 lg:grid-cols-3">
-            <motion.article
-              initial={{ opacity: 0, y: 36 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
-              transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-              className="group lg:col-span-2"
-            >
+            <article className="group lg:col-span-2">
               <div className="surface-panel h-full p-5 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)] sm:p-7">
                 <div className="space-y-7">
                   <div className="flex flex-col gap-4 border-b border-border/70 pb-6 sm:flex-row sm:items-start sm:justify-between">
@@ -151,14 +133,9 @@ export function ProductsSection() {
                   </div>
                 </div>
               </div>
-            </motion.article>
+            </article>
 
-            <motion.aside
-              initial={{ opacity: 0, y: 36 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
-              transition={{ duration: 0.5, delay: 0.16, ease: "easeOut" }}
-              className="group"
-            >
+            <aside className="group">
               <div className="surface-panel flex h-full flex-col p-5 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)] sm:p-7">
                 <div className="space-y-5">
                   <div className="flex items-center justify-between gap-3">
@@ -214,7 +191,7 @@ export function ProductsSection() {
                   </Button>
                 </div>
               </div>
-            </motion.aside>
+            </aside>
           </div>
         </div>
       </SiteContainer>

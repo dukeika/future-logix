@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, MessageSquare, X } from "lucide-react";
 
+import { BrandLogo } from "@/components/shared/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 import { cn } from "@/lib/utils";
@@ -108,20 +109,7 @@ export function Navigation() {
         className="fixed inset-x-0 top-0 z-50 border-b border-border/70 bg-background/92 backdrop-blur-xl"
       >
         <SiteContainer className="flex h-20 items-center justify-between gap-4">
-          <Link
-            href="/"
-            className="rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Future Logix homepage"
-          >
-            <div className="flex flex-col">
-              <span className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
-                Future Logix
-              </span>
-              <span className="text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]">
-                Products &amp; Technology Services
-              </span>
-            </div>
-          </Link>
+          <BrandLogo priority />
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => {
@@ -188,12 +176,7 @@ export function Navigation() {
               className="ml-auto flex h-full w-full max-w-sm flex-col bg-background px-6 pb-8 pt-6"
             >
               <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <span className="text-base font-semibold text-foreground">Future Logix</span>
-                  <span className="text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground">
-                    Products &amp; Technology Services
-                  </span>
-                </div>
+                <BrandLogo />
                 <Button
                   type="button"
                   variant="ghost"

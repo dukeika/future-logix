@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
 
 type SectionHeaderProps = {
@@ -6,6 +7,7 @@ type SectionHeaderProps = {
   subtitle: string;
   description?: string;
   supportingCopy?: ReactNode;
+  inverted?: boolean;
 };
 
 export function SectionHeader({
@@ -14,17 +16,39 @@ export function SectionHeader({
   subtitle,
   description,
   supportingCopy,
+  inverted = false,
 }: SectionHeaderProps) {
   return (
     <div className="section-header">
-      <div className="section-header-number" aria-hidden="true">
+      <div
+        className={cn(
+          "section-header-number",
+          inverted && "text-white/40"
+        )}
+        aria-hidden="true"
+      >
         {number}
       </div>
       <div className="section-header-content">
-        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">{title}</p>
-        <h2 className="section-header-title">{subtitle}</h2>
-        {description ? <p className="section-header-subtitle">{description}</p> : null}
-        {supportingCopy ? <div className="section-header-copy">{supportingCopy}</div> : null}
+        <p
+          className={cn(
+            "text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground",
+            inverted && "text-slate-300"
+          )}
+        >
+          {title}
+        </p>
+        <h2 className={cn("section-header-title", inverted && "text-white")}>{subtitle}</h2>
+        {description ? (
+          <p className={cn("section-header-subtitle", inverted && "text-slate-100")}>
+            {description}
+          </p>
+        ) : null}
+        {supportingCopy ? (
+          <div className={cn("section-header-copy", inverted && "text-slate-300")}>
+            {supportingCopy}
+          </div>
+        ) : null}
       </div>
     </div>
   );

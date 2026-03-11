@@ -1,8 +1,4 @@
-"use client";
-
-import { motion, useInView } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
-import { useRef } from "react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -55,42 +51,30 @@ const differentiators: Differentiator[] = [
 ];
 
 export function WhySection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
-
   return (
-    <section ref={sectionRef} className="section-shell">
+    <section className="section-shell">
       <SiteContainer>
         <div className="space-y-8 rounded-[2rem] border border-border/80 bg-slate-950 px-5 py-10 text-white shadow-soft sm:px-8 sm:py-12">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-5xl"
-          >
+          <div className="max-w-5xl">
             <SectionHeader
               number="04"
               title="Why Future Logix"
               subtitle="A sharper proposition than the usual technology consultancy story."
               supportingCopy="The company should feel implementation-minded, market-aware, and built for long-term relevance in African business environments. Future Logix should feel like a company that can build, deliver, and stay relevant as client needs evolve."
+              inverted
             />
-          </motion.div>
+          </div>
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {differentiators.map((item, index) => {
+            {differentiators.map((item) => {
               const Icon = item.icon;
 
               return (
-                <motion.div
-                  key={item.number}
-                  initial={{ opacity: 0, y: 32 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-                  transition={{ duration: 0.4, delay: 0.08 * index, ease: "easeOut" }}
-                >
+                <div key={item.number}>
                   <Card className="h-full border-white/10 bg-white/5 text-white shadow-none">
                     <CardHeader className="space-y-4 p-5">
                       <div className="flex items-start justify-between gap-4">
-                        <span className="text-4xl font-semibold tracking-tight text-white/20">
+                        <span className="text-4xl font-semibold tracking-tight text-white/40">
                           {item.number}
                         </span>
                         <div className="rounded-2xl bg-secondary/15 p-3 text-secondary">
@@ -103,7 +87,7 @@ export function WhySection() {
                       <p className="text-sm leading-7 text-slate-300">{item.description}</p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div>
               );
             })}
           </div>

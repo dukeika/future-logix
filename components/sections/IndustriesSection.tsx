@@ -1,9 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import { Briefcase, GraduationCap, Rocket, TrendingUp, Users } from "lucide-react";
-import { useRef } from "react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -55,19 +51,11 @@ const industries: Industry[] = [
 ];
 
 export function IndustriesSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
-
   return (
-    <section ref={sectionRef} className="section-shell overflow-hidden">
+    <section className="section-shell overflow-hidden">
       <SiteContainer>
         <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-5xl"
-          >
+          <div className="max-w-5xl">
             <SectionHeader
               number="03"
               title="Industries"
@@ -75,21 +63,15 @@ export function IndustriesSection() {
               description="Built for organizations that need useful systems, not empty transformation language."
               supportingCopy="The industries focus is intentionally practical: sectors where technology has to improve delivery, visibility, coordination, and growth. The goal is not to claim every industry. It is to show where Future Logix is most likely to be useful, credible, and commercially relevant."
             />
-          </motion.div>
+          </div>
 
           <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:-mx-0 sm:px-0">
             <div className="flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 xl:grid-cols-5">
-              {industries.map((industry, index) => {
+              {industries.map((industry) => {
                 const Icon = industry.icon;
 
                 return (
-                  <motion.div
-                    key={industry.title}
-                    initial={{ opacity: 0, y: 36 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 36 }}
-                    transition={{ duration: 0.45, delay: 0.08 * index, ease: "easeOut" }}
-                    className="group min-w-[84%] snap-start md:min-w-0"
-                  >
+                  <div key={industry.title} className="group min-w-[84%] snap-start md:min-w-0">
                     <Card className="flex h-full flex-col border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
                       <CardHeader className="space-y-4 p-5">
                         <div className="rounded-2xl bg-primary/10 p-3 text-primary w-fit">
@@ -119,7 +101,7 @@ export function IndustriesSection() {
                         </Button>
                       </CardFooter>
                     </Card>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>

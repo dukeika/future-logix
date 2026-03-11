@@ -1,7 +1,4 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Layers3, ShieldCheck, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -18,42 +15,22 @@ export function Hero() {
 
           <div className="hero-grid relative">
             <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0, duration: 0.45, ease: "easeOut" }}
-                className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary"
-              >
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/15 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 <CheckCircle2 className="h-4 w-4" />
                 Built for African businesses
-              </motion.div>
+              </div>
 
-              <motion.h1
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.08, duration: 0.45, ease: "easeOut" }}
-                className="max-w-4xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl"
-              >
+              <h1 className="max-w-4xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
                 Practical digital products and technology services for growing African organizations
-              </motion.h1>
+              </h1>
 
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.16, duration: 0.45, ease: "easeOut" }}
-                className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg"
-              >
+              <p className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
                 Future Logix is the parent technology company behind ClassPoint and a growing
                 portfolio of products, platforms, and delivery services designed to help
                 organizations operate better, move faster, and scale with confidence.
-              </motion.p>
+              </p>
 
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.24, duration: 0.45, ease: "easeOut" }}
-                className="flex flex-col gap-3 sm:flex-row"
-              >
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="gap-2 rounded-full">
                   <Link href="/products">
                     Explore Products
@@ -63,15 +40,10 @@ export function Hero() {
                 <Button asChild size="lg" variant="outline" className="rounded-full bg-white/70">
                   <Link href="/services">Our Services</Link>
                 </Button>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.32, duration: 0.45, ease: "easeOut" }}
-              className="grid gap-4"
-            >
+            <div className="grid gap-4">
               <div className="rounded-[1.5rem] border border-white/60 bg-white/75 p-5 shadow-soft backdrop-blur">
                 <div className="flex items-start gap-4">
                   <div className="rounded-2xl bg-primary/10 p-3 text-primary">
@@ -108,7 +80,7 @@ export function Hero() {
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </SiteContainer>

@@ -1,0 +1,11 @@
+{
+  "performance": 0.9,
+  "accessibility": 0.95,
+  "seo": 0.95,
+  "first-contentful-paint": 1800,
+  "largest-contentful-paint": 2500,
+  "interactive": 3800,
+  "total-blocking-time": 100,
+  "cumulative-layout-shift": 0.1,
+  "server-response-time": 600
+}

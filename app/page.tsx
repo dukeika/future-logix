@@ -10,7 +10,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Practical Technology Products & Services for African Organizations",
   description:
-    "Future Logix helps organizations operate better with ClassPoint and implementation-focused technology services including AI automation, web development, and AWS architecture.",
+    "Future Logix helps African organizations operate better with ClassPoint, AI automation, web development, and AWS architecture.",
 };
 
 export default function HomePage() {

@@ -1,0 +1,14 @@
+<svg width="512" height="128" viewBox="0 0 512 128" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Future Logix</title>
+  <desc id="logoDesc">Future Logix wordmark with geometric brand mark.</desc>
+  <rect width="512" height="128" rx="24" fill="#F7F8FA"/>
+  <rect x="24" y="24" width="80" height="80" rx="20" fill="#0066CC"/>
+  <path d="M48 48H80V58H58V72H76V82H58V104H48V48Z" fill="white"/>
+  <path d="M86 40L96 50L70 76L60 66L86 40Z" fill="#00AA66"/>
+  <path d="M142 48H186V58H153V72H182V82H153V104H142V48Z" fill="#0F172A"/>
+  <path d="M197 48H207V84C207 90.6274 210.373 94 216 94C221.627 94 225 90.6274 225 84V48H235V84C235 96.4934 227.813 104 216 104C204.187 104 197 96.4934 197 84V48Z" fill="#0F172A"/>
+  <path d="M248 48H258V94H284V104H248V48Z" fill="#0F172A"/>
+  <path d="M291 48H330V58H315.5V104H305.5V58H291V48Z" fill="#0F172A"/>
+  <path d="M339 48H349V104H339V48Z" fill="#0F172A"/>
+  <path d="M361 48H371V73L392 48H404L383 75L406 104H394L376.5 81L371 87.5V104H361V48Z" fill="#0F172A"/>
+  <path d="M414 48H424V94H450V104H414V48Z" fill="#0F172A"/>

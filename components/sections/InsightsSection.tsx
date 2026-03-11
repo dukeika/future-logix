@@ -1,9 +1,5 @@
-"use client";
-
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useRef } from "react";
 
 import { insightArticles } from "@/lib/insights";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -18,36 +14,22 @@ const categoryStyles: Record<string, string> = {
 };
 
 export function InsightsSection() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-120px" });
-
   return (
-    <section ref={sectionRef} className="section-shell">
+    <section className="section-shell">
       <SiteContainer>
         <div className="space-y-8">
-          <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-            transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-5xl"
-          >
+          <div className="max-w-5xl">
             <SectionHeader
               number="05"
               title="Insights"
               subtitle="Practical thinking on technology, operations, and African business."
               supportingCopy="The insights preview should feel like the thinking arm of the business: practical, informed, and useful to decision-makers."
             />
-          </motion.div>
+          </div>
 
           <div className="grid gap-5 lg:grid-cols-3">
-            {insightArticles.map((article, index) => (
-              <motion.div
-                key={article.slug}
-                initial={{ opacity: 0, y: 32 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
-                transition={{ duration: 0.42, delay: 0.08 * index, ease: "easeOut" }}
-                className="group"
-              >
+            {insightArticles.map((article) => (
+              <div key={article.slug} className="group">
                 <Card className="h-full border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
                   <CardHeader className="space-y-4 p-5">
                     <div className="flex items-center justify-between gap-3">
@@ -76,7 +58,7 @@ export function InsightsSection() {
                     </Link>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             ))}
           </div>
 
