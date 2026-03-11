@@ -34,7 +34,7 @@ export function generateMetadata({ params }: InsightDetailPageProps): Metadata {
 export default function InsightDetailPage({ params }: InsightDetailPageProps) {
   const article = getInsightBySlug(params.slug);
 
-  if (!article) {
+  if (!article || !article.content?.length) {
     notFound();
   }
 
@@ -49,17 +49,11 @@ export default function InsightDetailPage({ params }: InsightDetailPageProps) {
             supportingCopy={article.excerpt}
           />
           <div className="space-y-5 rounded-[1.5rem] border border-border/80 bg-white/70 p-6">
-            {article.content?.length ? (
-              article.content.map((paragraph) => (
-                <p key={paragraph} className="text-base leading-8 text-muted-foreground">
-                  {paragraph}
-                </p>
-              ))
-            ) : (
-              <p className="text-base leading-8 text-muted-foreground">
-                Full article content for this insight is coming soon.
+            {article.content.map((paragraph) => (
+              <p key={paragraph} className="text-base leading-8 text-muted-foreground">
+                {paragraph}
               </p>
-            )}
+            ))}
           </div>
         </div>
       </SiteContainer>

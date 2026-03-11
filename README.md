@@ -100,3 +100,11 @@ Performance budget:
 
 - Site verified in Google Search Console via DNS domain verification
 - Sitemap URL: `https://futurelogix.ng/sitemap.xml`
+
+## Post-Launch Verification Checklist
+
+- Manually verify `admin@futurelogix.ng` receives contact form notification emails
+- Manually verify contact submitters receive the confirmation email
+- Manually verify newsletter subscribers receive confirmation and welcome emails
+- Review Google Search Console indexing and coverage after launch
+- Review Core Web Vitals and search performance after the first week

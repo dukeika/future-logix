@@ -32,7 +32,7 @@ export function SectionHeader({
       <div className="section-header-content">
         <p
           className={cn(
-            "text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground",
+            "text-sm font-semibold tracking-[0.12em] text-muted-foreground",
             inverted && "text-slate-300"
           )}
         >

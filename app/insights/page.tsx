@@ -43,8 +43,8 @@ export default function InsightsPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-dashed border-border bg-white/60 p-6 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              More articles coming soon
+            <p className="text-sm font-semibold tracking-[0.12em] text-muted-foreground">
+              New perspectives on technology and African business published regularly.
             </p>
           </div>
 

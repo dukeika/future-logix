@@ -1,11 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 
+import { NotFoundMetadata } from "@/components/shared/NotFoundMetadata";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Page Not Found | Future Logix",
+  description: "The page you are looking for does not exist. Return to Future Logix homepage.",
+};
 
 export default function NotFound() {
   return (
     <section className="section-shell">
+      <NotFoundMetadata />
       <SiteContainer>
         <div className="surface-panel max-w-3xl space-y-6 px-6 py-12 text-center sm:px-8">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">404</p>

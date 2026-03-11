@@ -132,7 +132,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="rounded-[1.5rem] border border-border/80 bg-white/70 p-6">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            <p className="text-sm font-semibold tracking-[0.12em] text-muted-foreground">
               Impact in Progress
             </p>
             <p className="mt-4 text-base leading-8 text-muted-foreground">
