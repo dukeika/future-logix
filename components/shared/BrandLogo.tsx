@@ -30,8 +30,8 @@ export function BrandLogo({
           width={400}
           height={100}
           priority={priority}
-          sizes="(max-width: 640px) 128px, 160px"
-          className="h-8 w-auto shrink-0 object-contain sm:h-10"
+          sizes="(max-width: 640px) 144px, 176px"
+          className="h-9 w-auto shrink-0 object-contain sm:h-11"
         />
         {showTagline ? (
           <span className="mt-1 text-[0.68rem] uppercase tracking-[0.18em] text-muted-foreground sm:text-[0.72rem]">
