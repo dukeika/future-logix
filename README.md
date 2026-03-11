@@ -95,3 +95,8 @@ Performance budget:
 - Budgets are defined in [performance-budget.json](/Users/akabo/Documents/future-logix/performance-budget.json)
 - Validate a Lighthouse JSON report with `npm run perf:budget -- path/to/report.json`
 - Current target thresholds align with mobile-focused Core Web Vitals goals for low-bandwidth markets
+
+## Search Engine Optimization
+
+- Site verified in Google Search Console via DNS domain verification
+- Sitemap URL: `https://futurelogix.ng/sitemap.xml`

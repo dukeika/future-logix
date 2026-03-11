@@ -10,8 +10,6 @@ import { CookieBanner } from "@/components/shared/CookieBanner";
 
 import "./globals.css";
 
-/* Replace with real token from GSC */
-const GOOGLE_SEARCH_CONSOLE_TOKEN = "your-google-verification-code";
 const LOGO_URL = "https://futurelogix.ng/images/future-logix-logo.png";
 const APPLE_TOUCH_ICON_URL = "https://futurelogix.ng/apple-touch-icon.png";
 const OG_IMAGE_URL = "https://futurelogix.ng/og-image.png";
@@ -50,9 +48,7 @@ export const metadata: Metadata = {
     apple: [{ url: APPLE_TOUCH_ICON_URL }],
     shortcut: [{ url: "https://futurelogix.ng/favicon.ico" }],
   },
-  verification: {
-    google: GOOGLE_SEARCH_CONSOLE_TOKEN,
-  },
+  /* Google Search Console verified via DNS TXT record - Domain: futurelogix.ng */
   openGraph: {
     type: "website",
     siteName: "Future Logix",
