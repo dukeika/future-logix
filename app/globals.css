@@ -48,6 +48,18 @@
     @apply text-inherit;
   }
 
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    @apply outline-none;
+  }
+
+  :focus-visible {
+    @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
   input::placeholder {
     color: hsl(var(--muted-foreground));
   }
@@ -88,5 +100,13 @@
 
   .section-header-copy {
     @apply text-base leading-8 text-muted-foreground;
+  }
+
+  .skip-link {
+    @apply sr-only fixed left-4 top-4 z-[100] rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only;
   }
 }

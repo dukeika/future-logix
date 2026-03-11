@@ -1,9 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 import type { Service } from "@/types";
 import { Cloud, Code, RefreshCw, Workflow } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Services - AI Automation, Web Development, AWS Architecture",
+  description:
+    "Implementation-focused technology services: AI automation, web application development, AWS architecture, and business modernization for African organizations.",
+};
 
 const services: Service[] = [
   {

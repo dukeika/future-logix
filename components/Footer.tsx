@@ -16,6 +16,7 @@ const quickLinks: FooterLink[] = [
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
+  { label: "Sitemap", href: "/sitemap.xml" },
 ];
 
 const socialLinks: SocialLink[] = [

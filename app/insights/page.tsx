@@ -1,9 +1,16 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 
 import { insightArticles } from "@/lib/insights";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "Insights on Technology & African Business",
+  description:
+    "Practical thinking on technology strategy, product decisions, and operational improvement for African organizations.",
+};
 
 export default function InsightsPage() {
   return (

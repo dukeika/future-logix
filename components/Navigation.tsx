@@ -91,6 +91,14 @@ export function Navigation() {
     };
   }, [isOpen]);
 
+  const isItemActive = (href: string) => {
+    if (href === "/") {
+      return pathname === href;
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
   return (
     <>
       <motion.header
@@ -117,7 +125,7 @@ export function Navigation() {
 
           <nav aria-label="Primary navigation" className="hidden items-center gap-1 lg:flex">
             {navItems.map((item) => {
-              const isActive = pathname === item.href;
+              const isActive = isItemActive(item.href);
 
               return (
                 <Link
@@ -200,7 +208,7 @@ export function Navigation() {
 
               <nav aria-label="Mobile navigation" className="mt-10 flex flex-1 flex-col gap-3">
                 {navItems.map((item, index) => {
-                  const isActive = pathname === item.href;
+                  const isActive = isItemActive(item.href);
 
                   return (
                     <motion.div

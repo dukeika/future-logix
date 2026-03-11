@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { Briefcase, GraduationCap, Rocket, TrendingUp, Users } from "lucide-react";
+import type { Metadata } from "next";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
 import type { Industry } from "@/types";
+
+export const metadata: Metadata = {
+  title: "Industries We Serve",
+  description:
+    "Future Logix serves education, SMEs, professional services, and startups across Africa with practical technology solutions.",
+};
 
 const industries: Industry[] = [
   {

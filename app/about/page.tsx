@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
+import type { Metadata } from "next";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
+
+export const metadata: Metadata = {
+  title: "About Future Logix",
+  description:
+    "Learn about Future Logix Limited, a Lagos-based technology company building products and services for African organizations.",
+};
 
 export default function AboutPage() {
   return (

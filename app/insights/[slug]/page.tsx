@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { getInsightBySlug, insightArticles } from "@/lib/insights";
@@ -12,6 +13,22 @@ type InsightDetailPageProps = {
 
 export function generateStaticParams() {
   return insightArticles.map((article) => ({ slug: article.slug }));
+}
+
+export function generateMetadata({ params }: InsightDetailPageProps): Metadata {
+  const article = getInsightBySlug(params.slug);
+
+  if (!article) {
+    return {
+      title: "Insight",
+      description: "Future Logix insight article.",
+    };
+  }
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+  };
 }
 
 export default function InsightDetailPage({ params }: InsightDetailPageProps) {

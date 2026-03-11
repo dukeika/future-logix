@@ -1,8 +1,15 @@
 import Link from "next/link";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import type { Metadata } from "next";
 
 import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
+
+export const metadata: Metadata = {
+  title: "Products - ClassPoint & Portfolio",
+  description:
+    "Explore ClassPoint, our flagship school operations platform for Nigerian schools, and future product portfolio direction.",
+};
 
 export default function ProductsPage() {
   return (
