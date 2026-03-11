@@ -36,3 +36,11 @@ export interface Service {
   href: string;
   icon: LucideIcon;
 }
+
+export interface Industry {
+  title: string;
+  need: string;
+  solution: string;
+  href: string;
+  icon: LucideIcon;
+}

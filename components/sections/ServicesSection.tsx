@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Cloud, Code, RefreshCw, Workflow } from "lucide-react";
 import { useRef } from "react";
 
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -94,25 +95,15 @@ export function ServicesSection() {
             initial={{ opacity: 0, y: 32 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-4xl space-y-4"
+            className="max-w-5xl"
           >
-            <div className="inline-flex items-center gap-3 rounded-full border border-primary/15 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              <span>Services</span>
-              <span className="rounded-full bg-primary/10 px-2 py-1 text-[0.65rem]">02</span>
-            </div>
-            <h2 className="max-w-4xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              Two clear paths, depending on what you need right now.
-            </h2>
-            <p className="text-base leading-8 text-muted-foreground">
-              Some visitors are looking for a product. Others need a technology partner who can
-              help them design, build, secure, or improve core systems. The homepage should make
-              both paths obvious.
-            </p>
-            <p className="text-lg font-medium leading-8 text-foreground">
-              Future Logix is intentionally presented as a parent technology brand with two clean
-              entry points: a product path for solution buyers, and a service path for
-              organizations that need design, implementation, or long-term support.
-            </p>
+            <SectionHeader
+              number="02"
+              title="Services"
+              subtitle="Two clear paths, depending on what you need right now."
+              description="Some visitors are looking for a product. Others need a technology partner who can help them design, build, secure, or improve core systems. The homepage should make both paths obvious."
+              supportingCopy="Future Logix is intentionally presented as a parent technology brand with two clean entry points: a product path for solution buyers, and a service path for organizations that need design, implementation, or long-term support."
+            />
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-2">

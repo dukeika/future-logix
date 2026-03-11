@@ -65,4 +65,28 @@
   .surface-panel {
     @apply rounded-[1.75rem] border border-border bg-white/80 shadow-soft backdrop-blur;
   }
+
+  .section-header {
+    @apply grid gap-4 md:grid-cols-[auto_1fr] md:items-start;
+  }
+
+  .section-header-number {
+    @apply text-5xl font-semibold leading-none tracking-tight text-slate-200 sm:text-6xl;
+  }
+
+  .section-header-content {
+    @apply space-y-3;
+  }
+
+  .section-header-title {
+    @apply text-3xl font-semibold tracking-tight text-foreground sm:text-4xl;
+  }
+
+  .section-header-subtitle {
+    @apply text-lg font-medium leading-8 text-foreground;
+  }
+
+  .section-header-copy {
+    @apply text-base leading-8 text-muted-foreground;
+  }
 }

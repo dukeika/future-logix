@@ -45,13 +45,13 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 text-secondary" />
-                <a href="mailto:hello@futurelogix.ng" className="hover:text-white">
-                  hello@futurelogix.ng
+                <a href="mailto:admin@futurelogix.ng" className="hover:text-white">
+                  admin@futurelogix.ng
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 text-secondary" />
-                <span>+234 (0) 000 000 0000</span>
+                <span>+23470611006212</span>
               </div>
             </div>
           </div>

@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { useRef } from "react";
 
+import { SectionHeader } from "@/components/shared/SectionHeader";
 import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 import type { ProductDirectionItem, ProductFeature } from "@/types";
@@ -48,23 +49,15 @@ export function ProductsSection() {
             initial={{ opacity: 0, y: 32 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 32 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
-            className="max-w-3xl space-y-4"
+            className="max-w-4xl"
           >
-            <div className="inline-flex items-center gap-3 rounded-full border border-primary/15 bg-primary/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              <span>Products</span>
-              <span className="rounded-full bg-primary/10 px-2 py-1 text-[0.65rem]">01</span>
-            </div>
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-              ClassPoint Flagship Product
-            </h2>
-            <p className="text-lg font-medium text-foreground">
-              Future Logix is building a product company, not just a services brand.
-            </p>
-            <p className="text-base leading-8 text-muted-foreground">
-              ClassPoint leads the portfolio today, while the wider Future Logix platform is
-              positioned to support more products, stronger service lines, and deeper long-term
-              partnerships over time.
-            </p>
+            <SectionHeader
+              number="01"
+              title="Products"
+              subtitle="ClassPoint Flagship Product"
+              description="Future Logix is building a product company, not just a services brand."
+              supportingCopy="ClassPoint leads the portfolio today, while the wider Future Logix platform is positioned to support more products, stronger service lines, and deeper long-term partnerships over time."
+            />
           </motion.div>
 
           <div className="grid gap-6 lg:grid-cols-3">
@@ -173,7 +166,7 @@ export function ProductsSection() {
                       <Layers3 className="h-5 w-5" />
                     </div>
                     <span className="inline-flex rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-secondary">
-                      Coming 2025-2026
+                      Portfolio expansion underway
                     </span>
                   </div>
 
