@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { NewsletterSignupForm } from "@/components/shared/NewsletterSignupForm";
 import { SiteContainer } from "@/components/shared/site-container";
 import type { FooterLink, SocialLink } from "@/types";
 
@@ -86,17 +86,7 @@ export function Footer() {
                 Subscribe for product updates, practical insights, and company news.
               </p>
             </div>
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                aria-label="Email address"
-                placeholder="Enter your email"
-                className="h-11 flex-1 rounded-full border border-white/10 bg-white/5 px-4 text-sm text-white outline-none transition focus:border-secondary focus:ring-2 focus:ring-secondary/30"
-              />
-              <Button type="button" className="h-11 rounded-full bg-secondary font-semibold text-slate-950 hover:bg-secondary/90">
-                Subscribe
-              </Button>
-            </div>
+            <NewsletterSignupForm />
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Social</p>
               <div className="mt-3 flex gap-3">

@@ -64,3 +64,14 @@ export interface ContactInterestOption {
   value: string;
   label: string;
 }
+
+export interface NewsletterSubscription {
+  email: string;
+  subscribedAt: string;
+  source: string;
+  confirmed: boolean;
+  confirmationToken: string;
+  unsubscribeToken: string;
+  confirmedAt?: string;
+  unsubscribedAt?: string;
+}

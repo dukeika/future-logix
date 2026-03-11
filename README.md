@@ -7,7 +7,7 @@ Production-ready Next.js 14 foundation for the Future Logix website.
 - Next.js 14 with App Router and TypeScript
 - Tailwind CSS 3
 - shadcn/ui baseline with neutral palette
-- Framer Motion for lightweight motion
+- AWS SES + DynamoDB newsletter workflow
 
 ## Project Structure
 
@@ -43,9 +43,9 @@ npm run perf:budget -- path/to/lighthouse-report.json
 
 ## Notes
 
-- Configured for static export with `output: "export"`.
-- `next/image` is set to `unoptimized: true` because static export disables the default Next.js image optimizer.
-- Security and cache headers for Amplify are defined in `customHttp.yml`, which is the effective path for static export deployments.
+- Configured for Next.js SSR on Amplify so API routes can run for newsletter and monitoring workflows.
+- `next/image` remains `unoptimized: true` to keep image delivery simple on Amplify.
+- Security and cache headers for Amplify are defined in `customHttp.yml`.
 
 ## Production
 
@@ -56,6 +56,14 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=
 NEXT_PUBLIC_PLAUSIBLE_DOMAIN=
 NEXT_PUBLIC_WEB_VITALS_ENDPOINT=
 NEXT_PUBLIC_ERROR_REPORTING_ENDPOINT=
+AWS_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+NEWSLETTER_TABLE_NAME=NewsletterSubscriptions
+NEWSLETTER_FROM_EMAIL=admin@futurelogix.ng
+SITE_URL=https://futurelogix.ng
+SES_CONFIGURATION_SET_NAME=future-logix-newsletter
+NEWSLETTER_ADMIN_PASSWORD=
 ```
 
 Monitoring behavior:
@@ -63,6 +71,8 @@ Monitoring behavior:
 - Analytics loads only when `NEXT_PUBLIC_GA_MEASUREMENT_ID` or `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is set.
 - Core Web Vitals are beaconed only when `NEXT_PUBLIC_WEB_VITALS_ENDPOINT` is set.
 - Client runtime errors are reported only when `NEXT_PUBLIC_ERROR_REPORTING_ENDPOINT` is set.
+- Newsletter API routes require AWS credentials with SES and DynamoDB access in Amplify.
+- Prefer attaching IAM permissions to the Amplify runtime role instead of long-lived static AWS keys when possible.
 
 Deployment flow:
 
