@@ -43,6 +43,26 @@ export default function AboutPage() {
                   confidence through technology that fits their reality.
                 </p>
               </div>
+
+              <div className="rounded-[1.5rem] border border-border/80 bg-background/80 p-6">
+                <h2 className="text-xl font-semibold text-foreground">Leadership Principles</h2>
+                <ul className="mt-4 space-y-4 text-base leading-8 text-muted-foreground">
+                  <li>
+                    <span className="font-medium text-foreground">Operator-first:</span> Every
+                    leader at Future Logix has direct responsibility for client delivery.
+                    Management is not separate from implementation.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Local context:</span> Decisions
+                    are made by people who understand the specific constraints of African business
+                    environments, infrastructure, talent, regulatory, and cultural.
+                  </li>
+                  <li>
+                    <span className="font-medium text-foreground">Long-term orientation:</span> We
+                    measure success by client outcomes over years, not project margins over months.
+                  </li>
+                </ul>
+              </div>
             </div>
 
             <div className="space-y-6">
@@ -58,11 +78,47 @@ export default function AboutPage() {
               <div className="rounded-[1.5rem] border border-border/80 bg-background/80 p-6">
                 <h2 className="text-xl font-semibold text-foreground">Leadership</h2>
                 <p className="mt-4 text-base leading-8 text-muted-foreground">
-                  Leadership team profiles coming soon
+                  Future Logix is led by operators who have built technology inside African
+                  organizations, not just consulted on them.
                 </p>
-                <div className="mt-5 flex h-40 items-center justify-center rounded-[1.2rem] border border-dashed border-border bg-white/70 text-sm font-medium text-muted-foreground">
-                  Founder and team photos placeholder
+                <div className="mt-5 space-y-4 rounded-[1.2rem] border border-border/70 bg-white/70 p-5">
+                  <div>
+                    <h3 className="text-base font-semibold text-foreground">
+                      Founder &amp; Managing Director: [Name]
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      [Name] founded Future Logix in [Year] after [X years] leading technology
+                      implementation at [previous relevant experience]. The consistent gap between
+                      technology promise and operational reality in African organizations motivated
+                      the creation of a company focused on delivery, not presentations.
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      Direct experience includes: [specific relevant projects or roles]. Education:
+                      [relevant degrees or certifications]. Based in Lagos.
+                    </p>
+                  </div>
+                  <div className="rounded-[1rem] border border-dashed border-border bg-background px-4 py-8 text-center text-sm font-medium text-muted-foreground">
+                    Founder and team photos to be added
+                  </div>
+                  <p className="text-sm leading-7 text-muted-foreground">
+                    Contact [Name] directly: [email] for partnership, press, or significant
+                    engagement discussions.
+                  </p>
                 </div>
+              </div>
+
+              <div className="rounded-[1.5rem] border border-border/80 bg-background/80 p-6">
+                <h2 className="text-xl font-semibold text-foreground">Team</h2>
+                <p className="mt-4 text-base leading-8 text-muted-foreground">
+                  Future Logix operates with a core team of [X] permanent staff and a network of
+                  [X] specialized consultants for specific implementation needs. This structure
+                  maintains consistent quality while accessing deep expertise for complex
+                  requirements.
+                </p>
+                <p className="mt-4 text-base leading-8 text-muted-foreground">
+                  Team members are based primarily in Lagos, with remote collaboration
+                  infrastructure for clients and partners across Africa.
+                </p>
               </div>
 
               <div className="rounded-[1.5rem] border border-border/80 bg-slate-950 p-6 text-white">

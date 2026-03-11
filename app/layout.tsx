@@ -7,6 +7,11 @@ import { Navigation } from "@/components/Navigation";
 
 import "./globals.css";
 
+const GOOGLE_SEARCH_CONSOLE_TOKEN = "your-google-verification-code";
+const LOGO_URL = "https://futurelogix.ng/logo.png";
+const LINKEDIN_URL = "https://linkedin.com/company/futurelogix";
+const TWITTER_URL = "https://twitter.com/futurelogix";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -32,7 +37,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   verification: {
-    google: "google-search-console-placeholder",
+    google: GOOGLE_SEARCH_CONSOLE_TOKEN,
   },
   openGraph: {
     type: "website",
@@ -68,11 +73,8 @@ export default function RootLayout({
     "@type": "Organization",
     name: "Future Logix Limited",
     url: "https://futurelogix.ng",
-    logo: "https://futurelogix.ng/logo-placeholder.png",
-    sameAs: [
-      "https://www.linkedin.com/company/future-logix",
-      "https://twitter.com/futurelogix",
-    ],
+    logo: LOGO_URL,
+    sameAs: [LINKEDIN_URL, TWITTER_URL],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
