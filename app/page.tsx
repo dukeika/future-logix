@@ -1,7 +1,9 @@
 import { Hero } from "@/components/sections/Hero";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
+import { InsightsSection } from "@/components/sections/InsightsSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
 import { ServicesSection } from "@/components/sections/ServicesSection";
+import { WhySection } from "@/components/sections/WhySection";
 
 export default function HomePage() {
   return (
@@ -10,7 +12,9 @@ export default function HomePage() {
       <ProductsSection />
       <ServicesSection />
       <IndustriesSection />
-      {/* Upcoming sections: industries, insights, and contact CTA */}
+      <WhySection />
+      <InsightsSection />
+      {/* Upcoming sections: contact CTA */}
     </>
   );
 }

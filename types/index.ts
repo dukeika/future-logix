@@ -44,3 +44,17 @@ export interface Industry {
   href: string;
   icon: LucideIcon;
 }
+
+export interface Differentiator {
+  number: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+}
+
+export interface InsightArticle {
+  slug: string;
+  category: string;
+  title: string;
+  excerpt: string;
+}
