@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { CTASection } from "@/components/sections/CTASection";
 import { IndustriesSection } from "@/components/sections/IndustriesSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { ProductsSection } from "@/components/sections/ProductsSection";
@@ -14,7 +15,7 @@ export default function HomePage() {
       <IndustriesSection />
       <WhySection />
       <InsightsSection />
-      {/* Upcoming sections: contact CTA */}
+      <CTASection />
     </>
   );
 }

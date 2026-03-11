@@ -58,3 +58,8 @@ export interface InsightArticle {
   title: string;
   excerpt: string;
 }
+
+export interface ContactInterestOption {
+  value: string;
+  label: string;
+}
