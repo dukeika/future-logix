@@ -1,5 +1,7 @@
 import Paystack from "@paystack/paystack-sdk";
 
+let paystackClient: Paystack | null = null;
+
 function getPaystackSecretKey() {
   const secretKey = process.env.PAYSTACK_SERVER_KEY ?? process.env.PAYSTACK_SECRET_KEY;
 
@@ -10,4 +12,10 @@ function getPaystackSecretKey() {
   return secretKey;
 }
 
-export const paystack = new Paystack(getPaystackSecretKey());
+export function getPaystackClient() {
+  if (!paystackClient) {
+    paystackClient = new Paystack(getPaystackSecretKey());
+  }
+
+  return paystackClient;
+}

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 import { getInvoice, updateInvoice } from "@/lib/invoices";
-import { paystack } from "@/lib/paystack";
+import { getPaystackClient } from "@/lib/paystack";
 
 export const runtime = "nodejs";
 
@@ -32,6 +32,8 @@ export async function POST(request: Request) {
     if (!invoice) {
       return NextResponse.json({ error: "Invoice not found." }, { status: 404, headers: noStoreHeaders });
     }
+
+    const paystack = getPaystackClient();
 
     const response = (await (paystack as any).transaction.initialize({
       email,
