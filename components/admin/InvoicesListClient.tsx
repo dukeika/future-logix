@@ -2,10 +2,11 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Loader2, Mail, Plus, ReceiptText } from "lucide-react";
+import { Download, Loader2, Mail, Plus, ReceiptText, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import type { Invoice } from "@/lib/invoices";
 
 const filters = ["all", "draft", "sent", "paid", "overdue"] as const;
@@ -25,6 +26,9 @@ export function InvoicesListClient() {
   const [error, setError] = useState("");
   const [filter, setFilter] = useState<FilterValue>("all");
   const [sendingId, setSendingId] = useState("");
+  const [query, setQuery] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
 
   async function loadInvoices() {
     setLoading(true);
@@ -51,12 +55,20 @@ export function InvoicesListClient() {
   }, []);
 
   const filteredInvoices = useMemo(() => {
-    if (filter === "all") {
-      return invoices;
-    }
+    return invoices.filter((invoice) => {
+      const matchesStatus = filter === "all" ? true : invoice.status === filter;
+      const normalizedQuery = query.trim().toLowerCase();
+      const matchesQuery = normalizedQuery
+        ? invoice.clientName.toLowerCase().includes(normalizedQuery) ||
+          invoice.clientEmail.toLowerCase().includes(normalizedQuery)
+        : true;
+      const createdDate = invoice.createdAt.slice(0, 10);
+      const matchesFrom = fromDate ? createdDate >= fromDate : true;
+      const matchesTo = toDate ? createdDate <= toDate : true;
 
-    return invoices.filter((invoice) => invoice.status === filter);
-  }, [filter, invoices]);
+      return matchesStatus && matchesQuery && matchesFrom && matchesTo;
+    });
+  }, [filter, fromDate, invoices, query, toDate]);
 
   async function handleSendEmail(invoiceId: string) {
     setSendingId(invoiceId);
@@ -107,6 +119,26 @@ export function InvoicesListClient() {
               {value === "all" ? "All" : value}
             </Button>
           ))}
+        </div>
+
+        <div className="grid gap-3 md:grid-cols-[1.3fr_0.8fr_0.8fr_auto]">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search client name or email"
+              className="pl-10"
+            />
+          </div>
+          <Input type="date" value={fromDate} onChange={(event) => setFromDate(event.target.value)} />
+          <Input type="date" value={toDate} onChange={(event) => setToDate(event.target.value)} />
+          <Button asChild variant="outline" className="gap-2">
+            <a href="/api/invoices/export">
+              <Download className="h-4 w-4" />
+              Export CSV
+            </a>
+          </Button>
         </div>
 
         {error ? <p className="text-sm text-destructive">{error}</p> : null}

@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Loader2, ReceiptText, TrendingUp, Wallet } from "lucide-react";
+import { ArrowRight, CircleDollarSign, Loader2, ReceiptText, TrendingUp, Wallet } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -56,11 +56,13 @@ export function AdminDashboardClient() {
 
   const stats = useMemo(() => {
     const paidInvoices = invoices.filter((invoice) => invoice.status === "paid");
+    const unpaidInvoices = invoices.filter((invoice) => invoice.status !== "paid");
 
     return {
       total: invoices.length,
       paid: paidInvoices.length,
       revenue: paidInvoices.reduce((sum, invoice) => sum + invoice.totalAmount, 0),
+      outstanding: unpaidInvoices.reduce((sum, invoice) => sum + invoice.totalAmount, 0),
     };
   }, [invoices]);
 
@@ -74,7 +76,7 @@ export function AdminDashboardClient() {
 
   return (
     <div className="space-y-8">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <Card>
           <CardHeader>
             <CardDescription>Total invoices</CardDescription>
@@ -102,13 +104,22 @@ export function AdminDashboardClient() {
             </CardTitle>
           </CardHeader>
         </Card>
+        <Card>
+          <CardHeader>
+            <CardDescription>Outstanding amount</CardDescription>
+            <CardTitle className="flex items-center gap-2 text-3xl text-slate-950">
+              <CircleDollarSign className="h-5 w-5 text-primary" />
+              {formatCurrency(stats.outstanding)}
+            </CardTitle>
+          </CardHeader>
+        </Card>
       </div>
 
       <Card>
         <CardHeader className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <CardTitle className="text-slate-950">Recent invoices</CardTitle>
-            <CardDescription>Monitor status, outstanding payments, and next actions.</CardDescription>
+            <CardTitle className="text-slate-950">Recent activity</CardTitle>
+            <CardDescription>Last 5 invoices created across draft, sent, paid, and overdue states.</CardDescription>
           </div>
           <Button asChild>
             <Link href="/admin/invoices" className="gap-2">
@@ -128,7 +139,7 @@ export function AdminDashboardClient() {
                 <p className="font-medium text-slate-950">{invoice.invoiceId}</p>
                 <p className="text-sm text-muted-foreground">{invoice.clientName}</p>
               </div>
-              <div className="text-sm text-muted-foreground">{invoice.dueDate}</div>
+              <div className="text-sm text-muted-foreground">Created {invoice.createdAt.slice(0, 10)}</div>
               <div className="text-sm font-medium text-slate-950">{formatCurrency(invoice.totalAmount)}</div>
               <div className="text-sm capitalize text-primary">{invoice.status}</div>
             </div>
