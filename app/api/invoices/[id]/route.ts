@@ -26,10 +26,11 @@ const updateInvoiceSchema = z
 
 export async function GET(
   _request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const invoice = await getInvoice(params.id);
+    const { id } = await params;
+    const invoice = await getInvoice(id);
 
     if (!invoice) {
       return NextResponse.json({ error: "Invoice not found." }, { status: 404, headers: noStoreHeaders });
@@ -47,9 +48,10 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const payload = await request.json().catch(() => null);
     const parsed = updateInvoiceSchema.safeParse(payload);
 
@@ -60,7 +62,7 @@ export async function PATCH(
       );
     }
 
-    const invoice = await updateInvoice(params.id, parsed.data);
+    const invoice = await updateInvoice(id, parsed.data);
     return NextResponse.json({ invoice }, { headers: noStoreHeaders });
   } catch (error) {
     console.error("update invoice error", error);
@@ -78,10 +80,11 @@ export async function PATCH(
 
 export async function DELETE(
   _request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const deleted = await deleteInvoice(params.id);
+    const { id } = await params;
+    const deleted = await deleteInvoice(id);
 
     if (!deleted) {
       return NextResponse.json({ error: "Invoice not found." }, { status: 404, headers: noStoreHeaders });

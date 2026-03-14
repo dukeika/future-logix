@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
     const response = (await (paystack as any).transaction.initialize({
       email,
-      amount,
+      amount: amount * 100,
       reference: `${invoiceId}-${Date.now()}`,
       metadata: {
         invoiceId,
