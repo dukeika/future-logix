@@ -1,4 +1,4 @@
-import PDFDocument from "pdfkit";
+import PDFDocument from "pdfkit/js/pdfkit.standalone";
 
 import type { Invoice } from "@/lib/invoices";
 
@@ -11,13 +11,13 @@ function formatCurrency(amount: number) {
 }
 
 function drawCell(
-  doc: PDFKit.PDFDocument,
+  doc: InstanceType<typeof PDFDocument>,
   text: string,
   x: number,
   y: number,
   width: number,
   height: number,
-  options?: PDFKit.Mixins.TextOptions
+  options?: Record<string, unknown>
 ) {
   doc.rect(x, y, width, height).stroke("#cbd5e1");
   doc.text(text, x + 8, y + 8, {
