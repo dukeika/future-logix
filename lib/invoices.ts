@@ -23,6 +23,13 @@ export interface InvoiceItem {
   amount: number;
 }
 
+export interface InvoicePaymentLink {
+  url: string;
+  reference: string;
+  createdAt: string;
+  expiresAt: string;
+}
+
 export interface Invoice {
   invoiceId: string;
   clientName: string;
@@ -34,6 +41,7 @@ export interface Invoice {
   createdAt: string;
   updatedAt: string;
   paystackReference?: string;
+  paymentLink?: InvoicePaymentLink;
 }
 
 export interface CreateInvoiceInput {
@@ -46,7 +54,7 @@ export interface CreateInvoiceInput {
 }
 
 export type UpdateInvoiceInput = Partial<
-  Pick<Invoice, "clientName" | "clientEmail" | "items" | "dueDate" | "status" | "paystackReference">
+  Pick<Invoice, "clientName" | "clientEmail" | "items" | "dueDate" | "status" | "paystackReference" | "paymentLink">
 >;
 
 export function generateInvoiceNumber() {
@@ -73,6 +81,7 @@ export async function createInvoice(input: CreateInvoiceInput): Promise<Invoice>
     createdAt,
     updatedAt: createdAt,
     paystackReference: input.paystackReference,
+    paymentLink: undefined,
   };
 
   await docClient.send(
