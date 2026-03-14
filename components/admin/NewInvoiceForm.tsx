@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { Loader2, Plus, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -25,7 +24,6 @@ function formatCurrency(amount: number) {
 }
 
 export function NewInvoiceForm() {
-  const router = useRouter();
   const [clientName, setClientName] = useState("");
   const [clientEmail, setClientEmail] = useState("");
   const [dueDate, setDueDate] = useState("");
@@ -86,8 +84,7 @@ export function NewInvoiceForm() {
         throw new Error(data?.error ?? "Unable to create invoice.");
       }
 
-      router.push("/admin/invoices");
-      router.refresh();
+      window.location.href = "/admin/invoices";
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Unable to create invoice.");
     } finally {
@@ -201,7 +198,7 @@ export function NewInvoiceForm() {
               <p className="text-2xl font-semibold text-slate-950">{formatCurrency(total)}</p>
             </div>
             <div className="flex flex-col items-stretch gap-3 sm:flex-row">
-              <Button type="button" variant="outline" onClick={() => router.push("/admin/invoices")}>
+              <Button type="button" variant="outline" onClick={() => (window.location.href = "/admin/invoices")}>
                 Cancel
               </Button>
               <Button type="submit" disabled={submitting}>
