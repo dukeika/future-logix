@@ -3,6 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - printf "PAYSTACK_SERVER_KEY=%s\nPAYSTACK_PUBLIC_KEY=%s\n" "$PAYSTACK_SERVER_KEY" "$PAYSTACK_PUBLIC_KEY" > .env.production
         - npm ci
     build:
       commands:
