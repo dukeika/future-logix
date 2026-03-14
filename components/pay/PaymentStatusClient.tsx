@@ -10,10 +10,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import type { Invoice } from "@/lib/invoices";
 
 type VerifyResponse = {
+  description?: string;
   error?: string;
   invoice?: Invoice;
   invoiceId?: string;
   paymentStatus?: string;
+  reference?: string;
+  source?: string;
+  totalAmount?: number;
 };
 
 function formatCurrency(amount: number) {
@@ -33,7 +37,7 @@ export function PaymentStatusClient({
 }) {
   const [loading, setLoading] = useState(Boolean(reference));
   const [error, setError] = useState("");
-  const [invoice, setInvoice] = useState<Invoice | null>(null);
+  const [result, setResult] = useState<VerifyResponse | null>(null);
 
   useEffect(() => {
     if (!reference) {
@@ -60,19 +64,21 @@ export function PaymentStatusClient({
           throw new Error(data.error ?? "Unable to verify payment.");
         }
 
-        if (active) {
-          if (data.paymentStatus !== "success") {
-            setError("Payment was not completed successfully.");
-            setLoading(false);
-            return;
-          }
+        if (!active) {
+          return;
+        }
 
-          setInvoice(data.invoice ?? null);
-          setLoading(false);
+        if (data.paymentStatus !== "success") {
+          setError("Payment was not completed successfully.");
+        } else {
+          setResult(data);
         }
       } catch (verifyError) {
         if (active) {
           setError(verifyError instanceof Error ? verifyError.message : "Unable to verify payment.");
+        }
+      } finally {
+        if (active) {
           setLoading(false);
         }
       }
@@ -109,18 +115,37 @@ export function PaymentStatusClient({
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-5 text-center">
-            {invoice ? (
+            {result?.invoice ? (
               <div className="rounded-[1.5rem] border border-border/70 bg-slate-50 px-5 py-5 text-left">
                 <p className="text-sm text-muted-foreground">Invoice</p>
-                <p className="font-medium text-slate-950">{invoice.invoiceId}</p>
+                <p className="font-medium text-slate-950">{result.invoice.invoiceId}</p>
                 <p className="mt-4 text-sm text-muted-foreground">Amount paid</p>
-                <p className="text-2xl font-semibold text-slate-950">{formatCurrency(invoice.totalAmount)}</p>
+                <p className="text-2xl font-semibold text-slate-950">{formatCurrency(result.invoice.totalAmount)}</p>
+              </div>
+            ) : null}
+            {!result?.invoice && result?.paymentStatus === "success" ? (
+              <div className="rounded-[1.5rem] border border-border/70 bg-slate-50 px-5 py-5 text-left">
+                <p className="text-sm text-muted-foreground">Reference</p>
+                <p className="font-medium text-slate-950">{result.reference}</p>
+                <p className="mt-4 text-sm text-muted-foreground">Description</p>
+                <p className="font-medium text-slate-950">{result.description ?? "Direct payment"}</p>
+                {typeof result.totalAmount === "number" ? (
+                  <>
+                    <p className="mt-4 text-sm text-muted-foreground">Amount paid</p>
+                    <p className="text-2xl font-semibold text-slate-950">{formatCurrency(result.totalAmount)}</p>
+                  </>
+                ) : null}
               </div>
             ) : null}
             <div className="flex flex-col justify-center gap-3 sm:flex-row">
               {error && invoiceId ? (
                 <Button asChild variant="outline">
                   <Link href={`/pay/${invoiceId}`}>Try Again</Link>
+                </Button>
+              ) : null}
+              {error && !invoiceId ? (
+                <Button asChild variant="outline">
+                  <Link href="/pay/now">Try Again</Link>
                 </Button>
               ) : null}
               <Button asChild>

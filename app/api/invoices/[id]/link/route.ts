@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { getInvoice } from "@/lib/invoices";
-import { getOrCreatePaymentLink } from "@/lib/payment-links";
+import { getInvoice, updateInvoice } from "@/lib/invoices";
+import { getOrCreatePaymentLink, markPaymentLinkEvent } from "@/lib/payment-links";
 
 export const runtime = "nodejs";
 
@@ -25,12 +25,18 @@ export async function POST(
     }
 
     const paymentLink = await getOrCreatePaymentLink(invoice);
+    const trackedPaymentLink = markPaymentLinkEvent(paymentLink, "copied");
+
+    await updateInvoice(invoice.invoiceId, {
+      paymentLink: trackedPaymentLink,
+      paystackReference: trackedPaymentLink.reference,
+    });
 
     return NextResponse.json(
       {
-        paymentUrl: paymentLink.url,
-        reference: paymentLink.reference,
-        expiresAt: paymentLink.expiresAt,
+        paymentUrl: trackedPaymentLink.url,
+        reference: trackedPaymentLink.reference,
+        expiresAt: trackedPaymentLink.expiresAt,
       },
       { headers: { "Cache-Control": "no-store" } }
     );

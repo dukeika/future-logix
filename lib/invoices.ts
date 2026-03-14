@@ -28,6 +28,11 @@ export interface InvoicePaymentLink {
   reference: string;
   createdAt: string;
   expiresAt: string;
+  generationCount?: number;
+  lastSentAt?: string;
+  sentCount?: number;
+  lastCopiedAt?: string;
+  copiedCount?: number;
 }
 
 export interface Invoice {

@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { getInvoice, updateInvoice } from "@/lib/invoices";
-import { getPaystackClient } from "@/lib/paystack";
+import { getInvoice } from "@/lib/invoices";
+import { getOrCreatePaymentLink } from "@/lib/payment-links";
 
 export const runtime = "nodejs";
 
 const noStoreHeaders = { "Cache-Control": "no-store" };
-const SITE_URL = process.env.SITE_URL ?? "https://futurelogix.ng";
-
 const initializePaymentSchema = z.object({
   invoiceId: z.string().trim().min(1),
   email: z.string().trim().email(),
@@ -34,36 +32,19 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Invoice not found." }, { status: 404, headers: noStoreHeaders });
     }
 
-    const paystack = getPaystackClient();
-
-    const response = (await (paystack as any).transaction.initialize({
-      email,
-      amount: amount * 100,
-      reference: `${invoiceId}-${Date.now()}`,
-      callback_url: `${SITE_URL}/pay/success?invoiceId=${encodeURIComponent(invoiceId)}`,
-      metadata: {
-        invoiceId,
-      },
-    })) as {
-      data?: {
-        authorization_url?: string;
-        reference?: string;
-      };
-    };
-
-    const authorizationUrl = response.data?.authorization_url;
-    const reference = response.data?.reference;
-
-    if (!authorizationUrl || !reference) {
-      throw new Error("Paystack did not return an authorization URL.");
+    if (invoice.totalAmount !== amount) {
+      return NextResponse.json({ error: "Invoice total no longer matches the payment amount." }, { status: 409, headers: noStoreHeaders });
     }
 
-    await updateInvoice(invoiceId, { paystackReference: reference, clientEmail: email });
+    const paymentLink = await getOrCreatePaymentLink({
+      ...invoice,
+      clientEmail: email,
+    });
 
     return NextResponse.json(
       {
-        authorization_url: authorizationUrl,
-        reference,
+        authorization_url: paymentLink.url,
+        reference: paymentLink.reference,
       },
       { headers: noStoreHeaders }
     );

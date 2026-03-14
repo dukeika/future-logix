@@ -1,8 +1,9 @@
 import { Invoice, InvoicePaymentLink, updateInvoice } from "@/lib/invoices";
-import { getPaystackClient } from "@/lib/paystack";
+import { initializeFutureLogixPayment } from "@/lib/payments";
 
-const SITE_URL = process.env.SITE_URL ?? "https://futurelogix.ng";
 const PAYMENT_LINK_TTL_HOURS = 72;
+
+type PaymentLinkEvent = "sent" | "copied";
 
 function resolveExpiry(invoice: Invoice, createdAt: string) {
   const createdTime = new Date(createdAt).getTime();
@@ -31,47 +32,65 @@ export function isPaymentLinkActive(invoice: Pick<Invoice, "status" | "paymentLi
   return getPaymentLinkStatus(invoice) === "active";
 }
 
+async function initializePaymentLink(invoice: Invoice): Promise<InvoicePaymentLink> {
+  const response = await initializeFutureLogixPayment({
+    email: invoice.clientEmail,
+    amount: invoice.totalAmount,
+    referencePrefix: invoice.invoiceId,
+    metadata: {
+      app: "futurelogix",
+      source: "invoice_system",
+      invoiceId: invoice.invoiceId,
+      paymentLinkGeneration: (invoice.paymentLink?.generationCount ?? 0) + 1,
+    },
+  });
+
+  const createdAt = new Date().toISOString();
+  const paymentLink: InvoicePaymentLink = {
+    url: response.authorizationUrl,
+    reference: response.reference,
+    createdAt,
+    expiresAt: resolveExpiry(invoice, createdAt),
+    generationCount: (invoice.paymentLink?.generationCount ?? 0) + 1,
+    lastSentAt: invoice.paymentLink?.lastSentAt,
+    sentCount: invoice.paymentLink?.sentCount ?? 0,
+    lastCopiedAt: invoice.paymentLink?.lastCopiedAt,
+    copiedCount: invoice.paymentLink?.copiedCount ?? 0,
+  };
+
+  await updateInvoice(invoice.invoiceId, {
+    clientEmail: invoice.clientEmail,
+    paystackReference: response.reference,
+    paymentLink,
+  });
+
+  return paymentLink;
+}
+
 export async function getOrCreatePaymentLink(invoice: Invoice): Promise<InvoicePaymentLink> {
   if (isPaymentLinkActive(invoice) && invoice.paymentLink) {
     return invoice.paymentLink;
   }
 
-  const paystack = getPaystackClient();
-  const response = (await (paystack as any).transaction.initialize({
-    email: invoice.clientEmail,
-    amount: invoice.totalAmount * 100,
-    reference: `${invoice.invoiceId}-${Date.now()}`,
-    callback_url: `${SITE_URL}/pay/success?invoiceId=${encodeURIComponent(invoice.invoiceId)}`,
-    metadata: {
-      invoiceId: invoice.invoiceId,
-    },
-  })) as {
-    data?: {
-      authorization_url?: string;
-      reference?: string;
+  return initializePaymentLink(invoice);
+}
+
+export function markPaymentLinkEvent(
+  paymentLink: InvoicePaymentLink,
+  event: PaymentLinkEvent,
+  at = new Date().toISOString()
+): InvoicePaymentLink {
+  if (event === "sent") {
+    return {
+      ...paymentLink,
+      lastSentAt: at,
+      sentCount: (paymentLink.sentCount ?? 0) + 1,
     };
-  };
-
-  const url = response.data?.authorization_url;
-  const reference = response.data?.reference;
-
-  if (!url || !reference) {
-    throw new Error("Unable to create payment link.");
   }
 
-  const createdAt = new Date().toISOString();
-  const paymentLink: InvoicePaymentLink = {
-    url,
-    reference,
-    createdAt,
-    expiresAt: resolveExpiry(invoice, createdAt),
+  return {
+    ...paymentLink,
+    lastCopiedAt: at,
+    copiedCount: (paymentLink.copiedCount ?? 0) + 1,
   };
-
-  await updateInvoice(invoice.invoiceId, {
-    clientEmail: invoice.clientEmail,
-    paystackReference: reference,
-    paymentLink,
-  });
-
-  return paymentLink;
 }

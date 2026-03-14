@@ -28,9 +28,15 @@ function getPaymentLinkStatus(invoice: Invoice) {
   return new Date(invoice.paymentLink.expiresAt).getTime() > Date.now() ? "active" : "expired";
 }
 
-export function InvoiceDetailClient({ invoiceId }: { invoiceId: string }) {
-  const [invoice, setInvoice] = useState<Invoice | null>(null);
-  const [loading, setLoading] = useState(true);
+export function InvoiceDetailClient({
+  invoiceId,
+  initialInvoice,
+}: {
+  invoiceId: string;
+  initialInvoice?: Invoice;
+}) {
+  const [invoice, setInvoice] = useState<Invoice | null>(initialInvoice ?? null);
+  const [loading, setLoading] = useState(!initialInvoice);
   const [error, setError] = useState("");
   const [sending, setSending] = useState(false);
   const [reminding, setReminding] = useState(false);
@@ -59,8 +65,10 @@ export function InvoiceDetailClient({ invoiceId }: { invoiceId: string }) {
   }, [invoiceId]);
 
   useEffect(() => {
-    void loadInvoice();
-  }, [loadInvoice]);
+    if (!initialInvoice) {
+      void loadInvoice();
+    }
+  }, [initialInvoice, loadInvoice]);
 
   async function handleSendEmail() {
     setSending(true);
@@ -70,7 +78,7 @@ export function InvoiceDetailClient({ invoiceId }: { invoiceId: string }) {
       const response = await fetch(`/api/invoices/${invoiceId}/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: invoice?.status === "paid" ? "pdf" : "payment-link" }),
+        body: JSON.stringify({ type: invoice?.status === "paid" ? "invoice" : "payment_link" }),
       });
       const data = (await response.json().catch(() => null)) as { error?: string; message?: string } | null;
 
@@ -95,7 +103,7 @@ export function InvoiceDetailClient({ invoiceId }: { invoiceId: string }) {
       const response = await fetch(`/api/invoices/${invoiceId}/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: "payment-link" }),
+        body: JSON.stringify({ type: "payment_link" }),
       });
       const data = (await response.json().catch(() => null)) as { error?: string; message?: string } | null;
 
@@ -296,10 +304,28 @@ export function InvoiceDetailClient({ invoiceId }: { invoiceId: string }) {
               <span className="text-muted-foreground">Payment link</span>
               <span className="font-medium text-slate-950">{paymentLinkLabel}</span>
             </div>
+            <div className="space-y-1">
+              <p className="text-muted-foreground">Payment URL</p>
+              <p className="break-all rounded-2xl border border-border/70 bg-slate-50 px-3 py-2 font-medium text-slate-950">
+                {invoice.paymentLink?.url ?? "Not generated"}
+              </p>
+            </div>
             <div className="flex items-center justify-between">
               <span className="text-muted-foreground">Link expires</span>
               <span className="max-w-[14rem] truncate font-medium text-slate-950">
                 {invoice.paymentLink?.expiresAt ?? "Not available"}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Last sent</span>
+              <span className="max-w-[14rem] truncate font-medium text-slate-950">
+                {invoice.paymentLink?.lastSentAt ?? "Not sent"}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-muted-foreground">Last copied</span>
+              <span className="max-w-[14rem] truncate font-medium text-slate-950">
+                {invoice.paymentLink?.lastCopiedAt ?? "Not copied"}
               </span>
             </div>
             <div className="rounded-[1.5rem] bg-slate-50 px-4 py-4">

@@ -1,44 +1,16 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-import { sendContactEmail } from "@/lib/contact";
 import { getInvoiceByPaystackReference, updateInvoice } from "@/lib/invoices";
-import { getPaystackClient } from "@/lib/paystack";
+import { buildPaymentConfirmationEmail } from "@/lib/email-templates/payment-link";
+import { sendContactEmail } from "@/lib/contact";
+import { verifyFutureLogixPayment } from "@/lib/payments";
 
 export const runtime = "nodejs";
 
 const verifySchema = z.object({
   reference: z.string().trim().min(1),
 });
-
-function buildPaymentConfirmationEmail(invoiceId: string, amount: number, clientName: string) {
-  const formattedAmount = new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN",
-    maximumFractionDigits: 2,
-  }).format(amount);
-
-  return {
-    subject: `Payment confirmed for ${invoiceId}`,
-    html: `
-      <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
-        <h1 style="font-size: 24px; margin-bottom: 16px;">Payment received</h1>
-        <p>Hi ${clientName},</p>
-        <p>We have confirmed payment for invoice <strong>${invoiceId}</strong>.</p>
-        <p><strong>Amount:</strong> ${formattedAmount}</p>
-        <p>Thank you for choosing Future Logix.</p>
-      </div>
-    `,
-    text: [
-      `Hi ${clientName},`,
-      "",
-      `We have confirmed payment for invoice ${invoiceId}.`,
-      `Amount: ${formattedAmount}`,
-      "",
-      "Thank you for choosing Future Logix.",
-    ].join("\n"),
-  };
-}
 
 export async function POST(request: Request) {
   try {
@@ -52,70 +24,78 @@ export async function POST(request: Request) {
       );
     }
 
-    const paystack = getPaystackClient();
-    const response = (await (paystack as any).transaction.verify({
-      reference: parsed.data.reference,
-    })) as {
-      data?: {
-        amount?: number;
-        customer?: { email?: string };
-        reference?: string;
-        status?: string;
-      };
-    };
+    const payment = await verifyFutureLogixPayment(parsed.data.reference);
 
-    const status = response.data?.status;
-    const reference = response.data?.reference;
-    const amount = response.data?.amount;
-
-    if (!reference || !status) {
-      throw new Error("Paystack did not return a valid verification payload.");
-    }
-
-    const invoice = await getInvoiceByPaystackReference(reference);
-
-    if (!invoice) {
-      return NextResponse.json({ error: "Invoice not found for this payment reference." }, { status: 404 });
-    }
-
-    if (status !== "success") {
+    if (payment.status !== "success") {
       return NextResponse.json(
         {
-          invoiceId: invoice.invoiceId,
-          paymentStatus: status,
+          paymentStatus: payment.status,
+          reference: payment.reference,
+          source: payment.metadata?.source,
         },
         { headers: { "Cache-Control": "no-store" } }
       );
     }
 
-    if (typeof amount === "number" && invoice.totalAmount * 100 !== amount) {
+    if (payment.metadata?.app !== "futurelogix") {
+      return NextResponse.json(
+        { error: "Unsupported payment metadata." },
+        { status: 400, headers: { "Cache-Control": "no-store" } }
+      );
+    }
+
+    if (payment.metadata.source === "direct_payment") {
+      return NextResponse.json(
+        {
+          description: payment.metadata.description ?? "Direct payment",
+          email: payment.email,
+          paymentStatus: "success",
+          reference: payment.reference,
+          source: payment.metadata.source,
+          totalAmount: typeof payment.amount === "number" ? payment.amount / 100 : undefined,
+        },
+        { headers: { "Cache-Control": "no-store" } }
+      );
+    }
+
+    const invoice = await getInvoiceByPaystackReference(payment.reference);
+
+    if (!invoice) {
+      return NextResponse.json({ error: "Invoice not found for this payment reference." }, { status: 404 });
+    }
+
+    if (typeof payment.amount === "number" && invoice.totalAmount * 100 !== payment.amount) {
       return NextResponse.json({ error: "Payment amount mismatch." }, { status: 400 });
     }
 
     if (invoice.status === "paid") {
       return NextResponse.json(
         {
+          invoice,
           invoiceId: invoice.invoiceId,
           paymentStatus: "success",
-          invoice,
+          reference: payment.reference,
+          source: payment.metadata.source,
+          totalAmount: invoice.totalAmount,
         },
         { headers: { "Cache-Control": "no-store" } }
       );
     }
 
     const updated = await updateInvoice(invoice.invoiceId, {
-      clientEmail: response.data?.customer?.email?.trim().toLowerCase() ?? invoice.clientEmail,
+      clientEmail: payment.email ?? invoice.clientEmail,
       status: "paid",
     });
 
-    const confirmationEmail = buildPaymentConfirmationEmail(
-      updated.invoiceId,
-      updated.totalAmount,
-      updated.clientName
-    );
+    const confirmationEmail = buildPaymentConfirmationEmail({
+      amount: updated.totalAmount,
+      description: `Invoice ${updated.invoiceId}`,
+      email: updated.clientEmail,
+      reference: payment.reference,
+    });
 
     await sendContactEmail({
-      to: updated.clientEmail,
+      to: confirmationEmail.to,
       subject: confirmationEmail.subject,
       html: confirmationEmail.html,
       text: confirmationEmail.text,
@@ -123,9 +103,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
+        invoice: updated,
         invoiceId: updated.invoiceId,
         paymentStatus: "success",
-        invoice: updated,
+        reference: payment.reference,
+        source: payment.metadata.source,
+        totalAmount: updated.totalAmount,
       },
       { headers: { "Cache-Control": "no-store" } }
     );
