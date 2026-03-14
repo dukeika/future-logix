@@ -102,6 +102,21 @@ export async function getInvoice(invoiceId: string): Promise<Invoice | null> {
   return (response.Items?.[0] as Invoice | undefined) ?? null;
 }
 
+export async function getInvoiceByPaystackReference(reference: string): Promise<Invoice | null> {
+  const response = await docClient.send(
+    new ScanCommand({
+      TableName: INVOICE_TABLE_NAME,
+      FilterExpression: "paystackReference = :reference",
+      ExpressionAttributeValues: {
+        ":reference": reference,
+      },
+      Limit: 1,
+    })
+  );
+
+  return (response.Items?.[0] as Invoice | undefined) ?? null;
+}
+
 export async function updateInvoice(invoiceId: string, updates: UpdateInvoiceInput): Promise<Invoice> {
   const existing = await getInvoice(invoiceId);
 

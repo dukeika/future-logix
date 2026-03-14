@@ -7,6 +7,7 @@ import { getPaystackClient } from "@/lib/paystack";
 export const runtime = "nodejs";
 
 const noStoreHeaders = { "Cache-Control": "no-store" };
+const SITE_URL = process.env.SITE_URL ?? "https://futurelogix.ng";
 
 const initializePaymentSchema = z.object({
   invoiceId: z.string().trim().min(1),
@@ -39,6 +40,7 @@ export async function POST(request: Request) {
       email,
       amount: amount * 100,
       reference: `${invoiceId}-${Date.now()}`,
+      callback_url: `${SITE_URL}/pay/success?invoiceId=${encodeURIComponent(invoiceId)}`,
       metadata: {
         invoiceId,
       },
