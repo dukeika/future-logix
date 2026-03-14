@@ -3,7 +3,7 @@ frontend:
   phases:
     preBuild:
       commands:
-        - printf "PAYSTACK_SERVER_KEY=%s\nPAYSTACK_PUBLIC_KEY=%s\nADMIN_PASSWORD=%s\n" "$PAYSTACK_SERVER_KEY" "$PAYSTACK_PUBLIC_KEY" "$ADMIN_PASSWORD" > .env.production
+        - printf "PAYSTACK_SERVER_KEY=\"%s\"\nPAYSTACK_PUBLIC_KEY=\"%s\"\nADMIN_PASSWORD=\"%s\"\n" "$PAYSTACK_SERVER_KEY" "$PAYSTACK_PUBLIC_KEY" "$ADMIN_PASSWORD" > .env.production
         - npm ci
     build:
       commands:
