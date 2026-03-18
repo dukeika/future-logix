@@ -17,6 +17,11 @@ const docClient = DynamoDBDocumentClient.from(dynamoClient, {
   marshallOptions: { removeUndefinedValues: true },
 });
 
+type InvoiceKey = {
+  invoiceId: string;
+  createdAt: string;
+};
+
 export interface InvoiceItem {
   description: string;
   quantity: number;
@@ -110,6 +115,7 @@ export async function getInvoice(invoiceId: string): Promise<Invoice | null> {
       },
       Limit: 1,
       ScanIndexForward: false,
+      ConsistentRead: true,
     })
   );
 
@@ -117,18 +123,30 @@ export async function getInvoice(invoiceId: string): Promise<Invoice | null> {
 }
 
 export async function getInvoiceByPaystackReference(reference: string): Promise<Invoice | null> {
-  const response = await docClient.send(
-    new ScanCommand({
-      TableName: INVOICE_TABLE_NAME,
-      FilterExpression: "paystackReference = :reference",
-      ExpressionAttributeValues: {
-        ":reference": reference,
-      },
-      Limit: 1,
-    })
-  );
+  let exclusiveStartKey: InvoiceKey | undefined;
 
-  return (response.Items?.[0] as Invoice | undefined) ?? null;
+  do {
+    const response = await docClient.send(
+      new ScanCommand({
+        TableName: INVOICE_TABLE_NAME,
+        FilterExpression: "paystackReference = :reference",
+        ExpressionAttributeValues: {
+          ":reference": reference,
+        },
+        ConsistentRead: true,
+        ExclusiveStartKey: exclusiveStartKey,
+      })
+    );
+
+    const invoice = (response.Items?.[0] as Invoice | undefined) ?? null;
+    if (invoice) {
+      return invoice;
+    }
+
+    exclusiveStartKey = response.LastEvaluatedKey as InvoiceKey | undefined;
+  } while (exclusiveStartKey);
+
+  return null;
 }
 
 export async function updateInvoice(invoiceId: string, updates: UpdateInvoiceInput): Promise<Invoice> {
@@ -159,13 +177,23 @@ export async function updateInvoice(invoiceId: string, updates: UpdateInvoiceInp
 }
 
 export async function listInvoices(): Promise<Invoice[]> {
-  const response = await docClient.send(
-    new ScanCommand({
-      TableName: INVOICE_TABLE_NAME,
-    })
-  );
+  const invoices: Invoice[] = [];
+  let exclusiveStartKey: InvoiceKey | undefined;
 
-  return ((response.Items as Invoice[] | undefined) ?? []).sort((a, b) =>
+  do {
+    const response = await docClient.send(
+      new ScanCommand({
+        TableName: INVOICE_TABLE_NAME,
+        ConsistentRead: true,
+        ExclusiveStartKey: exclusiveStartKey,
+      })
+    );
+
+    invoices.push(...(((response.Items as Invoice[] | undefined) ?? [])));
+    exclusiveStartKey = response.LastEvaluatedKey as InvoiceKey | undefined;
+  } while (exclusiveStartKey);
+
+  return invoices.sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt)
   );
 }

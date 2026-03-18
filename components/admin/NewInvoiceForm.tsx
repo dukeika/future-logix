@@ -78,13 +78,16 @@ export function NewInvoiceForm() {
         }),
       });
 
-      const data = (await response.json().catch(() => null)) as { error?: string } | null;
+      const data = (await response.json().catch(() => null)) as
+        | { invoice?: { invoiceId: string }; error?: string }
+        | null;
 
       if (!response.ok) {
         throw new Error(data?.error ?? "Unable to create invoice.");
       }
 
-      window.location.href = "/admin/invoices";
+      const invoiceId = data?.invoice?.invoiceId;
+      window.location.href = invoiceId ? `/admin/invoices/${invoiceId}` : "/admin/invoices";
     } catch (submitError) {
       setError(submitError instanceof Error ? submitError.message : "Unable to create invoice.");
     } finally {
