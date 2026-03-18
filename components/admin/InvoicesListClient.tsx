@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import { Download, Loader2, Mail, Plus, ReceiptText, Search } from "lucide-react";
+import { Download, Loader2, Mail, Plus, ReceiptText, RefreshCw, Search } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,15 +23,21 @@ function formatCurrency(amount: number) {
 export function InvoicesListClient() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState("");
   const [filter, setFilter] = useState<FilterValue>("all");
   const [sendingId, setSendingId] = useState("");
   const [query, setQuery] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [lastUpdatedAt, setLastUpdatedAt] = useState<string | null>(null);
 
-  async function loadInvoices() {
-    setLoading(true);
+  async function loadInvoices(mode: "initial" | "refresh" = "refresh") {
+    if (mode === "initial") {
+      setLoading(true);
+    } else {
+      setRefreshing(true);
+    }
 
     try {
       const response = await fetch("/api/invoices", { cache: "no-store" });
@@ -43,15 +49,45 @@ export function InvoicesListClient() {
 
       setInvoices(data.invoices ?? []);
       setError("");
+      setLastUpdatedAt(new Date().toISOString());
     } catch (loadError) {
       setError(loadError instanceof Error ? loadError.message : "Unable to load invoices.");
     } finally {
-      setLoading(false);
+      if (mode === "initial") {
+        setLoading(false);
+      } else {
+        setRefreshing(false);
+      }
     }
   }
 
   useEffect(() => {
-    void loadInvoices();
+    void loadInvoices("initial");
+
+    const refreshOnVisibility = () => {
+      if (document.visibilityState === "visible") {
+        void loadInvoices();
+      }
+    };
+
+    const refreshOnFocus = () => {
+      void loadInvoices();
+    };
+
+    const intervalId = window.setInterval(() => {
+      if (document.visibilityState === "visible") {
+        void loadInvoices();
+      }
+    }, 15000);
+
+    document.addEventListener("visibilitychange", refreshOnVisibility);
+    window.addEventListener("focus", refreshOnFocus);
+
+    return () => {
+      window.clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", refreshOnVisibility);
+      window.removeEventListener("focus", refreshOnFocus);
+    };
   }, []);
 
   const filteredInvoices = useMemo(() => {
@@ -138,6 +174,16 @@ export function InvoicesListClient() {
               <Download className="h-4 w-4" />
               Export CSV
             </a>
+          </Button>
+        </div>
+
+        <div className="flex items-center justify-between gap-3">
+          <p className="text-sm text-muted-foreground">
+            {lastUpdatedAt ? `Last updated ${new Date(lastUpdatedAt).toLocaleTimeString()}` : "Waiting for first sync"}
+          </p>
+          <Button type="button" variant="outline" size="sm" onClick={() => void loadInvoices()} disabled={refreshing || loading}>
+            {refreshing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <RefreshCw className="mr-2 h-4 w-4" />}
+            Refresh
           </Button>
         </div>
 
