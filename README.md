@@ -59,14 +59,19 @@ NEXT_PUBLIC_ERROR_REPORTING_ENDPOINT=
 AWS_REGION=
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
+ADMIN_PASSWORD=
+ADMIN_SESSION_SECRET=
 NEWSLETTER_TABLE_NAME=NewsletterSubscriptions
 NEWSLETTER_FROM_EMAIL=admin@futurelogix.ng
 CONTACT_TABLE_NAME=ContactSubmissions
 CONTACT_FROM_EMAIL=admin@futurelogix.ng
 CONTACT_ADMIN_EMAIL=admin@futurelogix.ng
+INVOICE_TABLE_NAME=FutureLogixInvoices
 SITE_URL=https://futurelogix.ng
 SES_CONFIGURATION_SET_NAME=future-logix-newsletter
-NEWSLETTER_ADMIN_PASSWORD=
+PAYSTACK_PUBLIC_KEY=
+PAYSTACK_SECRET_KEY=
+PAYSTACK_SERVER_KEY=
 ```
 
 Monitoring behavior:
@@ -75,6 +80,8 @@ Monitoring behavior:
 - Core Web Vitals are beaconed only when `NEXT_PUBLIC_WEB_VITALS_ENDPOINT` is set.
 - Client runtime errors are reported only when `NEXT_PUBLIC_ERROR_REPORTING_ENDPOINT` is set.
 - Newsletter API routes require AWS credentials with SES and DynamoDB access in Amplify.
+- Invoice and payment routes require `INVOICE_TABLE_NAME`, `ADMIN_PASSWORD`, and Paystack keys.
+- `ADMIN_SESSION_SECRET` should be set explicitly in production instead of relying on `ADMIN_PASSWORD` as the cookie signing fallback.
 - Prefer attaching IAM permissions to the Amplify runtime role instead of long-lived static AWS keys when possible.
 
 Deployment flow:

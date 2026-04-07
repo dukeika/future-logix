@@ -1,15 +1,22 @@
 import { NextResponse } from "next/server";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { generateInvoicePDF } from "@/lib/pdf-generator";
 import { getInvoice } from "@/lib/invoices";
 
 export const runtime = "nodejs";
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const { id } = await params;
     const invoice = await getInvoice(id);
 

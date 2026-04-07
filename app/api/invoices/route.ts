@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { createInvoice, listInvoices } from "@/lib/invoices";
 
 export const runtime = "nodejs";
@@ -22,8 +23,14 @@ const createInvoiceSchema = z.object({
   paystackReference: z.string().trim().min(1).optional(),
 });
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const invoices = await listInvoices();
     return NextResponse.json({ invoices }, { headers: noStoreHeaders });
   } catch (error) {
@@ -37,6 +44,12 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const payload = await request.json().catch(() => null);
     const parsed = createInvoiceSchema.safeParse(payload);
 

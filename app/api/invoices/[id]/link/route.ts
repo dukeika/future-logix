@@ -1,15 +1,22 @@
 import { NextResponse } from "next/server";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { getInvoice, updateInvoice } from "@/lib/invoices";
 import { getOrCreatePaymentLink, markPaymentLinkEvent } from "@/lib/payment-links";
 
 export const runtime = "nodejs";
 
 export async function POST(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const { id } = await params;
     const invoice = await getInvoice(id);
 

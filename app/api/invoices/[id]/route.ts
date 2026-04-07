@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { deleteInvoice, getInvoice, updateInvoice } from "@/lib/invoices";
 
 export const runtime = "nodejs";
@@ -25,10 +26,16 @@ const updateInvoiceSchema = z
   .refine((value) => Object.keys(value).length > 0, "At least one field is required.");
 
 export async function GET(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const { id } = await params;
     const invoice = await getInvoice(id);
 
@@ -51,6 +58,12 @@ export async function PATCH(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const { id } = await params;
     const payload = await request.json().catch(() => null);
     const parsed = updateInvoiceSchema.safeParse(payload);
@@ -79,10 +92,16 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const { id } = await params;
     const deleted = await deleteInvoice(id);
 

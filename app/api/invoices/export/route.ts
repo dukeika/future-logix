@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { listInvoices } from "@/lib/invoices";
 
 export const runtime = "nodejs";
@@ -11,8 +12,14 @@ function escapeCsv(value: string | number) {
   return /[",\n]/.test(escaped) ? `"${escaped}"` : escaped;
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const invoices = await listInvoices();
     const rows = [
       ["ID", "Client", "Email", "Amount", "Status", "Due Date", "Created"],

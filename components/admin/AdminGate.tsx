@@ -10,8 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-const STORAGE_KEY = "future-logix-admin-auth";
-
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/invoices", label: "Invoices", icon: ReceiptText },
@@ -26,9 +24,34 @@ export function AdminGate({ children }: PropsWithChildren) {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    const stored = window.sessionStorage.getItem(STORAGE_KEY) === "true";
-    setAuthenticated(stored);
-    setReady(true);
+    let active = true;
+
+    async function loadSession() {
+      try {
+        const response = await fetch("/api/admin/auth", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        if (active) {
+          setAuthenticated(response.ok);
+        }
+      } catch {
+        if (active) {
+          setAuthenticated(false);
+        }
+      } finally {
+        if (active) {
+          setReady(true);
+        }
+      }
+    }
+
+    void loadSession();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -49,7 +72,6 @@ export function AdminGate({ children }: PropsWithChildren) {
         throw new Error(data?.error ?? "Unable to verify admin password.");
       }
 
-      window.sessionStorage.setItem(STORAGE_KEY, "true");
       setAuthenticated(true);
       setPassword("");
     } catch (submitError) {
@@ -59,9 +81,17 @@ export function AdminGate({ children }: PropsWithChildren) {
     }
   }
 
-  function handleLogout() {
-    window.sessionStorage.removeItem(STORAGE_KEY);
-    setAuthenticated(false);
+  async function handleLogout() {
+    setSubmitting(true);
+    setError("");
+
+    try {
+      await fetch("/api/admin/auth", { method: "DELETE" });
+    } finally {
+      setSubmitting(false);
+      setAuthenticated(false);
+      setPassword("");
+    }
   }
 
   if (!ready) {
@@ -128,7 +158,7 @@ export function AdminGate({ children }: PropsWithChildren) {
               </Button>
             ))}
           </nav>
-          <Button type="button" size="sm" variant="ghost" onClick={handleLogout} className="gap-2">
+          <Button type="button" size="sm" variant="ghost" onClick={handleLogout} className="gap-2" disabled={submitting}>
             <LogOut className="h-4 w-4" />
             Log out
           </Button>

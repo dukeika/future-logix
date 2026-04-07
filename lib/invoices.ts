@@ -1,4 +1,5 @@
 import {
+  ConditionalCheckFailedException,
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
 import {
@@ -16,6 +17,7 @@ const dynamoClient = new DynamoDBClient({ region: AWS_REGION });
 const docClient = DynamoDBDocumentClient.from(dynamoClient, {
   marshallOptions: { removeUndefinedValues: true },
 });
+const INVOICE_ID_RETRY_LIMIT = 5;
 
 type InvoiceKey = {
   invoiceId: string;
@@ -79,30 +81,40 @@ export function calculateTotal(items: InvoiceItem[]) {
 }
 
 export async function createInvoice(input: CreateInvoiceInput): Promise<Invoice> {
-  const createdAt = new Date().toISOString();
-  const invoice: Invoice = {
-    invoiceId: generateInvoiceNumber(),
-    clientName: input.clientName,
-    clientEmail: input.clientEmail.trim().toLowerCase(),
-    items: input.items,
-    totalAmount: calculateTotal(input.items),
-    status: input.status ?? "draft",
-    dueDate: input.dueDate,
-    createdAt,
-    updatedAt: createdAt,
-    paystackReference: input.paystackReference,
-    paymentLink: undefined,
-  };
+  for (let attempt = 0; attempt < INVOICE_ID_RETRY_LIMIT; attempt += 1) {
+    const createdAt = new Date().toISOString();
+    const invoice: Invoice = {
+      invoiceId: generateInvoiceNumber(),
+      clientName: input.clientName,
+      clientEmail: input.clientEmail.trim().toLowerCase(),
+      items: input.items,
+      totalAmount: calculateTotal(input.items),
+      status: input.status ?? "draft",
+      dueDate: input.dueDate,
+      createdAt,
+      updatedAt: createdAt,
+      paystackReference: input.paystackReference,
+      paymentLink: undefined,
+    };
 
-  await docClient.send(
-    new PutCommand({
-      TableName: INVOICE_TABLE_NAME,
-      Item: invoice,
-      ConditionExpression: "attribute_not_exists(invoiceId) AND attribute_not_exists(createdAt)",
-    })
-  );
+    try {
+      await docClient.send(
+        new PutCommand({
+          TableName: INVOICE_TABLE_NAME,
+          Item: invoice,
+          ConditionExpression: "attribute_not_exists(invoiceId) AND attribute_not_exists(createdAt)",
+        })
+      );
 
-  return invoice;
+      return invoice;
+    } catch (error) {
+      if (!(error instanceof ConditionalCheckFailedException) || attempt === INVOICE_ID_RETRY_LIMIT - 1) {
+        throw error;
+      }
+    }
+  }
+
+  throw new Error("Unable to create a unique invoice number.");
 }
 
 export async function getInvoice(invoiceId: string): Promise<Invoice | null> {

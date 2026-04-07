@@ -2,6 +2,7 @@ import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
+import { requireAdminRequest } from "@/lib/admin-request";
 import { buildPaymentLinkEmail } from "@/lib/email-templates/payment-link";
 import { generateInvoicePDF } from "@/lib/pdf-generator";
 import { getInvoice, updateInvoice } from "@/lib/invoices";
@@ -67,6 +68,12 @@ export async function POST(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const unauthorized = requireAdminRequest(request);
+
+    if (unauthorized) {
+      return unauthorized;
+    }
+
     const payload = await request.json().catch(() => null);
     const parsed = sendInvoiceSchema.safeParse(payload ?? {});
 

@@ -3,7 +3,24 @@ frontend:
   phases:
     preBuild:
       commands:
-        - printf "PAYSTACK_SERVER_KEY=\"%s\"\nPAYSTACK_PUBLIC_KEY=\"%s\"\nADMIN_PASSWORD=\"%s\"\n" "$PAYSTACK_SERVER_KEY" "$PAYSTACK_PUBLIC_KEY" "$ADMIN_PASSWORD" > .env.production
+        - |
+          cat <<EOF > .env.production
+          PAYSTACK_SERVER_KEY="${PAYSTACK_SERVER_KEY}"
+          PAYSTACK_SECRET_KEY="${PAYSTACK_SECRET_KEY}"
+          PAYSTACK_PUBLIC_KEY="${PAYSTACK_PUBLIC_KEY}"
+          ADMIN_PASSWORD="${ADMIN_PASSWORD}"
+          ADMIN_SESSION_SECRET="${ADMIN_SESSION_SECRET}"
+          AWS_REGION="${AWS_REGION}"
+          AWS_DEFAULT_REGION="${AWS_DEFAULT_REGION}"
+          CONTACT_TABLE_NAME="${CONTACT_TABLE_NAME}"
+          CONTACT_FROM_EMAIL="${CONTACT_FROM_EMAIL}"
+          CONTACT_ADMIN_EMAIL="${CONTACT_ADMIN_EMAIL}"
+          INVOICE_TABLE_NAME="${INVOICE_TABLE_NAME}"
+          NEWSLETTER_TABLE_NAME="${NEWSLETTER_TABLE_NAME}"
+          NEWSLETTER_FROM_EMAIL="${NEWSLETTER_FROM_EMAIL}"
+          SES_CONFIGURATION_SET_NAME="${SES_CONFIGURATION_SET_NAME}"
+          SITE_URL="${SITE_URL}"
+          EOF
         - npm ci
     build:
       commands:
