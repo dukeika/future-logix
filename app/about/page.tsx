@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
@@ -81,28 +82,50 @@ export default function AboutPage() {
                   Future Logix is led by operators who have built technology inside African
                   organizations, not just consulted on them.
                 </p>
-                <div className="mt-5 space-y-4 rounded-[1.2rem] border border-border/70 bg-white/70 p-5">
+                <div className="mt-5 grid gap-5 rounded-[1.2rem] border border-border/70 bg-white/70 p-5 sm:grid-cols-[160px_1fr]">
+                  <div className="mx-auto w-full max-w-[180px] overflow-hidden rounded-[1.25rem] border border-border/80 bg-white">
+                    <div className="relative aspect-square">
+                      <Image
+                        src="/images/future-logix-ceo-profile.jpg"
+                        alt="Akabom Kadana, Founder and CEO of Future Logix"
+                        fill
+                        sizes="160px"
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <h3 className="text-base font-semibold text-foreground">
-                      Founder &amp; Managing Director: Akabom Kadana
+                    <h3 className="text-lg font-semibold text-foreground">
+                      Akabom Kadana, Founder &amp; CEO
                     </h3>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      Akabom Kadana founded Future Logix in 2023 after 10 years consulting for
-                      African edtech companies. The consistent gap between technology promise and
-                      operational reality in African organizations motivated the creation of a
-                      company focused on delivery, not presentations.
+                      As the CEO of Future Logix, I am committed to driving innovation through
+                      practical technology solutions that solve real business problems and create
+                      long-term value. My experience spans cloud architecture, software
+                      development, IoT systems, and digital product strategy, with a focus on
+                      building solutions that are scalable, efficient, and aligned with business
+                      goals.
                     </p>
                     <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                      Direct experience includes: AWS Solutions Architect and AWS AI Certified.
-                      Education and certifications focused on cloud architecture, artificial
-                      intelligence implementation, and scalable system design for emerging markets.
-                      Based in Lagos.
+                      I bring a hands-on approach to leadership, combining technical depth with
+                      strategic vision. With expertise in AWS, application development, and smart
+                      device technologies, I have led the development of solutions designed to
+                      improve operations, enable growth, and open new opportunities for
+                      organizations across different sectors.
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                      My passion lies in transforming ideas into impactful products and services
+                      that are not only technically sound, but also relevant to the needs of the
+                      market. Through Future Logix, I aim to position technology as a tool for
+                      real transformation, helping businesses modernize, compete effectively, and
+                      thrive in an increasingly digital world.
+                    </p>
+                    <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                      Contact Akabom directly: hello@futurelogix.ng for partnership, press, or
+                      significant engagement discussions.
                     </p>
                   </div>
-                  <p className="text-sm leading-7 text-muted-foreground">
-                    Contact Akabom directly: hello@futurelogix.ng for partnership, press, or
-                    significant engagement discussions.
-                  </p>
                 </div>
               </div>
 
