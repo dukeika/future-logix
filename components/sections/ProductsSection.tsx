@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -91,9 +92,16 @@ export function ProductsSection() {
 
                     <div className="space-y-5">
                       <div className="overflow-hidden rounded-[1.5rem] border border-primary/10 bg-gradient-to-br from-primary/15 via-white to-secondary/15">
-                        <div className="aspect-video p-5 sm:p-6">
-                          <div className="flex h-full items-center justify-center rounded-[1.2rem] border border-dashed border-primary/20 bg-slate-950/85 text-center text-sm font-semibold uppercase tracking-[0.18em] text-slate-200">
-                            SchoolsRep Interface Preview
+                        <div className="aspect-video p-3 sm:p-4">
+                          <div className="relative h-full overflow-hidden rounded-[1.2rem] border border-primary/15 bg-white shadow-soft">
+                            <Image
+                              src="/images/schoolsrep-admin-dashboard.png"
+                              alt="SchoolsRep admin dashboard preview"
+                              fill
+                              sizes="(min-width: 1280px) 32vw, (min-width: 768px) 42vw, 100vw"
+                              className="object-cover object-top"
+                              priority={false}
+                            />
                           </div>
                         </div>
                       </div>
