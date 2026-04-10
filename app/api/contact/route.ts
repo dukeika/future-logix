@@ -64,7 +64,7 @@ export async function POST(request: Request) {
     const adminEmail = buildAdminContactEmail(sanitized, submission.submittedAt);
     const submitterEmail = buildSubmitterContactEmail(sanitized);
 
-    // TODO: Manually verify admin@futurelogix.ng inbox receives contact form emails.
+    // TODO: Manually verify hello@futurelogix.ng inbox receives contact form emails.
     await Promise.all([
       sendContactEmail(adminEmail),
       sendContactEmail(submitterEmail),

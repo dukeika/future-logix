@@ -57,6 +57,8 @@ export interface InsightArticle {
   category: string;
   title: string;
   excerpt: string;
+  author?: string;
+  publishedAt: string;
   content?: string[];
 }
 

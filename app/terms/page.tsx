@@ -147,8 +147,8 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold text-foreground">Contact Information</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>
-                <p>Email: admin@futurelogix.ng</p>
-                <p>Phone: *2347061106212</p>
+                <p>Email: hello@futurelogix.ng</p>
+                <p>Phone: +234 706 110 6212</p>
                 <p>Address: Lagos, Nigeria</p>
               </div>
             </section>

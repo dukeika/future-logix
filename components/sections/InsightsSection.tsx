@@ -20,7 +20,7 @@ export function InsightsSection() {
         <div className="space-y-8">
           <div className="max-w-5xl">
             <SectionHeader
-              number="05"
+              number="06"
               title="Insights"
               subtitle="Practical thinking on technology, operations, and African business."
               supportingCopy="The insights preview should feel like the thinking arm of the business: practical, informed, and useful to decision-makers."
@@ -46,6 +46,10 @@ export function InsightsSection() {
                         {article.title}
                       </Link>
                     </CardTitle>
+                    {/* TODO: Replace with real author name and accurate publish date */}
+                    <p className="text-sm text-muted-foreground">
+                      {article.author ?? "Future Logix Team"} • {article.publishedAt}
+                    </p>
                   </CardHeader>
                   <CardContent className="space-y-5 px-5 pb-5 pt-0">
                     <p className="text-sm leading-7 text-muted-foreground">{article.excerpt}</p>

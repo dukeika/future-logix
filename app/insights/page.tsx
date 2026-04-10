@@ -31,6 +31,10 @@ export default function InsightsPage() {
                   {article.category}
                 </p>
                 <h2 className="mt-4 text-xl font-semibold text-foreground">{article.title}</h2>
+                {/* TODO: Replace with real author name and accurate publish date */}
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {article.author ?? "Future Logix Team"} • {article.publishedAt}
+                </p>
                 <p className="mt-4 text-base leading-8 text-muted-foreground">{article.excerpt}</p>
                 <Link
                   href={`/insights/${article.slug}`}
@@ -53,7 +57,7 @@ export default function InsightsPage() {
               <Link href="/contact">Contact us</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full bg-white/70">
-              <Link href="mailto:admin@futurelogix.ng">Subscribe for updates</Link>
+              <Link href="mailto:hello@futurelogix.ng">Subscribe for updates</Link>
             </Button>
           </div>
         </div>

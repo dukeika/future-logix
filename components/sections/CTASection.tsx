@@ -32,7 +32,7 @@ export function CTASection() {
                 </CardHeader>
                 <CardContent className="space-y-6 p-6 pt-0">
                   <p className="text-base leading-8 text-muted-foreground">
-                    Start here if you are looking for a product, evaluating ClassPoint, or trying
+                    Start here if you are looking for a product, evaluating SchoolsRep, or trying
                     to understand where the Future Logix portfolio is headed.
                   </p>
                   <Button asChild className="h-12 w-full rounded-[1.2rem] justify-center">

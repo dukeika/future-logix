@@ -14,8 +14,8 @@ import type { ContactSubmission } from "@/types";
 
 const CONTACT_TABLE_NAME = process.env.CONTACT_TABLE_NAME ?? "ContactSubmissions";
 const AWS_REGION = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "eu-west-2";
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "admin@futurelogix.ng";
-const CONTACT_ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "admin@futurelogix.ng";
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "hello@futurelogix.ng";
+const CONTACT_ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "hello@futurelogix.ng";
 const SES_CONFIGURATION_SET_NAME = process.env.SES_CONFIGURATION_SET_NAME;
 
 const spamKeywords = [
@@ -216,7 +216,7 @@ export function buildSubmitterContactEmail(values: ContactFormValues) {
       "",
       `Your message: ${summary}`,
       "",
-      "For urgent matters, call *2347061106212.",
+      "For urgent matters, call +234 706 110 6212.",
     ].join("\n"),
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">
@@ -224,7 +224,7 @@ export function buildSubmitterContactEmail(values: ContactFormValues) {
         <p>Thank you for contacting Future Logix.</p>
         <p>We typically respond within 24 hours.</p>
         <p><strong>Your message:</strong> ${summary}</p>
-        <p>For urgent matters, call *2347061106212.</p>
+        <p>For urgent matters, call +234 706 110 6212.</p>
       </div>
     `,
   };

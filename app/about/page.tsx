@@ -100,7 +100,7 @@ export default function AboutPage() {
                     </p>
                   </div>
                   <p className="text-sm leading-7 text-muted-foreground">
-                    Contact Akabom directly: admin@futurelogix.ng for partnership, press, or
+                    Contact Akabom directly: hello@futurelogix.ng for partnership, press, or
                     significant engagement discussions.
                   </p>
                 </div>

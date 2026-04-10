@@ -21,7 +21,7 @@ export function Hero() {
               </div>
 
               <h1 className="max-w-4xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-                Practical digital products and technology services for growing African organizations
+                We build the systems that help African businesses run better and scale faster.
               </h1>
 
               <p className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">

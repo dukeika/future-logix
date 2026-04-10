@@ -12,7 +12,7 @@ const industries: Industry[] = [
     title: "Education",
     need: "Schools, training providers, and learning-focused institutions need better structure, engagement, and visibility across teaching and training delivery.",
     solution:
-      "Future Logix helps with products like ClassPoint and the digital systems that support modern learning experiences.",
+      "Future Logix helps with products like SchoolsRep and the digital systems that support modern learning experiences.",
     href: "/industries",
     icon: GraduationCap,
   },

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
+import { Instagram, Linkedin, Mail, MapPin, Phone, Twitter } from "lucide-react";
 
 import { NewsletterSignupForm } from "@/components/shared/NewsletterSignupForm";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -19,8 +19,9 @@ const quickLinks: FooterLink[] = [
 ];
 
 const socialLinks: SocialLink[] = [
-  { label: "LinkedIn", href: "https://www.linkedin.com", icon: Linkedin },
-  { label: "Twitter", href: "https://twitter.com", icon: Twitter },
+  { label: "LinkedIn", href: "https://linkedin.com/company/futurelogix", icon: Linkedin },
+  { label: "Twitter/X", href: "https://twitter.com/futurelogix", icon: Twitter },
+  { label: "Instagram", href: "https://instagram.com/futurelogix", icon: Instagram },
 ];
 
 export function Footer() {
@@ -58,14 +59,14 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 text-secondary" />
-                <a href="mailto:admin@futurelogix.ng" className="hover:text-white">
-                  admin@futurelogix.ng
+                <a href="mailto:hello@futurelogix.ng" className="hover:text-white">
+                  hello@futurelogix.ng
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <Phone className="mt-0.5 h-4 w-4 text-secondary" />
-                <a href="tel:*2347061106212" className="hover:text-white">
-                  *2347061106212
+                <a href="tel:+2347061106212" className="hover:text-white">
+                  +234 706 110 6212
                 </a>
               </div>
             </div>
@@ -90,7 +91,8 @@ export function Footer() {
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Newsletter</p>
               <p className="mt-3 text-sm leading-7 text-slate-300">
-                Subscribe for product updates, practical insights, and company news.
+                Get our monthly breakdown of how African businesses are using technology to cut
+                costs and grow faster. No spam, unsubscribe anytime.
               </p>
             </div>
             <NewsletterSignupForm />

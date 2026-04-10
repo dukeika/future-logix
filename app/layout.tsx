@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Future Logix",
   },
   description:
-    "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: ClassPoint.",
+    "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: SchoolsRep.",
   applicationName: "Future Logix",
   keywords:
     "technology services Nigeria, school management software, AI automation, AWS architecture, business automation Africa",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     siteName: "Future Logix",
     title: "Future Logix",
     description:
-      "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: ClassPoint.",
+      "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: SchoolsRep.",
     url: "https://futurelogix.ng",
     locale: "en_NG",
     images: [
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Future Logix",
     description:
-      "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: ClassPoint.",
+      "Future Logix builds practical digital products and technology services for growing African organizations. Flagship product: SchoolsRep.",
     images: [TWITTER_IMAGE_URL],
   },
 };
@@ -97,8 +97,8 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: "admin@futurelogix.ng",
-      telephone: "*2347061106212",
+      email: "hello@futurelogix.ng",
+      telephone: "+2347061106212",
       areaServed: "Africa",
       availableLanguage: ["en"],
     },

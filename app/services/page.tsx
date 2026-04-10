@@ -131,85 +131,13 @@ export default function ServicesPage() {
             </Button>
           </div>
 
-          <div className="rounded-[1.5rem] border border-border/80 bg-white/70 p-6">
-            <p className="text-sm font-semibold tracking-[0.12em] text-muted-foreground">
-              Impact in Progress
-            </p>
-            <p className="mt-4 text-base leading-8 text-muted-foreground">
-              We measure success by operational outcomes, not project deliverables. Here are
-              representative engagements illustrating our approach:
-            </p>
-
-            <div className="mt-6 grid gap-5">
-              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
-                <h2 className="text-lg font-semibold text-foreground">
-                  Education Sector: Administrative Transformation
-                </h2>
-                <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  A group of four private schools in Lagos faced a common challenge: administrative
-                  staff spending 60% of time on fee tracking, receipt generation, and parent
-                  communication. We implemented ClassPoint across the group, standardized their
-                  administrative workflows, and trained a shared operations team. Result:
-                  administrative time reduced by 40%, parent payment compliance improved by 25%,
-                  and staff redeployed to student-facing activities.
-                </p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-                  Service: Product Implementation + Workflow Design
-                </p>
-              </div>
-
-              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
-                <h2 className="text-lg font-semibold text-foreground">
-                  Professional Services: From Chaos to Clarity
-                </h2>
-                <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  A 25-person law firm had outgrown their informal systems. Matters were tracked in
-                  spreadsheets, billing was inconsistent, and partners lacked visibility into
-                  associate workload. We designed and built a custom practice management platform,
-                  migrated three years of historical data, and established weekly operational review
-                  rhythms. Result: billing realization improved by 18%, associate utilization became
-                  visible and balanced, and the managing partner gained confidence to pursue larger
-                  matters.
-                </p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-                  Service: Custom Software Development + Business Modernization
-                </p>
-              </div>
-
-              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
-                <h2 className="text-lg font-semibold text-foreground">
-                  Growth Company: Infrastructure for Scale
-                </h2>
-                <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  A fintech startup preparing for regulatory review needed secure, auditable
-                  infrastructure. We architected their AWS environment with security controls, cost
-                  guardrails, and compliance documentation. Built deployment pipelines, monitoring
-                  systems, and incident response procedures. Result: passed security audit on first
-                  attempt, infrastructure costs 30% below budget, engineering team focused on
-                  product rather than firefighting.
-                </p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-                  Service: AWS Architecture + Implementation
-                </p>
-              </div>
-
-              <div className="rounded-[1.35rem] border border-border/80 bg-background/80 p-5">
-                <h2 className="text-lg font-semibold text-foreground">
-                  Manufacturing: Intelligent Automation
-                </h2>
-                <p className="mt-3 text-base leading-8 text-muted-foreground">
-                  A mid-sized manufacturer processed 200+ supplier invoices monthly through manual
-                  data entry. We implemented intelligent document processing: invoices received via
-                  email are automatically categorized, data extracted, matched to purchase orders,
-                  and entered into their ERP. Exception handling only. Result: processing time per
-                  invoice reduced from 15 minutes to 2 minutes, data entry errors eliminated,
-                  finance team focused on analysis rather than transcription.
-                </p>
-                <p className="mt-3 text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-                  Service: AI Automation + Workflow Optimization
-                </p>
-              </div>
-            </div>
+          <div className="rounded-[1.5rem] border border-border/80 bg-white/70 p-6 text-center">
+            <h2 className="text-2xl font-semibold text-foreground">
+              Have a project in mind? Let&apos;s talk through it.
+            </h2>
+            <Button asChild className="mt-5 rounded-full">
+              <Link href="/contact">Contact us</Link>
+            </Button>
           </div>
         </div>
       </SiteContainer>

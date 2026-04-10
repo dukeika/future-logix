@@ -9,7 +9,7 @@ import { getInvoice, updateInvoice } from "@/lib/invoices";
 import { getOrCreatePaymentLink, markPaymentLinkEvent } from "@/lib/payment-links";
 
 const AWS_REGION = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "eu-west-2";
-const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "admin@futurelogix.ng";
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "hello@futurelogix.ng";
 const SES_CONFIGURATION_SET_NAME = process.env.SES_CONFIGURATION_SET_NAME;
 
 const sesClient = new SESv2Client({ region: AWS_REGION });
@@ -48,7 +48,7 @@ function buildRawEmail({
       `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">`,
       `<h1 style="font-size: 24px; margin-bottom: 16px;">Future Logix Invoice</h1>`,
       `<p>Please find invoice <strong>${invoiceId}</strong> attached as a PDF.</p>`,
-      `<p>If you have any questions, reply to this email or contact *2347061106212.</p>`,
+      `<p>If you have any questions, reply to this email or contact +234 706 110 6212.</p>`,
       `</div>`,
       "",
       `--${boundary}`,

@@ -100,7 +100,7 @@ export default function PrivacyPage() {
                 <li>Request restriction of processing</li>
               </ul>
               <p className="mt-3">
-                To exercise these rights, contact us at admin@futurelogix.ng.
+                To exercise these rights, contact us at hello@futurelogix.ng.
               </p>
             </section>
 
@@ -141,8 +141,8 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground">Contact Us</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>
-                <p>Email: admin@futurelogix.ng</p>
-                <p>Phone: *2347061106212</p>
+                <p>Email: hello@futurelogix.ng</p>
+                <p>Phone: +234 706 110 6212</p>
                 <p>Address: Lagos, Nigeria</p>
               </div>
             </section>

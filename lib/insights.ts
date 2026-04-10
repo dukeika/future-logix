@@ -7,6 +7,8 @@ export const insightArticles: InsightArticle[] = [
     title: "What a modern African technology company should actually sound like",
     excerpt:
       "Why product companies and technology service firms lose trust when they rely on vague consulting language.",
+    author: "Future Logix Team",
+    publishedAt: "April 2026",
     content: [
       "The technology services industry has a language problem. Browse the websites of technology consultancies across Africa and you'll find the same vague promises: \"digital transformation,\" \"innovation enablement,\" \"strategic partnerships.\" The words sound impressive but communicate nothing specific. They create distance rather than connection.",
       "This linguistic fog serves a purpose. It allows companies to claim expertise without defining deliverables. It lets them promise outcomes without accepting accountability. And it protects them from the hard work of explaining complex technical work in terms business leaders actually understand.",
@@ -39,6 +41,8 @@ export const insightArticles: InsightArticle[] = [
     title: "How to choose between buying a product and commissioning a custom build",
     excerpt:
       "A practical framework for leaders deciding whether they need an existing product, a custom system, or a hybrid path.",
+    author: "Future Logix Team",
+    publishedAt: "April 2026",
     content: [
       "Every growing organization eventually faces the same decision: buy existing software or build something tailored. The choice seems binary but is actually a spectrum, and making the wrong call wastes money, time, and organizational energy.",
       "This framework helps you think through the decision based on your situation, not vendor preferences.",
@@ -92,6 +96,8 @@ export const insightArticles: InsightArticle[] = [
     title: "Why workflow automation matters before a business feels 'ready'",
     excerpt:
       "A plain-language look at how growing organizations can remove process drag earlier and scale with less operational strain.",
+    author: "Future Logix Team",
+    publishedAt: "April 2026",
     content: [
       "Organizations typically consider automation only after reaching some threshold of scale: a certain headcount, transaction volume, or operational complexity. This timing is backwards. Automation implemented early creates the foundation for scale; automation delayed becomes emergency surgery on a struggling system.",
       "The readiness myth",
