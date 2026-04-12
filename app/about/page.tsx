@@ -122,7 +122,7 @@ export default function AboutPage() {
                       thrive in an increasingly digital world.
                     </p>
                     <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                      Contact Akabom directly: hello@futurelogix.ng for partnership, press, or
+                      Contact Akabom directly: admin@futurelogix.ng for partnership, press, or
                       significant engagement discussions.
                     </p>
                   </div>

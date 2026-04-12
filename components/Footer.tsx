@@ -60,8 +60,8 @@ export function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <Mail className="mt-0.5 h-4 w-4 text-secondary" />
-                <a href="mailto:hello@futurelogix.ng" className="hover:text-white">
-                  hello@futurelogix.ng
+                <a href="mailto:admin@futurelogix.ng" className="hover:text-white">
+                  admin@futurelogix.ng
                 </a>
               </div>
               <div className="flex items-start gap-3">

@@ -265,13 +265,13 @@ export function ContactPageClient() {
                 <h2 className="text-xl font-semibold text-foreground">Contact Methods</h2>
                 <div className="mt-5 space-y-4">
                   <a
-                    href="mailto:hello@futurelogix.ng"
+                    href="mailto:admin@futurelogix.ng"
                     className="flex items-start gap-3 rounded-2xl border border-border/80 bg-background/80 px-4 py-4"
                   >
                     <Mail className="mt-1 h-5 w-5 text-primary" />
                     <div>
                       <p className="text-sm font-semibold text-foreground">Email</p>
-                      <p className="text-sm text-muted-foreground">hello@futurelogix.ng</p>
+                      <p className="text-sm text-muted-foreground">admin@futurelogix.ng</p>
                     </div>
                   </a>
                   <a

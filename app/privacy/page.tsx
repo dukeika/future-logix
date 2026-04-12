@@ -122,7 +122,7 @@ export default function PrivacyPage() {
                 <li>Request restriction of processing</li>
               </ul>
               <p className="mt-3">
-                To exercise these rights, contact us at hello@futurelogix.ng or use the deletion
+                To exercise these rights, contact us at admin@futurelogix.ng or use the deletion
                 instructions at `/data-deletion`.
               </p>
             </section>
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground">Data Deletion Requests</h2>
               <p className="mt-3">
                 Users may request deletion of data associated with our products, website forms, and
-                connected application integrations by emailing hello@futurelogix.ng with the subject
+                connected application integrations by emailing admin@futurelogix.ng with the subject
                 line &quot;Data Deletion Request&quot; and enough information for us to identify the
                 relevant account. We will verify the request, process deletion or anonymization as
                 required by law and our operational obligations, and confirm completion.
@@ -179,7 +179,7 @@ export default function PrivacyPage() {
               <h2 className="text-xl font-semibold text-foreground">Contact Us</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>
-                <p>Email: hello@futurelogix.ng</p>
+                <p>Email: admin@futurelogix.ng</p>
                 <p>Phone: +234 706 110 6212</p>
                 <p>Address: Lagos, Nigeria</p>
               </div>

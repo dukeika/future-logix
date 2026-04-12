@@ -1,4 +1,4 @@
-const SUPPORT_EMAIL = "hello@futurelogix.ng";
+const SUPPORT_EMAIL = "admin@futurelogix.ng";
 
 function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-NG", {

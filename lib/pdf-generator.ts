@@ -68,7 +68,7 @@ export async function generateInvoicePDF(invoice: Invoice): Promise<Buffer> {
     doc.font("Helvetica").fontSize(11).fillColor("#334155");
     doc.text("Future Logix Limited", rightColX, infoTop + 22, { width: colWidth });
     doc.text("Lagos, Nigeria", rightColX, doc.y + 4, { width: colWidth });
-    doc.text("hello@futurelogix.ng", rightColX, doc.y + 4, { width: colWidth });
+    doc.text("admin@futurelogix.ng", rightColX, doc.y + 4, { width: colWidth });
 
     const tableTop = Math.max(doc.y, infoTop + 86) + 28;
     const rowHeight = 34;

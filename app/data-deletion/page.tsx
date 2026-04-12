@@ -29,7 +29,7 @@ export default function DataDeletionPage() {
               <p className="mt-3">
                 If you want Future Logix Limited to delete personal data or data obtained through a
                 connected platform such as Facebook or Instagram, send an email to
-                hello@futurelogix.ng with the subject line &quot;Data Deletion Request.&quot;
+                admin@futurelogix.ng with the subject line &quot;Data Deletion Request.&quot;
               </p>
             </section>
 
@@ -65,7 +65,7 @@ export default function DataDeletionPage() {
               <h2 className="text-xl font-semibold text-foreground">Contact</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>
-                <p>Email: hello@futurelogix.ng</p>
+                <p>Email: admin@futurelogix.ng</p>
                 <p>Phone: +234 706 110 6212</p>
                 <p>Address: Lagos, Nigeria</p>
               </div>

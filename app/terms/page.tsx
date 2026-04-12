@@ -103,7 +103,7 @@ export default function TermsPage() {
               <p className="mt-3">
                 Your use of the website and any connected application workflows is also governed by
                 our Privacy Policy. If you want your data deleted from our systems, follow the
-                instructions published at `/data-deletion` or contact hello@futurelogix.ng.
+                instructions published at `/data-deletion` or contact admin@futurelogix.ng.
               </p>
             </section>
 
@@ -169,7 +169,7 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold text-foreground">Contact Information</h2>
               <div className="mt-3 space-y-1">
                 <p>Future Logix Limited</p>
-                <p>Email: hello@futurelogix.ng</p>
+                <p>Email: admin@futurelogix.ng</p>
                 <p>Phone: +234 706 110 6212</p>
                 <p>Address: Lagos, Nigeria</p>
               </div>

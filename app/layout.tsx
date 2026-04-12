@@ -97,7 +97,7 @@ export default function RootLayout({
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      email: "hello@futurelogix.ng",
+      email: "admin@futurelogix.ng",
       telephone: "+2347061106212",
       areaServed: "Africa",
       availableLanguage: ["en"],

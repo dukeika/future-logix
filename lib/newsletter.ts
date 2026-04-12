@@ -19,7 +19,7 @@ const NEWSLETTER_TABLE_NAME =
   process.env.NEWSLETTER_TABLE_NAME ?? "NewsletterSubscriptions";
 const AWS_REGION = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "eu-west-2";
 const SITE_URL = process.env.SITE_URL ?? "https://futurelogix.ng";
-const NEWSLETTER_FROM_EMAIL = process.env.NEWSLETTER_FROM_EMAIL ?? "hello@futurelogix.ng";
+const NEWSLETTER_FROM_EMAIL = process.env.NEWSLETTER_FROM_EMAIL ?? "admin@futurelogix.ng";
 const SES_CONFIGURATION_SET_NAME = process.env.SES_CONFIGURATION_SET_NAME;
 
 const disposableDomains = new Set([
@@ -275,7 +275,7 @@ export function buildNewsletterWelcomeEmail({
         <p>You can expect practical updates on products, implementation, operations, and African business technology.</p>
         <p>If you ever want to unsubscribe, use this link:</p>
         <p><a href="${unsubscribeUrl}">${unsubscribeUrl}</a></p>
-        <p>Contact: hello@futurelogix.ng</p>
+        <p>Contact: admin@futurelogix.ng</p>
       </div>
     `,
     text: [
@@ -285,7 +285,7 @@ export function buildNewsletterWelcomeEmail({
       "",
       `Unsubscribe: ${unsubscribeUrl}`,
       "",
-      "Contact: hello@futurelogix.ng",
+      "Contact: admin@futurelogix.ng",
     ].join("\n"),
   };
 }

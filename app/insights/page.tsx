@@ -57,7 +57,7 @@ export default function InsightsPage() {
               <Link href="/contact">Contact us</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-full bg-white/70">
-              <Link href="mailto:hello@futurelogix.ng">Subscribe for updates</Link>
+              <Link href="mailto:admin@futurelogix.ng">Subscribe for updates</Link>
             </Button>
           </div>
         </div>
