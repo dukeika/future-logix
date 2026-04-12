@@ -15,6 +15,7 @@ const quickLinks: FooterLink[] = [
   { label: "Contact", href: "/contact" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
+  { label: "Data Deletion", href: "/data-deletion" },
   { label: "Sitemap", href: "/sitemap.xml" },
 ];
 

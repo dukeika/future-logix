@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of Service for Future Logix Limited.",
+  description: "Terms of Service for Future Logix Limited, its website, and connected app integrations.",
 };
 
 export default function TermsPage() {
@@ -21,7 +21,7 @@ export default function TermsPage() {
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">
             <section>
-              <p className="font-medium text-foreground">Last updated: March 11, 2026</p>
+              <p className="font-medium text-foreground">Last updated: April 12, 2026</p>
             </section>
 
             <section>
@@ -36,8 +36,10 @@ export default function TermsPage() {
               <h2 className="text-xl font-semibold text-foreground">Use of Services</h2>
               <p className="mt-3">
                 Future Logix Limited provides technology consulting, product implementation, and
-                software development services. All services are subject to separate written
-                agreements specifying scope, deliverables, timelines, and fees.
+                software development services, including websites, internal tools, content
+                operations workflows, and third-party platform integrations. All services are
+                subject to separate written agreements specifying scope, deliverables, timelines,
+                and fees where applicable.
               </p>
             </section>
 
@@ -48,6 +50,17 @@ export default function TermsPage() {
                 specifying scope, deliverables, timelines, fees, and payment terms. No service is
                 considered engaged until both parties have executed such agreement. Website
                 information is illustrative only and does not constitute an offer to contract.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-foreground">Accounts and Integrations</h2>
+              <p className="mt-3">
+                If you connect a third-party service or social platform to a Future Logix workflow,
+                you represent that you are authorized to do so and that you will use the
+                integration in compliance with the applicable platform rules, community standards,
+                and laws. We may suspend or disconnect integrations that create security, abuse, or
+                compliance risks.
               </p>
             </section>
 
@@ -83,6 +96,15 @@ export default function TermsPage() {
                 <li>Transmit malware or harmful code</li>
                 <li>Reverse engineer any aspect of our services</li>
               </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-foreground">Privacy and Data Handling</h2>
+              <p className="mt-3">
+                Your use of the website and any connected application workflows is also governed by
+                our Privacy Policy. If you want your data deleted from our systems, follow the
+                instructions published at `/data-deletion` or contact hello@futurelogix.ng.
+              </p>
             </section>
 
             <section>

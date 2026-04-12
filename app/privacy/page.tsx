@@ -5,7 +5,7 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Future Logix Limited.",
+  description: "Privacy Policy for Future Logix Limited and its connected applications.",
 };
 
 export default function PrivacyPage() {
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">
             <section>
-              <p className="font-medium text-foreground">Last updated: March 2026</p>
+              <p className="font-medium text-foreground">Last updated: April 12, 2026</p>
             </section>
 
             <section>
@@ -29,8 +29,9 @@ export default function PrivacyPage() {
               <p className="mt-3">
                 Future Logix Limited (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) respects
                 your privacy. This Privacy Policy explains how we collect, use, disclose, and
-                safeguard your information when you visit our website `futurelogix.ng` and use our
-                services.
+                safeguard your information when you visit `futurelogix.ng`, interact with our
+                products and services, or connect third-party platforms and applications that we
+                use for content operations, automation, analytics, publishing, or customer support.
               </p>
             </section>
 
@@ -49,6 +50,13 @@ export default function PrivacyPage() {
                   address, browser type, operating system, access times, and pages viewed.
                 </p>
                 <p>
+                  <span className="font-medium text-foreground">Connected Account Data:</span> If
+                  you choose to connect a third-party service such as Facebook, Instagram, or other
+                  publishing and marketing tools we support, we may receive account identifiers,
+                  page or profile metadata, permissions granted, basic profile information, and
+                  other data needed to enable the requested integration.
+                </p>
+                <p>
                   <span className="font-medium text-foreground">Cookies:</span> We use cookies and
                   similar tracking technologies to track activity on our website and hold certain
                   information to improve your experience.
@@ -63,6 +71,8 @@ export default function PrivacyPage() {
                 <li>Improve our website and service offerings</li>
                 <li>Communicate with you about updates, services, and relevant content</li>
                 <li>Monitor and analyze usage patterns and trends</li>
+                <li>Operate content publishing, social media, and workflow integrations you authorize</li>
+                <li>Maintain account security, audit logs, and fraud prevention controls</li>
                 <li>Protect against unauthorized access and legal liability</li>
               </ul>
             </section>
@@ -75,6 +85,7 @@ export default function PrivacyPage() {
               </p>
               <ul className="mt-3 space-y-2">
                 <li>Service providers who assist in our operations (hosting, email delivery, analytics)</li>
+                <li>Integration partners and platforms you explicitly connect to our services</li>
                 <li>Professional advisors (legal, accounting)</li>
                 <li>Government authorities when required by law</li>
               </ul>
@@ -90,6 +101,17 @@ export default function PrivacyPage() {
             </section>
 
             <section>
+              <h2 className="text-xl font-semibold text-foreground">Legal Bases and Permissions</h2>
+              <p className="mt-3">
+                Where applicable, we process personal information with your consent, to perform a
+                contract, to comply with legal obligations, or to pursue our legitimate interests
+                in operating and improving our services. If you connect a third-party platform to
+                our services, we use the permissions you grant only for the purposes described in
+                this policy and the relevant product workflow.
+              </p>
+            </section>
+
+            <section>
               <h2 className="text-xl font-semibold text-foreground">Your Rights</h2>
               <p className="mt-3">You have the right to:</p>
               <ul className="mt-3 space-y-2">
@@ -100,7 +122,8 @@ export default function PrivacyPage() {
                 <li>Request restriction of processing</li>
               </ul>
               <p className="mt-3">
-                To exercise these rights, contact us at hello@futurelogix.ng.
+                To exercise these rights, contact us at hello@futurelogix.ng or use the deletion
+                instructions at `/data-deletion`.
               </p>
             </section>
 
@@ -109,6 +132,21 @@ export default function PrivacyPage() {
               <p className="mt-3">
                 We retain personal information only as long as necessary to fulfill the purposes
                 for which it was collected, including legal, accounting, or reporting requirements.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-semibold text-foreground">Data Deletion Requests</h2>
+              <p className="mt-3">
+                Users may request deletion of data associated with our products, website forms, and
+                connected application integrations by emailing hello@futurelogix.ng with the subject
+                line &quot;Data Deletion Request&quot; and enough information for us to identify the
+                relevant account. We will verify the request, process deletion or anonymization as
+                required by law and our operational obligations, and confirm completion.
+              </p>
+              <p className="mt-3">
+                For platform-specific integrations, we may also provide a direct deletion callback
+                endpoint to the platform operator where supported.
               </p>
             </section>
 
