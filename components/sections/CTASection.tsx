@@ -15,7 +15,7 @@ export function CTASection() {
             <SectionHeader
               number="06"
               title="Next Step"
-              subtitle="Looking for a product, a technology partner, or both? Start with the right conversation."
+              subtitle="Choose the next step that matches your need right now."
             />
           </div>
 
@@ -26,17 +26,15 @@ export function CTASection() {
                   <div className="rounded-2xl bg-primary/10 p-3 text-primary w-fit">
                     <Grid2x2 className="h-5 w-5" />
                   </div>
-                  <CardTitle className="text-2xl text-foreground">
-                    Explore Products and Portfolio Direction
-                  </CardTitle>
+                  <CardTitle className="text-2xl text-foreground">Start with SchoolsRep</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6 p-6 pt-0">
                   <p className="text-base leading-8 text-muted-foreground">
-                    Start here if you are looking for a product, evaluating SchoolsRep, or trying
-                    to understand where the Future Logix portfolio is headed.
+                    Best for school leaders evaluating a ready product for operations, records,
+                    communication, and fee visibility.
                   </p>
                   <Button asChild className="h-12 w-full rounded-[1.2rem] justify-center">
-                    <Link href="/products">Explore Products</Link>
+                    <Link href="/schoolsrep">Explore SchoolsRep</Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -48,14 +46,12 @@ export function CTASection() {
                   <div className="rounded-2xl bg-secondary/15 p-3 text-secondary w-fit">
                     <MessageCircle className="h-5 w-5" />
                   </div>
-                  <CardTitle className="text-2xl text-foreground">
-                    Talk Through a Product, Service, or Partnership Need
-                  </CardTitle>
+                  <CardTitle className="text-2xl text-foreground">Talk through your requirements</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6 p-6 pt-0">
                   <p className="text-base leading-8 text-muted-foreground">
-                    Start here if you need a technology partner, want to discuss implementation, or
-                    are not yet sure whether your need fits products, services, or both.
+                    Best for teams that need automation, custom software, modernization support, or
+                    help choosing the right path.
                   </p>
                   <Button
                     asChild

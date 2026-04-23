@@ -35,34 +35,34 @@ export function CookieBanner() {
   }
 
   return (
-    <div className="fixed inset-x-4 bottom-4 z-[70] sm:inset-x-auto sm:right-4 sm:max-w-xl">
-      <div className="surface-panel border-border/90 bg-background/95 px-5 py-4 shadow-[0_30px_80px_-32px_rgba(15,23,42,0.32)] backdrop-blur-xl">
+    <div className="fixed inset-x-4 bottom-4 z-40 sm:inset-x-auto sm:right-4 sm:max-w-md">
+      <div className="surface-panel border-border/90 bg-background/95 px-4 py-3 shadow-[0_30px_80px_-32px_rgba(15,23,42,0.32)] backdrop-blur-xl sm:px-5">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-foreground">
           Cookie Notice
         </p>
-        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+        <p className="mt-2 text-sm leading-6 text-muted-foreground">
           We use essential cookies to keep the site working and optional analytics cookies to
-          understand usage and improve performance. You can accept or reject optional analytics.
+          understand usage. You can accept or reject optional analytics.
         </p>
-        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <Button type="button" className="sm:min-w-[140px]" onClick={() => updateConsent("accepted")}>
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          <Button type="button" className="h-10" onClick={() => updateConsent("accepted")}>
             Accept cookies
           </Button>
           <Button
             type="button"
             variant="outline"
-            className="sm:min-w-[140px]"
+            className="h-10"
             onClick={() => updateConsent("rejected")}
           >
             Reject analytics
           </Button>
-          <Link
-            href="/privacy"
-            className="text-sm font-medium text-primary underline-offset-4 hover:underline"
-          >
-            Read privacy policy
-          </Link>
         </div>
+        <Link
+          href="/privacy"
+          className="mt-3 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+        >
+          Read privacy policy
+        </Link>
       </div>
     </div>
   );

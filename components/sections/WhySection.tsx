@@ -60,7 +60,7 @@ export function WhySection() {
               number="04"
               title="Why Future Logix"
               subtitle="A sharper proposition than the usual technology consultancy story."
-              supportingCopy="The company should feel implementation-minded, market-aware, and built for long-term relevance in African business environments. Future Logix should feel like a company that can build, deliver, and stay relevant as client needs evolve."
+              description="Future Logix combines product thinking, implementation depth, and long-term support for teams that need systems they can actually run."
               inverted
             />
           </div>

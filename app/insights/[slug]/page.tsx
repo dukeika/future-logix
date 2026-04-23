@@ -48,7 +48,6 @@ export default function InsightDetailPage({ params }: InsightDetailPageProps) {
             subtitle={article.title}
             supportingCopy={article.excerpt}
           />
-          {/* TODO: Replace with real author name and accurate publish date */}
           <p className="-mt-4 text-sm font-medium text-muted-foreground">
             {article.author ?? "Future Logix Team"} • {article.publishedAt}
           </p>

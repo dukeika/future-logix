@@ -1,29 +1,26 @@
-import { Quote } from "lucide-react";
+import { CheckCircle2, Layers3, ShieldCheck } from "lucide-react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 
-const testimonials = [
+const trustSignals = [
   {
-    quote:
-      "Future Logix helped us move from scattered tools to one clearer operating rhythm across the business.",
-    name: "Amina Okafor",
-    role: "Operations Lead",
-    company: "Northfield Advisory",
+    icon: Layers3,
+    title: "Built around real workflows",
+    description:
+      "We focus on attendance, records, reporting, approvals, and operational handoffs that teams deal with every week.",
   },
   {
-    quote:
-      "The team focused on systems that actually worked for our staff, not just impressive presentations.",
-    name: "Tunde Adebayo",
-    role: "Director",
-    company: "Bridgeway Schools",
+    icon: ShieldCheck,
+    title: "Implementation matters as much as strategy",
+    description:
+      "Future Logix is structured for delivery, not slide decks. The work is scoped around usable systems, adoption, and next steps.",
   },
   {
-    quote:
-      "They brought structure, speed, and practical thinking to a project that had stalled for months.",
-    name: "Ifeoma Nnaji",
-    role: "COO",
-    company: "Meridian Growth Co.",
+    icon: CheckCircle2,
+    title: "Designed for local operating realities",
+    description:
+      "Products and services are shaped for African organizations balancing lean teams, uneven bandwidth, and growth pressure.",
   },
 ];
 
@@ -35,29 +32,29 @@ export function SocialProofSection() {
           <div className="max-w-4xl">
             <SectionHeader
               number="01A"
-              title="Trusted By Teams Doing Real Work"
-              subtitle="What working with Future Logix can feel like."
-              supportingCopy="This section is intentionally simple social proof to reinforce trust immediately after the hero."
+              title="Why Teams Start Here"
+              subtitle="Practical signals for buyers who need delivery confidence."
+              description="A clearer product story, grounded execution, and systems designed for real operating conditions."
             />
           </div>
 
           <div className="grid gap-5 lg:grid-cols-3">
-            {testimonials.map((testimonial) => (
+            {trustSignals.map((signal) => {
+              const Icon = signal.icon;
+
+              return (
               <article
-                key={`${testimonial.name}-${testimonial.company}`}
+                key={signal.title}
                 className="surface-panel h-full px-5 py-6 sm:px-6"
               >
-                {/* TODO: Replace this placeholder testimonial with a real customer quote. */}
-                <Quote className="h-5 w-5 text-secondary" />
-                <p className="mt-4 text-base leading-8 text-foreground">&ldquo;{testimonial.quote}&rdquo;</p>
-                <div className="mt-6 border-t border-border/70 pt-4">
-                  <p className="text-sm font-semibold text-foreground">{testimonial.name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {testimonial.role}, {testimonial.company}
-                  </p>
+                <div className="rounded-2xl bg-primary/10 p-3 text-primary w-fit">
+                  <Icon className="h-5 w-5" />
                 </div>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{signal.title}</h3>
+                <p className="mt-3 text-base leading-8 text-muted-foreground">{signal.description}</p>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </SiteContainer>

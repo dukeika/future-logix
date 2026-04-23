@@ -89,8 +89,7 @@ export function ServicesSection() {
               number="02"
               title="Services"
               subtitle="Two clear paths, depending on what you need right now."
-              description="Some visitors are looking for a product. Others need a technology partner who can help them design, build, secure, or improve core systems. The homepage should make both paths obvious."
-              supportingCopy="Future Logix is intentionally presented as a parent technology brand with two clean entry points: a product path for solution buyers, and a service path for organizations that need design, implementation, or long-term support."
+              description="Choose services when you need a partner to design, build, modernize, or support core systems."
             />
           </div>
 

@@ -21,7 +21,7 @@ export default function InsightsPage() {
             number="05"
             title="Insights"
             subtitle="Practical thinking on technology, operations, and African business."
-            supportingCopy="The insights preview should feel like the thinking arm of the business: practical, informed, and useful to decision-makers."
+            description="Useful guidance for leaders deciding what to buy, build, automate, or improve next."
           />
 
           <div className="grid gap-5 lg:grid-cols-3">
@@ -31,7 +31,6 @@ export default function InsightsPage() {
                   {article.category}
                 </p>
                 <h2 className="mt-4 text-xl font-semibold text-foreground">{article.title}</h2>
-                {/* TODO: Replace with real author name and accurate publish date */}
                 <p className="mt-2 text-sm text-muted-foreground">
                   {article.author ?? "Future Logix Team"} • {article.publishedAt}
                 </p>

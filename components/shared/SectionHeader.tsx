@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 type SectionHeaderProps = {
   number: string;
@@ -8,6 +8,7 @@ type SectionHeaderProps = {
   description?: string;
   supportingCopy?: ReactNode;
   inverted?: boolean;
+  headingAs?: ElementType;
 };
 
 export function SectionHeader({
@@ -17,6 +18,7 @@ export function SectionHeader({
   description,
   supportingCopy,
   inverted = false,
+  headingAs: Heading = "h2",
 }: SectionHeaderProps) {
   return (
     <div className="section-header">
@@ -38,7 +40,7 @@ export function SectionHeader({
         >
           {title}
         </p>
-        <h2 className={cn("section-header-title", inverted && "text-white")}>{subtitle}</h2>
+        <Heading className={cn("section-header-title", inverted && "text-white")}>{subtitle}</Heading>
         {description ? (
           <p className={cn("section-header-subtitle", inverted && "text-slate-100")}>
             {description}

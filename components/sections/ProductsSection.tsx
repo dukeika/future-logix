@@ -32,9 +32,8 @@ export function ProductsSection() {
             <SectionHeader
               number="01"
               title="Products"
-              subtitle="SchoolsRep Flagship Product"
-              description="Future Logix is building a product company, not just a services brand."
-              supportingCopy="SchoolsRep leads the portfolio today, while the wider Future Logix platform is positioned to support more products, stronger service lines, and deeper long-term partnerships over time."
+              subtitle="SchoolsRep leads the product portfolio."
+              description="Start with the product if you need a practical school operations system today."
             />
           </div>
 
@@ -57,8 +56,8 @@ export function ProductsSection() {
                       </p>
                     </div>
                     <Button asChild className="rounded-full">
-                      <Link href="https://schoolsrep.com" target="_blank" rel="noreferrer noopener">
-                        Visit SchoolsRep
+                      <Link href="/schoolsrep">
+                        View SchoolsRep
                         <ArrowUpRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
@@ -118,8 +117,8 @@ export function ProductsSection() {
                             <h4 className="text-lg font-semibold">Interactive Classroom Workspace</h4>
                             <p className="text-sm leading-7 text-slate-300">
                               Track student responses, session flow, and engagement in one place.
-                              Run more organized classes and training sessions with real-time
-                              visibility.
+                              Run more organized learning sessions with clearer visibility for
+                              teachers and school operators.
                             </p>
                           </div>
                         </div>

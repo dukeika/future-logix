@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 
 export const metadata: Metadata = {
-  title: "Products - ClassPoint & Portfolio",
+  title: "Products - SchoolsRep & Portfolio",
   description:
-    "Explore ClassPoint, our flagship school operations platform for Nigerian schools, and future product portfolio direction.",
+    "Explore SchoolsRep, our flagship school operations platform for Nigerian schools, and the wider Future Logix product direction.",
 };
 
 export default function ProductsPage() {
@@ -25,19 +25,19 @@ export default function ProductsPage() {
               Products
             </h1>
             <p className="max-w-3xl text-base leading-8 text-muted-foreground">
-              Our product portfolio is led by ClassPoint, with more solutions in development for
+              Our product portfolio is led by SchoolsRep, with more solutions in development for
               African organizations.
             </p>
           </div>
 
           <div className="rounded-[1.5rem] border border-border/80 bg-background/80 p-5">
-            <p className="text-lg font-semibold text-foreground">ClassPoint</p>
+            <p className="text-lg font-semibold text-foreground">SchoolsRep</p>
             <p className="mt-2 text-base leading-8 text-muted-foreground">
-              Explore the flagship product for school operations in Nigeria.
+              Explore the flagship school operations platform for Nigerian private schools.
             </p>
             <Button asChild className="mt-5 rounded-full">
-              <Link href="https://classpoint.ng" target="_blank" rel="noreferrer noopener">
-                Visit ClassPoint
+              <Link href="/schoolsrep">
+                View SchoolsRep
                 <ArrowUpRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

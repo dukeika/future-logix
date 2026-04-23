@@ -98,9 +98,10 @@ export function ContactPageClient() {
         <div className="space-y-8">
           <SectionHeader
             number="08"
-            title="Contact"
-            subtitle="Contact"
-            description="Start the conversation about your technology needs."
+            title="Start a Conversation"
+            subtitle="Tell us what you need help with."
+            description="Share the core problem first. You can add the extra context after that."
+            headingAs="h1"
           />
 
           <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
@@ -148,36 +149,6 @@ export function ContactPageClient() {
                     />
                   </div>
 
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <FormField
-                      control={form.control}
-                      name="organization"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Organization</FormLabel>
-                          <FormControl>
-                            <Input placeholder="Organization name" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
-                      name="phone"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Phone</FormLabel>
-                          <FormControl>
-                            <Input type="tel" placeholder="+234..." {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
-
                   <FormField
                     control={form.control}
                     name="interest"
@@ -203,6 +174,49 @@ export function ContactPageClient() {
                     )}
                   />
 
+                  <div className="rounded-[1.35rem] border border-primary/10 bg-primary/5 px-4 py-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                      Optional details
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                      Add any extra context that helps us route the conversation faster.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-5 sm:grid-cols-2">
+                    <FormField
+                      control={form.control}
+                      name="organization"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Organization <span className="text-muted-foreground">(optional)</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input placeholder="Organization name" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Phone <span className="text-muted-foreground">(optional)</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input type="tel" placeholder="+234..." {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
                   <FormField
                     control={form.control}
                     name="message"
@@ -225,7 +239,10 @@ export function ContactPageClient() {
                     name="referralSource"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>How did you hear about us?</FormLabel>
+                        <FormLabel>
+                          How did you hear about us?{" "}
+                          <span className="text-muted-foreground">(optional)</span>
+                        </FormLabel>
                         <FormControl>
                           <Input placeholder="Referral, search, LinkedIn, etc." {...field} />
                         </FormControl>
@@ -295,10 +312,10 @@ export function ContactPageClient() {
               </div>
 
               <div className="rounded-[1.5rem] border border-border/80 bg-slate-950 p-6 text-white shadow-soft">
-                <h2 className="text-xl font-semibold">Before you reach out</h2>
+                <h2 className="text-xl font-semibold">What helps us respond faster</h2>
                 <p className="mt-4 text-sm leading-7 text-slate-300">
-                  Share as much context as you can about the problem, current systems, and desired
-                  timeline. It helps us route the conversation faster.
+                  Tell us the business problem, what you use today, and what kind of timeline you
+                  are working with. That is usually enough for a useful first reply.
                 </p>
               </div>
             </div>

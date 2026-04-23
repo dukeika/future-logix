@@ -25,20 +25,21 @@ export function Hero() {
               </h1>
 
               <p className="max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg">
-                Future Logix is the parent technology company behind ClassPoint and a growing
-                portfolio of products, platforms, and delivery services designed to help
-                organizations operate better, move faster, and scale with confidence.
+                Future Logix helps schools, service-led teams, and growing businesses move from
+                manual work to practical digital systems. Our flagship product, SchoolsRep, and our
+                implementation services are built for teams that need clearer operations and faster
+                execution.
               </p>
 
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" className="gap-2 rounded-full">
-                  <Link href="/products">
-                    Explore Products
+                  <Link href="/schoolsrep">
+                    Explore SchoolsRep
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>
                 <Button asChild size="lg" variant="outline" className="rounded-full bg-white/70">
-                  <Link href="/services">Our Services</Link>
+                  <Link href="/contact">Talk to Us</Link>
                 </Button>
               </div>
             </div>
@@ -54,7 +55,7 @@ export function Hero() {
                       Product-led foundation
                     </p>
                     <p className="text-lg font-semibold text-foreground">
-                      Products, platforms, and services aligned under one technology brand.
+                      Product thinking and delivery services aligned under one operating brand.
                     </p>
                   </div>
                 </div>
@@ -67,7 +68,8 @@ export function Hero() {
                     Trust
                   </p>
                   <p className="mt-2 text-base leading-7 text-slate-200">
-                    Clean, responsive interfaces with performance choices suited to low-bandwidth markets.
+                    Clear systems, mobile-friendly interfaces, and implementation choices suited to
+                    real operating conditions.
                   </p>
                 </div>
                 <div className="rounded-[1.5rem] border border-white/60 bg-white/80 p-5 shadow-soft backdrop-blur">
@@ -76,7 +78,8 @@ export function Hero() {
                     Readiness
                   </p>
                   <p className="mt-2 text-base leading-7 text-muted-foreground">
-                    Core UI, navigation, and content scaffolding are ready for the next phase.
+                    Start with SchoolsRep, a custom build, or a modernization plan based on what
+                    your team actually needs now.
                   </p>
                 </div>
               </div>

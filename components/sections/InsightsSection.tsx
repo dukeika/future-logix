@@ -23,7 +23,7 @@ export function InsightsSection() {
               number="06"
               title="Insights"
               subtitle="Practical thinking on technology, operations, and African business."
-              supportingCopy="The insights preview should feel like the thinking arm of the business: practical, informed, and useful to decision-makers."
+              description="Useful guidance for leaders deciding what to buy, build, automate, or improve next."
             />
           </div>
 
@@ -46,7 +46,6 @@ export function InsightsSection() {
                         {article.title}
                       </Link>
                     </CardTitle>
-                    {/* TODO: Replace with real author name and accurate publish date */}
                     <p className="text-sm text-muted-foreground">
                       {article.author ?? "Future Logix Team"} • {article.publishedAt}
                     </p>

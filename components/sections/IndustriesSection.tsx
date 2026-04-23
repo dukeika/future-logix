@@ -61,7 +61,6 @@ export function IndustriesSection() {
               title="Industries"
               subtitle="Who We Serve"
               description="Built for organizations that need useful systems, not empty transformation language."
-              supportingCopy="The industries focus is intentionally practical: sectors where technology has to improve delivery, visibility, coordination, and growth. The goal is not to claim every industry. It is to show where Future Logix is most likely to be useful, credible, and commercially relevant."
             />
           </div>
 

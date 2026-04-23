@@ -85,7 +85,7 @@ export const insightArticles: InsightArticle[] = [
       "Customizing products excessively: Heavy customization of standard products creates the worst of both worlds: product costs plus custom complexity, with limited upgrade paths.",
       "Building for theoretical future needs: Custom builds often include speculative features that never get used. Build for today's confirmed needs; extend for tomorrow's validated requirements.",
       "The Future Logix approach",
-      "We operate across this spectrum. ClassPoint exists because we identified common needs across Nigerian schools that justified product investment. Custom development serves clients with unique operational requirements that products cannot address.",
+      "We operate across this spectrum. SchoolsRep exists because we identified common needs across Nigerian schools that justified product investment. Custom development serves clients with unique operational requirements that products cannot address.",
       "Our recommendation to prospective clients is straightforward: start with the problem, evaluate products honestly against your actual workflows, and build custom only when products genuinely fail to meet confirmed needs—not when they fail to meet idealized preferences.",
       "The right choice is the one that delivers operational improvement fastest, with total cost of ownership you can sustain, and without locking you into dependencies that limit future flexibility.",
     ],

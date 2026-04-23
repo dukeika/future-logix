@@ -18,7 +18,7 @@ const industries: Industry[] = [
     title: "Education",
     need: "Schools, training providers, and learning-focused institutions need better structure, engagement, and visibility across teaching and training delivery.",
     solution:
-      "Future Logix helps with products like ClassPoint and the digital systems that support modern learning experiences.",
+      "Future Logix helps with products like SchoolsRep and the digital systems that support modern learning experiences.",
     href: "/contact",
     icon: GraduationCap,
   },
@@ -66,7 +66,6 @@ export default function IndustriesPage() {
             title="Industries"
             subtitle="Who We Serve"
             description="Built for organizations that need useful systems, not empty transformation language."
-            supportingCopy="The industries focus is intentionally practical: sectors where technology has to improve delivery, visibility, coordination, and growth. The goal is not to claim every industry. It is to show where Future Logix is most likely to be useful, credible, and commercially relevant."
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
