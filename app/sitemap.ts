@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { insightArticles } from "@/lib/insights";
+import { landingRouteSlugs } from "@/lib/landing-pages";
 
 const baseUrl = "https://futurelogix.ng";
 const now = new Date();
@@ -76,5 +77,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticRoutes, ...articleRoutes];
+  const landingRoutes: MetadataRoute.Sitemap = landingRouteSlugs.map((slug) => ({
+    url: `${baseUrl}/${slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.9,
+  }));
+
+  return [...staticRoutes, ...landingRoutes, ...articleRoutes];
 }

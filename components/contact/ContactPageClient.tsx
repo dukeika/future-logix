@@ -33,7 +33,7 @@ const interestOptions: ContactInterestOption[] = [
   { value: "Web Application Development", label: "Web Application Development" },
   { value: "AWS Architecture & Implementation", label: "AWS Architecture & Implementation" },
   { value: "Business Modernization & Automation", label: "Business Modernization & Automation" },
-  { value: "ClassPoint Product Inquiry", label: "ClassPoint Product Inquiry" },
+  { value: "SchoolsRep Product Inquiry", label: "SchoolsRep Product Inquiry" },
   { value: "Partnership Opportunity", label: "Partnership Opportunity" },
   { value: "General Inquiry", label: "General Inquiry" },
 ];
