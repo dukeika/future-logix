@@ -1,7 +1,6 @@
 import { ArrowRight, CheckCircle2, Mail, MapPin, Phone, Star } from "lucide-react";
 
 import { LandingContactForm } from "@/components/landing/LandingContactForm";
-import { BrandLogo } from "@/components/shared/BrandLogo";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
 import { contactDetails, type LandingPageData } from "@/lib/landing-pages";
@@ -100,20 +99,6 @@ export function LandingPage({ page }: LandingPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-
-      <div className="border-b border-border/70 bg-background/94 py-4 backdrop-blur">
-        <SiteContainer className="flex items-center justify-between gap-4">
-          <BrandLogo showTagline={false} />
-          <div className="hidden items-center gap-2 md:flex">
-            <Button asChild variant="outline" size="sm">
-              <a href={`tel:${contactDetails.phone}`}>Call</a>
-            </Button>
-            <Button asChild size="sm">
-              <a href="#contact-form">{page.primaryCta}</a>
-            </Button>
-          </div>
-        </SiteContainer>
-      </div>
 
       <section className="section-shell pb-8 lg:pb-12">
         <SiteContainer>
