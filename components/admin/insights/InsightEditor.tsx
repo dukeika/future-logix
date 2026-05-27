@@ -102,6 +102,25 @@ export function InsightEditor({ mode, initial }: EditorProps) {
     });
   }
 
+  function replaceWithBlocks(index: number, newBlocks: InsightContentBlock[]) {
+    setContent((prev) => {
+      const next = [...prev];
+      next.splice(index, 1, ...newBlocks);
+      return next;
+    });
+  }
+
+  function handleSmartImport() {
+    const raw = prompt(
+      "Paste the full article text. Use blank lines between paragraphs, '# ' for headings, '- ' for bullets, '1. ' for numbered lists."
+    );
+    if (!raw) return;
+    const blocks = parseTextToBlocks(raw);
+    if (blocks.length) {
+      setContent(blocks);
+    }
+  }
+
   async function handleCoverUpload(file: File) {
     if (!file) return;
     setUploading(true);
@@ -267,6 +286,7 @@ export function InsightEditor({ mode, initial }: EditorProps) {
                   onRemove={() => removeBlock(index)}
                   onMove={(dir) => moveBlock(index, dir)}
                   onAddAfter={(type) => addBlock(type, index)}
+                  onSmartPaste={(blocks) => replaceWithBlocks(index, blocks)}
                 />
               ))}
             </div>
@@ -287,6 +307,15 @@ export function InsightEditor({ mode, initial }: EditorProps) {
               <button type="button" className={blockButton} onClick={() => addBlock("orderedList")}>
                 <ListOrdered className="h-3.5 w-3.5" />
                 Ordered list
+              </button>
+              <button
+                type="button"
+                className={`${blockButton} ml-auto border-primary/30 text-primary hover:border-primary hover:text-primary`}
+                onClick={handleSmartImport}
+                title="Paste a long article and auto-split into headings, paragraphs, and lists"
+              >
+                <Upload className="h-3.5 w-3.5" />
+                Smart import
               </button>
             </div>
           </div>
@@ -410,6 +439,7 @@ function BlockEditor({
   onRemove,
   onMove,
   onAddAfter,
+  onSmartPaste,
 }: {
   block: InsightContentBlock;
   index: number;
@@ -418,6 +448,7 @@ function BlockEditor({
   onRemove: () => void;
   onMove: (direction: -1 | 1) => void;
   onAddAfter: (type: InsightContentBlock["type"]) => void;
+  onSmartPaste: (blocks: InsightContentBlock[]) => void;
 }) {
   const label =
     block.type === "paragraph"
@@ -450,8 +481,21 @@ function BlockEditor({
           <textarea
             value={block.text}
             onChange={(e) => onUpdate((b) => ({ ...b, type: "paragraph", text: e.target.value }))}
+            onPaste={(e) => {
+              const pasted = e.clipboardData.getData("text/plain");
+              if (!pasted) return;
+              // Only intercept if it looks like a multi-paragraph or markdown paste
+              if (!/\n\s*\n|^#|^- |^\* |^\d+\. /m.test(pasted)) return;
+              const isEmptyBlock = !block.text.trim();
+              if (!isEmptyBlock) {
+                if (!confirm("Detected a multi-section paste. Split into structured blocks?")) return;
+              }
+              e.preventDefault();
+              const blocks = parseTextToBlocks(pasted);
+              if (blocks.length) onSmartPaste(blocks);
+            }}
             rows={4}
-            placeholder="Write a paragraph..."
+            placeholder="Write a paragraph, or paste a full article to auto-split..."
             className="w-full resize-none rounded-xl border border-transparent bg-transparent px-3 py-2 text-base leading-7 text-foreground focus:border-primary/30 focus:outline-none focus:ring-1 focus:ring-ring/30"
           />
         ) : block.type === "heading" ? (
@@ -632,6 +676,59 @@ function MiniAdd({ children, onClick }: { children: React.ReactNode; onClick: ()
       {children}
     </button>
   );
+}
+
+function parseTextToBlocks(raw: string): InsightContentBlock[] {
+  const text = raw.replace(/\r\n/g, "\n").trim();
+  if (!text) return [];
+
+  // Split on blank lines (one or more) into chunks
+  const chunks = text.split(/\n\s*\n+/);
+  const blocks: InsightContentBlock[] = [];
+
+  for (const chunk of chunks) {
+    const trimmed = chunk.trim();
+    if (!trimmed) continue;
+    const lines = trimmed.split("\n").map((l) => l.trimEnd());
+
+    // Heading: a single line starting with one or more '#'
+    if (lines.length === 1) {
+      const headingMatch = lines[0].match(/^#{1,6}\s+(.+)$/);
+      if (headingMatch) {
+        blocks.push({ type: "heading", text: headingMatch[1].trim() });
+        continue;
+      }
+    }
+
+    // Ordered list: every line starts with "n. " or "n) "
+    if (lines.every((l) => /^\d+[.)]\s+/.test(l))) {
+      blocks.push({
+        type: "orderedList",
+        items: lines.map((l) => l.replace(/^\d+[.)]\s+/, "").trim()).filter(Boolean),
+      });
+      continue;
+    }
+
+    // Bulleted list: every line starts with "- ", "* ", or "• "
+    if (lines.every((l) => /^[-*•]\s+/.test(l))) {
+      blocks.push({
+        type: "list",
+        items: lines.map((l) => {
+          const stripped = l.replace(/^[-*•]\s+/, "").trim();
+          // Optional bold term: "**Term**: rest" or "Term: rest"
+          const termMatch = stripped.match(/^\*\*([^*]+)\*\*\s*[:\-—]\s*(.+)$/);
+          if (termMatch) return { term: termMatch[1].trim(), description: termMatch[2].trim() };
+          return { description: stripped };
+        }),
+      });
+      continue;
+    }
+
+    // Default: paragraph (multi-line joined with single newlines preserved)
+    blocks.push({ type: "paragraph", text: lines.join("\n") });
+  }
+
+  return blocks;
 }
 
 function createBlock(type: InsightContentBlock["type"]): InsightContentBlock {

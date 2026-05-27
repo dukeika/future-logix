@@ -163,7 +163,9 @@ function ArticleBlock({ block }: { block: InsightContentBlock }) {
       );
     case "paragraph":
       return (
-        <p className="text-base leading-[1.85] text-foreground/85 sm:text-[1.0625rem]">{block.text}</p>
+        <p className="whitespace-pre-line text-base leading-[1.85] text-foreground/85 sm:text-[1.0625rem]">
+          {block.text}
+        </p>
       );
     case "list":
       return (
