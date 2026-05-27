@@ -103,27 +103,42 @@ async function hydrateCoverUrl(article: InsightArticle): Promise<InsightArticle>
 async function ensureSeeded() {
   if (seeded) return;
   try {
-    const { Items = [] } = await ddb.send(new ScanCommand({ TableName: TABLE, Limit: 1 }));
-    if (Items.length === 0) {
-      const now = new Date().toISOString();
-      await Promise.all(
-        seedArticles.map((article) =>
-          ddb.send(
-            new PutCommand({
-              TableName: TABLE,
-              Item: {
-                ...article,
-                status: "published",
-                createdAt: now,
-                updatedAt: now,
-              },
-              ConditionExpression: "attribute_not_exists(slug)",
-            })
-          ).catch(() => null)
-        )
-      );
+    // Project only slugs to find which seed articles are missing
+    const { Items = [] } = await ddb.send(
+      new ScanCommand({ TableName: TABLE, ProjectionExpression: "slug" })
+    );
+    const haveSlugs = new Set((Items as Array<{ slug?: string }>).map((i) => i.slug));
+    const missing = seedArticles.filter((a) => !haveSlugs.has(a.slug));
+
+    if (missing.length === 0) {
+      seeded = true;
+      return;
     }
-    seeded = true;
+
+    const now = new Date().toISOString();
+    const results = await Promise.allSettled(
+      missing.map((article) =>
+        ddb.send(
+          new PutCommand({
+            TableName: TABLE,
+            Item: {
+              ...article,
+              status: "published",
+              createdAt: now,
+              updatedAt: now,
+            },
+            ConditionExpression: "attribute_not_exists(slug)",
+          })
+        )
+      )
+    );
+
+    const failures = results.filter((r) => r.status === "rejected").length;
+    if (failures === 0) {
+      seeded = true;
+    } else {
+      console.warn(`[insights-db] seed partial — ${missing.length - failures}/${missing.length} written, retry on next call.`);
+    }
   } catch (error) {
     console.error("[insights-db] seed check failed", error);
   }
