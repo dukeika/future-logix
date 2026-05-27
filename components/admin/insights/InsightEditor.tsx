@@ -372,15 +372,21 @@ export function InsightEditor({ mode, initial }: EditorProps) {
 
           <div className="bento-card p-6">
             <h3 className="font-display text-lg font-semibold tracking-tight text-foreground">Cover image</h3>
-            <p className="mt-1 text-xs text-muted-foreground">JPEG, PNG, WebP, or AVIF. Max 5MB.</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Use a <strong>16:9</strong> image (1600×900 recommended). JPEG, PNG, WebP, or AVIF. Max 5MB.
+            </p>
 
             {coverImageUrl ? (
               <div className="relative mt-4 aspect-[16/9] overflow-hidden rounded-2xl border border-border/60 bg-muted">
                 <Image src={coverImageUrl} alt="Cover" fill className="object-cover" unoptimized />
+                <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-primary/10" />
               </div>
             ) : (
-              <div className="mt-4 flex aspect-[16/9] items-center justify-center rounded-2xl border border-dashed border-border bg-muted/30">
+              <div className="mt-4 flex aspect-[16/9] flex-col items-center justify-center gap-2 rounded-2xl border border-dashed border-border bg-muted/30 px-4 text-center">
                 <ImageIcon className="h-7 w-7 text-muted-foreground" strokeWidth={1.5} />
+                <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  16:9 · 1600×900
+                </p>
               </div>
             )}
 
