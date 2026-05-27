@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { insightArticles } from "@/lib/insights";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const categoryStyles: Record<string, string> = {
   Positioning: "bg-primary/10 text-primary",
@@ -17,62 +16,73 @@ export function InsightsSection() {
   return (
     <section className="section-shell">
       <SiteContainer>
-        <div className="space-y-8">
-          <div className="max-w-5xl">
-            <SectionHeader
-              number="06"
-              title="Insights"
-              subtitle="Practical thinking on technology, operations, and African business."
-              description="Useful guidance for leaders deciding what to buy, build, automate, or improve next."
-            />
-          </div>
-
-          <div className="grid gap-5 lg:grid-cols-3">
-            {insightArticles.map((article) => (
-              <div key={article.slug} className="group">
-                <Card className="h-full border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
-                  <CardHeader className="space-y-4 p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <span
-                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] ${
-                          categoryStyles[article.category] ?? "bg-primary/10 text-primary"
-                        }`}
-                      >
-                        {article.category}
-                      </span>
-                    </div>
-                    <CardTitle className="text-xl leading-8 text-foreground">
-                      <Link href={`/insights/${article.slug}`} className="transition-colors hover:text-primary">
-                        {article.title}
-                      </Link>
-                    </CardTitle>
-                    <p className="text-sm text-muted-foreground">
-                      {article.author ?? "Future Logix Team"} • {article.publishedAt}
-                    </p>
-                  </CardHeader>
-                  <CardContent className="space-y-5 px-5 pb-5 pt-0">
-                    <p className="text-sm leading-7 text-muted-foreground">{article.excerpt}</p>
-                    <Link
-                      href={`/insights/${article.slug}`}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-primary"
-                    >
-                      Read More
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <Button asChild variant="outline" className="rounded-full bg-white/70">
+        <div className="space-y-10">
+          <div className="flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-end">
+            <div className="max-w-3xl">
+              <SectionHeader
+                number="06"
+                title="Insights"
+                subtitle="Practical thinking on technology, operations, and African business."
+                description="Useful guidance for leaders deciding what to buy, build, automate, or improve next."
+              />
+            </div>
+            <Button asChild variant="outline" className="hidden rounded-full bg-white/80 lg:inline-flex">
               <Link href="/insights">
                 View all insights
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>
+
+          <div className="grid gap-4 lg:grid-cols-3">
+            {insightArticles.map((article, idx) => (
+              <Link
+                key={article.slug}
+                href={`/insights/${article.slug}`}
+                className={`group ${idx === 0 ? "lg:col-span-2" : ""}`}
+              >
+                <article
+                  className={`flex h-full flex-col ${
+                    idx === 0 ? "bento-card-accent" : "bento-card"
+                  } p-6 sm:p-7`}
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <span
+                      className={`inline-flex rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${
+                        categoryStyles[article.category] ?? "bg-primary/10 text-primary"
+                      }`}
+                    >
+                      {article.category}
+                    </span>
+                    <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                  </div>
+
+                  <h3
+                    className={`mt-5 font-display font-semibold tracking-tight text-foreground transition-colors group-hover:text-primary ${
+                      idx === 0 ? "text-xl sm:text-2xl" : "text-lg"
+                    }`}
+                  >
+                    {article.title}
+                  </h3>
+
+                  <p className="mt-3 flex-1 text-sm leading-7 text-muted-foreground">
+                    {article.excerpt}
+                  </p>
+
+                  <p className="mt-5 text-xs text-muted-foreground">
+                    {article.author ?? "Future Logix Team"} · {article.publishedAt}
+                  </p>
+                </article>
+              </Link>
+            ))}
+          </div>
+
+          <Button asChild variant="outline" className="rounded-full bg-white/80 lg:hidden">
+            <Link href="/insights">
+              View all insights
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
         </div>
       </SiteContainer>
     </section>

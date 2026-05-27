@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Quote } from "lucide-react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -7,7 +8,7 @@ export function WhoWeAreSection() {
   return (
     <section className="section-shell">
       <SiteContainer>
-        <div className="space-y-8">
+        <div className="space-y-10">
           <div className="max-w-4xl">
             <SectionHeader
               number="05"
@@ -16,57 +17,64 @@ export function WhoWeAreSection() {
             />
           </div>
 
-          <div className="space-y-6">
-            <div className="surface-panel max-w-4xl px-5 py-8 sm:px-8">
-              <p className="text-base leading-8 text-muted-foreground sm:text-lg">
-                Future Logix is a Lagos-based technology company founded to build practical digital
-                products and services for African organizations. We are a small, focused team of
-                builders and operators who care more about useful outcomes than impressive-sounding
-                deliverables.
+          <div className="grid gap-4 lg:grid-cols-3">
+            <div className="bento-card-accent lg:col-span-2 p-6 sm:p-8">
+              <Quote className="h-7 w-7 text-primary" strokeWidth={1.5} />
+              <p className="mt-4 text-balance font-display text-xl font-medium leading-9 tracking-tight text-foreground sm:text-2xl">
+                Future Logix is a Lagos-based technology company building practical digital products
+                and services for African organizations. A small, focused team of builders and
+                operators who care more about useful outcomes than impressive deliverables.
               </p>
+              <div className="mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="inline-flex h-1 w-1 rounded-full bg-secondary" />
+                Lagos, Nigeria · Founded with a builder mindset
+              </div>
             </div>
 
-            <div className="surface-panel grid gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[240px_1fr] lg:items-start">
-              <div className="mx-auto w-full max-w-[240px] overflow-hidden rounded-[1.5rem] border border-border/80 bg-white/80">
-                <div className="relative aspect-square">
+            <div className="bento-card p-6 sm:p-7">
+              <div className="space-y-4">
+                <div className="relative mx-auto h-32 w-32 overflow-hidden rounded-3xl border border-border bg-white">
                   <Image
                     src="/images/future-logix-ceo-profile.jpg"
                     alt="Akabom Kadana, Founder and CEO of Future Logix"
                     fill
-                    sizes="(min-width: 1024px) 240px, 50vw"
+                    sizes="128px"
                     className="object-cover"
                   />
                 </div>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+                <div className="text-center">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                     Founder &amp; CEO
                   </p>
-                  <h3 className="mt-2 text-2xl font-semibold text-foreground">Akabom Kadana</h3>
+                  <h3 className="mt-1 font-display text-xl font-semibold tracking-tight text-foreground">
+                    Akabom Kadana
+                  </h3>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <p className="text-base leading-8 text-muted-foreground">
-                  As the CEO of Future Logix, I am committed to driving innovation through
-                  practical technology solutions that solve real business problems and create
-                  long-term value. My experience spans cloud architecture, software development,
-                  IoT systems, and digital product strategy, with a focus on building solutions
-                  that are scalable, efficient, and aligned with business goals.
+          <div className="bento-card p-6 sm:p-8">
+            <div className="grid gap-6 lg:grid-cols-[1fr_2fr] lg:gap-10">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                  From the founder
                 </p>
-                <p className="text-base leading-8 text-muted-foreground">
+                <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                  Technology as a tool for real transformation.
+                </h3>
+              </div>
+              <div className="space-y-4 text-base leading-8 text-muted-foreground">
+                <p>
+                  As the CEO of Future Logix, I am committed to driving innovation through practical
+                  technology that solves real business problems. My experience spans cloud
+                  architecture, software development, IoT, and digital product strategy.
+                </p>
+                <p>
                   I bring a hands-on approach to leadership, combining technical depth with
-                  strategic vision. With expertise in AWS, application development, and smart
-                  device technologies, I have led the development of solutions designed to improve
-                  operations, enable growth, and open new opportunities for organizations across
-                  different sectors.
-                </p>
-                <p className="text-base leading-8 text-muted-foreground">
-                  My passion lies in transforming ideas into impactful products and services that
-                  are not only technically sound, but also relevant to the needs of the market.
-                  Through Future Logix, I aim to position technology as a tool for real
-                  transformation, helping businesses modernize, compete effectively, and thrive in
-                  an increasingly digital world.
+                  strategic vision. Through Future Logix, I aim to position technology as a tool for
+                  real transformation — helping businesses modernize, compete, and thrive in an
+                  increasingly digital world.
                 </p>
               </div>
             </div>

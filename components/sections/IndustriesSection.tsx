@@ -1,50 +1,48 @@
 import Link from "next/link";
-import { Briefcase, GraduationCap, Rocket, TrendingUp, Users } from "lucide-react";
+import { ArrowUpRight, Briefcase, GraduationCap, Rocket, TrendingUp, Users } from "lucide-react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Industry } from "@/types";
 
 const industries: Industry[] = [
   {
     title: "Education",
-    need: "Schools, training providers, and learning-focused institutions need better structure, engagement, and visibility across teaching and training delivery.",
+    need: "Schools, training providers, and learning-focused institutions need better structure, engagement, and visibility across teaching delivery.",
     solution:
-      "Future Logix helps with products like SchoolsRep and the digital systems that support modern learning experiences.",
+      "Products like SchoolsRep and the digital systems that support modern learning experiences.",
     href: "/industries",
     icon: GraduationCap,
   },
   {
-    title: "SMEs and Growing Businesses",
-    need: "Businesses moving from manual operations to more scalable systems need simpler workflows, better visibility, and tools that reduce operational drag.",
+    title: "SMEs & Growing Businesses",
+    need: "Businesses moving from manual operations to scalable systems need simpler workflows and better visibility.",
     solution:
-      "Future Logix helps design practical systems, automation, and digital foundations that support growth without overengineering.",
+      "Practical systems, automation, and digital foundations that support growth without overengineering.",
     href: "/industries",
     icon: TrendingUp,
   },
   {
     title: "Professional Services",
-    need: "Firms that sell expertise and depend on coordinated internal delivery need clearer internal processes, client-facing systems, and better control over delivery operations.",
+    need: "Firms that sell expertise need clearer internal processes, client-facing systems, and better control over delivery.",
     solution:
-      "Future Logix helps improve workflow, reporting, and digital infrastructure so teams can deliver more consistently.",
+      "Workflow, reporting, and digital infrastructure so teams deliver more consistently.",
     href: "/industries",
     icon: Briefcase,
   },
   {
     title: "Service-Led Organizations",
-    need: "Organizations whose performance depends on process, responsiveness, and operational coordination need systems that reduce friction, improve accountability, and make service delivery easier to manage.",
+    need: "Organizations whose performance depends on process, responsiveness, and coordination need systems that reduce friction.",
     solution:
-      "Future Logix helps implement platforms, automations, and supporting technology that make service operations more resilient.",
+      "Platforms, automations, and supporting technology that make service operations more resilient.",
     href: "/industries",
     icon: Users,
   },
   {
-    title: "Startups and Product Ventures",
-    need: "Early-stage teams building digital products or new technology-led services need product thinking, technical execution, and scalable foundations without wasting time on the wrong build path.",
+    title: "Startups & Product Ventures",
+    need: "Early-stage teams building digital products need product thinking, technical execution, and scalable foundations.",
     solution:
-      "Future Logix helps founders and product teams move from concept to usable product with stronger structure and clearer technical decisions.",
+      "Founders and product teams move from concept to usable product with stronger structure and clearer technical decisions.",
     href: "/industries",
     icon: Rocket,
   },
@@ -54,7 +52,7 @@ export function IndustriesSection() {
   return (
     <section className="section-shell overflow-hidden">
       <SiteContainer>
-        <div className="space-y-8">
+        <div className="space-y-10">
           <div className="max-w-5xl">
             <SectionHeader
               number="03"
@@ -64,43 +62,62 @@ export function IndustriesSection() {
             />
           </div>
 
-          <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:-mx-0 sm:px-0">
-            <div className="flex snap-x snap-mandatory gap-4 md:grid md:grid-cols-3 xl:grid-cols-5">
-              {industries.map((industry) => {
+          <div className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:overflow-visible sm:px-0">
+            <div className="grid auto-rows-fr grid-flow-col gap-4 sm:grid-flow-row sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:grid-rows-2">
+              {industries.map((industry, idx) => {
                 const Icon = industry.icon;
+                const isFeature = idx === 0;
 
                 return (
-                  <div key={industry.title} className="group min-w-[84%] snap-start md:min-w-0">
-                    <Card className="flex h-full flex-col border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
-                      <CardHeader className="space-y-4 p-5">
-                        <div className="rounded-2xl bg-primary/10 p-3 text-primary w-fit">
-                          <Icon className="h-5 w-5" />
+                  <Link
+                    key={industry.title}
+                    href={industry.href}
+                    className={`group ${
+                      isFeature ? "xl:col-span-1 xl:row-span-2" : ""
+                    } min-w-[78vw] sm:min-w-0`}
+                  >
+                    <article
+                      className={`flex h-full flex-col ${
+                        isFeature ? "bento-card-accent" : "bento-card"
+                      } p-6 sm:p-7`}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div
+                          className={`rounded-2xl p-3 ${
+                            isFeature
+                              ? "bg-white/70 text-primary"
+                              : "bg-primary/10 text-primary"
+                          }`}
+                        >
+                          <Icon className="h-5 w-5" strokeWidth={1.75} />
                         </div>
-                        <CardTitle className="text-xl text-foreground">{industry.title}</CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex-1 space-y-4 px-5 pb-5 pt-0">
+                        <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+                      </div>
+
+                      <h3 className="mt-5 font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                        {industry.title}
+                      </h3>
+
+                      <div className="mt-4 space-y-3">
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                             Need
                           </p>
-                          <p className="mt-2 text-sm leading-7 text-muted-foreground">{industry.need}</p>
+                          <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                            {industry.need}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                             Solution
                           </p>
-                          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                          <p className="mt-1 text-sm leading-6 text-muted-foreground">
                             {industry.solution}
                           </p>
                         </div>
-                      </CardContent>
-                      <CardFooter className="px-5 pb-5 pt-0">
-                        <Button asChild variant="outline" className="w-full rounded-full bg-white/70">
-                          <Link href={industry.href}>View industry</Link>
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </div>
+                      </div>
+                    </article>
+                  </Link>
                 );
               })}
             </div>

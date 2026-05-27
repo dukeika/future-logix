@@ -2,7 +2,6 @@ import { CheckCircle2 } from "lucide-react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Differentiator } from "@/types";
 
 const differentiators: Differentiator[] = [
@@ -10,42 +9,42 @@ const differentiators: Differentiator[] = [
     number: "01",
     title: "Practical over bloated",
     description:
-      "Future Logix is positioned around usable systems, better operations, and real delivery, not long decks full of jargon.",
+      "Positioned around usable systems, better operations, and real delivery — not long decks full of jargon.",
     icon: CheckCircle2,
   },
   {
     number: "02",
-    title: "Grounded in African operating realities",
+    title: "Grounded in African realities",
     description:
-      "The work is framed around the constraints and opportunities of African businesses and institutions, not imported assumptions.",
+      "Framed around the constraints and opportunities of African businesses, not imported assumptions.",
     icon: CheckCircle2,
   },
   {
     number: "03",
-    title: "Products and services in one company",
+    title: "Products and services in one",
     description:
-      "The company builds its own products while also delivering services, which creates stronger strategic and execution depth.",
+      "We build our own products while delivering services — stronger strategic and execution depth.",
     icon: CheckCircle2,
   },
   {
     number: "04",
     title: "Implementation-minded delivery",
     description:
-      "Advice matters only if it can be executed. Future Logix is designed to help teams actually ship and operationalize the work.",
+      "Advice matters only if it can be executed. We help teams actually ship and operationalize.",
     icon: CheckCircle2,
   },
   {
     number: "05",
     title: "Scalable thinking from the start",
     description:
-      "Products, workflows, and infrastructure are shaped with future growth in mind so clients do not outgrow every decision too quickly.",
+      "Products and infrastructure shaped with future growth in mind so clients don't outgrow every decision.",
     icon: CheckCircle2,
   },
   {
     number: "06",
     title: "Long-term partner orientation",
     description:
-      "The relationship is framed around continued support, improvement, and future phases, not a one-time engagement and exit.",
+      "Framed around continued support, improvement, and future phases — not one-time engagement and exit.",
     icon: CheckCircle2,
   },
 ];
@@ -54,42 +53,63 @@ export function WhySection() {
   return (
     <section className="section-shell">
       <SiteContainer>
-        <div className="space-y-8 rounded-[2rem] border border-border/80 bg-slate-950 px-5 py-10 text-white shadow-soft sm:px-8 sm:py-12">
-          <div className="max-w-5xl">
-            <SectionHeader
-              number="04"
-              title="Why Future Logix"
-              subtitle="A sharper proposition than the usual technology consultancy story."
-              description="Future Logix combines product thinking, implementation depth, and long-term support for teams that need systems they can actually run."
-              inverted
-            />
-          </div>
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950 text-white shadow-bento">
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-60"
+            style={{
+              backgroundImage:
+                "radial-gradient(ellipse 50% 60% at 10% 0%, rgba(0,102,204,0.35), transparent 70%), radial-gradient(ellipse 40% 50% at 90% 30%, rgba(0,170,102,0.25), transparent 70%)",
+            }}
+          />
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 opacity-50"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)",
+              backgroundSize: "56px 56px",
+              maskImage:
+                "radial-gradient(ellipse 70% 60% at 50% 0%, #000 60%, transparent 100%)",
+            }}
+          />
 
-          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {differentiators.map((item) => {
-              const Icon = item.icon;
+          <div className="relative space-y-10 px-5 py-12 sm:px-10 sm:py-16 lg:px-14">
+            <div className="max-w-3xl">
+              <SectionHeader
+                number="04"
+                title="Why Future Logix"
+                subtitle="A sharper proposition than the usual technology consultancy story."
+                description="Product thinking, implementation depth, and long-term support for teams that need systems they can actually run."
+                inverted
+              />
+            </div>
 
-              return (
-                <div key={item.number}>
-                  <Card className="h-full border-white/10 bg-white/5 text-white shadow-none">
-                    <CardHeader className="space-y-4 p-5">
-                      <div className="flex items-start justify-between gap-4">
-                        <span className="text-4xl font-semibold tracking-tight text-white/40">
-                          {item.number}
-                        </span>
-                        <div className="rounded-2xl bg-secondary/15 p-3 text-secondary">
-                          <Icon className="h-5 w-5" />
-                        </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {differentiators.map((item) => {
+                const Icon = item.icon;
+
+                return (
+                  <article
+                    key={item.number}
+                    className="group relative h-full rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-secondary/40 hover:bg-white/[0.07]"
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <span className="font-display text-3xl font-semibold tracking-tight text-white/30">
+                        {item.number}
+                      </span>
+                      <div className="rounded-2xl bg-secondary/15 p-2.5 text-secondary">
+                        <Icon className="h-4 w-4" strokeWidth={1.75} />
                       </div>
-                      <CardTitle className="text-xl text-white">{item.title}</CardTitle>
-                    </CardHeader>
-                    <CardContent className="px-5 pb-5 pt-0">
-                      <p className="text-sm leading-7 text-slate-300">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              );
-            })}
+                    </div>
+                    <h3 className="mt-4 font-display text-base font-semibold tracking-tight text-white sm:text-lg">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-slate-300">{item.description}</p>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </SiteContainer>

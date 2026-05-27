@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { Cloud, Code, RefreshCw, Workflow } from "lucide-react";
+import { ArrowUpRight, Cloud, Code, RefreshCw, Workflow } from "lucide-react";
 
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Service } from "@/types";
 
 const services: Service[] = [
@@ -12,15 +11,10 @@ const services: Service[] = [
     number: "01",
     title: "AI Automation",
     description:
-      "Implement intelligent automation workflows that reduce manual work, improve decision speed, and integrate AI capabilities into your existing operations.",
-    capabilities: [
-      "Process Automation",
-      "AI Integration",
-      "Workflow Optimization",
-      "Intelligent Document Processing",
-    ],
+      "Implement intelligent automation workflows that reduce manual work, improve decision speed, and integrate AI into existing operations.",
+    capabilities: ["Process Automation", "AI Integration", "Workflow Optimization", "Document Processing"],
     startingPrice: "From ₦2,500,000",
-    delivery: "2-6 weeks implementation",
+    delivery: "2-6 weeks",
     cta: "Discuss Your Workflow",
     href: "/contact",
     icon: Workflow,
@@ -30,14 +24,9 @@ const services: Service[] = [
     title: "Web Application Development",
     description:
       "Build custom web applications tailored to your business processes, from internal tools to customer-facing platforms.",
-    capabilities: [
-      "React/Next.js Development",
-      "API Design",
-      "Database Architecture",
-      "Third-party Integrations",
-    ],
+    capabilities: ["React / Next.js", "API Design", "Database Architecture", "Integrations"],
     startingPrice: "From ₦4,000,000",
-    delivery: "4-12 weeks typical project",
+    delivery: "4-12 weeks",
     cta: "Start Your Project",
     href: "/contact",
     icon: Code,
@@ -47,33 +36,22 @@ const services: Service[] = [
     title: "AWS Architecture & Implementation",
     description:
       "Design and deploy secure, scalable cloud infrastructure on AWS with proper architecture, cost optimization, and operational readiness.",
-    capabilities: [
-      "Infrastructure Design",
-      "Serverless Architecture",
-      "Security Hardening",
-      "Cost Optimization",
-      "24/7 Monitoring Setup",
-    ],
+    capabilities: ["Infrastructure Design", "Serverless", "Security Hardening", "Cost Optimization"],
     startingPrice: "From ₦3,000,000",
-    delivery: "2-8 weeks implementation",
+    delivery: "2-8 weeks",
     cta: "Plan Your Infrastructure",
     href: "/contact",
     icon: Cloud,
   },
   {
     number: "04",
-    title: "Business Modernization & Automation",
+    title: "Business Modernization",
     description:
-      "Transform legacy processes and manual operations into streamlined, automated systems that scale with your growth.",
-    capabilities: [
-      "Process Mapping",
-      "Legacy System Integration",
-      "Digital Transformation Roadmaps",
-      "Change Management Support",
-    ],
+      "Transform legacy processes and manual operations into streamlined, automated systems that scale with growth.",
+    capabilities: ["Process Mapping", "Legacy Integration", "Transformation Roadmaps", "Change Management"],
     startingPrice: "From ₦5,000,000",
-    delivery: "4-16 weeks engagement",
-    cta: "Modernize Your Operations",
+    delivery: "4-16 weeks",
+    cta: "Modernize Operations",
     href: "/contact",
     icon: RefreshCw,
   },
@@ -83,7 +61,7 @@ export function ServicesSection() {
   return (
     <section className="section-shell">
       <SiteContainer>
-        <div className="space-y-8">
+        <div className="space-y-10">
           <div className="max-w-5xl">
             <SectionHeader
               number="02"
@@ -93,66 +71,63 @@ export function ServicesSection() {
             />
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
             {services.map((service) => {
               const Icon = service.icon;
 
               return (
-                <div key={service.title} className="group">
-                  <Card className="h-full border-border/80 bg-white/85 transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-28px_rgba(15,23,42,0.28)]">
-                    <CardHeader className="space-y-5 p-5 sm:p-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="space-y-3">
-                          <span className="text-4xl font-semibold tracking-tight text-slate-200">
-                            {service.number}
-                          </span>
-                          <div className="flex items-center gap-3">
-                            <div className="rounded-2xl bg-primary/10 p-3 text-primary">
-                              <Icon className="h-5 w-5" />
-                            </div>
-                            <CardTitle className="text-2xl text-foreground">{service.title}</CardTitle>
-                          </div>
-                        </div>
-                      </div>
-                      <p className="text-base leading-8 text-muted-foreground">
-                        {service.description}
-                      </p>
-                    </CardHeader>
+                <article key={service.title} className="bento-card flex h-full flex-col p-6 sm:p-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="rounded-2xl bg-primary/10 p-3 text-primary">
+                      <Icon className="h-5 w-5" strokeWidth={1.75} />
+                    </div>
+                    <span className="font-display text-3xl font-semibold tracking-tight text-slate-200">
+                      {service.number}
+                    </span>
+                  </div>
 
-                    <CardContent className="space-y-6 px-5 pb-6 pt-0 sm:px-6">
-                      <div className="grid gap-3">
-                        {service.capabilities.map((capability) => (
-                          <div
-                            key={capability}
-                            className="rounded-2xl border border-border/80 bg-background/80 px-4 py-3 text-sm font-medium text-foreground"
-                          >
-                            {capability}
-                          </div>
-                        ))}
-                      </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                    {service.title}
+                  </h3>
 
-                      <div className="rounded-[1.35rem] border border-primary/10 bg-primary/5 px-4 py-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-                          Starting at
-                        </p>
-                        <p className="mt-2 text-xl font-semibold text-foreground">
-                          {service.startingPrice}
-                        </p>
-                        <p className="mt-2 text-sm text-muted-foreground">{service.delivery}</p>
-                      </div>
-                    </CardContent>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
+                    {service.description}
+                  </p>
 
-                    <CardFooter className="px-5 pb-5 pt-0 sm:px-6 sm:pb-6">
-                      <Button
-                        asChild
-                        variant="outline"
-                        className="w-full rounded-full bg-white/70 sm:w-auto sm:min-w-[220px]"
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {service.capabilities.map((capability) => (
+                      <span
+                        key={capability}
+                        className="rounded-full border border-border bg-background/80 px-3 py-1 text-xs font-medium text-foreground"
                       >
-                        <Link href={service.href}>{service.cta}</Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </div>
+                        {capability}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 flex flex-wrap items-end justify-between gap-4 rounded-2xl border border-primary/10 bg-primary/5 px-4 py-3.5">
+                    <div>
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                        Starting at
+                      </p>
+                      <p className="mt-1 font-display text-lg font-semibold text-foreground">
+                        {service.startingPrice}
+                      </p>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{service.delivery}</p>
+                  </div>
+
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mt-5 h-11 w-full justify-between rounded-full bg-white/80 px-5"
+                  >
+                    <Link href={service.href}>
+                      {service.cta}
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </Button>
+                </article>
               );
             })}
           </div>

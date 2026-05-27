@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { Footer } from "@/components/Footer";
@@ -23,6 +23,14 @@ const inter = Inter({
   variable: "--font-sans",
   preload: true,
   weight: ["400", "500", "600", "700"],
+});
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-display",
+  preload: true,
+  weight: ["500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -106,7 +114,7 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.variable}>
+      <body className={`${inter.variable} ${jakarta.variable}`}>
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>
