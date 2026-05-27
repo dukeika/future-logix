@@ -52,6 +52,12 @@ export interface Differentiator {
   icon: LucideIcon;
 }
 
+export type InsightContentBlock =
+  | { type: "paragraph"; text: string }
+  | { type: "heading"; text: string }
+  | { type: "list"; items: { term?: string; description: string }[] }
+  | { type: "orderedList"; items: string[] };
+
 export interface InsightArticle {
   slug: string;
   category: string;
@@ -59,7 +65,7 @@ export interface InsightArticle {
   excerpt: string;
   author?: string;
   publishedAt: string;
-  content?: string[];
+  content?: InsightContentBlock[];
 }
 
 export interface ContactInterestOption {
