@@ -66,6 +66,11 @@ export interface InsightArticle {
   author?: string;
   publishedAt: string;
   content?: InsightContentBlock[];
+  status?: "draft" | "published";
+  coverImageKey?: string;
+  coverImageUrl?: string;
+  updatedAt?: string;
+  createdAt?: string;
 }
 
 export interface ContactInterestOption {

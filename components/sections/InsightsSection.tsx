@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-import { insightArticles } from "@/lib/insights";
+import { listInsights } from "@/lib/insights-db";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
@@ -9,10 +9,13 @@ import { Button } from "@/components/ui/button";
 const categoryStyles: Record<string, string> = {
   Positioning: "bg-primary/10 text-primary",
   "Decision Guide": "bg-secondary/10 text-secondary",
-  Operations: "bg-slate-900/10 text-slate-700",
+  Operations: "bg-amber-500/10 text-amber-600",
+  Technology: "bg-slate-900/10 text-slate-700",
 };
 
-export function InsightsSection() {
+export async function InsightsSection() {
+  const all = await listInsights({ publishedOnly: true });
+  const insightArticles = all.slice(0, 3);
   return (
     <section className="section-shell">
       <SiteContainer>

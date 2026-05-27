@@ -5,7 +5,7 @@ import { SiteContainer } from "@/components/shared/site-container";
 
 export const metadata = {
   title: "Admin | Future Logix",
-  description: "Internal invoice management dashboard for Future Logix.",
+  description: "Internal admin dashboard for Future Logix.",
   robots: {
     index: false,
     follow: false,
@@ -14,10 +14,18 @@ export const metadata = {
 
 export default function AdminLayout({ children }: PropsWithChildren) {
   return (
-    <main className="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#eef6f7_100%)]">
+    <div className="relative min-h-screen">
+      <div
+        aria-hidden="true"
+        className="grid-bg grid-bg-mask pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] opacity-70"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-radial-fade"
+      />
       <SiteContainer className="py-6">
         <AdminGate>{children}</AdminGate>
       </SiteContainer>
-    </main>
+    </div>
   );
 }
