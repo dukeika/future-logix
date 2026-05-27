@@ -516,6 +516,102 @@ export const insightArticles: InsightArticle[] = [
       },
     ],
   },
+  {
+    slug: "most-businesses-have-a-system-problem",
+    category: "AI Automation",
+    title: "Most businesses don't have a growth problem — they have a system problem",
+    excerpt:
+      "Hardworking teams lose deals and miss follow-ups not because effort is missing, but because the system is. AI automation closes that gap.",
+    author: "Akabom Kadana, CEO",
+    publishedAt: "May 2025",
+    content: [
+      {
+        type: "paragraph",
+        text: "Most businesses don't have a growth problem. They have a system problem.",
+      },
+      {
+        type: "paragraph",
+        text: "I've watched hardworking teams lose deals, miss follow-ups, and burn out chasing things that should have been handled automatically. The work is there. The effort is there. But the system isn't.",
+      },
+      {
+        type: "paragraph",
+        text: "Here's what that looks like in practice. An inquiry comes in on WhatsApp. Someone sees it and means to respond. It gets noted, forwarded, or written down somewhere. By the time action happens, the lead has already moved on. That's not a people failure. That's a process failure.",
+      },
+      {
+        type: "paragraph",
+        text: "This is exactly where AI automation changes everything.",
+      },
+      {
+        type: "paragraph",
+        text: "Instead of relying on someone to remember, AI can capture that inquiry the moment it arrives, route it to the right person automatically, send an instant acknowledgement to the customer, and trigger a follow-up if there's no response in 24 hours. All of that happens without anyone lifting a finger.",
+      },
+      {
+        type: "paragraph",
+        text: "The result? Faster response times. No leads falling through the cracks. A team that focuses on closing deals instead of chasing paper trails.",
+      },
+      {
+        type: "paragraph",
+        text: "AI automation isn't about replacing people. It's about removing the friction that slows them down. When your systems work, your team works better, your customers get a better experience, and your business actually grows.",
+      },
+      {
+        type: "paragraph",
+        text: "Consistency. Accountability. Growth. That's what the right system delivers.",
+      },
+      {
+        type: "paragraph",
+        text: "If any of this sounds familiar, let's have a real conversation about it. Reach out to us at Future Logix and let's map out what an automated, efficient workflow could look like for your business.",
+      },
+    ],
+  },
+  {
+    slug: "whats-happening-in-your-business-at-2am",
+    category: "Cloud & Automation",
+    title: "What's happening in your business at 2am (and how much it's costing you)",
+    excerpt:
+      "Leads don't wait until morning. Cloud infrastructure and AI automation keep your business responsive around the clock and close the slow revenue leak most owners never see.",
+    author: "Akabom Kadana, CEO",
+    publishedAt: "May 2025",
+    content: [
+      {
+        type: "paragraph",
+        text: "Most businesses go quiet at night. The phones stop ringing, the team logs off, and everything just waits until morning.",
+      },
+      {
+        type: "paragraph",
+        text: "But the losses don't wait.",
+      },
+      {
+        type: "paragraph",
+        text: "A lead comes in at 11pm and nobody sees it until 9am. By then, they've already moved on. A follow-up slips through because someone forgot. An inquiry sits unread while the customer makes a decision without you. None of this feels dramatic in the moment, but it adds up fast. This is what I call a slow leak. Dozens of small gaps, every single day, quietly draining your revenue.",
+      },
+      {
+        type: "paragraph",
+        text: "Research shows that if you don't respond to a new lead within the first hour, your chances of converting them drop by over 70%. That's not a sales problem. That's a systems problem.",
+      },
+      { type: "heading", text: "Here's what's actually going on under the hood" },
+      {
+        type: "paragraph",
+        text: "Most traditional businesses run their tools on local computers or basic hosted software. When the office closes, those systems slow down or stop entirely. Cloud infrastructure, like Amazon Web Services (AWS), works differently. Your business applications run on remote servers that operate 24 hours a day, across multiple data centres around the world. There's no downtime, no single point of failure, and no dependency on anyone being in the office.",
+      },
+      {
+        type: "paragraph",
+        text: "Now layer AI automation on top of that. When a lead comes in at 2am, an automated workflow triggers instantly. It captures the contact details, sends a personalised acknowledgement to the customer, adds the lead to your CRM pipeline, and schedules a follow-up if there's no response within a set window. No human required. The logic is set once, and it runs every single time, consistently, without error.",
+      },
+      {
+        type: "paragraph",
+        text: "This isn't about replacing your team. It's about removing the manual, repetitive work that slows them down so they can focus on what actually needs a human touch.",
+      },
+      { type: "heading", text: "The businesses pulling ahead aren't the biggest ones" },
+      {
+        type: "paragraph",
+        text: "They're the ones that are always on, always responsive, and always consistent. They've stopped relying on memory and manual effort, and started relying on smart systems that work in the background, quietly doing the heavy lifting.",
+      },
+      {
+        type: "paragraph",
+        text: "At Future Logix, we help businesses identify where the leaks are, build the automation that closes them, and run it all on infrastructure that never switches off. If any of this sounds familiar, reach out. Let's map out what a smarter, always-on version of your business could look like.",
+      },
+    ],
+  },
 ];
 
 export function getInsightBySlug(slug: string) {
