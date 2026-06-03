@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Industries We Serve",
   description:
     "Future Logix serves education, SMEs, professional services, and startups across Africa with practical technology solutions.",
+  alternates: { canonical: "/industries" },
+  openGraph: { url: "/industries" },
 };
 
 const industries: Industry[] = [
@@ -66,6 +68,7 @@ export default function IndustriesPage() {
             title="Industries"
             subtitle="Who We Serve"
             description="Built for organizations that need useful systems, not empty transformation language."
+            headingAs="h1"
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">

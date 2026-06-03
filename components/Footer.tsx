@@ -19,6 +19,14 @@ const quickLinks: FooterLink[] = [
   { label: "Sitemap", href: "/sitemap.xml" },
 ];
 
+const serviceLinks: FooterLink[] = [
+  { label: "AI Automation", href: "/ai-automation" },
+  { label: "Web Application Development", href: "/web-application-development" },
+  { label: "AWS Architecture", href: "/aws-architecture" },
+  { label: "Business Modernization", href: "/business-modernization" },
+  { label: "SchoolsRep", href: "/schoolsrep" },
+];
+
 const socialLinks: SocialLink[] = [
   { label: "LinkedIn", href: "https://linkedin.com/company/futurelogix", icon: Linkedin },
   { label: "Twitter/X", href: "https://twitter.com/futurelogix", icon: Twitter },
@@ -73,18 +81,34 @@ export function Footer() {
             </div>
           </div>
 
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Quick links</p>
-            <div className="mt-4 grid grid-cols-2 gap-3">
-              {quickLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-slate-300 transition-colors hover:text-white"
-                >
-                  {link.label}
-                </Link>
-              ))}
+          <div className="space-y-6">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Services</p>
+              <div className="mt-4 flex flex-col gap-2">
+                {serviceLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-slate-300 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-400">Quick links</p>
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                {quickLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="text-sm text-slate-300 transition-colors hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
 

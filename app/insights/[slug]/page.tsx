@@ -5,9 +5,63 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { getInsight, listInsights } from "@/lib/insights-db";
-import type { InsightContentBlock } from "@/types";
+import { insightArticles as seedArticles } from "@/lib/insights";
+import type { InsightArticle, InsightContentBlock } from "@/types";
 import { SiteContainer } from "@/components/shared/site-container";
 import { Button } from "@/components/ui/button";
+
+/**
+ * Live DynamoDB entries pre-date the seoTitle / publishedAtISO fields. Hydrate
+ * missing values from the seed so SEO metadata is correct without a DB migration.
+ * Also prefer the seed excerpt when the DB excerpt is too long for a meta
+ * description (>160 chars) and the seed has a shorter SEO-tuned version.
+ */
+function withSeedFallback(article: InsightArticle): InsightArticle {
+  const seed = seedArticles.find((a) => a.slug === article.slug);
+  if (!seed) return article;
+  const excerpt =
+    article.excerpt && article.excerpt.length > 160 && seed.excerpt && seed.excerpt.length <= 160
+      ? seed.excerpt
+      : article.excerpt;
+  return {
+    ...article,
+    excerpt,
+    seoTitle: article.seoTitle ?? seed.seoTitle,
+    publishedAtISO: article.publishedAtISO ?? seed.publishedAtISO,
+    modifiedAtISO: article.modifiedAtISO ?? seed.modifiedAtISO,
+  };
+}
+
+const SITE_URL = "https://futurelogix.ng";
+const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+const MONTHS: Record<string, string> = {
+  january: "01", february: "02", march: "03", april: "04",
+  may: "05", june: "06", july: "07", august: "08",
+  september: "09", october: "10", november: "11", december: "12",
+};
+
+function toISODate(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+  if (/^\d{4}-\d{2}-\d{2}/.test(value)) return value.slice(0, 10);
+  const match = value.trim().toLowerCase().match(/^([a-z]+)\s+(\d{4})$/);
+  if (match) {
+    const mm = MONTHS[match[1]];
+    if (mm) return `${match[2]}-${mm}-01`;
+  }
+  return undefined;
+}
+
+function articleDates(article: InsightArticle) {
+  const published =
+    toISODate(article.publishedAtISO) ??
+    toISODate(article.publishedAt) ??
+    toISODate(article.createdAt);
+  const modified =
+    toISODate(article.modifiedAtISO) ??
+    toISODate(article.updatedAt) ??
+    published;
+  return { published, modified };
+}
 
 type InsightDetailPageProps = {
   params: {
@@ -18,25 +72,91 @@ type InsightDetailPageProps = {
 export const revalidate = 60;
 
 export async function generateMetadata({ params }: InsightDetailPageProps): Promise<Metadata> {
-  const article = await getInsight(params.slug);
-  if (!article) {
+  const raw = await getInsight(params.slug);
+  if (!raw) {
     return { title: "Insight", description: "Future Logix insight article." };
   }
-  return { title: article.title, description: article.excerpt };
+  const article = withSeedFallback(raw);
+  const seoTitle = article.seoTitle ?? article.title;
+  const canonical = `/insights/${article.slug}`;
+  const { published, modified } = articleDates(article);
+  const authorName = article.author ?? "Future Logix Team";
+  return {
+    title: seoTitle,
+    description: article.excerpt,
+    alternates: { canonical },
+    authors: [{ name: authorName }],
+    openGraph: {
+      type: "article",
+      url: canonical,
+      title: seoTitle,
+      description: article.excerpt,
+      images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+      publishedTime: published,
+      modifiedTime: modified,
+      authors: [authorName],
+      section: article.category,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: seoTitle,
+      description: article.excerpt,
+      images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+    },
+  };
 }
 
 export default async function InsightDetailPage({ params }: InsightDetailPageProps) {
-  const article = await getInsight(params.slug);
+  const raw = await getInsight(params.slug);
 
-  if (!article || (article.status === "draft") || !article.content?.length) {
+  if (!raw || (raw.status === "draft") || !raw.content?.length) {
     notFound();
   }
+  const article = withSeedFallback(raw);
+  const content = article.content ?? raw.content ?? [];
 
   const published = await listInsights({ publishedOnly: true });
   const related = published.filter((a) => a.slug !== article.slug).slice(0, 3);
 
+  const { published: publishedISO, modified: modifiedISO } = articleDates(article);
+  const authorName = article.author ?? "Future Logix Team";
+  const articleUrl = `${SITE_URL}/insights/${article.slug}`;
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${articleUrl}#article`,
+    mainEntityOfPage: { "@type": "WebPage", "@id": articleUrl },
+    headline: article.title,
+    description: article.excerpt,
+    url: articleUrl,
+    inLanguage: "en-NG",
+    image: article.coverImageUrl ?? DEFAULT_OG_IMAGE,
+    articleSection: article.category,
+    datePublished: publishedISO,
+    dateModified: modifiedISO,
+    author: { "@type": "Person", name: authorName },
+    publisher: { "@id": `${SITE_URL}/#organization` },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      { "@type": "ListItem", position: 2, name: "Insights", item: `${SITE_URL}/insights` },
+      { "@type": "ListItem", position: 3, name: article.title, item: articleUrl },
+    ],
+  };
+
   return (
     <article className="relative overflow-hidden pb-20 pt-12 sm:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div
         aria-hidden="true"
         className="grid-bg grid-bg-mask pointer-events-none absolute inset-x-0 top-0 -z-10 h-[480px] opacity-80"
@@ -89,7 +209,7 @@ export default async function InsightDetailPage({ params }: InsightDetailPagePro
         <div className="mx-auto mt-12 max-w-3xl">
           <div className="bento-card p-6 sm:p-10">
             <div className="prose-spaced space-y-7">
-              {article.content.map((block, index) => (
+              {content.map((block, index) => (
                 <ArticleBlock key={index} block={block} />
               ))}
             </div>

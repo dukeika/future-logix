@@ -5,7 +5,10 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Future Logix Limited and its connected applications.",
+  description:
+    "How Future Logix Limited collects, uses, protects, and shares your information across the website and connected applications.",
+  alternates: { canonical: "/privacy" },
+  openGraph: { url: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -16,7 +19,9 @@ export default function PrivacyPage() {
           <SectionHeader
             number="10"
             title="Privacy Policy"
-            subtitle="How Future Logix collects, uses, and protects your information."
+            subtitle="Privacy Policy"
+            description="How Future Logix collects, uses, and protects your information."
+            headingAs="h1"
           />
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">

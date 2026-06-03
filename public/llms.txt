@@ -1,0 +1,36 @@
+# Future Logix
+
+> Future Logix Limited builds practical digital products and technology services for growing African organizations. Headquartered in Lagos, Nigeria. Flagship product: SchoolsRep, a school operations platform for Nigerian private schools.
+
+Future Logix is an implementation-focused technology company. We design, build, and operate systems for African organizations: schools, SMEs, professional services firms, service-led organizations, and product startups. Our work covers AI automation, custom web application development, AWS cloud architecture, and end-to-end business modernization. Every engagement is led by operators who run client delivery directly.
+
+## Products
+
+- [SchoolsRep](https://futurelogix.ng/schoolsrep): School operations platform for Nigerian private schools. Live and serving schools. External site: https://schoolsrep.com
+
+## Services
+
+- [AI Automation](https://futurelogix.ng/ai-automation): Workflow automation and AI integration for existing operations. From ₦2,500,000, 2–6 weeks.
+- [Web Application Development](https://futurelogix.ng/web-application-development): Custom React/Next.js applications, internal tools, and customer-facing platforms. From ₦4,000,000, 4–12 weeks.
+- [AWS Architecture & Implementation](https://futurelogix.ng/aws-architecture): Secure, scalable cloud infrastructure on AWS with cost optimization and operational readiness. From ₦3,000,000, 2–8 weeks.
+- [Business Modernization](https://futurelogix.ng/business-modernization): Transform legacy processes into automated systems that scale. From ₦5,000,000, 4–16 weeks.
+
+## Insights
+
+- [Most businesses don't have a growth problem — they have a system problem](https://futurelogix.ng/insights/most-businesses-have-a-system-problem)
+- [How to choose between buying a product and commissioning a custom build](https://futurelogix.ng/insights/product-vs-custom-build-decision-guide)
+- [Why workflow automation matters before a business feels 'ready'](https://futurelogix.ng/insights/workflow-automation-before-ready)
+- [What's happening in your business at 2am — and what it costs](https://futurelogix.ng/insights/whats-happening-in-your-business-at-2am)
+- [What a modern African technology company should actually sound like](https://futurelogix.ng/insights/modern-african-technology-company-positioning)
+
+## Company
+
+- [About Future Logix](https://futurelogix.ng/about): Company story, leadership (Akabom Kadana, Founder & CEO), team structure, location.
+- [Industries](https://futurelogix.ng/industries): Education, SMEs, professional services, service-led organizations, startups.
+- [Contact](https://futurelogix.ng/contact): admin@futurelogix.ng · +234 706 110 6212 · Lagos, Nigeria
+
+## Optional
+
+- [Privacy Policy](https://futurelogix.ng/privacy)
+- [Terms of Service](https://futurelogix.ng/terms)
+- [Data Deletion Requests](https://futurelogix.ng/data-deletion)

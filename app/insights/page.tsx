@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "Insights on Technology & African Business",
   description:
     "Practical thinking on technology strategy, product decisions, and operational improvement for African organizations.",
+  alternates: { canonical: "/insights" },
+  openGraph: { url: "/insights" },
 };
 
 export const revalidate = 60;

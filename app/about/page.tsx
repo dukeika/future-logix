@@ -11,6 +11,8 @@ export const metadata: Metadata = {
   title: "About Future Logix",
   description:
     "Learn about Future Logix Limited, a Lagos-based technology company building products and services for African organizations.",
+  alternates: { canonical: "/about" },
+  openGraph: { url: "/about" },
 };
 
 export default function AboutPage() {
@@ -23,6 +25,7 @@ export default function AboutPage() {
             title="About"
             subtitle="About Future Logix"
             description="Implementation-minded technology company for African organizations."
+            headingAs="h1"
           />
 
           <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">

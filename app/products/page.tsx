@@ -6,9 +6,11 @@ import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 
 export const metadata: Metadata = {
-  title: "Products - SchoolsRep & Portfolio",
+  title: "Products — SchoolsRep & Portfolio",
   description:
     "Explore SchoolsRep, our flagship school operations platform for Nigerian schools, and the wider Future Logix product direction.",
+  alternates: { canonical: "/products" },
+  openGraph: { url: "/products" },
 };
 
 export default function ProductsPage() {

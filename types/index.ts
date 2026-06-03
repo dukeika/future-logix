@@ -62,9 +62,16 @@ export interface InsightArticle {
   slug: string;
   category: string;
   title: string;
+  /** Shorter SEO-tuned title used for <title> and og:title when set. Falls back to title. */
+  seoTitle?: string;
   excerpt: string;
   author?: string;
+  /** Human-readable publish date (rendered visibly, e.g. "April 2026"). */
   publishedAt: string;
+  /** ISO-8601 publish date (YYYY-MM-DD). Used for Article schema + article:published_time. */
+  publishedAtISO?: string;
+  /** ISO-8601 modified date. Defaults to publishedAtISO if unset. */
+  modifiedAtISO?: string;
   content?: InsightContentBlock[];
   status?: "draft" | "published";
   coverImageKey?: string;

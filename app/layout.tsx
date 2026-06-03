@@ -97,10 +97,24 @@ export default function RootLayout({
 }>) {
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "LocalBusiness"],
+    "@id": "https://futurelogix.ng/#organization",
     name: "Future Logix Limited",
     url: "https://futurelogix.ng",
     logo: LOGO_URL,
+    image: LOGO_URL,
+    description:
+      "Future Logix Limited builds practical digital products and technology services for growing African organizations. Headquartered in Lagos, Nigeria.",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Lagos",
+      addressRegion: "Lagos",
+      addressCountry: "NG",
+    },
+    areaServed: [
+      { "@type": "Country", name: "Nigeria" },
+      { "@type": "Place", name: "Africa" },
+    ],
     sameAs: [LINKEDIN_URL, TWITTER_URL],
     contactPoint: {
       "@type": "ContactPoint",
@@ -110,6 +124,16 @@ export default function RootLayout({
       areaServed: "Africa",
       availableLanguage: ["en"],
     },
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://futurelogix.ng/#website",
+    url: "https://futurelogix.ng",
+    name: "Future Logix",
+    publisher: { "@id": "https://futurelogix.ng/#organization" },
+    inLanguage: "en-NG",
   };
 
   return (
@@ -123,6 +147,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <div className="flex min-h-screen flex-col">
           <Navigation />

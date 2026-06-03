@@ -3,12 +3,14 @@ import type { InsightArticle } from "@/types";
 export const insightArticles: InsightArticle[] = [
   {
     slug: "modern-african-technology-company-positioning",
+    seoTitle: "How African tech companies should sound",
     category: "Positioning",
     title: "What a modern African technology company should actually sound like",
     excerpt:
       "Why product companies and technology service firms lose trust when they rely on vague consulting language.",
     author: "Future Logix Team",
     publishedAt: "April 2026",
+    publishedAtISO: "2026-04-15",
     content: [
       {
         type: "paragraph",
@@ -106,6 +108,8 @@ export const insightArticles: InsightArticle[] = [
   },
   {
     slug: "product-vs-custom-build-decision-guide",
+    seoTitle: "Product vs custom build: how to choose",
+    publishedAtISO: "2026-04-15",
     category: "Decision Guide",
     title: "How to choose between buying a product and commissioning a custom build",
     excerpt:
@@ -315,6 +319,8 @@ export const insightArticles: InsightArticle[] = [
   },
   {
     slug: "workflow-automation-before-ready",
+    seoTitle: "Workflow automation before you feel ready",
+    publishedAtISO: "2026-04-15",
     category: "Operations",
     title: "Why workflow automation matters before a business feels 'ready'",
     excerpt:
@@ -518,6 +524,8 @@ export const insightArticles: InsightArticle[] = [
   },
   {
     slug: "most-businesses-have-a-system-problem",
+    seoTitle: "Most businesses have a system problem",
+    publishedAtISO: "2025-05-15",
     category: "AI Automation",
     title: "Most businesses don't have a growth problem — they have a system problem",
     excerpt:
@@ -565,12 +573,14 @@ export const insightArticles: InsightArticle[] = [
   },
   {
     slug: "whats-happening-in-your-business-at-2am",
+    seoTitle: "What happens in your business at 2 am",
     category: "Cloud & Automation",
     title: "What's happening in your business at 2am (and how much it's costing you)",
     excerpt:
-      "Leads don't wait until morning. Cloud infrastructure and AI automation keep your business responsive around the clock and close the slow revenue leak most owners never see.",
+      "Leads don't wait until morning. Cloud infrastructure and AI automation keep your business responsive around the clock and close the revenue leak owners miss.",
     author: "Akabom Kadana, CEO",
     publishedAt: "May 2025",
+    publishedAtISO: "2025-05-15",
     content: [
       {
         type: "paragraph",
