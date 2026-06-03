@@ -5,7 +5,10 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export const metadata: Metadata = {
   title: "User Data Deletion",
-  description: "How to request deletion of personal data and connected app data from Future Logix.",
+  description:
+    "How to request deletion of personal data and connected app data from Future Logix Limited.",
+  alternates: { canonical: "/data-deletion" },
+  openGraph: { url: "/data-deletion" },
 };
 
 export default function DataDeletionPage() {
@@ -16,7 +19,9 @@ export default function DataDeletionPage() {
           <SectionHeader
             number="12"
             title="User Data Deletion"
-            subtitle="How to request deletion of your data from Future Logix and connected app integrations."
+            subtitle="User Data Deletion"
+            description="How to request deletion of your data from Future Logix and connected app integrations."
+            headingAs="h1"
           />
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">

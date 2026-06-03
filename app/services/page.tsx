@@ -4,12 +4,14 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { SiteContainer } from "@/components/shared/site-container";
 import type { Service } from "@/types";
-import { Cloud, Code, RefreshCw, Workflow } from "lucide-react";
+import { ArrowUpRight, Cloud, Code, RefreshCw, Workflow } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Services - AI Automation, Web Development, AWS Architecture",
+  title: "Services — AI, Web, AWS & Modernization",
   description:
     "Implementation-focused technology services: AI automation, web application development, AWS architecture, and business modernization for African organizations.",
+  alternates: { canonical: "/services" },
+  openGraph: { url: "/services" },
 };
 
 const services: Service[] = [
@@ -26,8 +28,8 @@ const services: Service[] = [
     ],
     startingPrice: "From ₦2,500,000",
     delivery: "2-6 weeks implementation",
-    cta: "Discuss Your Workflow",
-    href: "/contact",
+    cta: "Explore AI Automation",
+    href: "/ai-automation",
     icon: Workflow,
   },
   {
@@ -43,8 +45,8 @@ const services: Service[] = [
     ],
     startingPrice: "From ₦4,000,000",
     delivery: "4-12 weeks typical project",
-    cta: "Start Your Project",
-    href: "/contact",
+    cta: "Explore Web App Development",
+    href: "/web-application-development",
     icon: Code,
   },
   {
@@ -61,8 +63,8 @@ const services: Service[] = [
     ],
     startingPrice: "From ₦3,000,000",
     delivery: "2-8 weeks implementation",
-    cta: "Plan Your Infrastructure",
-    href: "/contact",
+    cta: "Explore AWS Architecture",
+    href: "/aws-architecture",
     icon: Cloud,
   },
   {
@@ -78,8 +80,8 @@ const services: Service[] = [
     ],
     startingPrice: "From ₦5,000,000",
     delivery: "4-16 weeks engagement",
-    cta: "Modernize Your Operations",
-    href: "/contact",
+    cta: "Explore Business Modernization",
+    href: "/business-modernization",
     icon: RefreshCw,
   },
 ];
@@ -110,13 +112,28 @@ export default function ServicesPage() {
                     <p className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                       {service.number}
                     </p>
-                    <h2 className="text-xl font-semibold text-foreground">{service.title}</h2>
+                    <h2 className="text-xl font-semibold text-foreground">
+                      <Link
+                        href={service.href}
+                        className="transition-colors hover:text-primary"
+                      >
+                        {service.title}
+                      </Link>
+                    </h2>
                     <p className="text-base leading-8 text-muted-foreground">{service.description}</p>
                   </div>
                   <div className="rounded-[1.2rem] border border-primary/10 bg-primary/5 px-4 py-3 text-sm">
                     <p className="font-semibold text-foreground">{service.startingPrice}</p>
                     <p className="mt-1 text-muted-foreground">{service.delivery}</p>
                   </div>
+                </div>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Button asChild variant="outline" className="rounded-full bg-white/80">
+                    <Link href={service.href}>
+                      {service.cta}
+                      <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                    </Link>
+                  </Button>
                 </div>
               </div>
             ))}

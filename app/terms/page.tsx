@@ -5,7 +5,10 @@ import { SectionHeader } from "@/components/shared/SectionHeader";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "Terms of Service for Future Logix Limited, its website, and connected app integrations.",
+  description:
+    "Terms of Service for Future Logix Limited, covering use of the website, services, and connected app integrations.",
+  alternates: { canonical: "/terms" },
+  openGraph: { url: "/terms" },
 };
 
 export default function TermsPage() {
@@ -16,7 +19,9 @@ export default function TermsPage() {
           <SectionHeader
             number="11"
             title="Terms of Service"
-            subtitle="The terms governing use of the Future Logix website and services."
+            subtitle="Terms of Service"
+            description="The terms governing use of the Future Logix website and services."
+            headingAs="h1"
           />
 
           <div className="space-y-8 text-base leading-8 text-muted-foreground">

@@ -15,8 +15,8 @@ const services: Service[] = [
     capabilities: ["Process Automation", "AI Integration", "Workflow Optimization", "Document Processing"],
     startingPrice: "From ₦2,500,000",
     delivery: "2-6 weeks",
-    cta: "Discuss Your Workflow",
-    href: "/contact",
+    cta: "Explore AI Automation",
+    href: "/ai-automation",
     icon: Workflow,
   },
   {
@@ -27,8 +27,8 @@ const services: Service[] = [
     capabilities: ["React / Next.js", "API Design", "Database Architecture", "Integrations"],
     startingPrice: "From ₦4,000,000",
     delivery: "4-12 weeks",
-    cta: "Start Your Project",
-    href: "/contact",
+    cta: "Explore Web Development",
+    href: "/web-application-development",
     icon: Code,
   },
   {
@@ -39,8 +39,8 @@ const services: Service[] = [
     capabilities: ["Infrastructure Design", "Serverless", "Security Hardening", "Cost Optimization"],
     startingPrice: "From ₦3,000,000",
     delivery: "2-8 weeks",
-    cta: "Plan Your Infrastructure",
-    href: "/contact",
+    cta: "Explore AWS Architecture",
+    href: "/aws-architecture",
     icon: Cloud,
   },
   {
@@ -51,8 +51,8 @@ const services: Service[] = [
     capabilities: ["Process Mapping", "Legacy Integration", "Transformation Roadmaps", "Change Management"],
     startingPrice: "From ₦5,000,000",
     delivery: "4-16 weeks",
-    cta: "Modernize Operations",
-    href: "/contact",
+    cta: "Explore Modernization",
+    href: "/business-modernization",
     icon: RefreshCw,
   },
 ];
