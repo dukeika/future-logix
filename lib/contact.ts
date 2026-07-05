@@ -3,12 +3,12 @@ import { randomUUID } from "node:crypto";
 import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import {
   DynamoDBDocumentClient,
   PutCommand,
 } from "@aws-sdk/lib-dynamodb";
 
+import { sendMail } from "@/lib/mailer";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validation";
 import type { ContactSubmission } from "@/types";
 
@@ -16,7 +16,6 @@ const CONTACT_TABLE_NAME = process.env.CONTACT_TABLE_NAME ?? "ContactSubmissions
 const AWS_REGION = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "eu-west-2";
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL ?? "admin@futurelogix.ng";
 const CONTACT_ADMIN_EMAIL = process.env.CONTACT_ADMIN_EMAIL ?? "admin@futurelogix.ng";
-const SES_CONFIGURATION_SET_NAME = process.env.SES_CONFIGURATION_SET_NAME;
 
 const spamKeywords = [
   "bitcoin",
@@ -31,7 +30,6 @@ const spamKeywords = [
 ];
 
 const dynamoClient = new DynamoDBClient({ region: AWS_REGION });
-const sesClient = new SESv2Client({ region: AWS_REGION });
 const docClient = DynamoDBDocumentClient.from(dynamoClient, {
   marshallOptions: { removeUndefinedValues: true },
 });
@@ -140,25 +138,14 @@ export async function sendContactEmail({
   text: string;
   replyTo?: string[];
 }) {
-  await sesClient.send(
-    new SendEmailCommand({
-      FromEmailAddress: CONTACT_FROM_EMAIL,
-      ReplyToAddresses: replyTo && replyTo.length > 0 ? replyTo : [CONTACT_FROM_EMAIL],
-      Destination: {
-        ToAddresses: [to],
-      },
-      Content: {
-        Simple: {
-          Subject: { Data: subject },
-          Body: {
-            Html: { Data: html },
-            Text: { Data: text },
-          },
-        },
-      },
-      ConfigurationSetName: SES_CONFIGURATION_SET_NAME,
-    })
-  );
+  await sendMail({
+    from: CONTACT_FROM_EMAIL,
+    to,
+    subject,
+    html,
+    text,
+    replyTo: replyTo && replyTo.length > 0 ? replyTo : [CONTACT_FROM_EMAIL],
+  });
 }
 
 export function buildAdminContactEmail(values: ContactFormValues, submittedAt: string) {

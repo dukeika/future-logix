@@ -3,7 +3,6 @@ import { randomBytes } from "node:crypto";
 import {
   DynamoDBClient,
 } from "@aws-sdk/client-dynamodb";
-import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import {
   DynamoDBDocumentClient,
   GetCommand,
@@ -13,6 +12,7 @@ import {
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 
+import { sendMail } from "@/lib/mailer";
 import type { NewsletterSubscription } from "@/types";
 
 const NEWSLETTER_TABLE_NAME =
@@ -20,7 +20,6 @@ const NEWSLETTER_TABLE_NAME =
 const AWS_REGION = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? "eu-west-2";
 const SITE_URL = process.env.SITE_URL ?? "https://futurelogix.ng";
 const NEWSLETTER_FROM_EMAIL = process.env.NEWSLETTER_FROM_EMAIL ?? "admin@futurelogix.ng";
-const SES_CONFIGURATION_SET_NAME = process.env.SES_CONFIGURATION_SET_NAME;
 
 const disposableDomains = new Set([
   "10minutemail.com",
@@ -36,7 +35,6 @@ const disposableDomains = new Set([
 ]);
 
 const dynamoClient = new DynamoDBClient({ region: AWS_REGION });
-const sesClient = new SESv2Client({ region: AWS_REGION });
 const docClient = DynamoDBDocumentClient.from(dynamoClient, {
   marshallOptions: { removeUndefinedValues: true },
 });
@@ -204,25 +202,14 @@ export async function sendNewsletterEmail({
   text: string;
   to: string;
 }) {
-  await sesClient.send(
-    new SendEmailCommand({
-      FromEmailAddress: NEWSLETTER_FROM_EMAIL,
-      ReplyToAddresses: [NEWSLETTER_FROM_EMAIL],
-      Destination: {
-        ToAddresses: [to],
-      },
-      Content: {
-        Simple: {
-          Subject: { Data: subject },
-          Body: {
-            Html: { Data: html },
-            Text: { Data: text },
-          },
-        },
-      },
-      ConfigurationSetName: SES_CONFIGURATION_SET_NAME,
-    })
-  );
+  await sendMail({
+    from: NEWSLETTER_FROM_EMAIL,
+    to,
+    subject,
+    html,
+    text,
+    replyTo: [NEWSLETTER_FROM_EMAIL],
+  });
 }
 
 export function buildNewsletterConfirmationEmail({

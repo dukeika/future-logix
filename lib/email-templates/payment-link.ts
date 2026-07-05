@@ -28,42 +28,31 @@ export function buildPaymentLinkEmail({
   const expiryLine = expiresAt ? `This payment link expires on ${expiresAt}.` : "This payment link is time-limited.";
 
   return {
-    Subject: {
-      Data: subject,
-      Charset: "UTF-8",
-    },
-    Body: {
-      Html: {
-        Charset: "UTF-8",
-        Data: [
-          `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">`,
-          `<h1 style="font-size: 24px; margin-bottom: 16px;">Payment Request from Future Logix</h1>`,
-          `<p>${greeting}</p>`,
-          `<p>${description}</p>`,
-          `<p><strong>Amount:</strong> ${formattedAmount}</p>`,
-          `<p><strong>Expiry:</strong> ${expiryLine}</p>`,
-          `<p style="margin: 24px 0;">`,
-          `<a href="${paymentUrl}" style="display: inline-block; background: #0066cc; color: #ffffff; text-decoration: none; padding: 12px 20px; border-radius: 999px; font-weight: 600;">Pay Now</a>`,
-          `</p>`,
-          `<p>Future Logix<br />Questions? Reply to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>`,
-          `</div>`,
-        ].join(""),
-      },
-      Text: {
-        Charset: "UTF-8",
-        Data: [
-          greeting,
-          "",
-          description,
-          `Amount: ${formattedAmount}`,
-          expiryLine,
-          `Pay now: ${paymentUrl}`,
-          "",
-          `Future Logix`,
-          `Questions? Reply to ${SUPPORT_EMAIL}.`,
-        ].join("\n"),
-      },
-    },
+    subject,
+    html: [
+      `<div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0f172a;">`,
+      `<h1 style="font-size: 24px; margin-bottom: 16px;">Payment Request from Future Logix</h1>`,
+      `<p>${greeting}</p>`,
+      `<p>${description}</p>`,
+      `<p><strong>Amount:</strong> ${formattedAmount}</p>`,
+      `<p><strong>Expiry:</strong> ${expiryLine}</p>`,
+      `<p style="margin: 24px 0;">`,
+      `<a href="${paymentUrl}" style="display: inline-block; background: #0066cc; color: #ffffff; text-decoration: none; padding: 12px 20px; border-radius: 999px; font-weight: 600;">Pay Now</a>`,
+      `</p>`,
+      `<p>Future Logix<br />Questions? Reply to <a href="mailto:${SUPPORT_EMAIL}">${SUPPORT_EMAIL}</a>.</p>`,
+      `</div>`,
+    ].join(""),
+    text: [
+      greeting,
+      "",
+      description,
+      `Amount: ${formattedAmount}`,
+      expiryLine,
+      `Pay now: ${paymentUrl}`,
+      "",
+      `Future Logix`,
+      `Questions? Reply to ${SUPPORT_EMAIL}.`,
+    ].join("\n"),
   };
 }
 
