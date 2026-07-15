@@ -12,14 +12,18 @@ export function middleware(request: NextRequest) {
 
   if (host.toLowerCase().startsWith("www.")) {
     const target = new URL(url.toString());
-    target.host = APEX_HOST;
     target.protocol = "https:";
+    target.hostname = APEX_HOST;
+    target.port = "";
     return NextResponse.redirect(target, 301);
   }
 
   const redirectTo = PERMANENT_REDIRECTS[url.pathname];
   if (redirectTo) {
     const target = new URL(url.toString());
+    target.protocol = "https:";
+    target.hostname = APEX_HOST;
+    target.port = "";
     target.pathname = redirectTo;
     return NextResponse.redirect(target, 301);
   }
