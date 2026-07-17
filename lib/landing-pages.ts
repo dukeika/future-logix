@@ -357,7 +357,7 @@ export const landingPages: Record<string, LandingPageData> = {
   "business-modernization": {
     slug: "business-modernization",
     title: "Business Modernization & Automation",
-    metaTitle: "Business Modernization and Automation Services",
+    metaTitle: "Business Modernization & Automation",
     metaDescription:
       "Modernize manual processes, legacy workflows, and disconnected tools with Future Logix in Lagos, Nigeria.",
     eyebrow: "Business Modernization & Automation",
