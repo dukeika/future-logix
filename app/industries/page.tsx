@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Future Logix serves education, SMEs, professional services, and startups across Africa with practical technology solutions.",
   alternates: { canonical: "/industries" },
-  openGraph: { url: "/industries" },
+  openGraph: { url: "/industries", images: ["/og-image.png"] },
 };
 
 const industries: Industry[] = [

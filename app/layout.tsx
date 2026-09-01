@@ -111,6 +111,17 @@ export default function RootLayout({
       addressRegion: "Lagos",
       addressCountry: "NG",
     },
+    email: "admin@futurelogix.ng",
+    telephone: "+2347061106212",
+    priceRange: "₦₦₦",
+    founder: { "@type": "Person", name: "Akabom Kadana" },
+    knowsAbout: [
+      "AI automation",
+      "Custom web application development",
+      "AWS architecture",
+      "School operations software",
+      "Business process modernization",
+    ],
     areaServed: [
       { "@type": "Country", name: "Nigeria" },
       { "@type": "Place", name: "Africa" },

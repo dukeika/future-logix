@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "How to request deletion of personal data and connected app data from Future Logix Limited.",
   alternates: { canonical: "/data-deletion" },
   openGraph: { url: "/data-deletion" },
+  robots: { index: false, follow: true },
 };
 
 export default function DataDeletionPage() {

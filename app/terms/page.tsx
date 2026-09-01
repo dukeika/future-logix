@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "Terms of Service for Future Logix Limited, covering use of the website, services, and connected app integrations.",
   alternates: { canonical: "/terms" },
   openGraph: { url: "/terms" },
+  robots: { index: false, follow: true },
 };
 
 export default function TermsPage() {

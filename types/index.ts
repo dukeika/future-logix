@@ -78,6 +78,10 @@ export interface InsightArticle {
   coverImageUrl?: string;
   updatedAt?: string;
   createdAt?: string;
+  /** Commercial page to feature as the next step from an insight. */
+  serviceLink?: string;
+  /** Short CTA label for the commercial page. */
+  serviceCta?: string;
 }
 
 export interface ContactInterestOption {

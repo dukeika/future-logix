@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: InsightDetailPageProps): Prom
       url: canonical,
       title: seoTitle,
       description: article.excerpt,
-      images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+      images: [article.coverImageUrl ?? DEFAULT_OG_IMAGE],
       publishedTime: published,
       modifiedTime: modified,
       authors: [authorName],
@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: InsightDetailPageProps): Prom
       card: "summary_large_image",
       title: seoTitle,
       description: article.excerpt,
-      images: article.coverImageUrl ? [article.coverImageUrl] : undefined,
+      images: [article.coverImageUrl ?? DEFAULT_OG_IMAGE],
     },
   };
 }
@@ -227,6 +227,11 @@ export default async function InsightDetailPage({ params }: InsightDetailPagePro
             <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
               Tell us about the problem you&apos;re trying to solve and we&apos;ll respond with concrete next steps.
             </p>
+            {article.serviceLink ? (
+              <p className="mt-3 text-sm leading-7 text-foreground/80">
+                This article connects to a practical next step: <Link className="font-semibold text-primary hover:underline" href={article.serviceLink}>{article.serviceCta ?? "Explore the relevant service"}</Link>.
+              </p>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-3">
               <Button asChild className="rounded-full">
                 <Link href="/contact">

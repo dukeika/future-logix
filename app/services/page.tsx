@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Implementation-focused technology services: AI automation, web application development, AWS architecture, and business modernization for African organizations.",
   alternates: { canonical: "/services" },
-  openGraph: { url: "/services" },
+  openGraph: { url: "/services", images: ["/og-image.png"] },
 };
 
 const services: Service[] = [

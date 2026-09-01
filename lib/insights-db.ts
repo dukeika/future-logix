@@ -28,7 +28,15 @@ export async function listInsights(options: { publishedOnly?: boolean } = {}) {
   try {
     await ensureSeeded();
     const { Items = [] } = await ddb.send(new ScanCommand({ TableName: TABLE }));
-    const articles = Items as InsightArticle[];
+    const storedArticles = Items as InsightArticle[];
+    // Keep the source inventory visible even when a deployment cannot seed all
+    // articles in one request. Stored articles win when an editor has changed
+    // an article, while legacy database-only articles remain discoverable.
+    const bySlug = new Map<string, InsightArticle>();
+    for (const article of seedArticles) bySlug.set(article.slug, { ...article, status: "published" });
+    for (const article of storedArticles) bySlug.set(article.slug, article);
+
+    const articles = Array.from(bySlug.values());
     const filtered = options.publishedOnly
       ? articles.filter((a) => (a.status ?? "published") === "published")
       : articles;

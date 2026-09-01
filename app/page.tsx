@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description:
     "Future Logix helps African organizations operate better with SchoolsRep, AI automation, web development, and AWS architecture.",
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  openGraph: { url: "/", images: ["/og-image.png"] },
 };
 
 export default function HomePage() {

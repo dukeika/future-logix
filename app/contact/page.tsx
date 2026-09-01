@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Future Logix in Lagos, Nigeria. Start a conversation about your technology, automation, AWS, or product needs.",
   alternates: { canonical: "/contact" },
-  openGraph: { url: "/contact" },
+  openGraph: { url: "/contact", images: ["/og-image.png"] },
 };
 
 export default function ContactPage() {

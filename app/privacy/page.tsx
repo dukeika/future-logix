@@ -9,6 +9,7 @@ export const metadata: Metadata = {
     "How Future Logix Limited collects, uses, protects, and shares your information across the website and connected applications.",
   alternates: { canonical: "/privacy" },
   openGraph: { url: "/privacy" },
+  robots: { index: false, follow: true },
 };
 
 export default function PrivacyPage() {

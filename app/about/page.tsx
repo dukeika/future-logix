@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Learn about Future Logix Limited, a Lagos-based technology company building products and services for African organizations.",
   alternates: { canonical: "/about" },
-  openGraph: { url: "/about" },
+  openGraph: { url: "/about", images: ["/og-image.png"] },
 };
 
 export default function AboutPage() {

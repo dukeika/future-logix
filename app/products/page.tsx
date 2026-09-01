@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description:
     "Explore SchoolsRep, our flagship school operations platform for Nigerian schools, and the wider Future Logix product direction.",
   alternates: { canonical: "/products" },
-  openGraph: { url: "/products" },
+  openGraph: { url: "/products", images: ["/og-image.png"] },
 };
 
 export default function ProductsPage() {

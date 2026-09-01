@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description:
     "Practical thinking on technology strategy, product decisions, and operational improvement for African organizations.",
   alternates: { canonical: "/insights" },
-  openGraph: { url: "/insights" },
+  openGraph: { url: "/insights", images: ["/og-image.png"] },
 };
 
 export const revalidate = 60;
@@ -22,6 +22,10 @@ const categoryStyles: Record<string, string> = {
   "Decision Guide": "bg-secondary/10 text-secondary",
   Operations: "bg-amber-500/10 text-amber-600",
   Technology: "bg-slate-900/10 text-slate-700",
+  "AI Automation": "bg-primary/10 text-primary",
+  "Web Application Development": "bg-secondary/10 text-secondary",
+  "AWS & Cloud": "bg-slate-900/10 text-slate-700",
+  SchoolsRep: "bg-amber-500/10 text-amber-600",
 };
 
 export default async function InsightsPage() {

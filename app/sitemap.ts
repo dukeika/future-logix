@@ -4,82 +4,64 @@ import { insightArticles } from "@/lib/insights";
 import { landingRouteSlugs } from "@/lib/landing-pages";
 
 const baseUrl = "https://futurelogix.ng";
-const now = new Date();
+const siteUpdated = new Date("2026-09-01T00:00:00.000Z");
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/products`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/services`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/industries`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/insights`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "weekly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: now,
+      lastModified: siteUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/data-deletion`,
-      lastModified: now,
-      changeFrequency: "yearly",
-      priority: 0.3,
     },
   ];
 
   const articleRoutes: MetadataRoute.Sitemap = insightArticles.map((article) => ({
     url: `${baseUrl}/insights/${article.slug}`,
-    lastModified: now,
+    lastModified: article.modifiedAtISO ?? article.updatedAt ?? article.publishedAtISO ?? siteUpdated,
     changeFrequency: "monthly",
     priority: 0.7,
   }));
 
   const landingRoutes: MetadataRoute.Sitemap = landingRouteSlugs.map((slug) => ({
     url: `${baseUrl}/${slug}`,
-    lastModified: now,
+    lastModified: siteUpdated,
     changeFrequency: "monthly",
     priority: 0.9,
   }));

@@ -24,6 +24,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .npm-cache/
+.seo-cache/
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

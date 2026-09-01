@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description: page.metaDescription,
     url: `/${page.slug}`,
     type: "website",
+    images: ["/og-image.png"],
   },
   twitter: {
     card: "summary_large_image",
