@@ -9,7 +9,11 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 
 import { sendMail } from "@/lib/mailer";
-import { contactFormSchema, type ContactFormValues } from "@/lib/validation";
+import {
+  contactFormSchema,
+  type AttributionValues,
+  type ContactFormValues,
+} from "@/lib/validation";
 import type { ContactSubmission } from "@/types";
 
 const CONTACT_TABLE_NAME = process.env.CONTACT_TABLE_NAME ?? "ContactSubmissions";
@@ -148,8 +152,26 @@ export async function sendContactEmail({
   });
 }
 
-export function buildAdminContactEmail(values: ContactFormValues, submittedAt: string) {
+function describeAttribution(attribution: AttributionValues) {
+  const parts = [
+    attribution.utmSource ? `source=${attribution.utmSource}` : null,
+    attribution.utmMedium ? `medium=${attribution.utmMedium}` : null,
+    attribution.utmCampaign ? `campaign=${attribution.utmCampaign}` : null,
+    attribution.utmContent ? `content=${attribution.utmContent}` : null,
+    attribution.landingPage ? `landing=${attribution.landingPage}` : null,
+    attribution.referrer ? `referrer=${attribution.referrer}` : null,
+  ].filter(Boolean);
+
+  return parts.length ? parts.join(" | ") : null;
+}
+
+export function buildAdminContactEmail(
+  values: ContactFormValues,
+  submittedAt: string,
+  attribution: AttributionValues = {}
+) {
   const subject = `New Contact Form Submission - ${values.interest} - ${values.name}`;
+  const attributionLine = describeAttribution(attribution);
   const bodyLines = [
     `From: ${values.name} <${values.email}>`,
     `Organization: ${values.organization || "-"}`,
@@ -157,10 +179,12 @@ export function buildAdminContactEmail(values: ContactFormValues, submittedAt: s
     `Interest: ${values.interest}`,
     `Submitted: ${submittedAt}`,
     values.referralSource ? `How they heard about us: ${values.referralSource}` : null,
+    attributionLine ? `Campaign: ${attributionLine}` : null,
     "",
     "Message:",
     values.message,
     "",
+    "Manage this lead: https://futurelogix.ng/admin/leads",
     `Reply directly to this email to respond to ${values.email}.`,
   ].filter(Boolean);
 
@@ -181,8 +205,10 @@ export function buildAdminContactEmail(values: ContactFormValues, submittedAt: s
             ? `<p><strong>How they heard about us:</strong> ${values.referralSource}</p>`
             : ""
         }
+        ${attributionLine ? `<p><strong>Campaign:</strong> ${attributionLine}</p>` : ""}
         <p><strong>Message:</strong></p>
         <p>${values.message.replace(/\n/g, "<br />")}</p>
+        <p><a href="https://futurelogix.ng/admin/leads">Manage this lead in the admin</a></p>
         <p>Reply directly to this email to respond to ${values.email}.</p>
       </div>
     `,
@@ -217,7 +243,12 @@ export function buildSubmitterContactEmail(values: ContactFormValues) {
   };
 }
 
-export function createContactSubmissionRecord(values: ContactFormValues, source: string, ipAddress: string) {
+export function createContactSubmissionRecord(
+  values: ContactFormValues,
+  source: string,
+  ipAddress: string,
+  attribution: AttributionValues = {}
+): ContactSubmission {
   return {
     id: randomUUID(),
     name: values.name,
@@ -227,10 +258,18 @@ export function createContactSubmissionRecord(values: ContactFormValues, source:
     interest: values.interest,
     message: values.message,
     source,
+    channel: "website",
     submittedAt: new Date().toISOString(),
-    status: "new" as const,
+    status: "new",
     referralSource: values.referralSource,
     ipAddress,
+    utmSource: attribution.utmSource,
+    utmMedium: attribution.utmMedium,
+    utmCampaign: attribution.utmCampaign,
+    utmContent: attribution.utmContent,
+    utmTerm: attribution.utmTerm,
+    landingPage: attribution.landingPage,
+    referrer: attribution.referrer,
   };
 }
 

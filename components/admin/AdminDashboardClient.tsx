@@ -4,18 +4,27 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
+  CalendarClock,
   CircleDollarSign,
   FileText,
   Loader2,
   Plus,
   ReceiptText,
   TrendingUp,
+  Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import type { InsightArticle } from "@/types";
 import type { Invoice } from "@/lib/invoices";
+import type { Lead } from "@/lib/leads";
+
+const OPEN_LEAD_STATUSES = new Set(["new", "contacted", "qualified", "proposal"]);
+
+function isFollowUpDue(lead: Lead) {
+  return Boolean(lead.nextFollowUpAt) && (lead.nextFollowUpAt as string).slice(0, 10) <= new Date().toISOString().slice(0, 10);
+}
 
 function formatCurrency(amount: number) {
   return new Intl.NumberFormat("en-NG", {
@@ -28,6 +37,7 @@ function formatCurrency(amount: number) {
 export function AdminDashboardClient() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [articles, setArticles] = useState<InsightArticle[]>([]);
+  const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -36,9 +46,10 @@ export function AdminDashboardClient() {
 
     async function load() {
       try {
-        const [invRes, insRes] = await Promise.all([
+        const [invRes, insRes, leadRes] = await Promise.all([
           fetch("/api/invoices", { cache: "no-store" }),
           fetch("/api/admin/insights", { cache: "no-store" }),
+          fetch("/api/admin/leads", { cache: "no-store" }),
         ]);
 
         const invData = (await invRes.json().catch(() => ({}))) as {
@@ -50,10 +61,13 @@ export function AdminDashboardClient() {
           error?: string;
         };
 
+        const leadData = (await leadRes.json().catch(() => ({}))) as { leads?: Lead[] };
+
         if (!active) return;
         if (!invRes.ok) throw new Error(invData.error ?? "Unable to load invoices.");
         setInvoices(invData.invoices ?? []);
         setArticles(insData.articles ?? []);
+        setLeads(leadData.leads ?? []);
       } catch (loadError) {
         if (active) setError(loadError instanceof Error ? loadError.message : "Unable to load.");
       } finally {
@@ -72,8 +86,13 @@ export function AdminDashboardClient() {
     const unpaidInvoices = invoices.filter((invoice) => invoice.status !== "paid");
     const published = articles.filter((a) => (a.status ?? "published") === "published");
     const drafts = articles.filter((a) => (a.status ?? "published") === "draft");
+    const openLeads = leads.filter((lead) => OPEN_LEAD_STATUSES.has(lead.status));
 
     return {
+      newLeads: leads.filter((lead) => lead.status === "new").length,
+      openLeads: openLeads.length,
+      followUpsDue: openLeads.filter(isFollowUpDue).length,
+      wonLeads: leads.filter((lead) => lead.status === "won").length,
       total: invoices.length,
       paid: paidInvoices.length,
       revenue: paidInvoices.reduce((sum, invoice) => sum + invoice.totalAmount, 0),
@@ -81,7 +100,7 @@ export function AdminDashboardClient() {
       published: published.length,
       drafts: drafts.length,
     };
-  }, [invoices, articles]);
+  }, [invoices, articles, leads]);
 
   if (loading) {
     return (
@@ -93,6 +112,34 @@ export function AdminDashboardClient() {
 
   return (
     <div className="space-y-6">
+      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <StatCard label="New leads" value={stats.newLeads.toString()} icon={Users} accent="primary" />
+        <StatCard
+          label="Follow-ups due"
+          value={stats.followUpsDue.toString()}
+          icon={CalendarClock}
+          accent={stats.followUpsDue > 0 ? "amber" : "secondary"}
+        />
+        <StatCard label="Open pipeline" value={stats.openLeads.toString()} icon={TrendingUp} accent="secondary" />
+        <StatCard label="Won" value={stats.wonLeads.toString()} icon={CircleDollarSign} accent="primary" />
+      </div>
+
+      <div className="bento-card-accent flex flex-col gap-4 p-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <h2 className="font-display text-xl font-semibold tracking-tight text-foreground">Leads desk</h2>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Website enquiries land here automatically. Log WhatsApp and phone leads, set follow-ups, and move
+            each one from new to won.
+          </p>
+        </div>
+        <Button asChild className="rounded-full">
+          <Link href="/admin/leads">
+            Open leads desk
+            <ArrowRight className="ml-1.5 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Insights published" value={stats.published.toString()} icon={FileText} accent="primary" />
         <StatCard label="Insights drafts" value={stats.drafts.toString()} icon={FileText} accent="amber" />

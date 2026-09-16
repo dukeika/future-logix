@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import type { ContactInterestOption } from "@/types";
+import { getAttribution } from "@/lib/attribution";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validation";
 
 const interestOptions: ContactInterestOption[] = [
@@ -69,6 +70,7 @@ export function ContactPageClient() {
           ...values,
           source: "contact-page",
           companyWebsite: "",
+          attribution: getAttribution(),
         }),
       });
 

@@ -12,6 +12,7 @@ import {
   storeContactSubmission,
   validateContactPayload,
 } from "@/lib/contact";
+import { attributionSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
 
@@ -58,10 +59,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const submission = createContactSubmissionRecord(sanitized, source, ipAddress);
+    const attributionParsed = attributionSchema.safeParse(payload.attribution ?? {});
+    const attribution = attributionParsed.success ? attributionParsed.data : {};
+
+    const submission = createContactSubmissionRecord(sanitized, source, ipAddress, attribution);
     await storeContactSubmission(submission);
 
-    const adminEmail = buildAdminContactEmail(sanitized, submission.submittedAt);
+    const adminEmail = buildAdminContactEmail(sanitized, submission.submittedAt, attribution);
     const submitterEmail = buildSubmitterContactEmail(sanitized);
 
     // TODO: Manually verify admin@futurelogix.ng inbox receives contact form emails.

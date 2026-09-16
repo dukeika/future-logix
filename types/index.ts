@@ -100,7 +100,33 @@ export interface NewsletterSubscription {
   unsubscribedAt?: string;
 }
 
-export interface ContactSubmission {
+export const LEAD_STATUSES = [
+  "new",
+  "contacted",
+  "qualified",
+  "proposal",
+  "won",
+  "lost",
+  "resolved",
+] as const;
+
+export type LeadStatus = (typeof LEAD_STATUSES)[number];
+
+export const LEAD_CHANNELS = ["website", "whatsapp", "phone", "email", "referral", "social", "other"] as const;
+
+export type LeadChannel = (typeof LEAD_CHANNELS)[number];
+
+export interface LeadAttribution {
+  utmSource?: string;
+  utmMedium?: string;
+  utmCampaign?: string;
+  utmContent?: string;
+  utmTerm?: string;
+  landingPage?: string;
+  referrer?: string;
+}
+
+export interface ContactSubmission extends LeadAttribution {
   id: string;
   name: string;
   email: string;
@@ -109,9 +135,12 @@ export interface ContactSubmission {
   interest: string;
   message: string;
   source: string;
+  channel?: LeadChannel;
   submittedAt: string;
-  status: "new" | "resolved";
+  updatedAt?: string;
+  status: LeadStatus;
   notes?: string;
+  nextFollowUpAt?: string;
   referralSource?: string;
   ipAddress?: string;
 }

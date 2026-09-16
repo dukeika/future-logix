@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { getAttribution } from "@/lib/attribution";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validation";
 
 type LandingContactFormProps = {
@@ -66,6 +67,7 @@ export function LandingContactForm({
           interest,
           source: `landing-${source}`,
           companyWebsite: "",
+          attribution: getAttribution(),
         }),
       });
 

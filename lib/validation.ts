@@ -11,3 +11,19 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormValues = z.infer<typeof contactFormSchema>;
+
+const attributionField = z.string().trim().max(200).optional();
+
+export const attributionSchema = z
+  .object({
+    utmSource: attributionField,
+    utmMedium: attributionField,
+    utmCampaign: attributionField,
+    utmContent: attributionField,
+    utmTerm: attributionField,
+    landingPage: attributionField,
+    referrer: attributionField,
+  })
+  .partial();
+
+export type AttributionValues = z.infer<typeof attributionSchema>;

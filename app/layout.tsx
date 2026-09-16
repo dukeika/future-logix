@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { Footer } from "@/components/Footer";
 import { AnalyticsScripts } from "@/components/monitoring/AnalyticsScripts";
+import { AttributionCapture } from "@/components/monitoring/AttributionCapture";
 import { WebVitalsReporter } from "@/components/monitoring/WebVitalsReporter";
 import { Navigation } from "@/components/Navigation";
 import { CookieBanner } from "@/components/shared/CookieBanner";
@@ -154,6 +155,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <AnalyticsScripts />
+        <AttributionCapture />
         <WebVitalsReporter />
         <script
           type="application/ld+json"

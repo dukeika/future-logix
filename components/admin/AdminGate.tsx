@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FormEvent, PropsWithChildren, useEffect, useState } from "react";
-import { FileText, LayoutDashboard, Loader2, Lock, LogOut, ReceiptText } from "lucide-react";
+import { FileText, LayoutDashboard, Loader2, Lock, LogOut, ReceiptText, Users } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 
 const adminLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/leads", label: "Leads", icon: Users },
   { href: "/admin/insights", label: "Insights", icon: FileText },
   { href: "/admin/invoices", label: "Invoices", icon: ReceiptText },
 ];
@@ -115,7 +116,7 @@ export function AdminGate({ children }: PropsWithChildren) {
             Admin access
           </h1>
           <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            Enter the dashboard password to manage insights, invoices, and payment workflows.
+            Enter the dashboard password to manage leads, insights, invoices, and payment workflows.
           </p>
 
           <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
