@@ -31,9 +31,9 @@ export function ProductsSection() {
           <div className="max-w-4xl">
             <SectionHeader
               number="01"
-              title="Products"
-              subtitle="SchoolsRep leads the product portfolio."
-              description="Start with the product if you need a practical school operations system today."
+              title="Product Portfolio"
+              subtitle="SchoolsRep is the flagship product under Future Logix."
+              description="Market Future Logix as the company, then let each product solve a specific buyer problem with a focused funnel."
             />
           </div>
 
@@ -56,7 +56,7 @@ export function ProductsSection() {
 
                 <p className="max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
                   A school operations platform for Nigerian private schools — manage attendance,
-                  results, parent communication, and admin workflows in one place.
+                  results, parent communication, fees, and admin workflows in one place.
                 </p>
 
                 <div className="grid gap-2.5 sm:grid-cols-2">
@@ -78,7 +78,7 @@ export function ProductsSection() {
 
                 <Button asChild className="h-12 rounded-full px-6 text-base">
                   <Link href="/schoolsrep">
-                    View SchoolsRep
+                    View Future Logix Product Page
                     <ArrowUpRight className="ml-1.5 h-4 w-4" />
                   </Link>
                 </Button>

@@ -68,6 +68,8 @@ export type LandingPageData = {
 export const contactDetails = {
   phone: "+2347061106212",
   phoneLabel: "+234 706 110 6212",
+  whatsappUrl:
+    "https://wa.me/2347061106212?text=Hello%20Future%20Logix%2C%20I%20want%20to%20discuss%20SchoolsRep%20for%20my%20school.",
   email: "admin@futurelogix.ng",
   location: "Lagos, Nigeria",
 };
@@ -449,20 +451,22 @@ export const landingPages: Record<string, LandingPageData> = {
   schoolsrep: {
     slug: "schoolsrep",
     title: "SchoolsRep",
-    metaTitle: "SchoolsRep School Operations Platform",
+    metaTitle: "SchoolsRep by Future Logix | School Operations Platform",
     metaDescription:
-      "SchoolsRep helps Nigerian private schools manage attendance, results, fees, communication, records, and admin workflows in one place.",
-    eyebrow: "Flagship Product",
-    h1: "Run attendance, results, fees, parent communication, and school admin in one place.",
+      "SchoolsRep by Future Logix helps Nigerian private schools manage attendance, results, fees, communication, records, and admin workflows in one place.",
+    eyebrow: "Flagship Future Logix Product",
+    h1: "SchoolsRep is the Future Logix product for Nigerian schools that want simpler operations.",
     subheadline:
-      "SchoolsRep is the flagship Future Logix product for Nigerian private schools that need clearer operations without adding administrative pressure.",
-    primaryCta: "Request a Demo",
-    secondaryCta: "Visit SchoolsRep",
-    tertiaryCta: "Talk to Us",
+      "Start from Future Logix to understand the product, trust posture, rollout path, and buyer questions. Then move into the SchoolsRep trial or demo flow when your school is ready.",
+    primaryCta: "Request a SchoolsRep Demo",
+    secondaryCta: "Start Guided Trial",
+    tertiaryCta: "Call Future Logix",
     interest: "SchoolsRep Product Inquiry",
     formTitle: "Request a SchoolsRep demo",
-    formIntro: "Tell us about your school and the operations you want to improve. We will follow up with the right demo path.",
-    messagePlaceholder: "Share your school name, student size, current tools, and what you want SchoolsRep to help with.",
+    formIntro: "Tell us about your school and the operations you want to improve. We will route you to the right demo, trial, or setup path.",
+    messagePlaceholder: "Share your school name, student size, current tools, migration concerns, and what you want SchoolsRep to help with.",
+    price: "₦150,000-₦580,000 per 4-month term",
+    timeline: "Guided trial and rollout planning available",
     painTitle: "School operations become harder when records, payments, and communication are scattered.",
     painIntro:
       "Private schools need reliable academic and administrative workflows, but many teams still manage critical work through notebooks, spreadsheets, chat messages, and manual follow-up.",
@@ -471,10 +475,11 @@ export const landingPages: Record<string, LandingPageData> = {
       "Parents miss important updates because communication is inconsistent.",
       "Fee tracking and payment follow-up take too much administrative time.",
       "Academic workflows become stressful during result processing and reporting periods.",
+      "School owners hesitate to pay before they understand migration, trial access, data protection, and support.",
     ],
     solutionTitle: "SchoolsRep brings school operations into one practical platform.",
     solutionIntro:
-      "Future Logix built SchoolsRep to help Nigerian private schools manage daily administration, academic records, parent communication, and financial visibility with less manual effort.",
+      "Future Logix built SchoolsRep to help Nigerian private schools manage daily administration, academic records, parent communication, and financial visibility with less manual effort while keeping the buying path clear.",
     capabilities: [
       {
         title: "Administration & Records Management",
@@ -493,7 +498,7 @@ export const landingPages: Record<string, LandingPageData> = {
       },
       {
         title: "Fee Management & Payment Tracking",
-        description: "Track fees, balances, payment status, and follow-up with clearer financial visibility.",
+        description: "Track fees, balances, payment status, reminders, and manual-transfer review with clearer financial visibility.",
         icon: WalletCards,
       },
       {
@@ -507,12 +512,14 @@ export const landingPages: Record<string, LandingPageData> = {
       "Less manual pressure during attendance, fee, and result periods.",
       "More consistent parent communication.",
       "A practical school operations platform backed by a Nigerian technology company.",
+      "A clearer buying path through Future Logix before schools commit to a paid term.",
     ],
     trustTitle: "A Future Logix product, built for Nigerian schools",
     trustItems: [
       "SchoolsRep is the flagship product under Future Logix.",
       "The platform reflects the realities of private school administration in Nigeria.",
       "Future Logix brings both product delivery and long-term technology partner thinking.",
+      "Schools can evaluate trial, migration, payment, support, and data-protection questions before rollout.",
     ],
     proofQuote:
       "Schools need systems that reduce admin pressure without making daily work more complicated. That is the operating principle behind SchoolsRep.",
@@ -526,12 +533,27 @@ export const landingPages: Record<string, LandingPageData> = {
       {
         question: "Can we request a demo before deciding?",
         answer:
-          "Yes. Use the form to request a demo and include your school size, current challenges, and the workflows you want to review.",
+          "Yes. Use the form to request a demo and include your school size, current challenges, migration questions, and the workflows you want to review.",
+      },
+      {
+        question: "Can we try SchoolsRep before paying for a term?",
+        answer:
+          "Yes. The preferred funnel is to start with a guided trial or demo, then choose the right paid plan after the school has reviewed core workflows.",
+      },
+      {
+        question: "Can SchoolsRep help if our data is currently in Excel?",
+        answer:
+          "Yes. Schools can prepare student, parent, staff, class, and subject records for import. Migration-heavy schools should discuss rollout before activation.",
       },
       {
         question: "Does SchoolsRep handle fees and results?",
         answer:
           "Yes. The landing focus includes fee management, payment tracking, attendance, and result processing workflows.",
+      },
+      {
+        question: "How should schools think about data protection?",
+        answer:
+          "SchoolsRep should be evaluated with role-based access, privacy expectations, and data handling in mind. Future Logix surfaces those trust questions before rollout.",
       },
       {
         question: "Is Future Logix the company behind SchoolsRep?",
@@ -540,7 +562,7 @@ export const landingPages: Record<string, LandingPageData> = {
       },
     ],
     schemaType: "Product",
-    productUrl: "https://schoolsrep.com",
+    productUrl: "/schoolsrep/free-trial",
   },
 };
 

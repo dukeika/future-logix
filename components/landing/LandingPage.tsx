@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Mail, MapPin, Phone, Star } from "lucide-react";
+import { ArrowRight, CheckCircle2, Mail, MapPin, MessageCircle, Phone, Star } from "lucide-react";
 
 import { LandingContactForm } from "@/components/landing/LandingContactForm";
 import { SiteContainer } from "@/components/shared/site-container";
@@ -11,7 +11,7 @@ type LandingPageProps = {
 
 function ContactMethods() {
   return (
-    <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
       <a
         href={`tel:${contactDetails.phone}`}
         className="rounded-2xl border border-border/80 bg-white/80 px-4 py-4 transition-colors hover:border-primary/30"
@@ -27,6 +27,14 @@ function ContactMethods() {
         <Mail className="h-5 w-5 text-primary" />
         <p className="mt-3 text-sm font-semibold text-foreground">Email</p>
         <p className="mt-1 text-sm text-muted-foreground">{contactDetails.email}</p>
+      </a>
+      <a
+        href={contactDetails.whatsappUrl}
+        className="rounded-2xl border border-border/80 bg-white/80 px-4 py-4 transition-colors hover:border-primary/30"
+      >
+        <MessageCircle className="h-5 w-5 text-primary" />
+        <p className="mt-3 text-sm font-semibold text-foreground">WhatsApp</p>
+        <p className="mt-1 text-sm text-muted-foreground">Message Future Logix</p>
       </a>
       <div className="rounded-2xl border border-border/80 bg-white/80 px-4 py-4">
         <MapPin className="h-5 w-5 text-primary" />

@@ -39,18 +39,19 @@ export function Hero() {
             className="group inline-flex items-center gap-2 rounded-full border border-border bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground backdrop-blur transition-colors hover:border-primary/30 hover:text-primary motion-safe:animate-fade-in"
           >
             <span className="inline-flex h-1.5 w-1.5 rounded-full bg-secondary" />
-            SchoolsRep is live for Nigerian schools
+            Future Logix builds and markets SchoolsRep
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
           </Link>
 
           <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl motion-safe:animate-fade-up">
-            <span className="gradient-text">Practical technology</span>
-            <br className="hidden sm:block" /> for African organizations that need to ship.
+            <span className="gradient-text">Future Logix</span>
+            <br className="hidden sm:block" /> is the product and technology company behind practical systems for African organizations.
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-balance text-base leading-8 text-muted-foreground sm:text-lg motion-safe:animate-fade-up">
-            Future Logix builds the systems schools, service teams, and growing businesses use to
-            move from manual work to clear digital operations — without the consulting fog.
+            We market, build, and implement useful systems: SchoolsRep for Nigerian schools, plus
+            AI automation, custom web applications, AWS architecture, and modernization support for
+            teams moving away from manual work.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row motion-safe:animate-fade-up">
@@ -67,7 +68,7 @@ export function Hero() {
               className="h-12 gap-2 rounded-full bg-white/70 px-6 text-base"
             >
               <Link href="/contact">
-                Talk to Us
+                Discuss a Project
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -84,7 +85,7 @@ export function Hero() {
             </span>
             <span className="hidden sm:inline-flex items-center gap-1.5">
               <CheckCircle2 className="h-3.5 w-3.5 text-secondary" />
-              Implementation-led
+              Product-led
             </span>
           </div>
         </div>
@@ -98,11 +99,11 @@ export function Hero() {
                   Flagship product
                 </div>
                 <h3 className="mt-5 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                  SchoolsRep — the operating system for Nigerian schools.
+                  SchoolsRep — the first flagship Future Logix product.
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground sm:text-base">
                   Attendance, results, fees, parent communication, and admin workflows in one
-                  place. Mobile-friendly. Built for real operating conditions.
+                  place. Marketed through Future Logix, delivered as a focused product for schools.
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -141,8 +142,8 @@ export function Hero() {
                   Trust
                 </p>
                 <p className="mt-2 text-base font-medium leading-7 text-slate-100">
-                  Clear systems, mobile-first interfaces, and implementation choices fit for real
-                  operating conditions.
+                  One parent brand for products, implementation work, cloud architecture, and the
+                  practical content buyers use before making technology decisions.
                 </p>
               </div>
             </div>

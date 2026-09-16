@@ -14,7 +14,7 @@ export function CTASection() {
             <SectionHeader
               number="07"
               title="Next Step"
-              subtitle="Choose the next step that matches your need right now."
+              subtitle="Start from Future Logix, then choose the right product or implementation path."
             />
           </div>
 
@@ -24,11 +24,11 @@ export function CTASection() {
                 <Grid2x2 className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                Start with SchoolsRep
+                Explore SchoolsRep under Future Logix
               </h3>
               <p className="mt-3 flex-1 text-base leading-8 text-muted-foreground">
                 Best for school leaders evaluating a ready product for operations, records,
-                communication, and fee visibility.
+                communication, fee visibility, and parent engagement.
               </p>
               <Button asChild size="lg" className="mt-6 h-12 w-full justify-between rounded-full px-6">
                 <Link href="/schoolsrep">
@@ -43,7 +43,7 @@ export function CTASection() {
                 <MessageCircle className="h-5 w-5" strokeWidth={1.75} />
               </div>
               <h3 className="mt-6 font-display text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                Talk through your requirements
+                Discuss a Future Logix implementation
               </h3>
               <p className="mt-3 flex-1 text-base leading-8 text-slate-300">
                 Best for teams that need automation, custom software, modernization support, or help

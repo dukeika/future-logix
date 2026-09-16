@@ -6,21 +6,21 @@ import { SiteContainer } from "@/components/shared/site-container";
 const trustSignals = [
   {
     icon: Layers3,
-    title: "Built around real workflows",
+    title: "A parent brand, not a one-off product",
     description:
-      "Attendance, records, reporting, approvals, and operational handoffs that teams deal with every week.",
+      "Future Logix gives each product and service a stronger trust layer: clear ownership, implementation thinking, and long-term accountability.",
     accent: "primary" as const,
   },
   {
     icon: ShieldCheck,
-    title: "Implementation matters more than decks",
+    title: "Practical proof over broad claims",
     description:
-      "Future Logix is structured for delivery. The work is scoped around usable systems, adoption, and next steps.",
+      "The site should market specific products, workflows, pricing anchors, and delivery paths instead of vague transformation language.",
     accent: "secondary" as const,
   },
   {
     icon: CheckCircle2,
-    title: "Designed for local operating realities",
+    title: "Built for local operating realities",
     description:
       "Products and services shaped for African organizations balancing lean teams and growth pressure.",
     accent: "primary" as const,
@@ -41,8 +41,8 @@ export function SocialProofSection() {
             <SectionHeader
               number="01A"
               title="Why Teams Start Here"
-              subtitle="Practical signals for buyers who need delivery confidence."
-              description="A clearer product story, grounded execution, and systems designed for real operating conditions."
+              subtitle="Future Logix is the main trust layer for the campaign."
+              description="SchoolsRep can lead product demand, but Future Logix should carry the broader brand story, expertise, and acquisition engine."
             />
           </div>
 

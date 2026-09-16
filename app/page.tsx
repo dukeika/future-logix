@@ -10,9 +10,9 @@ import { WhySection } from "@/components/sections/WhySection";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Practical Technology for African Organizations",
+  title: "Future Logix | Products and Technology Services for African Organizations",
   description:
-    "Future Logix helps African organizations operate better with SchoolsRep, AI automation, web development, and AWS architecture.",
+    "Future Logix builds and markets practical technology products, including SchoolsRep, alongside AI automation, web development, AWS architecture, and modernization services.",
   alternates: { canonical: "/" },
   openGraph: { url: "/", images: ["/og-image.png"] },
 };

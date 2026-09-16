@@ -13,6 +13,7 @@ import type { NavItem } from "@/types";
 
 const navItems: NavItem[] = [
   { label: "Products", href: "/products" },
+  { label: "SchoolsRep", href: "/schoolsrep" },
   { label: "Services", href: "/services" },
   { label: "Industries", href: "/industries" },
   { label: "Insights", href: "/insights" },
@@ -135,7 +136,7 @@ export function Navigation() {
             <Button asChild className="gap-2 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/90">
               <Link href="/contact">
                 <MessageSquare className="h-4 w-4" />
-                Talk to Us
+                Discuss a Project
               </Link>
             </Button>
           </div>
